@@ -1,0 +1,20 @@
+# macOS
+.DS_Store
+
+# Extracted binary assets (too large, regenerate from Cochl_PT_template.pptx)
+*.b64
+cochl_pt_master_bg.png
+cochl_pt_logo.png
+cochl_pt_cta_logo.png
+master_img_*.png
+cochl_mission_bg.png
+
+# npm
+node_modules/
+.npmrc
+
+# Generated output (reproducible via gen_pptx.py)
+cochl_acousticshield_deck.pptx
+
+# Raw proposal (sensitive)
+proposal_draft_v17.md

@@ -1,0 +1,480 @@
+{
+  "deck_type": "Pitch Deck",
+  "theme": "dark",
+  "color_tokens": {
+    "enterprise": "#001974",
+    "standard_blue": "#4B68FF",
+    "accent_purple": "#832BFB",
+    "background_dark": "#0A0E1A",
+    "surface_card": "#111827",
+    "text_primary": "#F0F4FF",
+    "text_secondary": "#94A3B8",
+    "success": "#10B981",
+    "warning": "#F59E0B",
+    "font_primary": "IBM Plex Sans",
+    "font_nav": "Roboto"
+  },
+  "slides": [
+    {
+      "slide_number": 1,
+      "type": "cover",
+      "title": "Cochl AcousticShield",
+      "subtitle": "광역 분산형 음향 AI 드론 탐지 및 다중 위협 상황인식 체계",
+      "layout": "centered_hero",
+      "components": [
+        {
+          "type": "tagline",
+          "content": "When RF fails, when radar blinds, when cameras fog — acoustics listens."
+        },
+        {
+          "type": "meta_row",
+          "items": [
+            { "label": "Company", "value": "주식회사 코클" },
+            { "label": "Date", "value": "2026.05.15" },
+            { "label": "Duration", "value": "18개월 R&D" },
+            { "label": "Funding", "value": "정부지원금 20.0억원" }
+          ]
+        },
+        {
+          "type": "gradient_accent",
+          "style": "horizontal_line",
+          "colors": ["#4B68FF", "#832BFB"]
+        }
+      ],
+      "notes": "Opening slide. Use hero layout with large title and gradient accent line under subtitle."
+    },
+    {
+      "slide_number": 2,
+      "type": "problem",
+      "title": "Modern Battlefield Has a Detection Gap",
+      "layout": "three_column_cards",
+      "components": [
+        {
+          "type": "problem_card",
+          "icon": "signal_off",
+          "heading": "RF / Jamming",
+          "body": "Fiber-optic drones have zero RF signature. Jammers useless."
+        },
+        {
+          "type": "problem_card",
+          "icon": "radar",
+          "heading": "Radar",
+          "body": "Low RCS, terrain clutter, urban multipath = wide blind zones"
+        },
+        {
+          "type": "problem_card",
+          "icon": "camera_off",
+          "heading": "EO / IR",
+          "body": "Fog, night, narrow FOV — fails at wide-area search"
+        },
+        {
+          "type": "callout_banner",
+          "content": "2024: Russia deployed fiber-optic FPV drones at scale. No RF. Fully jammer-immune. This is the new normal.",
+          "stat": "우크라이나 전선 — 기존 RF/재머 체계 구조적 무력화",
+          "color": "#F59E0B"
+        }
+      ],
+      "notes": "Emphasize the structural gap. Three equal columns above a full-width callout banner."
+    },
+    {
+      "slide_number": 3,
+      "type": "market_opportunity",
+      "title": "A $20B Market at Its Inflection Point",
+      "layout": "kpi_grid_with_quote",
+      "components": [
+        {
+          "type": "kpi_card",
+          "label": "Drone Detection Market 2029",
+          "value": "$2.32B",
+          "sub": "CAGR 28.7%"
+        },
+        {
+          "type": "kpi_card",
+          "label": "Counter-UAS Market 2030",
+          "value": "$20.31B",
+          "sub": null
+        },
+        {
+          "type": "kpi_card",
+          "label": "Ukraine Sensors Deployed",
+          "value": "~24,000",
+          "sub": "Sky Fortress + Zvook"
+        },
+        {
+          "type": "kpi_card",
+          "label": "NATO Adding",
+          "value": "15,000",
+          "sub": "3rd-gen sensors"
+        },
+        {
+          "type": "kpi_card",
+          "label": "US Pentagon C-UAS Budget",
+          "value": "~$10B",
+          "sub": null
+        },
+        {
+          "type": "kpi_card",
+          "label": "FEMA C-UAS Grant",
+          "value": "$500M",
+          "sub": "2025.12"
+        },
+        {
+          "type": "quote",
+          "content": "The U.S. homeland is no longer a sanctuary.",
+          "attribution": "Pentagon"
+        }
+      ],
+      "notes": "KPI cards in 2x3 grid. Quote displayed prominently below."
+    },
+    {
+      "slide_number": 4,
+      "type": "solution",
+      "title": "Cochl AcousticShield: The Acoustic ISR Layer",
+      "subtitle": "Acoustic signatures cannot be physically eliminated. Any drone in flight produces them.",
+      "layout": "four_pillar_horizontal",
+      "components": [
+        {
+          "type": "pillar_card",
+          "number": "01",
+          "heading": "Low-Cost Distributed Nodes",
+          "body": "≤₩1.5M/node, single mic, solar+battery, eSIM"
+        },
+        {
+          "type": "pillar_card",
+          "number": "02",
+          "heading": "Edge AI + Probabilistic Localization",
+          "body": "No TDOA sync required. ±50m accuracy"
+        },
+        {
+          "type": "pillar_card",
+          "number": "03",
+          "heading": "6 Simultaneous Threat Classes",
+          "body": "Drone + gunshots + vehicles + explosions + intrusion + voice"
+        },
+        {
+          "type": "pillar_card",
+          "number": "04",
+          "heading": "Conversational AI Agent",
+          "body": "On-premise LLM. Voice-interactive. Decision support."
+        }
+      ],
+      "notes": "Four equal horizontal cards with numbered accent. Gradient border on cards."
+    },
+    {
+      "slide_number": 5,
+      "type": "architecture",
+      "title": "4-Layer Acoustic ISR Architecture",
+      "layout": "vertical_layers",
+      "components": [
+        {
+          "type": "layer_block",
+          "number": "①",
+          "heading": "Edge Layer",
+          "body": "100m-interval distributed nodes, Edge AI inference, wake-on-event",
+          "color": "#4B68FF"
+        },
+        {
+          "type": "layer_block",
+          "number": "②",
+          "heading": "Server Layer",
+          "body": "Metadata fusion, density-based localization (no clock sync)",
+          "color": "#5B78FF"
+        },
+        {
+          "type": "layer_block",
+          "number": "③",
+          "heading": "Fusion Layer",
+          "body": "VMS dashboard, threat tracking, NATO SAPIENT API (BSI Flex 335 v2)",
+          "color": "#6D56FA"
+        },
+        {
+          "type": "layer_block",
+          "number": "④",
+          "heading": "Operator Layer",
+          "body": "On-premise LLM (Gemma 3), ASR+TTS voice interface, auto-prioritization",
+          "color": "#832BFB"
+        }
+      ],
+      "notes": "Vertical stacked layers with arrow connectors. Color gradient from blue to purple top-to-bottom."
+    },
+    {
+      "slide_number": 6,
+      "type": "capabilities",
+      "title": "One Network. Six Threat Classes.",
+      "layout": "table_with_note",
+      "components": [
+        {
+          "type": "data_table",
+          "headers": ["Class", "Target", "Performance Goal"],
+          "rows": [
+            ["Drone Detection", "FPV ≥120m / Shahed ≥2,000m", "≥90% accuracy"],
+            ["Drone ID (10 models)", "DJI Mavic, Shahed, Wing Loong...", "≥80% classification"],
+            ["Gunshots", "Small arms, machine guns", "≥85%"],
+            ["Tracked Vehicles", "Tanks, APCs", "≥85%"],
+            ["Intrusion Sounds", "Glass break, fence", "≥85%"],
+            ["Explosion / Mortar", "Artillery, rocket", "≥85%"]
+          ]
+        },
+        {
+          "type": "footnote",
+          "content": "900+ background sound classes trained simultaneously → industry-leading false alarm rate"
+        }
+      ],
+      "notes": "Clean dark table with alternating row highlight. Accent color on first column."
+    },
+    {
+      "slide_number": 7,
+      "type": "performance",
+      "title": "Quantified. KOLAS-Verified.",
+      "layout": "kpi_grid",
+      "components": [
+        { "type": "kpi_card", "label": "Edge AI Latency", "value": "≤500ms", "sub": null },
+        { "type": "kpi_card", "label": "End-to-End Alarm", "value": "≤15s", "sub": null },
+        { "type": "kpi_card", "label": "Location Accuracy", "value": "±50m", "sub": "100m node spacing" },
+        { "type": "kpi_card", "label": "Model Size", "value": "≤10MB", "sub": "INT8 quantized" },
+        { "type": "kpi_card", "label": "Node Unit Cost (1,000 units)", "value": "≤₩1.5M", "sub": null },
+        { "type": "kpi_card", "label": "AI Agent Response", "value": "≤15s", "sub": null },
+        { "type": "kpi_card", "label": "AI Agent Scenario Accuracy", "value": "≥80%", "sub": null },
+        { "type": "kpi_card", "label": "Operating Temperature", "value": "-20°C ~ +50°C", "sub": null }
+      ],
+      "footer": "All metrics independently verified by KOLAS-certified test authority (KOTCA)",
+      "notes": "8 KPI cards in 4x2 grid. Footer bar with KOLAS certification note."
+    },
+    {
+      "slide_number": 8,
+      "type": "scenarios",
+      "title": "17 Seconds from Detection to Decision",
+      "layout": "three_scenario_cards",
+      "components": [
+        {
+          "type": "scenario_card",
+          "label": "Scenario A",
+          "heading": "강원 DMZ — 광섬유 FPV 드론 (RF 0건)",
+          "steps": [
+            "03:14. Fog. Wind 3m/s. RF: 0 detections.",
+            "14 nodes detect 3 FPV drones approaching at 90km/h",
+            "\"동측 4.2km, FPV 3기, 시속 90km 남하. 예상 도달 2분30초.\" — AI Agent",
+            "First detection → response decision: 17 seconds"
+          ]
+        },
+        {
+          "type": "scenario_card",
+          "label": "Scenario B",
+          "heading": "휴전선 복합 침투 — 보병+드론+궤도차량 시계열",
+          "steps": [
+            "3 separate events over 60 minutes, integrated by AI Agent",
+            "\"복합 침투 작전 의심도 91%\" — AI Agent"
+          ]
+        },
+        {
+          "type": "scenario_card",
+          "label": "Scenario C",
+          "heading": "인천공항 — 유리 파괴 + 자폭 드론 동시",
+          "steps": [
+            "Dual simultaneous threats, single system",
+            "Automatic priority ranking"
+          ]
+        }
+      ],
+      "notes": "Three cards side by side. Each card shows timeline of events. AI Agent quotes highlighted."
+    },
+    {
+      "slide_number": 9,
+      "type": "competitive",
+      "title": "Next Generation vs First Generation",
+      "layout": "comparison_table",
+      "components": [
+        {
+          "type": "comparison_table",
+          "headers": ["", "Sky Fortress (Ukraine)", "Zvook (Ukraine)", "Squarehead (Norway)", "Cochl AcousticShield"],
+          "rows": [
+            ["Threat classes", "Drone only", "Drone only", "Drone only", "Drone + 5 military sounds"],
+            ["Localization", "TDOA (clock sync)", "TDOA", "Phased array", "Density-based (no sync)"],
+            ["AI Agent", "No", "No", "No", "On-premise LLM, voice"],
+            ["NATO SAPIENT", "No", "No", "No", "BSI Flex 335 v2"],
+            ["Node cost", "~$400-1,000", "~$500", "High (array)", "≤₩1.5M (~$1,100)"],
+            ["Field proven", "Yes (95% kill rate)", "Yes", "Finalist", "In R&D"]
+          ],
+          "highlight_column": 4
+        }
+      ],
+      "notes": "Last column (Cochl) highlighted with gradient accent. Competitor columns in muted tones."
+    },
+    {
+      "slide_number": 10,
+      "type": "technology",
+      "title": "9 Years of Sound AI. Now Weaponized.",
+      "layout": "two_column",
+      "components": [
+        {
+          "type": "column_block",
+          "heading": "Cochl IP Stack",
+          "items": [
+            "Cochl.Sense Foundation Model (TRL 7, production deployed)",
+            "900+ class environmental sound DB (9 years)",
+            "Transformer + Knowledge Distillation pipeline",
+            "MLOps full-stack (collect → label → train → deploy → monitor)"
+          ]
+        },
+        {
+          "type": "column_block",
+          "heading": "Proven Track Record",
+          "items": [
+            "IEEE DCASE 2-year consecutive winner",
+            "NVIDIA Inception Award 2018",
+            "12 international patents registered | 42 filed",
+            "US Navy base security deployment",
+            "US Air Force Nellis (Ghost Robotics collab)",
+            "USSOCOM demo — March 2026",
+            "LIG D&A / Hanwha Systems submarine acoustics",
+            "Selected: 방산혁신기업100 AI분야 (2024.09)"
+          ]
+        }
+      ],
+      "notes": "Two equal columns. Left: technical stack. Right: credentials and partnerships."
+    },
+    {
+      "slide_number": 11,
+      "type": "roadmap",
+      "title": "18-Month R&D Roadmap",
+      "layout": "horizontal_timeline",
+      "components": [
+        {
+          "type": "timeline",
+          "phases": [
+            {
+              "id": "P1",
+              "period": "M1-M2",
+              "dates": "Sep-Oct 2026",
+              "label": "Kickoff",
+              "description": "Project kickoff, acoustic DB construction, AI model v1 start",
+              "budget_m": 220
+            },
+            {
+              "id": "P2",
+              "period": "M3-M4",
+              "dates": "Nov-Dec 2026",
+              "label": "Alpha",
+              "description": "AI model v1 alpha complete, 2 prototypes built, 1st self-test",
+              "budget_m": 230
+            },
+            {
+              "id": "P3",
+              "period": "M5-M7",
+              "dates": "Jan-Mar 2027",
+              "label": "Integration",
+              "description": "6 prototypes integration, model v2 training start [Progress check]",
+              "budget_m": 350
+            },
+            {
+              "id": "P4",
+              "period": "M8-M10",
+              "dates": "Apr-Jun 2027",
+              "label": "Field Test 1",
+              "description": "Outdoor field test (Seoul metro), AI Agent v1 (text), SAPIENT API v1",
+              "budget_m": 380
+            },
+            {
+              "id": "P5",
+              "period": "M11-M13",
+              "dates": "Jul-Sep 2027",
+              "label": "Full Integration",
+              "description": "Full system integration, AI Agent v2 (voice), field test complete",
+              "budget_m": 380
+            },
+            {
+              "id": "P6",
+              "period": "M14-M16",
+              "dates": "Oct-Dec 2027",
+              "label": "KOLAS",
+              "description": "SAPIENT Test Harness verification, KOLAS test begins [Performance eval]",
+              "budget_m": 220
+            },
+            {
+              "id": "P7",
+              "period": "M17-M18",
+              "dates": "Jan-Feb 2028",
+              "label": "Certification",
+              "description": "KOLAS certification pass, patent + paper, final evaluation",
+              "budget_m": 220
+            }
+          ],
+          "total_budget_m": 2000
+        }
+      ],
+      "notes": "Horizontal timeline with 7 milestone markers. Budget bar below each milestone."
+    },
+    {
+      "slide_number": 12,
+      "type": "budget",
+      "title": "₩26.7억 R&D Investment",
+      "layout": "donut_and_bars",
+      "components": [
+        {
+          "type": "donut_chart",
+          "segments": [
+            { "label": "Government Funding", "value": 75, "color": "#4B68FF", "amount": "₩20.0억" },
+            { "label": "Company Contribution", "value": 25, "color": "#832BFB", "amount": "₩6.7억" }
+          ]
+        },
+        {
+          "type": "bar_chart",
+          "title": "Budget Allocation by Category",
+          "bars": [
+            { "label": "AI Research & Model Development", "percent": 35, "color": "#4B68FF" },
+            { "label": "Software (Fusion server, VMS, SAPIENT API)", "percent": 20, "color": "#5B78FF" },
+            { "label": "Hardware Integration (6 prototypes)", "percent": 20, "color": "#6D56FA" },
+            { "label": "Field Testing & Certification (KOLAS)", "percent": 15, "color": "#832BFB" },
+            { "label": "AI Agent & LLM Integration", "percent": 10, "color": "#9B4DFF" }
+          ]
+        },
+        {
+          "type": "roi_note",
+          "content": "양산 단계(후속 사업): 1,000노드 ≤ 15억원 — vs 단일 레이더 수십~수백억원"
+        }
+      ],
+      "notes": "Left: donut chart for funding split. Right: horizontal bar chart for allocation. ROI note at bottom."
+    },
+    {
+      "slide_number": 13,
+      "type": "cta",
+      "title": "Building Korea's First Acoustic ISR Layer",
+      "layout": "three_outcomes_with_cta",
+      "components": [
+        {
+          "type": "outcome_card",
+          "number": "01",
+          "heading": "National Security",
+          "body": "First wide-area acoustic ISR for fiber-optic drone era in Korea"
+        },
+        {
+          "type": "outcome_card",
+          "number": "02",
+          "heading": "Export Ready",
+          "body": "NATO SAPIENT + eSIM → NATO, USCENTCOM, Turkey, Southeast Asia"
+        },
+        {
+          "type": "outcome_card",
+          "number": "03",
+          "heading": "Market Position",
+          "body": "Enter $20B C-UAS market from a defensible acoustic moat"
+        },
+        {
+          "type": "closing_statement",
+          "content": "코클이 9년간 쌓은 사운드 AI를 이제 전장에서 검증합니다."
+        },
+        {
+          "type": "cta_pipeline",
+          "steps": [
+            "과제 선정",
+            "18개월 R&D",
+            "KOLAS 검증",
+            "신속시범획득",
+            "글로벌 수출"
+          ]
+        }
+      ],
+      "notes": "Closing slide. Three outcome cards. Large closing statement. Pipeline arrow at bottom."
+    }
+  ]
+}

@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cochl Claude Skills — 사용 설명서</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet">
+<style>
+/* ── Reset & Base ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --purple:    #832BFB;
+  --blue:      #2F80ED;
+  --dark:      #0B1F3A;
+  --card:      #0F2847;
+  --white:     #FFFFFF;
+  --muted:     #64748B;
+  --border:    #E2E8F0;
+  --bg:        #F8FAFC;
+  --text:      #1E293B;
+  --grad:      linear-gradient(135deg, #832BFB 0%, #2F80ED 100%);
+  --font:      'IBM Plex Sans', sans-serif;
+  --mono:      'IBM Plex Mono', monospace;
+  --page-w:    794px;
+  --page-pad:  64px;
+}
+
+html { font-size: 14px; }
+body {
+  font-family: var(--font);
+  background: #E8EDF4;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ── Page layout ── */
+.page {
+  width: var(--page-w);
+  min-height: 1123px;
+  margin: 24px auto;
+  background: var(--white);
+  padding: var(--page-pad);
+  position: relative;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  page-break-after: always;
+}
+.page:last-child { page-break-after: auto; }
+
+/* ── Cover page ── */
+.cover {
+  background: var(--dark);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.cover-top {
+  flex: 1;
+  padding: 72px 64px 48px;
+  background: var(--dark);
+  position: relative;
+}
+.cover-top::before {
+  content: '';
+  position: absolute;
+  top: -120px; right: -120px;
+  width: 480px; height: 480px;
+  background: radial-gradient(circle, rgba(131,43,251,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-top::after {
+  content: '';
+  position: absolute;
+  bottom: -60px; left: 40px;
+  width: 320px; height: 320px;
+  background: radial-gradient(circle, rgba(47,128,237,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.cover-label {
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  color: var(--purple);
+  text-transform: uppercase;
+  margin-bottom: 28px;
+}
+.cover-title {
+  font-size: 40px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 8px;
+}
+.cover-title span {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.cover-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+.cover-meta {
+  display: flex;
+  gap: 40px;
+  position: relative;
+  z-index: 1;
+}
+.cover-meta-item { display: flex; flex-direction: column; gap: 4px; }
+.cover-meta-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  color: rgba(255,255,255,0.35);
+  text-transform: uppercase;
+}
+.cover-meta-val {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--white);
+}
+.cover-bottom {
+  background: rgba(255,255,255,0.04);
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 24px 64px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.cover-logo-text {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  letter-spacing: -0.01em;
+}
+.cover-logo-text span { color: var(--purple); }
+.cover-tagline {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+}
+
+/* ── Accent bar ── */
+.accent-bar {
+  width: 48px; height: 3px;
+  background: var(--grad);
+  border-radius: 2px;
+  margin-bottom: 32px;
+}
+
+/* ── Section header (within page) ── */
+.section-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--purple);
+  margin-bottom: 8px;
+}
+h2.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  letter-spacing: -0.015em;
+  margin-bottom: 6px;
+  line-height: 1.2;
+}
+h2.section-title span {
+  background: var(--grad);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.section-sub {
+  font-size: 13px;
+  color: var(--muted);
+  margin-bottom: 28px;
+  line-height: 1.5;
+}
+.divider {
+  height: 1px;
+  background: var(--border);
+  margin: 32px 0;
+}
+
+/* ── Skill cards ── */
+.skill-card {
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 24px;
+  margin-bottom: 16px;
+  position: relative;
+  overflow: hidden;
+}
+.skill-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--grad);
+}
+.skill-card-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 14px;
+  margin-bottom: 12px;
+}
+.skill-icon {
+  width: 40px; height: 40px;
+  border-radius: 10px;
+  background: var(--dark);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  font-size: 18px;
+}
+.skill-name {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.skill-cmd {
+  font-family: var(--mono);
+  font-size: 11px;
+  color: var(--purple);
+  font-weight: 600;
+  background: rgba(131,43,251,0.08);
+  padding: 2px 8px;
+  border-radius: 4px;
+  display: inline-block;
+}
+.skill-desc {
+  font-size: 12.5px;
+  color: var(--muted);
+  line-height: 1.6;
+  margin-bottom: 14px;
+}
+.skill-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+.tag {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 8px;
+  border-radius: 4px;
+  letter-spacing: 0.04em;
+}
+.tag-output { background: rgba(47,128,237,0.1); color: var(--blue); }
+.tag-input  { background: rgba(131,43,251,0.1); color: var(--purple); }
+.tag-react  { background: rgba(16,185,129,0.1); color: #10B981; }
+
+/* ── Step list ── */
+.steps { counter-reset: step; list-style: none; }
+.steps li {
+  counter-increment: step;
+  display: flex;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: flex-start;
+}
+.steps li:last-child { border-bottom: none; }
+.step-num {
+  width: 28px; height: 28px;
+  border-radius: 50%;
+  background: var(--grad);
+  color: white;
+  font-size: 12px;
+  font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+.step-content { flex: 1; }
+.step-title {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.step-body {
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+/* ── Code blocks ── */
+.code-block {
+  background: var(--dark);
+  border-radius: 10px;
+  padding: 18px 20px;
+  margin: 12px 0;
+  position: relative;
+  overflow: hidden;
+}
+.code-block::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--grad);
+}
+.code-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.3);
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.code-block pre {
+  font-family: var(--mono);
+  font-size: 12px;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.7;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.code-block pre .cmd { color: #a5b4fc; font-weight: 600; }
+.code-block pre .comment { color: rgba(255,255,255,0.3); }
+.code-block pre .purple { color: #c084fc; }
+.code-block pre .green { color: #6ee7b7; }
+
+/* ── Example cards (use cases) ── */
+.example-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 16px;
+}
+.example-card {
+  background: var(--bg);
+  border-radius: 10px;
+  padding: 18px;
+  border: 1px solid var(--border);
+}
+.example-card-title {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 6px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.example-card-title .dot {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: var(--purple);
+  flex-shrink: 0;
+}
+.example-msg {
+  font-size: 11.5px;
+  color: var(--muted);
+  line-height: 1.5;
+  font-style: italic;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 8px 10px;
+  margin-bottom: 8px;
+}
+.example-result {
+  font-size: 11px;
+  color: var(--blue);
+  font-weight: 600;
+}
+
+/* ── Layout table ── */
+.layout-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 11.5px;
+}
+.layout-table th {
+  text-align: left;
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 8px 12px;
+  border-bottom: 2px solid var(--border);
+}
+.layout-table td {
+  padding: 9px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+  color: var(--text);
+}
+.layout-table tr:last-child td { border-bottom: none; }
+.layout-table tr:nth-child(even) td { background: var(--bg); }
+.mono { font-family: var(--mono); font-size: 10.5px; color: var(--purple); }
+.density-low  { color: #10B981; font-weight: 600; font-size: 10px; }
+.density-mid  { color: var(--blue); font-weight: 600; font-size: 10px; }
+.density-high { color: #F59E0B; font-weight: 600; font-size: 10px; }
+
+/* ── Info box ── */
+.info-box {
+  border-left: 3px solid var(--purple);
+  background: rgba(131,43,251,0.05);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.info-box strong { color: var(--purple); }
+.warn-box {
+  border-left: 3px solid #F59E0B;
+  background: rgba(245,158,11,0.05);
+  border-radius: 0 8px 8px 0;
+  padding: 14px 18px;
+  margin: 16px 0;
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.6;
+}
+.warn-box strong { color: #F59E0B; }
+
+/* ── Two-col layout ── */
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.three-col { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+
+/* ── Token card ── */
+.token-card {
+  background: var(--dark);
+  border-radius: 10px;
+  padding: 16px;
+  color: white;
+}
+.token-card-label {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.35);
+  margin-bottom: 10px;
+}
+.token-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 7px;
+  font-size: 11px;
+}
+.token-swatch {
+  width: 16px; height: 16px;
+  border-radius: 4px;
+  flex-shrink: 0;
+  border: 1px solid rgba(255,255,255,0.1);
+}
+.token-name { font-family: var(--mono); color: rgba(255,255,255,0.5); font-size: 10px; flex: 1; }
+.token-val  { font-family: var(--mono); color: rgba(255,255,255,0.85); font-size: 10px; }
+
+/* ── QA checklist ── */
+.checklist { list-style: none; }
+.checklist li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 12px;
+  color: var(--text);
+  line-height: 1.5;
+}
+.checklist li:last-child { border-bottom: none; }
+.check-box {
+  width: 16px; height: 16px;
+  border: 2px solid var(--border);
+  border-radius: 4px;
+  flex-shrink: 0;
+  margin-top: 1px;
+}
+
+/* ── Page number ── */
+.page-footer {
+  position: absolute;
+  bottom: 28px;
+  left: var(--page-pad);
+  right: var(--page-pad);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 9px;
+  color: var(--muted);
+  border-top: 1px solid var(--border);
+  padding-top: 12px;
+}
+.page-num { font-family: var(--mono); }
+
+/* ── Print styles ── */
+@media print {
+  body { background: white; }
+  .page {
+    width: 100%;
+    margin: 0;
+    box-shadow: none;
+    border-radius: 0;
+  }
+}
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 1 — COVER -->
+<div class="page cover">
+  <div class="cover-top">
+    <div class="cover-label">Cochl · Internal Documentation</div>
+    <div class="cover-title">Claude Code<br>Skills <span>사용 설명서</span></div>
+    <div class="cover-sub">팀 전체가 AI 기반 프레젠테이션·디자인 워크플로우를<br>슬래시 커맨드 하나로 시작하는 방법</div>
+    <div class="accent-bar"></div>
+    <div class="cover-meta">
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">작성일</div>
+        <div class="cover-meta-val">2026-05-19</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">버전</div>
+        <div class="cover-meta-val">v1.1</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">대상</div>
+        <div class="cover-meta-val">Cochl 전 팀원</div>
+      </div>
+      <div class="cover-meta-item">
+        <div class="cover-meta-label">스킬 수</div>
+        <div class="cover-meta-val">4개</div>
+      </div>
+    </div>
+  </div>
+  <div class="cover-bottom">
+    <div class="cover-logo-text">cochl<span>.</span>ai</div>
+    <div class="cover-tagline">Confidential · Internal Use Only</div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 2 — 개요 -->
+<div class="page" style="padding-bottom: 80px;">
+
+  <div class="section-label">Overview</div>
+  <h2 class="section-title">Claude Code <span>Skills</span>란?</h2>
+  <div class="section-sub">Claude Code에 등록된 슬래시 커맨드(/)로 호출하는 AI 워크플로우 모듈입니다.<br>복잡한 프롬프트 없이, 명령어 하나로 Cochl 브랜드에 맞는 결과물을 즉시 생성합니다.</div>
+
+  <div class="info-box">
+    <strong>핵심 개념:</strong> 스킬은 Cochl 디자인 토큰, 레이아웃 문법, QA 체크리스트가 내장된 AI 에이전트입니다. 팀원이 매번 프롬프트를 작성하거나 디자인 가이드를 참고할 필요가 없습니다.
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">스킬 목록</div>
+  <h2 class="section-title">등록된 <span>4개 스킬</span></h2>
+  <p class="section-sub" style="margin-bottom: 20px;">각 스킬은 독립적으로 작동하며, 조합해서 사용할 수 있습니다.</p>
+
+  <div class="skill-card">
+    <div class="skill-card-header">
+      <div class="skill-icon">🎯</div>
+      <div>
+        <div class="skill-name">Cochl Pitch Deck</div>
+        <span class="skill-cmd">/cochl-pitch-deck</span>
+      </div>
+    </div>
+    <div class="skill-desc">
+      최소한의 정보(제품명, 핵심 메시지, 데이터 포인트)만 주면 Cochl 브랜드 스타일의 프레젠테이션을 처음부터 자동으로 생성합니다. 13슬라이드 구조를 자동 매핑하고 HTML + PPTX 두 형식으로 동시 출력합니다.
+    </div>
+    <div class="skill-tags">
+      <span class="tag tag-output">HTML 출력</span>
+      <span class="tag tag-output">PPTX 출력</span>
+      <span class="tag tag-input">텍스트/JSON 입력</span>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <div class="skill-card-header">
+      <div class="skill-icon">🎨</div>
+      <div>
+        <div class="skill-name">Pitch Deck Skill (슬라이드 수정)</div>
+        <span class="skill-cmd">/pitch-deck-skill</span>
+      </div>
+    </div>
+    <div class="skill-desc">
+      기존 덱의 특정 슬라이드 내용만 교체하거나, 다른 제품용 새 덱을 같은 Cochl 비주얼 시스템으로 제작합니다. 30개 레이아웃 아카이브 + Cochl PT 템플릿 정확한 치수가 내장됩니다.
+    </div>
+    <div class="skill-tags">
+      <span class="tag tag-output">HTML 출력</span>
+      <span class="tag tag-output">PPTX 출력</span>
+      <span class="tag tag-input">기존 덱 수정</span>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <div class="skill-card-header">
+      <div class="skill-icon">💻</div>
+      <div>
+        <div class="skill-name">Frontend Design</div>
+        <span class="skill-cmd">/frontend-design</span>
+      </div>
+    </div>
+    <div class="skill-desc">
+      React/Vite 프로젝트, 웹 컴포넌트, HTML 페이지에 Cochl 디자인 시스템을 적용합니다. 프로젝트 유형을 자동 감지해 React DS 모드 / Pitch Deck 모드 / HTML 모드 중 적절한 방식으로 동작합니다.
+    </div>
+    <div class="skill-tags">
+      <span class="tag tag-react">React 지원</span>
+      <span class="tag tag-output">HTML 출력</span>
+      <span class="tag tag-input">컴포넌트 입력</span>
+    </div>
+  </div>
+
+  <div class="skill-card">
+    <div class="skill-card-header">
+      <div class="skill-icon">📦</div>
+      <div>
+        <div class="skill-name">Install Cochl Design System</div>
+        <span class="skill-cmd">/install-cochl-ds</span>
+      </div>
+    </div>
+    <div class="skill-desc">
+      React 프로젝트에 @cochlearai/ui, @cochlearai/util을 자동 설치하고 BaseTheme으로 루트를 래핑합니다. .npmrc 설정, 환경변수 토큰, 빌드 검증까지 전 과정을 자동화합니다.
+    </div>
+    <div class="skill-tags">
+      <span class="tag tag-react">React 전용</span>
+      <span class="tag tag-input">package.json 필요</span>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Cochl Claude Skills — 사용 설명서 v1.1</span>
+    <span class="page-num">2</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 3 — 설치 -->
+<div class="page" style="padding-bottom: 80px;">
+
+  <div class="section-label">Installation</div>
+  <h2 class="section-title">팀원 <span>설치 방법</span></h2>
+  <div class="section-sub">스킬 파일은 레포지토리의 <code style="background:#F1F5F9;padding:2px 6px;border-radius:4px;font-family:var(--mono);font-size:11px;">.claude/skills/</code> 폴더에 있습니다. 처음 한 번만 설치하면 됩니다.</div>
+
+  <div class="warn-box">
+    <strong>사전 조건:</strong> Claude Code CLI가 설치되어 있어야 합니다. 설치되지 않은 경우 <code style="font-family:var(--mono);font-size:11px;">npm install -g @anthropic-ai/claude-code</code> 를 먼저 실행하세요.
+  </div>
+
+  <ol class="steps">
+    <li>
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <div class="step-title">레포지토리 클론</div>
+        <div class="step-body">프로젝트 레포를 클론하거나 최신 상태로 pull합니다.</div>
+        <div class="code-block" style="margin-top:10px;">
+          <div class="code-label">Terminal</div>
+          <pre><span class="cmd">git clone</span> git@github.com:cochlear-ai/[레포명].git
+<span class="comment"># 또는 기존 클론이 있다면</span>
+<span class="cmd">git pull</span> origin main</pre>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <div class="step-title">설치 스크립트 실행</div>
+        <div class="step-body">프로젝트 루트에서 아래 명령어를 실행합니다. 스킬 파일들이 <code style="font-family:var(--mono);font-size:11px;">~/.claude/skills/</code>에 복사됩니다.</div>
+        <div class="code-block" style="margin-top:10px;">
+          <div class="code-label">Terminal — 프로젝트 루트에서 실행</div>
+          <pre><span class="cmd">bash</span> .claude/install-skills.sh</pre>
+        </div>
+        <div style="margin-top:10px;font-size:11.5px;color:var(--muted);">설치 성공 시 아래와 같이 출력됩니다:</div>
+        <div class="code-block" style="margin-top:6px;">
+          <pre><span class="green">✓</span> cochl-pitch-deck.md
+<span class="green">✓</span> pitch-deck-skill.md
+<span class="green">✓</span> frontend-design.md
+<span class="green">✓</span> install-cochl-design-system/ (directory)
+
+Done! Restart Claude Code, then try:
+  <span class="purple">/cochl-pitch-deck</span></pre>
+        </div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <div class="step-title">Claude Code 재시작</div>
+        <div class="step-body">설치 후 Claude Code를 완전히 종료하고 다시 실행해야 새 스킬이 인식됩니다.<br>IDE 확장(VS Code, JetBrains)을 사용하는 경우 확장도 재시작합니다.</div>
+      </div>
+    </li>
+    <li>
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <div class="step-title">설치 확인</div>
+        <div class="step-body">Claude Code에서 <code style="font-family:var(--mono);font-size:11px;">/cochl-pitch-deck</code>을 입력했을 때 스킬이 로드되면 설치 완료입니다.</div>
+        <div class="code-block" style="margin-top:10px;">
+          <div class="code-label">Claude Code 프롬프트</div>
+          <pre><span class="purple">/cochl-pitch-deck</span>  <span class="comment">← 이걸 입력해서 스킬이 뜨면 성공</span></pre>
+        </div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="info-box" style="margin-top: 20px;">
+    <strong>스킬 업데이트:</strong> 스킬 파일이 업데이트되면 <code style="font-family:var(--mono);font-size:11px;">git pull</code> 후 설치 스크립트를 다시 실행하세요. Claude Code를 재시작하면 새 버전이 적용됩니다.
+  </div>
+
+  <div class="page-footer">
+    <span>Cochl Claude Skills — 사용 설명서 v1.1</span>
+    <span class="page-num">3</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 4 — /cochl-pitch-deck -->
+<div class="page" style="padding-bottom: 80px;">
+
+  <div class="section-label">Skill 01</div>
+  <h2 class="section-title"><span class="mono" style="font-size:20px;">/cochl-pitch-deck</span></h2>
+  <div class="section-sub">처음부터 새 덱을 만들 때 사용합니다. 최소 입력으로 최대 결과물을 냅니다.</div>
+
+  <div class="two-col" style="margin-bottom: 24px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">무엇을 줘야 하나요?</div>
+      <div style="font-size:12.5px;color:var(--text);line-height:1.7;">
+        아래 중 하나 이상이면 충분합니다:
+        <ul style="margin-top:8px;padding-left:16px;color:var(--muted);">
+          <li>제품/회사명</li>
+          <li>발표 대상 (투자자, 정부, 기업 구매자)</li>
+          <li>핵심 메시지, 데이터, 불릿 리스트</li>
+          <li>JSON 파일, PRD, 텍스트 브리프</li>
+          <li>기존 제안서나 문서 파일 경로</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">무엇을 만들어주나요?</div>
+      <div style="font-size:12.5px;color:var(--text);line-height:1.7;">
+        <ul style="padding-left:16px;color:var(--muted);">
+          <li>13슬라이드 자동 구조 매핑</li>
+          <li>break 슬라이드 3개 자동 삽입</li>
+          <li>HTML (브라우저에서 바로 보기)</li>
+          <li>PPTX (PowerPoint에서 편집)</li>
+          <li>키보드 네비게이션 포함</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">사용 예시</div>
+
+  <div class="example-grid">
+    <div class="example-card">
+      <div class="example-card-title"><div class="dot"></div>문서 파일 기반</div>
+      <div class="example-msg">/Users/hyo/proposal.md 를 기반으로 투자자용 덱 만들어줘 /cochl-pitch-deck</div>
+      <div class="example-result">→ proposal.md 분석 → 13슬라이드 자동 생성</div>
+    </div>
+    <div class="example-card">
+      <div class="example-card-title"><div class="dot"></div>간단한 텍스트 입력</div>
+      <div class="example-msg">Cochl AcousticShield, 방산 드론 탐지 AI, 정부 R&D 제안용 /cochl-pitch-deck</div>
+      <div class="example-result">→ 대상/컨텍스트 분석 → 덱 자동 구성</div>
+    </div>
+    <div class="example-card">
+      <div class="example-card-title"><div class="dot"></div>데이터 포인트 제공</div>
+      <div class="example-msg">탐지 정확도 94%, 200ms 추론, 17종 프로토콜. 기업 보안팀 대상 덱 /cochl-pitch-deck</div>
+      <div class="example-result">→ KPI 자동 배치 → 성능 슬라이드 생성</div>
+    </div>
+    <div class="example-card">
+      <div class="example-card-title"><div class="dot"></div>JSON 구조 입력</div>
+      <div class="example-msg">deck_content.json 파일 기반으로 Cochl Sense 제품 덱 만들어줘 /cochl-pitch-deck</div>
+      <div class="example-result">→ JSON 파싱 → 레이아웃 자동 매핑</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">자동 생성되는 13슬라이드 구조</div>
+
+  <table class="layout-table">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>슬라이드</th>
+        <th>레이아웃</th>
+        <th>밀도</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Cover</td><td class="mono">hero</td><td class="density-low">LOW</td></tr>
+      <tr><td>2</td><td>Problem</td><td class="mono">three-cols</td><td class="density-mid">MEDIUM</td></tr>
+      <tr><td>3</td><td>Market</td><td class="mono">kpi-grid-2x3</td><td class="density-high">HIGH</td></tr>
+      <tr><td>4</td><td>Solution</td><td class="mono">four-pillar</td><td class="density-mid">MEDIUM</td></tr>
+      <tr><td>5</td><td>Architecture</td><td class="mono">layer-stack</td><td class="density-high">HIGH</td></tr>
+      <tr><td>6</td><td>Capabilities</td><td class="mono">data-table</td><td class="density-high">HIGH</td></tr>
+      <tr><td>7</td><td>Performance</td><td class="mono">kpi-grid-4x2</td><td class="density-high">HIGH</td></tr>
+      <tr><td>8</td><td>Scenarios</td><td class="mono">three-scenario</td><td class="density-mid">MEDIUM</td></tr>
+      <tr><td>9</td><td>Competitive</td><td class="mono">comparison-table</td><td class="density-high">HIGH</td></tr>
+      <tr><td>10</td><td>Technology</td><td class="mono">two-cols-list</td><td class="density-mid">MEDIUM</td></tr>
+      <tr><td>11</td><td>Roadmap</td><td class="mono">timeline</td><td class="density-mid">MEDIUM</td></tr>
+      <tr><td>12</td><td>Budget</td><td class="mono">budget</td><td class="density-high">HIGH</td></tr>
+      <tr><td>13</td><td>CTA</td><td class="mono">cinematic-cta</td><td class="density-low">LOW</td></tr>
+    </tbody>
+  </table>
+
+  <div class="info-box" style="margin-top:16px;">
+    <strong>Break 슬라이드:</strong> 밀도가 높은 슬라이드 사이에 section-break, stat-spotlight, quote-break 3개가 자동으로 삽입되어 총 16슬라이드가 됩니다.
+  </div>
+
+  <div class="page-footer">
+    <span>Cochl Claude Skills — 사용 설명서 v1.1</span>
+    <span class="page-num">4</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 5 — /pitch-deck-skill & /frontend-design -->
+<div class="page" style="padding-bottom: 80px;">
+
+  <div class="section-label">Skill 02</div>
+  <h2 class="section-title"><span class="mono" style="font-size:20px;">/pitch-deck-skill</span></h2>
+  <div class="section-sub">기존 덱을 수정하거나, 다른 제품에 같은 Cochl 비주얼 시스템을 적용할 때 사용합니다.</div>
+
+  <div class="two-col" style="margin-bottom:16px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">/cochl-pitch-deck 와 차이점</div>
+      <table class="layout-table" style="font-size:11px;">
+        <thead><tr><th>항목</th><th>/cochl-pitch-deck</th><th>/pitch-deck-skill</th></tr></thead>
+        <tbody>
+          <tr><td>목적</td><td>처음부터 생성</td><td>수정·변형</td></tr>
+          <tr><td>입력</td><td>최소 텍스트</td><td>기존 파일+지시</td></tr>
+          <tr><td>레이아웃</td><td>자동 결정</td><td>명시 가능</td></tr>
+          <tr><td>내장 데이터</td><td>기본 30개</td><td>30개 + 치수 정보</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">사용 예시</div>
+      <div class="example-card" style="margin-bottom:10px;">
+        <div class="example-msg">슬라이드 7 (Performance) KPI 숫자를 최신 데이터로 업데이트해줘 /pitch-deck-skill</div>
+        <div class="example-result">→ 해당 슬라이드만 교체, 나머지 보존</div>
+      </div>
+      <div class="example-card">
+        <div class="example-msg">Cochl Sense 제품용 새 덱을 AcousticShield 덱과 같은 스타일로 만들어줘 /pitch-deck-skill</div>
+        <div class="example-result">→ 동일 비주얼 시스템, 새 내용 적용</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">Skill 03</div>
+  <h2 class="section-title"><span class="mono" style="font-size:20px;">/frontend-design</span></h2>
+  <div class="section-sub">웹 컴포넌트, 앱 페이지, HTML 아티팩트에 Cochl 디자인 시스템을 적용합니다.</div>
+
+  <div class="three-col">
+    <div style="background:var(--bg);border-radius:10px;padding:16px;border:1px solid var(--border);">
+      <div style="font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">React DS 모드</div>
+      <div style="font-size:11.5px;color:var(--muted);line-height:1.6;">
+        package.json이 있는 React/Vite 프로젝트.<br>@cochlearai/ui 설치 + BaseTheme 래핑 자동화
+      </div>
+      <div class="code-block" style="margin-top:10px;">
+        <pre style="font-size:10px;"><span class="comment"># 조건</span>
+package.json 존재</pre>
+      </div>
+    </div>
+    <div style="background:var(--bg);border-radius:10px;padding:16px;border:1px solid var(--border);">
+      <div style="font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">Pitch Deck 모드</div>
+      <div style="font-size:11.5px;color:var(--muted);line-height:1.6;">
+        슬라이드·프레젠테이션 요청.<br>Cochl Presentation System 자동 적용
+      </div>
+      <div class="code-block" style="margin-top:10px;">
+        <pre style="font-size:10px;"><span class="comment"># 조건</span>
+"덱", "슬라이드", "발표" 언급</pre>
+      </div>
+    </div>
+    <div style="background:var(--bg);border-radius:10px;padding:16px;border:1px solid var(--border);">
+      <div style="font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;">HTML 모드</div>
+      <div style="font-size:11.5px;color:var(--muted);line-height:1.6;">
+        정적 HTML, 랜딩 페이지.<br>CSS 변수로 Cochl 토큰 인라인 적용
+      </div>
+      <div class="code-block" style="margin-top:10px;">
+        <pre style="font-size:10px;"><span class="comment"># 조건</span>
+HTML 파일 요청</pre>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">Skill 04</div>
+  <h2 class="section-title"><span class="mono" style="font-size:20px;">/install-cochl-ds</span></h2>
+  <div class="section-sub">React 프로젝트에 @cochlearai/ui를 설치합니다. <strong>React 프로젝트 전용</strong> — 피치덱에는 필요 없습니다.</div>
+
+  <div class="two-col">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">자동화 범위</div>
+      <ul class="checklist">
+        <li><div class="check-box"></div>.npmrc 생성 (GitHub Packages 레지스트리)</li>
+        <li><div class="check-box"></div>.npmrc를 .gitignore에 추가</li>
+        <li><div class="check-box"></div>@cochlearai/ui + @cochlearai/util 설치</li>
+        <li><div class="check-box"></div>BaseTheme으로 루트 컴포넌트 래핑</li>
+        <li><div class="check-box"></div>빌드 검증 (npm run build)</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">사전 조건</div>
+      <div class="warn-box" style="margin:0;">
+        <strong>토큰 필요:</strong> GitHub Packages 읽기 권한 토큰을 환경변수로 먼저 설정해야 합니다.<br><br>
+        <code style="font-family:var(--mono);font-size:10px;">export COCHLEARAI_NPM_TOKEN=ghp_xxx</code>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Cochl Claude Skills — 사용 설명서 v1.1</span>
+    <span class="page-num">5</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 6 — 디자인 토큰 -->
+<div class="page" style="padding-bottom: 80px;">
+
+  <div class="section-label">Design Reference</div>
+  <h2 class="section-title">Cochl PT <span>디자인 토큰</span></h2>
+  <div class="section-sub">Cochl_PT_template.pptx에서 추출한 공식 스타일 기준값입니다. 스킬이 자동으로 적용하므로 직접 설정할 필요는 없습니다.</div>
+
+  <div class="two-col" style="margin-bottom:20px;">
+    <div class="token-card">
+      <div class="token-card-label">Color Palette</div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#832BFB;"></div>
+        <span class="token-name">--c-primary</span>
+        <span class="token-val">#832BFB</span>
+      </div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#2F80ED;"></div>
+        <span class="token-name">--c-analytics</span>
+        <span class="token-val">#2F80ED</span>
+      </div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#EBDDFF;border:1px solid rgba(255,255,255,0.2);"></div>
+        <span class="token-name">--c-lavender</span>
+        <span class="token-val">#EBDDFF</span>
+      </div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#10B981;"></div>
+        <span class="token-name">--c-success</span>
+        <span class="token-val">#10B981</span>
+      </div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#F59E0B;"></div>
+        <span class="token-name">--c-warning</span>
+        <span class="token-val">#F59E0B</span>
+      </div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#EB5757;"></div>
+        <span class="token-name">--c-emergency</span>
+        <span class="token-val">#EB5757</span>
+      </div>
+      <div style="height:1px;background:rgba(255,255,255,0.08);margin:10px 0;"></div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#FFFFFF;"></div>
+        <span class="token-name">Light slide bg</span>
+        <span class="token-val">#FFFFFF</span>
+      </div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#333333;"></div>
+        <span class="token-name">Body text</span>
+        <span class="token-val">#333333</span>
+      </div>
+      <div class="token-row">
+        <div class="token-swatch" style="background:#0B1F3A;"></div>
+        <span class="token-name">Dark slide bg</span>
+        <span class="token-val">#0B1F3A</span>
+      </div>
+    </div>
+
+    <div>
+      <div class="token-card" style="margin-bottom:14px;">
+        <div class="token-card-label">Typography</div>
+        <div class="token-row" style="flex-direction:column;align-items:flex-start;gap:4px;">
+          <span class="token-name">헤딩 폰트</span>
+          <span class="token-val">Century Gothic (PPTX) / IBM Plex Sans (Web)</span>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:8px 0;"></div>
+        <div class="token-row" style="flex-direction:column;align-items:flex-start;gap:4px;">
+          <span class="token-name">바디 폰트</span>
+          <span class="token-val">Roboto (PPTX) / IBM Plex Sans (Web)</span>
+        </div>
+        <div style="height:1px;background:rgba(255,255,255,0.08);margin:8px 0;"></div>
+        <div class="token-row"><span class="token-name">H1 (커버)</span><span class="token-val">39pt Bold #FFFFFF</span></div>
+        <div class="token-row"><span class="token-name">H2 (슬라이드)</span><span class="token-val">27pt Regular Black</span></div>
+        <div class="token-row"><span class="token-name">숫자 강조</span><span class="token-val">36pt Bold #832BFB</span></div>
+        <div class="token-row"><span class="token-name">본문</span><span class="token-val">9pt Regular #333333</span></div>
+      </div>
+
+      <div class="token-card">
+        <div class="token-card-label">Canvas Size</div>
+        <div class="token-row">
+          <span class="token-name">슬라이드 크기</span>
+          <span class="token-val">10" × 5.625"</span>
+        </div>
+        <div class="token-row">
+          <span class="token-name">왼쪽 여백</span>
+          <span class="token-val">1.46"</span>
+        </div>
+        <div class="token-row">
+          <span class="token-name">제목 상단</span>
+          <span class="token-val">y = 0.73"</span>
+        </div>
+        <div class="token-row">
+          <span class="token-name">3열 간격</span>
+          <span class="token-val">2.81" (center-to-center)</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+  <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">그래디언트 적용 규칙</div>
+
+  <div class="two-col">
+    <div>
+      <div style="font-size:12px;font-weight:600;color:#10B981;margin-bottom:8px;">✓ 적용 가능</div>
+      <ul style="font-size:12px;color:var(--muted);padding-left:16px;line-height:2;">
+        <li>슬라이드 제목 h2의 키워드 span 1개</li>
+        <li>KPI/숫자 값 텍스트</li>
+        <li>Accent line (3px, 최대 120px)</li>
+        <li>예산 바 채우기</li>
+        <li>타임라인 트랙</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size:12px;font-weight:600;color:#EB5757;margin-bottom:8px;">✗ 적용 금지</div>
+      <ul style="font-size:12px;color:var(--muted);padding-left:16px;line-height:2;">
+        <li>카드 배경</li>
+        <li>본문 텍스트</li>
+        <li>테이블 행</li>
+        <li>아이콘 배경</li>
+        <li>한 슬라이드에 2개 이상</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Cochl Claude Skills — 사용 설명서 v1.1</span>
+    <span class="page-num">6</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 7 — QA & FAQ -->
+<div class="page" style="padding-bottom: 80px;">
+
+  <div class="section-label">Quality Assurance</div>
+  <h2 class="section-title">덱 생성 후 <span>QA 체크리스트</span></h2>
+  <div class="section-sub">스킬이 자동으로 검증하지만, 출력물을 사람이 최종 확인할 때 사용하세요.</div>
+
+  <div class="two-col" style="margin-bottom: 28px;">
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">시각·구조 체크</div>
+      <ul class="checklist">
+        <li><div class="check-box"></div>커버/CTA 슬라이드에 PT 배경 이미지 적용됨</li>
+        <li><div class="check-box"></div>일반 콘텐츠 슬라이드는 흰 배경 + 검정 텍스트</li>
+        <li><div class="check-box"></div>각 h2에 <span class="mono">grad-text</span> span이 정확히 1개</li>
+        <li><div class="check-box"></div>카드 본문이 2문장 이하</li>
+        <li><div class="check-box"></div>하단 페이지 네비게이터 정상 작동</li>
+        <li><div class="check-box"></div>커버 좌하단에 Cochl 로고 존재</li>
+      </ul>
+    </div>
+    <div>
+      <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:12px;">파일·기술 체크</div>
+      <ul class="checklist">
+        <li><div class="check-box"></div>HTML 파일이 완전 self-contained (외부 의존 없음)</li>
+        <li><div class="check-box"></div>PPTX 파일이 정상 생성됨 (16슬라이드)</li>
+        <li><div class="check-box"></div>키보드 화살표 키 네비게이션 작동</li>
+        <li><div class="check-box"></div>IBM Plex Sans 웹폰트 로드됨</li>
+        <li><div class="check-box"></div>PPTX 슬라이드 크기 10" × 5.625"</li>
+        <li><div class="check-box"></div>하드코딩된 컬러 없음 (CSS 변수 사용)</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-label">FAQ</div>
+  <h2 class="section-title">자주 묻는 <span>질문</span></h2>
+
+  <div style="margin-top: 20px;">
+    <div style="border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">Q. 스킬을 입력해도 아무 반응이 없어요.</div>
+      <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">
+        설치 스크립트를 실행했는지 확인하세요 (<code style="font-family:var(--mono);font-size:11px;">bash .claude/install-skills.sh</code>). 설치 후 반드시 Claude Code를 완전히 재시작해야 합니다. 그래도 안 된다면 <code style="font-family:var(--mono);font-size:11px;">ls ~/.claude/skills/</code>로 파일이 있는지 확인하세요.
+      </div>
+    </div>
+    <div style="border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">Q. PPTX 파일이 생성되지 않아요.</div>
+      <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">
+        <code style="font-family:var(--mono);font-size:11px;">python3 -c "import pptx; print(pptx.__version__)"</code>로 python-pptx가 설치되어 있는지 확인하세요. 없다면 <code style="font-family:var(--mono);font-size:11px;">pip3 install python-pptx</code>를 실행합니다.
+      </div>
+    </div>
+    <div style="border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">Q. 스킬 파일이 업데이트됐는데 어떻게 적용하나요?</div>
+      <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">
+        <code style="font-family:var(--mono);font-size:11px;">git pull</code> 후 <code style="font-family:var(--mono);font-size:11px;">bash .claude/install-skills.sh</code>를 다시 실행하고 Claude Code를 재시작합니다.
+      </div>
+    </div>
+    <div style="border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:16px;">
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">Q. /install-cochl-ds 를 쳤는데 401 에러가 나요.</div>
+      <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">
+        <code style="font-family:var(--mono);font-size:11px;">COCHLEARAI_NPM_TOKEN</code> 환경변수가 설정되지 않았습니다. GitHub Packages 읽기 권한 토큰을 발급 받아 <code style="font-family:var(--mono);font-size:11px;">export COCHLEARAI_NPM_TOKEN=ghp_xxx</code>로 설정하세요.
+      </div>
+    </div>
+    <div>
+      <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:6px;">Q. 새 스킬을 추가하려면 어떻게 하나요?</div>
+      <div style="font-size:12.5px;color:var(--muted);line-height:1.6;">
+        <code style="font-family:var(--mono);font-size:11px;">.claude/skills/</code>에 <code style="font-family:var(--mono);font-size:11px;">my-skill.md</code> 파일을 추가하고 상단에 <code style="font-family:var(--mono);font-size:11px;">name: my-skill</code> frontmatter를 작성하세요. 설치 스크립트가 자동으로 포함합니다.
+      </div>
+    </div>
+  </div>
+
+  <div class="page-footer">
+    <span>Cochl Claude Skills — 사용 설명서 v1.1</span>
+    <span class="page-num">7</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════════════ PAGE 8 — 빠른 참조 -->
+<div class="page" style="padding-bottom: 80px;">
+
+  <div class="section-label">Quick Reference</div>
+  <h2 class="section-title">한 눈에 보는 <span>커맨드 가이드</span></h2>
+  <div class="section-sub">자주 쓰는 패턴을 복사해서 바로 사용하세요.</div>
+
+  <div class="divider" style="margin-top: 16px;"></div>
+
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">새 덱 만들기</div>
+    <div class="code-block">
+      <div class="code-label">가장 간단한 사용법</div>
+      <pre><span class="comment"># 파일 기반</span>
+<span class="purple">/Users/나/문서/proposal.md</span> 기반으로 투자자용 덱 /cochl-pitch-deck
+
+<span class="comment"># 텍스트 기반</span>
+[제품명], [핵심 기능 3가지], [대상 청중] /cochl-pitch-deck
+
+<span class="comment"># JSON 기반</span>
+<span class="purple">/path/to/deck_content.json</span> /cochl-pitch-deck</pre>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">기존 덱 수정</div>
+    <div class="code-block">
+      <div class="code-label">슬라이드 내용 교체</div>
+      <pre><span class="comment"># 특정 슬라이드 수정</span>
+슬라이드 7 Performance KPI를 아래 수치로 업데이트해줘:
+탐지 정확도 96%, 추론 150ms /pitch-deck-skill
+
+<span class="comment"># 새 제품으로 전체 변환</span>
+<span class="purple">cochl_acousticshield_deck.html</span>을 Cochl Sense 제품 내용으로 교체 /pitch-deck-skill</pre>
+    </div>
+  </div>
+
+  <div style="margin-bottom:20px;">
+    <div style="font-size:11px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">프론트엔드 작업</div>
+    <div class="code-block">
+      <div class="code-label">디자인 시스템 적용</div>
+      <pre><span class="comment"># React 컴포넌트에 Cochl 스타일 적용</span>
+이 Dashboard 컴포넌트에 Cochl 디자인 시스템 적용해줘 /frontend-design
+
+<span class="comment"># @cochlearai/ui 설치</span>
+/install-cochl-ds</pre>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:16px;">스킬별 출력 파일 위치</div>
+
+  <table class="layout-table">
+    <thead>
+      <tr>
+        <th>스킬</th>
+        <th>출력 파일</th>
+        <th>경로</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="mono">/cochl-pitch-deck</span></td>
+        <td>HTML + PPTX</td>
+        <td style="font-family:var(--mono);font-size:10.5px;color:var(--muted);">[제품명]_deck.html / .pptx</td>
+      </tr>
+      <tr>
+        <td><span class="mono">/pitch-deck-skill</span></td>
+        <td>HTML + PPTX</td>
+        <td style="font-family:var(--mono);font-size:10.5px;color:var(--muted);">cochl_[제품]_deck.html / .pptx</td>
+      </tr>
+      <tr>
+        <td><span class="mono">/frontend-design</span></td>
+        <td>수정된 소스 파일</td>
+        <td style="font-family:var(--mono);font-size:10.5px;color:var(--muted);">기존 파일 in-place 수정</td>
+      </tr>
+      <tr>
+        <td><span class="mono">/install-cochl-ds</span></td>
+        <td>package.json, .npmrc</td>
+        <td style="font-family:var(--mono);font-size:10.5px;color:var(--muted);">프로젝트 루트</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="info-box" style="margin-top:20px;">
+    <strong>파일 경로 팁:</strong> 파일 경로를 메시지에 직접 붙여넣으면 Claude Code가 자동으로 파일을 읽어 컨텍스트로 사용합니다. Finder에서 파일을 드래그하거나, 터미널에서 <code style="font-family:var(--mono);font-size:11px;">pwd</code>로 경로를 복사하세요.
+  </div>
+
+  <div style="margin-top: 28px; padding: 20px; background: var(--dark); border-radius: 12px; display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <div style="font-size:13px;font-weight:700;color:white;margin-bottom:4px;">문의 / 스킬 추가 요청</div>
+      <div style="font-size:11.5px;color:rgba(255,255,255,0.5);">새 스킬이 필요하거나 버그가 있으면 hjkim@cochlear.ai로 연락하세요.</div>
+    </div>
+    <div style="font-size:13px;font-weight:700;background:linear-gradient(135deg,#832BFB,#2F80ED);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;">cochl.ai</div>
+  </div>
+
+  <div class="page-footer">
+    <span>Cochl Claude Skills — 사용 설명서 v1.1</span>
+    <span class="page-num">8</span>
+  </div>
+</div>
+
+</body>
+</html>
