@@ -20,6 +20,21 @@ You infer the rest. Never ask for more than what's needed to start building.
 
 ---
 
+## Template Variants
+
+Some pitch types have an official Cochl template that must be treated as the source of truth for slide structure, copy patterns, and layout — use it instead of freehanding from Step 2's generic slide map.
+
+| Variant | Trigger | Source of truth |
+|---|---|---|
+| Investor / fundraising pitch deck | Audience is investors, VCs, or a fundraising round (seed, Series A/B/…) | **Bundled spec: [`references/investor-template.md`](references/investor-template.md)** — 15 layouts, tokens, glow motifs; previews in `references/investor-template-previews/`. Figma mirror (needs MCP auth): https://www.figma.com/slides/O5ORoGcBjP57OxhCHrAZ2n/Investor---fundraising-pitch-deck?node-id=8-1354 |
+| B2B partnership / sales proposal deck | Audience is a prospective partner or enterprise buyer; goal is a partnership, sale, or proposal (agenda, capabilities, clients, case studies, pricing, timeline, next steps) | **Bundled spec: [`references/b2b-sales-proposal-template.md`](references/b2b-sales-proposal-template.md)** — 22 layouts, tokens, glow motifs; previews in `references/b2b-sales-proposal-previews/`. |
+
+**For a template variant, read its bundled spec first and follow it as authoritative** — it overrides Step 2's generic slide map and Step 3's generic tokens. Both variants share the Cochl **near-black / indigo / glow** system (NOT `#0B1F3A`) but differ in heading treatment: **Investor = IBM Plex Mono, UPPERCASE**; **B2B = IBM Plex Sans, Title Case** (with a mint/teal secondary accent). The specs are self-contained, so they work even when the Figma MCP is unauthorized; when Figma *is* authorized you may reconcile against the node via `get_design_context` / `get_screenshot` (see `figma-design-to-code`), but keep the bundled structure. A white `cochl.` logo for the footer is bundled at `references/cochl-logo-white.png`.
+
+For any variant without a listed source of truth, fall back to the generic 13-slide map in Step 2.
+
+---
+
 ## Step 1 — Understand the context
 
 Before writing a single line of HTML, answer these four questions internally:
@@ -226,14 +241,42 @@ document.getElementById('pn-prev').style.opacity = '0.3';
 
 ## Step 7 — Output
 
+**Always build the HTML first (it is the source of truth), then ASK the user which format(s) to save and deliver accordingly:**
+
+> **"How should I save the presentation — PPTX, HTML, or both?"**  → options: **Both** (recommended) · **PPTX only** · **HTML only**
+
+Use the host's choice prompt (in Claude Code: the `AskUserQuestion` tool) after the HTML is ready. Then:
+- **Both** → keep the `.html` and also export the `.pptx` (7b).
+- **HTML only** → deliver just `{product_slug}_deck.html`.
+- **PPTX only** → still generate the HTML internally (needed to render the PPTX), export the `.pptx`, and deliver the `.pptx` (you may keep the `.html` on disk but lead with the PPTX).
+
+Both files share the same basename and directory. Report the path(s) of whatever was produced.
+
+### 7a — HTML (source of truth)
 Produce a single self-contained HTML file:
 - All assets base64-encoded inline (no external dependencies except Google Fonts CDN).
 - File named `{product_slug}_deck.html` saved to the same directory as the input file (or `/Users/hyo/Desktop/challenge/` if no input file path given).
-- Google Fonts link: `https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap`
-- All 13 slides present.
-- Bottom page-nav functional.
-- Keyboard arrow navigation working.
+- Google Fonts link: `https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap` (add `IBM+Plex+Mono` for the investor variant).
+- All slides present (13 for the generic map; the variant's own count otherwise).
+- Bottom page-nav functional; keyboard arrow navigation working.
 - Open the file in the browser after writing it.
+
+### 7b — PPTX (pixel-faithful export)
+Export the finished HTML to a 16:9 PowerPoint where **each slide is a full-bleed 1920×1080 image** of the rendered HTML slide — this preserves glows, discs, gradients and mono type exactly (the primitive text/shape APIs cannot). Recipe:
+1. Render each slide to a 1920×1080 PNG with headless Chrome. Reliable method: emit each `<section>` as its own standalone page (same CSS, `html,body{width:1920px;height:1080px;overflow:hidden}` + `.slide{min-height:1080px;height:1080px}`), then `chrome --headless=new --screenshot=sNN.png --window-size=1920,1080 --force-device-scale-factor=1 --hide-scrollbars --virtual-time-budget=3500 file://…/slide-N.html`. (Anchor/JS scroll on the combined deck is unreliable in headless; standalone per-slide pages are not.)
+2. Build the deck with python-pptx (`pip install --user python-pptx` if missing):
+   ```python
+   from pptx import Presentation; from pptx.util import Inches; import glob
+   prs = Presentation(); prs.slide_width = Inches(13.333); prs.slide_height = Inches(7.5)
+   blank = prs.slide_layouts[6]
+   for p in sorted(glob.glob('build/png/s*.png')):
+       s = prs.slides.add_slide(blank)
+       s.shapes.add_picture(p, 0, 0, width=prs.slide_width, height=prs.slide_height)
+   prs.save('{product_slug}_deck.pptx')
+   ```
+3. Delete the intermediate PNGs; keep only the `.html` and `.pptx`.
+
+Report both file paths when done.
 
 ---
 
