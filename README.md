@@ -6,7 +6,8 @@ A reusable Claude Code skill library for creating Cochl presentations, design re
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| [pitch-deck](./skills/pitch-deck/) | `/pitch-deck-skill` · `/cochl-pitch-deck` | Build and update Cochl pitch decks (HTML + PPTX) |
+| [cochl-pitch-deck](./skills/cochl-pitch-deck/) | `/cochl-pitch-deck` | Build a Cochl pitch deck from a brief. Bundles the **Investor** (15-layout) and **B2B partnership/sales** (22-layout) template variants under `references/` |
+| [pitch-deck](./skills/pitch-deck/) | `/pitch-deck-skill` | Update/rebuild within the official Cochl PT template (HTML + PPTX) |
 | [design-review](./skills/design-review/) | `/design-review-template` · `/dr-template` | Generate Proposal or Direction Alignment review presentations |
 | [proposal-doc](./skills/proposal-doc/) | `/proposal-doc-template` · `/proposal-doc` | Create styled Cochl proposal documents (HTML → PDF) |
 | [design-system](./skills/design-system/) | `/install-cochl-design-system` · `/frontend-design` | Install and apply the Cochl design system in React projects |
@@ -32,7 +33,8 @@ After install, skills are available in any Claude Code session:
 ```
 cochl-presentation-skills/
 ├── skills/
-│   ├── pitch-deck/          — Pitch deck skill + Cochl PT template
+│   ├── cochl-pitch-deck/    — /cochl-pitch-deck skill + references/ (investor & B2B template specs + previews)
+│   ├── pitch-deck/          — /pitch-deck-skill + Cochl PT template (assets/)
 │   ├── design-review/       — Design review skill + PPTX source templates
 │   ├── proposal-doc/        — Proposal doc skill + source PDFs + examples
 │   └── design-system/       — Design system install + frontend-design skill
