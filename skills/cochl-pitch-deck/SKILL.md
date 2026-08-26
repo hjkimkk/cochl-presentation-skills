@@ -36,6 +36,11 @@ Some pitch types have an official Cochl template that must be treated as the sou
 
 For any variant without a listed source of truth, fall back to the generic 13-slide map in Step 2.
 
+### Companion brand-asset libraries (not decks)
+Two bundled libraries produce non-deck Cochl collateral in the same brand system. Use them when the user asks for that artifact instead of a deck:
+- **Brochure** — `references/brochure/` — editable-SVG brochure / 제품 소개서 / 1-pager (12 layouts: V1/V2/V3 × portrait/landscape × front/back, + 32 icons). Trigger: brochure, 브로셔, leaflet, datasheet.
+- **Press / social media kit** — `references/social-kit/` — editable-SVG platform banners (LinkedIn 1584×396, YouTube 2560×1440, Medium 1500×750, Notion 1500×600, OG 1200×630). `templates/` = blank (image drop-zones + text placeholders); `examples/` = filled. Fill by replacing `#565b6b` placeholder `<text>` and swapping `image-*` groups; keep the `logo` + `cochlGrad`/`glow`. See `references/social-kit/README.md`. Trigger: social banner, press kit, LinkedIn/YouTube/Medium/Notion cover, OG card.
+
 ---
 
 ## Step 1 — Understand the context

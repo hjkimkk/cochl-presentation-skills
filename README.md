@@ -6,7 +6,7 @@ A reusable Claude Code skill library for creating Cochl presentations, design re
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| [cochl-pitch-deck](./skills/cochl-pitch-deck/) | `/cochl-pitch-deck` | Build a Cochl pitch deck from a brief. Bundles 5 deck template variants under `references/`: **Investor** (15), **B2B partnership/sales** (22), **Corporate strategy/roadmap** (15), **QBR/board update** (15), **Market & competitive landscape** (13) — plus a **brochure SVG library** at `references/brochure/` (12 editable-SVG layouts + 32 icons) |
+| [cochl-pitch-deck](./skills/cochl-pitch-deck/) | `/cochl-pitch-deck` | Build a Cochl pitch deck from a brief. Bundles 5 deck template variants under `references/`: **Investor** (15), **B2B partnership/sales** (22), **Corporate strategy/roadmap** (15), **QBR/board update** (15), **Market & competitive landscape** (13) — plus a **brochure SVG library** at `references/brochure/` (12 editable-SVG layouts + 32 icons) and a **press/social media kit** at `references/social-kit/` (LinkedIn/YouTube/Medium/Notion/OG banners — blank templates + filled examples) |
 | [pitch-deck](./skills/pitch-deck/) | `/pitch-deck-skill` | Update/rebuild within the official Cochl PT template (HTML + PPTX) |
 | [design-review](./skills/design-review/) | `/design-review-template` · `/dr-template` | Generate Proposal or Direction Alignment review presentations |
 | [proposal-doc](./skills/proposal-doc/) | `/proposal-doc-template` · `/proposal-doc` | Create styled Cochl proposal documents (HTML → PDF) |
