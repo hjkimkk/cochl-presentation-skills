@@ -6,7 +6,7 @@ A reusable Claude Code skill library for creating Cochl presentations, design re
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| [cochl-pitch-deck](./skills/cochl-pitch-deck/) | `/cochl-pitch-deck` | Build a Cochl pitch deck from a brief. Bundles 5 deck template variants under `references/`: **Investor** (15), **B2B partnership/sales** (22), **Corporate strategy/roadmap** (15), **QBR/board update** (15), **Market & competitive landscape** (13) — plus a **brochure SVG library** at `references/brochure/` (12 editable-SVG layouts + 32 icons) and a **press/social media kit** at `references/social-kit/` (LinkedIn/YouTube/Medium/Notion/OG banners — blank templates + filled examples) |
+| [cochl-presentation](./skills/cochl-presentation/) | `/cochl-presentation` | Build any Cochl presentation collateral — decks, documents, brochures, social/press banners. Router over a **template registry** (`references/registry.md`) + shared **brand core** (`references/brand-core.md`). Ready: 5 deck variants (Investor, B2B sales, Corporate strategy/roadmap, QBR/board, Market & competitive) in `references/decks/`, a **brochure SVG library** (`references/brochure/`, 12 layouts + 32 icons), and a **press/social media kit** (`references/social-kit/`, LinkedIn/YouTube/Medium/Notion/OG). Data/Design/Dev/Research team decks are registered and build on the same structure. |
 | [pitch-deck](./skills/pitch-deck/) | `/pitch-deck-skill` | Update/rebuild within the official Cochl PT template (HTML + PPTX) |
 | [design-review](./skills/design-review/) | `/design-review-template` · `/dr-template` | Generate Proposal or Direction Alignment review presentations |
 | [proposal-doc](./skills/proposal-doc/) | `/proposal-doc-template` · `/proposal-doc` | Create styled Cochl proposal documents (HTML → PDF) |
@@ -33,7 +33,7 @@ After install, skills are available in any Claude Code session:
 ```
 cochl-presentation-skills/
 ├── skills/
-│   ├── cochl-pitch-deck/    — /cochl-pitch-deck skill + references/ (5 deck-variant specs + previews; brochure/ = 12 SVG brochure templates + logos + icons)
+│   ├── cochl-presentation/  — /cochl-presentation skill (router) + references/ (brand-core.md, registry.md, decks/, docs/, brochure/, social-kit/, assets/)
 │   ├── pitch-deck/          — /pitch-deck-skill + Cochl PT template (assets/)
 │   ├── design-review/       — Design review skill + PPTX source templates
 │   ├── proposal-doc/        — Proposal doc skill + source PDFs + examples

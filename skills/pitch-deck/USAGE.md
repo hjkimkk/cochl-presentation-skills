@@ -2,7 +2,7 @@
 
 ## Triggers
 - `/pitch-deck-skill` — map new content into the Cochl PT template
-- `/cochl-pitch-deck` — build a production-grade pitch deck from scratch
+- `/cochl-presentation` — build a production-grade Cochl deck / brochure / social banner from scratch
 
 ## Assets
 - `assets/Cochl_PT_template.pptx` — official Cochl PowerPoint template (22 slides, 10×5.625in)

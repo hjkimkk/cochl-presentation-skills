@@ -9,7 +9,8 @@ set -euo pipefail
 shopt -s nullglob
 
 SKILL_DIR="$HOME/.claude/skills"
-SRC="$(cd "$(dirname "$0")" && pwd)/skills"
+# install-skills.sh lives in .claude/, so the skills/ dir is one level up (repo root).
+SRC="$(cd "$(dirname "$0")/.." && pwd)/skills"
 mkdir -p "$SKILL_DIR"
 
 echo "Installing Cochl Claude skills to $SKILL_DIR ..."
@@ -35,7 +36,7 @@ done
 
 echo ""
 echo "Done! Restart Claude Code, then try:"
-echo "  /cochl-pitch-deck     — build a Cochl pitch deck (investor & B2B templates)"
+echo "  /cochl-presentation   — build any Cochl deck, brochure, or social/press banner"
 echo "  /pitch-deck-skill     — update/rebuild within the Cochl PT template"
 echo "  /frontend-design      — apply the Cochl design system"
 echo "  /install-cochl-design-system"
