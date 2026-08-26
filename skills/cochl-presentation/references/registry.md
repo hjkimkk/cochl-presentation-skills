@@ -17,7 +17,7 @@ Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit
 | Corporate strategy / product roadmap | Business, leadership — pillars, OKRs, roadmap | [`decks/corporate-strategy-roadmap-template.md`](decks/corporate-strategy-roadmap-template.md) — 15 layouts | ✅ |
 | Quarterly business review (QBR) / board update | Business, board — quarter review + ask | [`decks/qbr-board-update-template.md`](decks/qbr-board-update-template.md) — 15 layouts | ✅ |
 | Market & competitive landscape | Business — sizing, share, positioning | [`decks/market-competitive-template.md`](decks/market-competitive-template.md) — 13 layouts | ✅ |
-| Trade show / conference booth | Business — event booth loop, big-type panels | `decks/tradeshow-booth-template.md` | 🟡 |
+| Trade show / conference booth | Business — event booth loop, big-type panels | [`decks/tradeshow-booth-template.md`](decks/tradeshow-booth-template.md) — 8-frame looping kiosk (1920×1080), auto-advance + QR; previews in `decks/tradeshow-booth-previews/` | ✅ |
 | Data pipeline & architecture overview | Data — collection→labeling→training flow | `decks/data-pipeline-architecture-template.md` | 🟡 |
 | Data labeling guideline / annotator training | Data — how-to, examples, do/don't | `decks/data-labeling-guideline-template.md` | 🟡 |
 | Dataset summary & collection progress | Data — coverage, counts, progress KPIs | `decks/dataset-progress-report-template.md` | 🟡 |
