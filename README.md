@@ -6,8 +6,7 @@ A reusable Claude Code skill library for creating Cochl presentations, design re
 
 | Skill | Trigger | Purpose |
 |---|---|---|
-| [cochl-pitch-deck](./skills/cochl-pitch-deck/) | `/cochl-pitch-deck` | Build a Cochl pitch deck from a brief. Bundles 5 template variants under `references/`: **Investor** (15), **B2B partnership/sales** (22), **Corporate strategy/roadmap** (15), **QBR/board update** (15), **Market & competitive landscape** (13) |
-| [cochl-brochure](./skills/cochl-brochure/) | `/cochl-brochure` | Cochl brochure as editable SVG (Illustrator). 3 versions (V1 Visual / V2 Balanced / V3 Editorial) × 세로·가로 × 앞·뒤 = 12 layouts + 32-icon library |
+| [cochl-pitch-deck](./skills/cochl-pitch-deck/) | `/cochl-pitch-deck` | Build a Cochl pitch deck from a brief. Bundles 5 deck template variants under `references/`: **Investor** (15), **B2B partnership/sales** (22), **Corporate strategy/roadmap** (15), **QBR/board update** (15), **Market & competitive landscape** (13) — plus a **brochure SVG library** at `references/brochure/` (12 editable-SVG layouts + 32 icons) |
 | [pitch-deck](./skills/pitch-deck/) | `/pitch-deck-skill` | Update/rebuild within the official Cochl PT template (HTML + PPTX) |
 | [design-review](./skills/design-review/) | `/design-review-template` · `/dr-template` | Generate Proposal or Direction Alignment review presentations |
 | [proposal-doc](./skills/proposal-doc/) | `/proposal-doc-template` · `/proposal-doc` | Create styled Cochl proposal documents (HTML → PDF) |
@@ -34,8 +33,7 @@ After install, skills are available in any Claude Code session:
 ```
 cochl-presentation-skills/
 ├── skills/
-│   ├── cochl-pitch-deck/    — /cochl-pitch-deck skill + references/ (5 template-variant specs + previews)
-│   ├── cochl-brochure/      — /cochl-brochure skill: 12 SVG brochure templates + logos + icon library
+│   ├── cochl-pitch-deck/    — /cochl-pitch-deck skill + references/ (5 deck-variant specs + previews; brochure/ = 12 SVG brochure templates + logos + icons)
 │   ├── pitch-deck/          — /pitch-deck-skill + Cochl PT template (assets/)
 │   ├── design-review/       — Design review skill + PPTX source templates
 │   ├── proposal-doc/        — Proposal doc skill + source PDFs + examples
