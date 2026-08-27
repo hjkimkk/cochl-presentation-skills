@@ -1,5 +1,8 @@
 # Research Paper Presentation — deck (Research)
 
+> **Primary (recommended): Figma Slides** — brand-accurate, dark Cochl, real IBM Plex, 17 slides merging the SlideBazaar academic layout patterns (4-step infographic, six-step flow, bar chart, comparison table, references) with the Cochl 16-section structure. **Edit:** https://www.figma.com/slides/tUF7JCvtvLfarIMyUY9gB6 · previews in [`research-paper-figma-previews/`](research-paper-figma-previews/) (p01–p17).
+> The Canva version below is an earlier alternate (lighter brand fidelity).
+
 Academic **research-paper presentation** template, 16 sections. Produced in **Canva** (the Research team's requested tool) via Canva's AI presentation generator, styled toward the Cochl system (near-black backgrounds, indigo `#4B68FF` / purple `#832BFB` accents + glow, bold display headings, generous whitespace). Previews (p01–p16) in [`research-paper-previews/`](research-paper-previews/).
 
 **Editable Canva design (Cochl_Internal):** https://www.canva.com/d/TLDSf2uePrIVPOy — duplicate/edit this for a real talk and fill the placeholders.

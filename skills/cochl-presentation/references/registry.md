@@ -29,7 +29,7 @@ Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit
 | Technical architecture / system design | Dev — components, data flow, decisions | `decks/technical-architecture-template.md` | 🟡 |
 | Sprint review & release notes | Dev — shipped, demos, next sprint | `decks/sprint-review-release-notes-template.md` | 🟡 |
 | Engineering onboarding & tech stack | Dev — stack, repos, workflows | `decks/engineering-onboarding-template.md` | 🟡 |
-| Research paper presentation / findings summary | Research — problem, method, results | [`decks/research-paper-template.md`](decks/research-paper-template.md) — 16-section academic deck (previews in `decks/research-paper-previews/`); **editable Canva:** https://www.canva.com/d/TLDSf2uePrIVPOy | ✅ |
+| Research paper presentation / findings summary | Research — problem, method, results | [`decks/research-paper-template.md`](decks/research-paper-template.md) — academic deck. **Figma Slides (primary, 17 slides, dark Cochl):** https://www.figma.com/slides/tUF7JCvtvLfarIMyUY9gB6 (previews `decks/research-paper-figma-previews/`); Canva alt: https://www.canva.com/d/TLDSf2uePrIVPOy | ✅ |
 | Model performance & benchmark report | Research — metrics, ablations, comparison | `decks/model-benchmark-report-template.md` | 🟡 |
 | Technical deep-dive / conference talk | Research — talk-grade narrative | `decks/technical-deep-dive-template.md` | 🟡 |
 | Internal research review (journal-club) | Research — paper critique, discussion | `decks/research-journal-club-template.md` | 🟡 |
