@@ -24,7 +24,7 @@ Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit
 | Annotation vendor onboarding | Data — vendor ramp, standards, QA loop | `decks/annotation-vendor-onboarding-template.md` | 🟡 |
 | Data quality & governance review | Data — quality metrics, governance, risks | `decks/data-quality-governance-template.md` | 🟡 |
 | Design system & component library overview | Design — tokens, components, usage | `decks/design-system-overview-template.md` | 🟡 |
-| Usability testing report / UX research findings | Design — study, findings, recommendations | [`decks/usability-report-template.md`](decks/usability-report-template.md) — 13-slide deck; **editable Figma Slides:** https://www.figma.com/slides/j3AvEowJXBddgerOTd7fG3 | ✅ |
+| Usability testing report / UX research findings | Design — study, findings, recommendations | [`decks/usability-report-template.md`](decks/usability-report-template.md) — 13-slide deck (previews in `decks/usability-report-previews/`); **editable Figma Slides:** https://www.figma.com/slides/j3AvEowJXBddgerOTd7fG3 | ✅ |
 | Product walkthrough & feature showcase | Design, Product — flows, screens, value | `decks/product-walkthrough-template.md` | 🟡 |
 | Technical architecture / system design | Dev — components, data flow, decisions | `decks/technical-architecture-template.md` | 🟡 |
 | Sprint review & release notes | Dev — shipped, demos, next sprint | `decks/sprint-review-release-notes-template.md` | 🟡 |

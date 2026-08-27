@@ -2,7 +2,7 @@
 
 A UX-research **usability testing report** deck. Delivered as an editable **Figma Slides** file (the Design team's preferred medium), in the Cochl **light report** treatment. Inherits [`../brand-core.md`](../brand-core.md) with the light print palette (white bg, `#0F1B3D` ink, indigo `#4B68FF` accent, `#F4F7FF`/`#EEF2FF` panels), IBM Plex Sans/Mono, and the recurring signatures: a short **indigo underline** under each slide title, gradient `cochl.` logo on cover + closer, gradient hero panel (indigo→purple + mint/purple circles + dot grid).
 
-**Editable Figma Slides (Cochl_Internal):** https://www.figma.com/slides/j3AvEowJXBddgerOTd7fG3 — 13 slides. Duplicate this file for a real report and fill the placeholders.
+**Editable Figma Slides (Cochl_Internal):** https://www.figma.com/slides/j3AvEowJXBddgerOTd7fG3 — 13 slides. Duplicate this file for a real report and fill the placeholders. Slide previews (p01–p13) in [`usability-report-previews/`](usability-report-previews/).
 
 ## Slide structure (13)
 1. **Cover** — cochl logo, mono kicker `COCHL · UX RESEARCH`, big title "Usability Testing Report", gradient hero.
