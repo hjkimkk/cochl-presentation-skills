@@ -48,15 +48,13 @@ const pages={};
  // right spine band (gradient), vertical MEDIA KIT
  s+=`<rect x="${SX}" y="0" width="${SPINE}" height="${H}" fill="url(#ig)"/>`;
  s+=spineTxt(SX+50,110,'MEDIA KIT','#fff',30);
- // logo top-left on photo (white)
- s+=logo(M,44,26,'#fff');
  // bottom band (white) with title + tagline
  s+=`<rect x="0" y="560" width="${SX}" height="${H-560}" fill="#fff"/>`;
  s+=tx(M,660,84,'800',INDIGO,'COCHL',{});
  s+=`<line x1="${M}" y1="694" x2="${SX-40}" y2="694" stroke="${LINE}" stroke-width="1.5"/>`;
  s+=tx(M,740,26,'600',INK,'Creating ears for AI',{});
- // mark inside spine bottom
- s+=mark(SX+SPINE/2,700,40);
+ // white cochl logo rotated 90° on the spine, bottom (matches Figma placement)
+ s+=`<g id="logo" transform="translate(589,662) rotate(90) scale(0.1953)"><path d="${SYMB}" fill="url(#cg)"/><path d="${WORD}" fill="#fff"/><circle cx="499.067" cy="102.831" r="10.9334" fill="#fff"/></g>`;
  s+='</svg>';pages['1-cover.svg']=s;}
 
 // ── shared inner spine (thin rule + vertical COCHL / MEDIA KIT) ──
