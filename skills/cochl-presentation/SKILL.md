@@ -9,12 +9,12 @@ This skill builds Cochl-branded collateral — decks, documents, brochures, and 
 ## How this skill is organized
 - **[`references/brand-core.md`](references/brand-core.md)** — the single source of brand truth: color, glow motif, typography, logo, and (for decks) the shared HTML→PPTX / page-nav / output / QA machinery. Every template inherits this.
 - **[`references/registry.md`](references/registry.md)** — the index of every template (ready ✅ and planned 🟡), tagged by team/use-case, each pointing to its spec.
-- **`references/<type>/`** — specs grouped by artifact type: `decks/`, `docs/`, `brochure/`, `social-kit/`.
+- **`references/<type>/`** — specs grouped by artifact type: `decks/`, `docs/`, `brochure/`, `social-kit/`, `press-kit/`.
 
 **Teams are tags in the registry, not separate skills.** The same template (e.g. an onboarding or review deck) serves many teams; route by *what the artifact is*, then filter by team/use-case.
 
 ## Routing procedure
-1. **Identify the artifact type** from the request: slide deck / presentation → `decks/`; developer or reference document → `docs/`; brochure / 제품 소개서 / 1-pager / leaflet → `brochure/`; social media banner (LinkedIn/YouTube/Medium/Notion/OG, "banner kit" / "press kit") → `social-kit/`.
+1. **Identify the artifact type** from the request: slide deck / presentation → `decks/`; developer or reference document → `docs/`; brochure / 제품 소개서 / 1-pager / leaflet → `brochure/`; social media banner (LinkedIn/YouTube/Medium/Notion/OG, "banner kit") → `social-kit/`; press / media kit document (프레스킷/미디어킷, multi-page press packet) → `press-kit/`.
 2. **Open [`references/registry.md`](references/registry.md)** and match the request to a row (use the team/use-case tags to disambiguate).
 3. **Open that row's spec and follow it as authoritative** — it defines structure, layouts, copy patterns, and heading treatment, and it inherits `brand-core.md`. Read `brand-core.md` too if you haven't this session.
    - If the row is **🟡 planned**, build it now on the shared structure: create the spec at the listed path (inheriting `brand-core.md`, reusing the deck machinery — don't restate it), produce the artifact, and flip the registry row to ✅.

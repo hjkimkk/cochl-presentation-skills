@@ -51,12 +51,16 @@ Trigger: brochure, 브로셔, leaflet, datasheet.
 
 ## Social Media Banner Kit → `social-kit/`
 Editable-SVG platform banners — LinkedIn 1584×396, YouTube 2560×1440, Medium 1500×750, Notion 1500×600, OG 1200×630. `templates/` blank (drop-zones + placeholders), `examples/` filled. Spec: [`social-kit/README.md`](social-kit/README.md). ✅
-Trigger: social media banner, banner kit, press/media kit, LinkedIn/YouTube/Medium/Notion cover, OG card.
+Trigger: social media banner, banner kit, LinkedIn/YouTube/Medium/Notion cover, OG card.
+
+## Press / Media Kit → `press-kit/`
+5-page editable-SVG press/media kit **document** (Letter 612×792, light print theme): Cover · Table of Contents · About · In the Press · Contact. Spec: [`press-kit/README.md`](press-kit/README.md). ✅
+Trigger: press kit, media kit, 프레스킷, 미디어킷, press/media document. (Not the social banners — those are the Social Media Banner Kit above.)
 
 ---
 
 ## Adding a new template
-1. Pick the artifact type folder (`decks/`, `docs/`, `brochure/`, `social-kit/`).
+1. Pick the artifact type folder (`decks/`, `docs/`, `brochure/`, `social-kit/`, `press-kit/`).
 2. Write a self-contained spec that inherits `brand-core.md` and only defines what's specific (structure, layouts, copy patterns, heading treatment).
 3. For decks, reuse the shared HTML→PPTX / page-nav machinery — don't restate it.
 4. Add/flip the registry row to ✅. Keep team tags accurate so discovery stays sharp.
