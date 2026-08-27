@@ -62,7 +62,7 @@ const pages={};
 
 // ── shared inner spine (thin rule + vertical COCHL / MEDIA KIT) ──
 const innerSpine=()=>`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`
-  +spineTxt(SX+30,60,'COCHL',INK,26)+spineTxtThin(SX+52,60,'MEDIA KIT',GRAY,13)+mark(SX+37,H-70,34);
+  +spineTxt(SX+46,60,'COCHL',INK,26)+spineTxtThin(SX+41,190,'MEDIA KIT',GRAY,13)+mark(SX+37,H-70,34);
 const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
   s+=tx(M,y,60,'800',INDIGO,l1,{}); if(l2){y+=64;s+=tx(M,y,60,'800',INDIGO,l2,{});}
   s+=`<line x1="${M}" y1="${y+26}" x2="${SX-40}" y2="${y+26}" stroke="${LINE}" stroke-width="1.5"/>`; return [s,y+26]; };
@@ -81,7 +81,7 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
  // right photo zone + spine (narrow column so body text clears it)
  const aix=SX-168;
  s+=imgBox('image-about',aix,0,168,462,'team / product · 이미지','corner');
- s+=`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`+spineTxt(SX+30,60,'COCHL',INK,26)+spineTxtThin(SX+52,60,'MEDIA KIT',GRAY,13);
+ s+=`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`+spineTxt(SX+46,60,'COCHL',INK,26)+spineTxtThin(SX+41,190,'MEDIA KIT',GRAY,13);
  s+=logo(M,44,24);
  s+=tx(M,150,60,'800',INDIGO,'ABOUT',{})+tx(M,214,60,'800',INDIGO,'COCHL',{});
  s+=`<line x1="${M}" y1="240" x2="${aix-24}" y2="240" stroke="${LINE}" stroke-width="1.5"/>`;
