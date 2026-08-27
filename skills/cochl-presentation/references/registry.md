@@ -54,7 +54,7 @@ Editable-SVG platform banners — LinkedIn 1584×396, YouTube 2560×1440, Medium
 Trigger: social media banner, banner kit, LinkedIn/YouTube/Medium/Notion cover, OG card.
 
 ## Press / Media Kit → `press-kit/`
-5-page editable-SVG press/media kit **document** (Letter 612×792, light print theme): Cover · Table of Contents · About · In the Press · Contact. Spec: [`press-kit/README.md`](press-kit/README.md). ✅
+5-page editable-SVG press/media kit **document** (Letter 612×792, light print theme): Cover · Table of Contents · About · In the Press · Contact. Spec: [`press-kit/README.md`](press-kit/README.md). **Editable Figma (Cochl_Internal):** https://www.figma.com/design/ZNt6fgUANTjRPk6GpgxODH/Cochl-Media-Kit — prefer duplicating this file for a real kit. ✅
 Trigger: press kit, media kit, 프레스킷, 미디어킷, press/media document. (Not the social banners — those are the Social Media Banner Kit above.)
 
 ---
