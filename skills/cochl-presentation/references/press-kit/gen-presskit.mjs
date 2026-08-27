@@ -55,14 +55,13 @@ const pages={};
  s+=tx(M,660,84,'800',INDIGO,'COCHL',{});
  s+=`<line x1="${M}" y1="694" x2="${SX-40}" y2="694" stroke="${LINE}" stroke-width="1.5"/>`;
  s+=tx(M,740,26,'600',INK,'Creating ears for AI',{});
- // mark inside spine bottom + website
+ // mark inside spine bottom
  s+=mark(SX+SPINE/2,700,40);
- s+=spineTxtThin(SX+52,H-150,'cochl.ai','#fff',12);
  s+='</svg>';pages['1-cover.svg']=s;}
 
 // ── shared inner spine (thin rule + vertical COCHL / MEDIA KIT) ──
 const innerSpine=()=>`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`
-  +spineTxt(SX+46,60,'COCHL',INK,26)+spineTxtThin(SX+41,190,'MEDIA KIT',GRAY,13)+mark(SX+37,H-70,34);
+  +spineTxt(SX+46,60,'SUBTITLE',INK,20)+spineTxtThin(SX+41,214,'MEDIA KIT',GRAY,13)+mark(SX+37,H-70,34);
 const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
   s+=tx(M,y,60,'800',INDIGO,l1,{}); if(l2){y+=64;s+=tx(M,y,60,'800',INDIGO,l2,{});}
   s+=`<line x1="${M}" y1="${y+26}" x2="${SX-40}" y2="${y+26}" stroke="${LINE}" stroke-width="1.5"/>`; return [s,y+26]; };
@@ -81,7 +80,7 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
  // right photo zone + spine (narrow column so body text clears it)
  const aix=SX-168;
  s+=imgBox('image-about',aix,0,168,462,'team / product · 이미지','corner');
- s+=`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`+spineTxt(SX+46,60,'COCHL',INK,26)+spineTxtThin(SX+41,190,'MEDIA KIT',GRAY,13);
+ s+=`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`+spineTxt(SX+46,60,'SUBTITLE',INK,20)+spineTxtThin(SX+41,214,'MEDIA KIT',GRAY,13);
  s+=logo(M,44,24);
  s+=tx(M,150,60,'800',INDIGO,'ABOUT',{})+tx(M,214,60,'800',INDIGO,'COCHL',{});
  s+=`<line x1="${M}" y1="240" x2="${aix-24}" y2="240" stroke="${LINE}" stroke-width="1.5"/>`;
@@ -129,7 +128,7 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
  s+=tx(M,150,60,'800',INDIGO,'CONTACT',{})+tx(M,214,60,'800',INDIGO,'US',{});
  s+=`<line x1="${M}" y1="262" x2="${SX-40}" y2="262" stroke="${LINE}" stroke-width="1.5"/>`;
  s+=tx(M,318,15.5,'400',INK,'For press or media queries, email',{});
- s+=tx(M,344,15.5,'700',INDIGO,'press@cochl.ai',{})+tx(M+160,344,11,'400',GRAY,' · confirm address',{f:'mono'})+NI(M+300,344);
+ s+=tx(M,344,15.5,'700',INDIGO,'contact@cochl.ai',{})+tx(M+160,344,11,'400',GRAY,' · confirm address',{f:'mono'})+NI(M+300,344);
  s+=`<line x1="${M}" y1="380" x2="${SX-40}" y2="380" stroke="${LINE}" stroke-width="1"/>`;
  s+=tx(M,438,26,'800',INDIGO,'DOWNLOADABLES',{});
  s+=tx(M,470,15.5,'400',INK,'Logos  |  Brand assets  |  Images  |  Fact sheet',{});
