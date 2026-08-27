@@ -49,9 +49,9 @@ Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit
 Editable-SVG brochure / 제품 소개서 / 1-pager — 12 layouts (V1/V2/V3 × portrait/landscape × front/back) + 32 icons. Spec: [`brochure/SKILL.md`](brochure/SKILL.md). ✅
 Trigger: brochure, 브로셔, leaflet, datasheet.
 
-## Social / press kit → `social-kit/`
+## Social Media Banner Kit → `social-kit/`
 Editable-SVG platform banners — LinkedIn 1584×396, YouTube 2560×1440, Medium 1500×750, Notion 1500×600, OG 1200×630. `templates/` blank (drop-zones + placeholders), `examples/` filled. Spec: [`social-kit/README.md`](social-kit/README.md). ✅
-Trigger: social banner, press/media kit, LinkedIn/YouTube/Medium/Notion cover, OG card.
+Trigger: social media banner, banner kit, press/media kit, LinkedIn/YouTube/Medium/Notion cover, OG card.
 
 ---
 

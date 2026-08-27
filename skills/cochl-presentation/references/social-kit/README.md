@@ -1,4 +1,4 @@
-# Cochl — Press / Social Media Kit
+# Cochl — Social Media Banner Kit
 
 Editable banner templates in the Cochl dark brand (near-black `#0b0b12`, indigo `#4B68FF` → purple `#832BFB` glow, gradient `cochl.` symbol + white wordmark, IBM Plex Sans / Mono).
 
