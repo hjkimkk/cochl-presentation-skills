@@ -34,6 +34,7 @@ Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit
 | Model performance & benchmark report | Research — metrics, ablations, comparison | `decks/model-benchmark-report-template.md` | 🟡 |
 | Technical deep-dive / conference talk | Research — talk-grade narrative | `decks/technical-deep-dive-template.md` | 🟡 |
 | Internal research review (journal-club) | Research — paper critique, discussion | `decks/research-journal-club-template.md` | 🟡 |
+| Experiment / trial & error research | Research — iterative studies, failures, decisions | [`decks/experiment-trial-error-research-template.md`](decks/experiment-trial-error-research-template.md) — 11 slide formats + reusable Trial→Result→Learning component + orchestration rules (light body + dark section slides, editorial cards, status colours) | ✅ |
 | Cochl 101 | All / Event — company & product intro | `decks/cochl-101-template.md` | 🟡 |
 
 > **Design review** (proposal / direction-alignment) already lives in the separate **`design-review`** skill — route there rather than duplicating here.
