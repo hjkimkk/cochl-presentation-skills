@@ -81,6 +81,16 @@ White `cochl.` logotype (gradient symbol + white wordmark). Files:
 
 Never recolor the symbol gradient. On light surfaces use the standard color logo (see `brochure/assets/`).
 
+## 3b. Company facts (single source — never re-derive)
+
+These are the **confirmed** company values — use them verbatim on every thanks / contact / closing slide:
+
+- **Contact:** contact@cochl.ai
+- **Web:** www.cochl.ai
+- **Location:** San Francisco, CA, USA
+
+Do not substitute, guess, or leave `[NEEDS INPUT]` when this block already answers the field. Any company fact *not* listed here is still subject to the NEEDS INPUT rule (SKILL.md → Facts & fabrication).
+
 ---
 
 ## 4. Shared deck build machinery
