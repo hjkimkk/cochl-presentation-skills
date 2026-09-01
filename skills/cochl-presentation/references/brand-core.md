@@ -43,6 +43,13 @@ Max **one** glow per slide/canvas. Never behind dense data.
 
 **Gradient rule** — the purple→blue gradient (`linear-gradient(135deg,#832BFB,#4B68FF)`) applies ONLY to: KPI/stat value text (`background-clip:text`), a thin accent underline (≤3px, ≤120px), cover/CTA overlays, timeline tracks, and pillar-card top borders. Never on card backgrounds, body text, or table rows.
 
+## 1b. NEEDS INPUT component (single definition — do not restyle per template)
+
+The one and only visual treatment for an unconfirmed value. Every template inherits this exact class and token — never introduce a second treatment (amber text, mint badge, blue accent, etc.) for the same state.
+```css
+.needs-input{ color:var(--indigo); border-bottom:1px dashed var(--indigo); font-style:italic; }
+```
+
 ## 2. Typography
 
 - **IBM Plex Sans** — headings & body. Weights: 700 stat/hero, 600 heading, 400 body, 300 italic tagline/quote.
@@ -59,14 +66,30 @@ Max **one** glow per slide/canvas. Never behind dense data.
 | Market / competitive | IBM Plex Sans, Title Case | mono | indigo |
 | Brochure / social | per-template | mono | indigo |
 
+## 2b. Copy variety (avoid AI-sounding repetition)
+
+- Do not reuse the "We're not X — we're Y" (or any single-structure contrast) tagline more than once per deck. If the cover and the mission-statement both need a hook, write two different sentences — not two slots for the same line.
+- Do not repeat a headline stat verbatim across slides. When the same number must reappear (e.g. in both traction and a supporting callout), rephrase the sentence around it each time — vary which part of the sentence carries the number.
+- Before finalizing, scan all slide headlines / kickers / statements for near-duplicate sentences (>80% word overlap) and rewrite every repeat but the first.
+
 ## 3. Logo
 
 White `cochl.` logotype (gradient symbol + white wordmark). Files:
-- Raster (deck footer): `assets/cochl-logo-white.png`
+- Raster (deck footer): `assets/cochl-logo-white.png` — the real Cochl logo (gradient symbol + white wordmark), matching the canonical source `cochlearai/cochl-dashboard-v2` @ `hjkim` · `assets/logo/header_logo_dark.png` (dark-theme = white-on-dark, correct for the near-black footer). Always embed this raster in the footer — never a text `cochl.` placeholder — and keep it in sync with that source.
 - Vector inline (SVG artifacts): the gradient symbol path + white wordmark path — see the generators in `social-kit/`.
 - Footer placement on decks: `bottom:60px; left:40px; height:20px; opacity:0.70`.
 
 Never recolor the symbol gradient. On light surfaces use the standard color logo (see `brochure/assets/`).
+
+## 3b. Company facts (single source — never re-derive)
+
+These are the **confirmed** company values — use them verbatim on every thanks / contact / closing slide:
+
+- **Contact:** contact@cochl.ai
+- **Web:** www.cochl.ai
+- **Location:** San Francisco, CA, USA
+
+Do not substitute, guess, or leave `[NEEDS INPUT]` when this block already answers the field. Any company fact *not* listed here is still subject to the NEEDS INPUT rule (SKILL.md → Facts & fabrication).
 
 ---
 
@@ -119,6 +142,12 @@ Both files share basename + directory. Report the path(s) produced. (Editable-SV
 - [ ] IBM Plex Sans/Mono per the family's heading treatment
 - [ ] Cover has white logo bottom-left, opacity 0.70
 - [ ] Bottom page-nav present, no top nav; keyboard arrows work
+- [ ] Every non-cover, non-statement slide has the footer chrome (logo bottom-left + deck title bottom-right). Grep the output for the footer class and confirm its count equals (slide count − cover − statement slides).
 - [ ] Each heading has exactly one `grad-text` key phrase
 - [ ] Card body ≤2 sentences; break slides at major transitions
 - [ ] Self-contained (assets inline / no broken refs)
+
+**Post-generation self-checks** (run these right after emitting the deck, before saving):
+- [ ] **NEEDS INPUT grep** — scan every slide's text for bare numerals / percentages / `$` amounts; any value with no `.needs-input` class and no matching user-provided input is flagged and reported back.
+- [ ] **Deck-type check** — if the content carries partnership keywords (MOU, co-development, OEM, SDK integration, joint go-to-market) but was built on the investor template, flag the routing (should be B2B — see SKILL.md Routing step 2).
+- [ ] **Layout-pool check** — every layout id used is one the chosen spec defines; flag any ad-hoc / unregistered layout (see SKILL.md Routing step 5).

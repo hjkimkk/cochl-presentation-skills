@@ -15,11 +15,12 @@ This skill builds Cochl-branded collateral — decks, documents, brochures, and 
 
 ## Routing procedure
 1. **Identify the artifact type** from the request: slide deck / presentation → `decks/`; developer or reference document → `docs/`; brochure / 제품 소개서 / 1-pager / leaflet → `brochure/`; social media banner (LinkedIn/YouTube/Medium/Notion/OG, "banner kit") → `social-kit/`; press / media kit document (프레스킷/미디어킷, multi-page press packet) → `press-kit/`.
-2. **Open [`references/registry.md`](references/registry.md)** and match the request to a row (use the team/use-case tags to disambiguate).
+2. **Open [`references/registry.md`](references/registry.md)** and match the request to a row (use the team/use-case tags to disambiguate). **Scan the user's content for partnership signals — "MOU", "co-development", "OEM", "SDK integration", "joint go-to-market" — before defaulting to Investor / fundraising; those signals route to B2B partnership / sales proposal even if the user also says "pitch" or "investors".**
 3. **Open that row's spec and follow it as authoritative** — it defines structure, layouts, copy patterns, and heading treatment, and it inherits `brand-core.md`. Read `brand-core.md` too if you haven't this session.
    - If the row is **🟡 planned**, build it now on the shared structure: create the spec at the listed path (inheriting `brand-core.md`, reusing the deck machinery — don't restate it), produce the artifact, and flip the registry row to ✅.
    - If it's a deck with **no matching row**, use [`references/decks/generic-deck-template.md`](references/decks/generic-deck-template.md).
 4. **Read `brand-core.md` before writing any pixel.** When a spec and brand-core disagree, the spec wins only for what it *explicitly* overrides.
+5. **Stay in the chosen spec's layout pool — never compose an ad-hoc layout silently.** If a section fits none of the layouts the spec defines, either **(a)** map it onto the nearest existing layout even if imperfect and note the mismatch to the user, or **(b)** if a genuinely new layout is warranted, register it — name it, define it inline using `brand-core.md` tokens, and tell the user it's a new layout candidate for the spec/registry. Do not ship an unregistered layout as if it were part of the defined set.
 
 Two artifact families route to sibling skills, not here: **design reviews** → `design-review`; **styled proposal documents** → `proposal-doc`.
 
@@ -27,7 +28,15 @@ Two artifact families route to sibling skills, not here: **design reviews** → 
 Any of: product/company name, audience, key messages/data points, or a file (JSON / PRD / brief). Infer the rest; never ask for more than what's needed to start.
 
 ## Facts & fabrication (hard rule)
-Never invent company facts. Use only user-confirmed numbers, names, logos, quotes, and dates. Anything unconfirmed → mark **`[NEEDS INPUT]`** in place and list it back to the user; do not fill it with plausible-looking placeholders.
+Never invent company facts. **Apply this rule to EVERY individual value, not to slides or sections.**
+
+Any unconfirmed **number, company name, person name, date, metric, revenue, funding amount, market size, user/customer count, employee/team size, competitor, partnership, quote, logo, or traction claim** MUST be rendered as **`[NEEDS INPUT]`** (styled with the `.needs-input` component — see [`references/brand-core.md`](references/brand-core.md) §1b) and listed back to the user.
+
+This applies to **ALL slide types**, with no exceptions — Traction, Financials, Market Size, Competition, Team, Partnerships, Customers, The Ask, and any other slide containing company facts. Do NOT infer, estimate, fabricate, or substitute plausible values.
+
+**Competitor names — hard rule.** Never create fictional competitor or company names. If the user hasn't explicitly provided a competitor name (or verified it from an approved source), render **`[NEEDS INPUT]`**. Do NOT generate real-looking placeholder names such as "SoundAI", "AudioSense", or "EchoTech".
+
+Before finalizing a deck, grep the generated HTML for hardcoded numerals / company names with no matching user input and flag each one.
 
 ## Output
 Build the primary artifact first, then ask which format(s) to save (decks: **PPTX / HTML / both**; SVG artifacts: deliver `.svg` + rendered `.png`). Details and the exact export recipe are in `brand-core.md` (§4).
