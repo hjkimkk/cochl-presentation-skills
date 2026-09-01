@@ -43,6 +43,13 @@ Max **one** glow per slide/canvas. Never behind dense data.
 
 **Gradient rule** — the purple→blue gradient (`linear-gradient(135deg,#832BFB,#4B68FF)`) applies ONLY to: KPI/stat value text (`background-clip:text`), a thin accent underline (≤3px, ≤120px), cover/CTA overlays, timeline tracks, and pillar-card top borders. Never on card backgrounds, body text, or table rows.
 
+## 1b. NEEDS INPUT component (single definition — do not restyle per template)
+
+The one and only visual treatment for an unconfirmed value. Every template inherits this exact class and token — never introduce a second treatment (amber text, mint badge, blue accent, etc.) for the same state.
+```css
+.needs-input{ color:var(--indigo); border-bottom:1px dashed var(--indigo); font-style:italic; }
+```
+
 ## 2. Typography
 
 - **IBM Plex Sans** — headings & body. Weights: 700 stat/hero, 600 heading, 400 body, 300 italic tagline/quote.
