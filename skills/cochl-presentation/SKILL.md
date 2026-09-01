@@ -27,7 +27,15 @@ Two artifact families route to sibling skills, not here: **design reviews** → 
 Any of: product/company name, audience, key messages/data points, or a file (JSON / PRD / brief). Infer the rest; never ask for more than what's needed to start.
 
 ## Facts & fabrication (hard rule)
-Never invent company facts. Use only user-confirmed numbers, names, logos, quotes, and dates. Anything unconfirmed → mark **`[NEEDS INPUT]`** in place and list it back to the user; do not fill it with plausible-looking placeholders.
+Never invent company facts. **Apply this rule to EVERY individual value, not to slides or sections.**
+
+Any unconfirmed **number, company name, person name, date, metric, revenue, funding amount, market size, user/customer count, employee/team size, competitor, partnership, quote, logo, or traction claim** MUST be rendered as **`[NEEDS INPUT]`** (styled with the `.needs-input` component — see [`references/brand-core.md`](references/brand-core.md) §1b) and listed back to the user.
+
+This applies to **ALL slide types**, with no exceptions — Traction, Financials, Market Size, Competition, Team, Partnerships, Customers, The Ask, and any other slide containing company facts. Do NOT infer, estimate, fabricate, or substitute plausible values.
+
+**Competitor names — hard rule.** Never create fictional competitor or company names. If the user hasn't explicitly provided a competitor name (or verified it from an approved source), render **`[NEEDS INPUT]`**. Do NOT generate real-looking placeholder names such as "SoundAI", "AudioSense", or "EchoTech".
+
+Before finalizing a deck, grep the generated HTML for hardcoded numerals / company names with no matching user input and flag each one.
 
 ## Output
 Build the primary artifact first, then ask which format(s) to save (decks: **PPTX / HTML / both**; SVG artifacts: deliver `.svg` + rendered `.png`). Details and the exact export recipe are in `brand-core.md` (§4).
