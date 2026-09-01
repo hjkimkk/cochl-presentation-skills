@@ -15,7 +15,7 @@ This skill builds Cochl-branded collateral — decks, documents, brochures, and 
 
 ## Routing procedure
 1. **Identify the artifact type** from the request: slide deck / presentation → `decks/`; developer or reference document → `docs/`; brochure / 제품 소개서 / 1-pager / leaflet → `brochure/`; social media banner (LinkedIn/YouTube/Medium/Notion/OG, "banner kit") → `social-kit/`; press / media kit document (프레스킷/미디어킷, multi-page press packet) → `press-kit/`.
-2. **Open [`references/registry.md`](references/registry.md)** and match the request to a row (use the team/use-case tags to disambiguate).
+2. **Open [`references/registry.md`](references/registry.md)** and match the request to a row (use the team/use-case tags to disambiguate). **Scan the user's content for partnership signals — "MOU", "co-development", "OEM", "SDK integration", "joint go-to-market" — before defaulting to Investor / fundraising; those signals route to B2B partnership / sales proposal even if the user also says "pitch" or "investors".**
 3. **Open that row's spec and follow it as authoritative** — it defines structure, layouts, copy patterns, and heading treatment, and it inherits `brand-core.md`. Read `brand-core.md` too if you haven't this session.
    - If the row is **🟡 planned**, build it now on the shared structure: create the spec at the listed path (inheriting `brand-core.md`, reusing the deck machinery — don't restate it), produce the artifact, and flip the registry row to ✅.
    - If it's a deck with **no matching row**, use [`references/decks/generic-deck-template.md`](references/decks/generic-deck-template.md).
