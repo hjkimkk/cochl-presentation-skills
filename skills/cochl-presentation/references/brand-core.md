@@ -136,3 +136,8 @@ Both files share basename + directory. Report the path(s) produced. (Editable-SV
 - [ ] Each heading has exactly one `grad-text` key phrase
 - [ ] Card body ≤2 sentences; break slides at major transitions
 - [ ] Self-contained (assets inline / no broken refs)
+
+**Post-generation self-checks** (run these right after emitting the deck, before saving):
+- [ ] **NEEDS INPUT grep** — scan every slide's text for bare numerals / percentages / `$` amounts; any value with no `.needs-input` class and no matching user-provided input is flagged and reported back.
+- [ ] **Deck-type check** — if the content carries partnership keywords (MOU, co-development, OEM, SDK integration, joint go-to-market) but was built on the investor template, flag the routing (should be B2B — see SKILL.md Routing step 2).
+- [ ] **Layout-pool check** — every layout id used is one the chosen spec defines; flag any ad-hoc / unregistered layout (see SKILL.md Routing step 5).
