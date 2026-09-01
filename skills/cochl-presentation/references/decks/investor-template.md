@@ -96,9 +96,13 @@ sub-line. Footer chrome present. MEDIUM density.
 
 ### 4 · use-case-band
 **Top band** (subtle lighter panel with upper-right glow): kicker + mono title + 1–2 body
-paragraphs. **Bottom band** (pure black): 4 cards, each a light image placeholder on top + a
-bold label (e.g. `SECURITY /SURVEILLANCE`, `SMART HOME/ APPLIANCES`, `Defense/ CBM`,
-`Manufacturing/ PLC`). MEDIUM-HIGH.
+paragraphs. **Bottom band** (pure black): **3–4 cards** (at 3, use a 3-column grid — don't
+stretch a 2-column; never exceed 4 — split into two use-case-band slides instead of cramming
+5+), each a light image placeholder on top + a bold label (e.g. `SECURITY /SURVEILLANCE`,
+`SMART HOME/ APPLIANCES`, `Defense/ CBM`, `Manufacturing/ PLC`). **This layout still carries the
+standard footer chrome (logo bottom-left + deck title bottom-right) — the bottom band's
+full-bleed black must reserve space for it, not crop it out** (the recurring bug: the footer div
+was missing only on this layout). MEDIUM-HIGH.
 
 ### 5 · traction-metrics
 Pure black. Kicker + mono title (e.g. `WHAT COCHL HAS ACHIEVED SO FAR?`). **3×2 grid** of
