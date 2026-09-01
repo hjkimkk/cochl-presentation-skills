@@ -20,6 +20,7 @@ This skill builds Cochl-branded collateral — decks, documents, brochures, and 
    - If the row is **🟡 planned**, build it now on the shared structure: create the spec at the listed path (inheriting `brand-core.md`, reusing the deck machinery — don't restate it), produce the artifact, and flip the registry row to ✅.
    - If it's a deck with **no matching row**, use [`references/decks/generic-deck-template.md`](references/decks/generic-deck-template.md).
 4. **Read `brand-core.md` before writing any pixel.** When a spec and brand-core disagree, the spec wins only for what it *explicitly* overrides.
+5. **Stay in the chosen spec's layout pool — never compose an ad-hoc layout silently.** If a section fits none of the layouts the spec defines, either **(a)** map it onto the nearest existing layout even if imperfect and note the mismatch to the user, or **(b)** if a genuinely new layout is warranted, register it — name it, define it inline using `brand-core.md` tokens, and tell the user it's a new layout candidate for the spec/registry. Do not ship an unregistered layout as if it were part of the defined set.
 
 Two artifact families route to sibling skills, not here: **design reviews** → `design-review`; **styled proposal documents** → `proposal-doc`.
 
