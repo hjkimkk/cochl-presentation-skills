@@ -66,6 +66,12 @@ The one and only visual treatment for an unconfirmed value. Every template inher
 | Market / competitive | IBM Plex Sans, Title Case | mono | indigo |
 | Brochure / social | per-template | mono | indigo |
 
+## 2b. Copy variety (avoid AI-sounding repetition)
+
+- Do not reuse the "We're not X — we're Y" (or any single-structure contrast) tagline more than once per deck. If the cover and the mission-statement both need a hook, write two different sentences — not two slots for the same line.
+- Do not repeat a headline stat verbatim across slides. When the same number must reappear (e.g. in both traction and a supporting callout), rephrase the sentence around it each time — vary which part of the sentence carries the number.
+- Before finalizing, scan all slide headlines / kickers / statements for near-duplicate sentences (>80% word overlap) and rewrite every repeat but the first.
+
 ## 3. Logo
 
 White `cochl.` logotype (gradient symbol + white wordmark). Files:
