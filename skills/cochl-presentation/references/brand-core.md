@@ -75,7 +75,7 @@ The one and only visual treatment for an unconfirmed value. Every template inher
 ## 3. Logo
 
 White `cochl.` logotype (gradient symbol + white wordmark). Files:
-- Raster (deck footer): `assets/cochl-logo-white.png`
+- Raster (deck footer): `assets/cochl-logo-white.png` — the real Cochl logo (gradient symbol + white wordmark), matching the canonical source `cochlearai/cochl-dashboard-v2` @ `hjkim` · `assets/logo/header_logo_dark.png` (dark-theme = white-on-dark, correct for the near-black footer). Always embed this raster in the footer — never a text `cochl.` placeholder — and keep it in sync with that source.
 - Vector inline (SVG artifacts): the gradient symbol path + white wordmark path — see the generators in `social-kit/`.
 - Footer placement on decks: `bottom:60px; left:40px; height:20px; opacity:0.70`.
 
@@ -132,6 +132,7 @@ Both files share basename + directory. Report the path(s) produced. (Editable-SV
 - [ ] IBM Plex Sans/Mono per the family's heading treatment
 - [ ] Cover has white logo bottom-left, opacity 0.70
 - [ ] Bottom page-nav present, no top nav; keyboard arrows work
+- [ ] Every non-cover, non-statement slide has the footer chrome (logo bottom-left + deck title bottom-right). Grep the output for the footer class and confirm its count equals (slide count − cover − statement slides).
 - [ ] Each heading has exactly one `grad-text` key phrase
 - [ ] Card body ≤2 sentences; break slides at major transitions
 - [ ] Self-contained (assets inline / no broken refs)
