@@ -151,3 +151,4 @@ Both files share basename + directory. Report the path(s) produced. (Editable-SV
 - [ ] **NEEDS INPUT grep** — scan every slide's text for bare numerals / percentages / `$` amounts; any value with no `.needs-input` class and no matching user-provided input is flagged and reported back.
 - [ ] **Deck-type check** — if the content carries partnership keywords (MOU, co-development, OEM, SDK integration, joint go-to-market) but was built on the investor template, flag the routing (should be B2B — see SKILL.md Routing step 2).
 - [ ] **Layout-pool check** — every layout id used is one the chosen spec defines; flag any ad-hoc / unregistered layout (see SKILL.md Routing step 5).
+- [ ] **Image-placeholder check** — scan the emitted deck for image-placeholder cards / regions; flag any that are empty, mis-sized, or missing the `--card-img` / `--img` fill, so the deck ships no blank or broken image slots.
