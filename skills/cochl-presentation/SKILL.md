@@ -28,6 +28,7 @@ Two artifact families route to sibling skills, not here: **design reviews** → 
 Any of: product/company name, audience, key messages/data points, or a file (JSON / PRD / brief). Infer the rest; never ask for more than what's needed to start.
 
 ## Facts & fabrication (hard rule)
+Illustrative / example content — not a waiver. A case-study, example, or scenario slide labeled "ILLUSTRATIVE EXAMPLE," "sample," "for illustration only," or similar wording is not exempt from this rule. Do not generate precise figures — percentages, exact counts, latency values (ms), dollar amounts, site/building counts, or any other number precise enough to read as real — for illustrative or example content unless the user supplied them. The label does not make a fabricated number more truthful; it only tells the reader the scenario is hypothetical, not that its numbers are exempt from verification. Render every unconfirmed value inside illustrative/example content as [NEEDS INPUT], exactly as you would in a claimed-real case study.
 Never invent company facts. **Apply this rule to EVERY individual value, not to slides or sections.**
 
 Any unconfirmed **number, company name, person name, date, metric, revenue, funding amount, market size, user/customer count, employee/team size, competitor, partnership, quote, logo, or traction claim** MUST be rendered as **`[NEEDS INPUT]`** (styled with the `.needs-input` component — see [`references/brand-core.md`](references/brand-core.md) §1b) and listed back to the user.
