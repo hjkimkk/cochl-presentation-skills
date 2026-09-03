@@ -27,6 +27,17 @@ Cochl 브로셔를 **Illustrator에서 편집 가능한 SVG**로 만든다.
 - `ILLUSTRATIVE` / `예시` 같은 라벨이 붙어도 면제되지 않는다 (상위 [`../../SKILL.md`](../../SKILL.md) → Facts & fabrication 규칙과 동일).
 - 완료 전, 생성된 SVG의 stat-band `<text>` 수치를 훑어 사용자 입력과 매칭되지 않는 값을 전부 `[NEEDS INPUT]`로 바꾸고 사용자에게 목록으로 보고한다.
 
+## 카피 다양성 & 커버 라벨
+
+**헤드라인 문장 구조** — 같은 브로슈어 패밀리의 세그먼트 변형(리테일·제조·보안 등 에디션) 간에 동일한 헤드라인 문장 구조를 반복하지 않는다. 예를 들어 `X before Y`("Catch shrinkage before it walks out." / "Hear problems before they break down.")를 여러 커버에 그대로 재사용하지 않는다 — 최근 커버 헤드라인 구조를 확인하고 질문형·선언형·대비형 등 다른 구조로 변형한다. (상위 [`../brand-core.md`](../brand-core.md) §2b *Overused headline templates* 규칙과 동일 · 값마다 다른 문장 형태.)
+
+**커버 라벨** — 커버 우상단 라벨에서 문서 타입(예: `PRODUCT BROCHURE — 2026`)과 에디션명(예: `COLD OUTREACH EDITION`)을 케이스마다 임의로 바꾸지 않는다. 세그먼트별 에디션 브로슈어에서는 한 방식으로 통일한다:
+
+- **병기** — `PRODUCT BROCHURE · COLD OUTREACH EDITION`, 또는
+- **완전 대체** — 에디션명만 표시.
+
+둘 중 하나를 정해 브로슈어 세트 전체에 **일관되게** 적용한다.
+
 ## 버전 선택 기준
 
 | 버전 | 성격 | 추천 상황 | 액센트 |
