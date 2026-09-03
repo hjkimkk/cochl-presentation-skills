@@ -19,6 +19,14 @@ Cochl 브로셔를 **Illustrator에서 편집 가능한 SVG**로 만든다.
 4. **아이콘 삽입** — `icons/icon-data.json` 에서 geometry를 가져와 브로셔 액센트 색에 맞춰 넣는다.
 5. **결과 전달** — 편집 가능한 SVG 파일로 저장한다.
 
+## 수치·성능치 하드가드 (stat-band — 값 단위 NEEDS INPUT)
+
+브로셔의 **stat-band**(뒷면 통계·스펙 행, V3 Editorial의 통계 행 포함)는 **사용자가 명시적으로 제공한 값만** 표시한다. 정확도·F1·지연시간(ms)·온디바이스 비율·클래스/폴트 수 같은 성능 수치는 확인된 소스가 없으면 '그럴듯한' 값을 지어내지 않고 **값마다 개별적으로** `[NEEDS INPUT]`(brand-core.md §1b `.needs-input` 컴포넌트)로 렌더링한다.
+
+- **필드 단위가 아니라 값 단위로 검사한다** — 같은 stat-band 안의 다른 필드가 이미 올바르게 NEEDS INPUT 처리되어 있어도 예외 없음.
+- `ILLUSTRATIVE` / `예시` 같은 라벨이 붙어도 면제되지 않는다 (상위 [`../../SKILL.md`](../../SKILL.md) → Facts & fabrication 규칙과 동일).
+- 완료 전, 생성된 SVG의 stat-band `<text>` 수치를 훑어 사용자 입력과 매칭되지 않는 값을 전부 `[NEEDS INPUT]`로 바꾸고 사용자에게 목록으로 보고한다.
+
 ## 버전 선택 기준
 
 | 버전 | 성격 | 추천 상황 | 액센트 |
