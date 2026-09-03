@@ -24,7 +24,7 @@ Identical to the strategy/roadmap sibling:
 
 ```css
 --bg:#0b0b12 (near-black)  --black:#000  --panel:#14141c
---accent:#4B68FF (indigo)  --purple:#832BFB  --mint:#A6F0CE (positive/secondary)  --neg:#EB5B6B
+--accent:#4B68FF (indigo)  --accent-purple:#832BFB  --mint:#A6F0CE (positive/secondary)  --neg:#EB5B6B
 title: IBM Plex Sans Bold, Title Case   kicker/labels/page-no: IBM Plex Mono UPPERCASE ("STRATEGIC")
 chrome: cochl. logo bottom-left + [Presentation Title] bottom-right; optional right-edge vertical mono meta
 signature: purple→blue gradient cover with glassy concentric-ring orb; central glow on statement/ask/closing

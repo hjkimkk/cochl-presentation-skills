@@ -6,6 +6,8 @@ The router's lookup table **and** the build roadmap. Match the user's request to
 
 Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit the shared HTML→PPTX / page-nav / output machinery there.
 
+**Shared CSS token names are canonical — reuse them, never rename.** All deck types (and every artifact) must use the CSS token names defined in [`brand-core.md`](brand-core.md) §1 — `--bg`, `--bg-pure`, `--panel`, `--panel-2`, `--border`, `--text`, `--text-soft`, `--muted`, `--placeholder`, `--accent`, `--accent-purple`, `--mint` — **exactly as-is**. Do NOT introduce a deck-specific alias for a shared token (e.g. `--indigo` for `--accent`, `--purple` for `--accent-purple`) and do NOT invent additional tokens. A spec may **override a shared token's value** where `brand-core.md` allows (e.g. a light-theme doc), but it must reuse the same *name* — never a parallel one.
+
 ---
 
 ## Decks → `decks/`
@@ -62,6 +64,6 @@ Trigger: press kit, media kit, 프레스킷, 미디어킷, press/media document.
 
 ## Adding a new template
 1. Pick the artifact type folder (`decks/`, `docs/`, `brochure/`, `social-kit/`, `press-kit/`).
-2. Write a self-contained spec that inherits `brand-core.md` and only defines what's specific (structure, layouts, copy patterns, heading treatment).
+2. Write a self-contained spec that inherits `brand-core.md` and only defines what's specific (structure, layouts, copy patterns, heading treatment). **Reuse brand-core's CSS token names verbatim — no per-deck aliases or extra tokens** (see the shared-token rule above).
 3. For decks, reuse the shared HTML→PPTX / page-nav machinery — don't restate it.
 4. Add/flip the registry row to ✅. Keep team tags accurate so discovery stays sharp.
