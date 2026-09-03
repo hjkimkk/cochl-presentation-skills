@@ -70,6 +70,7 @@ The one and only visual treatment for an unconfirmed value. Every template inher
 
 - Do not reuse the "We're not X — we're Y" (or any single-structure contrast) tagline more than once per deck. If the cover and the mission-statement both need a hook, write two different sentences — not two slots for the same line.
 - Do not repeat a headline stat verbatim across slides. When the same number must reappear (e.g. in both traction and a supporting callout), rephrase the sentence around it each time — vary which part of the sentence carries the number.
+- **Track figures across adjacent slides.** When generating a slide, keep a running note of the statistics/figures presented on the previous 1–2 slides — percentages, latency (ms), counts, `$` amounts — and do not restate the same figures verbatim on an adjacent slide. When a figure must carry forward, reference it by meaning ("that same sub-frame latency") or fold it into a comparison instead of reprinting the number, so no two neighbouring slides read as a figure-for-figure restatement.
 - Before finalizing, scan all slide headlines / kickers / statements for near-duplicate sentences (>80% word overlap) and rewrite every repeat but the first.
 
 ## 3. Logo
@@ -152,3 +153,4 @@ Both files share basename + directory. Report the path(s) produced. (Editable-SV
 - [ ] **Deck-type check** — if the content carries partnership keywords (MOU, co-development, OEM, SDK integration, joint go-to-market) but was built on the investor template, flag the routing (should be B2B — see SKILL.md Routing step 2).
 - [ ] **Layout-pool check** — every layout id used is one the chosen spec defines; flag any ad-hoc / unregistered layout (see SKILL.md Routing step 5).
 - [ ] **Image/icon-placeholder check** — scan **every** image/icon placeholder container in the document (e.g. `.p-right`, `.img-placeholder`, and image cards using the `--card-img` / `--img` fill); flag any container that is empty and carries no label or caption, and either report it explicitly or fill it — so no unlabeled blank image/icon slot ships. (Companion to the text NEEDS-INPUT grep above.)
+- [ ] **Adjacent-figure check** — walk the deck in order and compare each slide's figures (`%`, `ms`, counts, `$`) against the previous 1–2 slides; flag any figure restated verbatim on adjacent slides and rewrite all but the first occurrence. (Guards the SecureBuild 6–7 case — the same 96.2% precision, 41% false-alarm reduction, and 120ms latency repeated across two neighbouring slides.)
