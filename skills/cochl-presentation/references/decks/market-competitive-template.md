@@ -20,7 +20,7 @@ fabricated company facts. Never invent specific competitor data.
 
 ```css
 --bg:#0b0b12 (near-black)  --black:#000 (data slides)  --panel:#14141c
---accent:#4B68FF (indigo)  --purple:#832BFB  --mint:#A6F0CE (leader/positive)  --grey:#2b2b38 (neutral bars)
+--accent:#4B68FF (indigo)  --accent-purple:#832BFB  --mint:#A6F0CE (leader/positive)  --grey:#2b2b38 (neutral bars)
 title: IBM Plex Sans Bold, Title Case   kicker: IBM Plex Mono UPPERCASE, "NN · SECTION"
 chrome: cochl. logo bottom-left + "Market & Competitive Landscape" bottom-right
 cover: purple→blue gradient + glassy concentric-ring orb; content slides flat near-black/black

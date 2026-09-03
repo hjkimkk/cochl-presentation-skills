@@ -22,10 +22,10 @@ Every template in this skill (decks, docs, brochure, social kit) inherits this. 
 --muted:     #9aa1ac;   /* captions, labels */
 --placeholder:#565b6b;  /* template placeholder text (blank templates only) */
 
-/* Brand accents */
---indigo:    #4B68FF;   /* primary accent */
---purple:    #832BFB;   /* secondary accent / glow partner */
---mint:      #A6F0CE;   /* tertiary accent (B2B / strategy secondary) */
+/* Brand accents — these token NAMES are canonical; every deck reuses them as-is (no --indigo/--purple aliases) */
+--accent:        #4B68FF;   /* primary accent (indigo) — subtitles, glows, links, accent underline */
+--accent-purple: #832BFB;   /* secondary accent (purple) — gradient + glow partner */
+--mint:          #A6F0CE;   /* tertiary accent (B2B / strategy secondary) */
 
 /* Logo symbol gradient (do not recolor) */
 --logo-g1:   #9827FF;   /* → */ --logo-g2: #4B7EFF; /* → */ --logo-g3: #00D7FF;
@@ -47,7 +47,7 @@ Max **one** glow per slide/canvas. Never behind dense data.
 
 The one and only visual treatment for an unconfirmed value. Every template inherits this exact class and token — never introduce a second treatment (amber text, mint badge, blue accent, etc.) for the same state.
 ```css
-.needs-input{ color:var(--indigo); border-bottom:1px dashed var(--indigo); font-style:italic; }
+.needs-input{ color:var(--accent); border-bottom:1px dashed var(--accent); font-style:italic; }
 ```
 
 ## 2. Typography
@@ -154,3 +154,4 @@ Both files share basename + directory. Report the path(s) produced. (Editable-SV
 - [ ] **Layout-pool check** — every layout id used is one the chosen spec defines; flag any ad-hoc / unregistered layout (see SKILL.md Routing step 5).
 - [ ] **Image/icon-placeholder check** — scan **every** image/icon placeholder container in the document (e.g. `.p-right`, `.img-placeholder`, and image cards using the `--card-img` / `--img` fill); flag any container that is empty and carries no label or caption, and either report it explicitly or fill it — so no unlabeled blank image/icon slot ships. (Companion to the text NEEDS-INPUT grep above.)
 - [ ] **Adjacent-figure check** — walk the deck in order and compare each slide's figures (`%`, `ms`, counts, `$`) against the previous 1–2 slides; flag any figure restated verbatim on adjacent slides and rewrite all but the first occurrence. (Guards the SecureBuild 6–7 case — the same 96.2% precision, 41% false-alarm reduction, and 120ms latency repeated across two neighbouring slides.)
+- [ ] **Token-name check** — grep the generated CSS for `--` custom properties; every one must be a canonical shared name from §1 (`--bg`, `--panel`, `--panel-2`, `--border`, `--text`, `--text-soft`, `--muted`, `--placeholder`, `--accent`, `--accent-purple`, `--mint`, plus the logo/signal tokens). Flag any deck-specific alias (`--indigo`, `--purple`) or invented token — rename it to the shared token, don't ship a parallel name. (See registry.md → "Shared CSS token names are canonical.")

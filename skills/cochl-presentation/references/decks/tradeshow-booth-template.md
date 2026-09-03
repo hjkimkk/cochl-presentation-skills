@@ -28,7 +28,7 @@ Drop or duplicate frames to fit the content, but keep the loop ≤ ~10 frames an
 display  : clamp(96px, 10vw, 200px) / 700 / lh 0.98 / tracking -0.03em
 headline : clamp(56px, 6vw, 96px)  / 700
 support  : clamp(32px, 3vw, 48px)  / 400  (--text-soft)
-kicker   : 24–28px mono UPPERCASE, letter-spacing 3px, --indigo
+kicker   : 24–28px mono UPPERCASE, letter-spacing 3px, --accent
 stat      : clamp(160px, 18vw, 340px) / 700, gradient background-clip:text
 ```
 

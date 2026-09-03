@@ -22,7 +22,7 @@ facts — all figures (KPIs, weights, financials, targets) stay `NEEDS INPUT` un
 --text:      #FFFFFF
 --muted:     #9a9aa6
 --accent:    #4B68FF   /* indigo — titles accent, priority bars, tier tags, links */
---purple:    #832BFB   /* gradient + glow partner to indigo */
+--accent-purple: #832BFB   /* gradient + glow partner */
 --mint:      #A6F0CE   /* MINT secondary — OKR badges, roadmap milestones, growth contributions */
 --neg:       #EB5B6B   /* risk dot */
 --radius:    18px
