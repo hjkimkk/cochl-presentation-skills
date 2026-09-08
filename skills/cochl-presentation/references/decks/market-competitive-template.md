@@ -51,7 +51,7 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
 | 8 | `capability-matrix` | Rows × approaches dot-matrix (mint leader / indigo competitive / hollow) — Cochl leads | p08 |
 | 9 | `positioning-map` | 2×2 quadrant scatter, Cochl top-right, dashed WHITE SPACE + reading panel | p09 |
 | 10 | `customer-gaps` | Voice-of-the-buyer split: big `NEEDS INPUT` stat + 4 gap rows | p10 |
-| 11 | `strategic-takeaways` | Centered title + 4 edge cards (image placeholder + caption) | p11 |
+| 11 | `strategic-takeaways` | Centered title + 4 numbered mint-accent cards, no image (distinct from slide 6's image-carrying cards) | p11 |
 | 12 | `differentiation-levers` | Numbered 01–04 differentiation levers | p12 |
 | 13 | `action-plan` | Centered "Own the sound-intelligence category." + numbered plan + contact | p13 |
 
@@ -83,12 +83,19 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
   sourcing caption — "Pending verified research — do not present without a sourced figure." — renders
   underneath it every time, per brand-core.md §1d; it is part of the stat component, not optional
   copy to add or drop per slide.
-- **strategic-takeaways / differentiation-levers / action-plan** — Cochl's edge: real-time sound
-  intelligence, rides existing infra, edge+cloud, multi-industry; closing anchors the category.
-  `action-plan`'s closer is a **category-ownership statement, never a funding ask** — this deck has
-  no round and no raise, so investor closing language ("not a funding round," "the ask," "Pitch
-  Closing Questions") never belongs here even when the slide is adapted from the shared
-  thanks-contact structure (brand-core.md §2c).
+- **strategic-takeaways** — centered title + 4 cards, same base grid as `competitor-profiles` (slide
+  6) but deliberately **not** a copy of it: no image strip, a numbered mono kicker (`01`–`04`) in
+  place of the category tag, and a **mint top-accent** (this deck's own "leader/positive" color,
+  reused here because these are Cochl's edge, not a rival's) instead of the indigo card border.
+  Card aspect is also squarer (no image slot to accommodate). This keeps the two 4-card sections
+  visually distinguishable at a glance rather than reading as the same layout re-skinned with new
+  copy (SKILL.md Routing step 5; brand-core.md §4 → Card-layout reuse check).
+- **differentiation-levers / action-plan** — Cochl's edge: real-time sound intelligence, rides
+  existing infra, edge+cloud, multi-industry; closing anchors the category. `action-plan`'s closer
+  is a **category-ownership statement, never a funding ask** — this deck has no round and no raise,
+  so investor closing language ("not a funding round," "the ask," "Pitch Closing Questions") never
+  belongs here even when the slide is adapted from the shared thanks-contact structure
+  (brand-core.md §2c).
 
 ---
 
