@@ -12,7 +12,10 @@ benchmark capabilities, map positioning, and stake Cochl's white space.
 Placeholders: competitor **names, market shares, HQ, and the buyer-gap stat are `NEEDS INPUT`**;
 market size uses confirmed research (Grand View Research). Competitor **categories** (Speech AI,
 Audio analytics, Computer vision, Traditional sensors) are qualitative capability framing, not
-fabricated company facts. Never invent specific competitor data.
+fabricated company facts — but each archetype card still stands in for a specific competitor slot,
+so the card's **title itself** must carry `[NEEDS INPUT]` unless the user supplied a real, confirmed
+name for it (brand-core.md §1c); the category tag is not a substitute for the title-level mark, and
+neither is a footnote. Never invent specific competitor data.
 
 ---
 
@@ -63,7 +66,11 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
 - **key-players** — gradient header row (Company / Market share / HQ / Differentiator); 5 `NEEDS INPUT`
   rows; caption points to the archetype profiles for the real alternatives.
 - **competitor-profiles** — 4 dark cards, each an image strip + category tag + name + one-line limit
-  (what each alternative misses).
+  (what each alternative misses). The card's **name/title slot** renders `[NEEDS INPUT]` unless the
+  user supplied a real, confirmed competitor name — the category tag (Speech AI, Audio analytics,
+  Computer vision, Traditional sensors) is qualitative framing, not a substitute for the mark, and a
+  footnote is not a substitute either (brand-core.md §1c). Apply per card — all 4 are checked
+  independently, not as a set.
 - **strengths-weaknesses** — left dark panel (mint heading, `+` rows) vs right cream panel (dark-green
   heading, `–` rows) — a deliberate light/dark contrast echoing an editorial compare.
 - **capability-matrix** — capabilities (rows) × Speech AI / Audio analytics / Computer vision / Cochl
