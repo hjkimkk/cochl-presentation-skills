@@ -78,8 +78,11 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
   Cochl is all-leader. Legend below.
 - **positioning-map** — axes NARROW↔FULL-RANGE (x) and ↑REAL-TIME (y); Cochl indigo pill top-right;
   rivals as `NEEDS INPUT` grey dots; dashed `WHITE SPACE` marker; right "READING THE MAP" panel.
-- **customer-gaps** — left dark panel with an oversized `NEEDS INPUT` stat + caption; right 4 gap rows
-  (mono key + bold + sub): off-camera, alert fatigue, no context, audio unused.
+- **customer-gaps** — left dark panel with an oversized `NEEDS INPUT` stat; right 4 gap rows
+  (mono key + bold + sub): off-camera, alert fatigue, no context, audio unused. The stat's mandatory
+  sourcing caption — "Pending verified research — do not present without a sourced figure." — renders
+  underneath it every time, per brand-core.md §1d; it is part of the stat component, not optional
+  copy to add or drop per slide.
 - **strategic-takeaways / differentiation-levers / action-plan** — Cochl's edge: real-time sound
   intelligence, rides existing infra, edge+cloud, multi-industry; closing anchors the category.
 
