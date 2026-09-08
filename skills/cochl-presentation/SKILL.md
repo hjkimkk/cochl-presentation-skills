@@ -41,6 +41,8 @@ This applies to **ALL slide types**, with no exceptions — Traction, Financials
 
 **Cross-slide figure consistency — hard rule.** When multiple slides in one deck present the same target/goal figure (e.g. an annual target stated on one slide and referenced again as a bridge/waterfall endpoint on another), every appearance must match **exactly** across all slides. A restated value may be called "rounded" or "approximate" only if it is within **±1%** of the source value — beyond that band it is a contradiction, not rounding, and must be corrected or flagged (see brand-core.md §4 → Figure-consistency check).
 
+**Hero-position figures — stricter default, the closer to the hero, the stricter.** Apply the real vs. `[NEEDS INPUT]` distinction more strictly the closer a precise figure sits to a hero/KPI position (a large stat callout, a headline number, a snapshot/KPI-grid card). Financial figures — ARR, YoY growth, churn, and similar — that the user did not explicitly supply default to `[NEEDS INPUT]`; render one as a confirmed real value only when the user has explicitly confirmed it as measured (not inferred, not modeled, not illustrative). Being "the kind of number a company this size would plausibly have" is not confirmation (see brand-core.md §4 → Hero-figure confirmation check).
+
 Before finalizing a deck, grep the generated HTML for hardcoded numerals / company names with no matching user input and flag each one.
 
 ## Output
