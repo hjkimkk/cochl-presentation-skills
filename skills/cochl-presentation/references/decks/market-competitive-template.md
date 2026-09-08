@@ -85,6 +85,10 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
   copy to add or drop per slide.
 - **strategic-takeaways / differentiation-levers / action-plan** — Cochl's edge: real-time sound
   intelligence, rides existing infra, edge+cloud, multi-industry; closing anchors the category.
+  `action-plan`'s closer is a **category-ownership statement, never a funding ask** — this deck has
+  no round and no raise, so investor closing language ("not a funding round," "the ask," "Pitch
+  Closing Questions") never belongs here even when the slide is adapted from the shared
+  thanks-contact structure (brand-core.md §2c).
 
 ---
 
