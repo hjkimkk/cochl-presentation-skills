@@ -39,6 +39,8 @@ This applies to **ALL slide types**, with no exceptions — Traction, Financials
 
 **Language / audience variants — keep the source's marks.** When you regenerate the same deck for another language or audience (e.g. an English deck re-rendered for a Korean board), every value the source version rendered **`[NEEDS INPUT]`** stays `[NEEDS INPUT]` in the variant. Translating or re-toning content never turns an unconfirmed figure into a confirmed one; a variant that ends up with far fewer marks than its source is leaking fabricated values (see brand-core.md §4 → Version-consistency NEEDS INPUT check).
 
+**Cross-slide figure consistency — hard rule.** When multiple slides in one deck present the same target/goal figure (e.g. an annual target stated on one slide and referenced again as a bridge/waterfall endpoint on another), every appearance must match **exactly** across all slides. A restated value may be called "rounded" or "approximate" only if it is within **±1%** of the source value — beyond that band it is a contradiction, not rounding, and must be corrected or flagged (see brand-core.md §4 → Figure-consistency check).
+
 Before finalizing a deck, grep the generated HTML for hardcoded numerals / company names with no matching user input and flag each one.
 
 ## Output
