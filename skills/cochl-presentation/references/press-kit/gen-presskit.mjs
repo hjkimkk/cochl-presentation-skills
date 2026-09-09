@@ -68,7 +68,9 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
 
 // ── Page 2 — TABLE OF CONTENTS ──
 {let s=open(); let y; [s,y]=header(s,'TABLE OF','CONTENTS');
- const items=[['01','About Cochl'],['02','Traction & Recognition'],['03','Contact & Press']];
+ // Each item must be this document's own page header, verbatim — TOC entries map 1:1 to
+ // pages 3–5 (About / In the Press / Contact Us). Never a topic guess or a merged label.
+ const items=[['01','About Cochl'],['02','In the Press'],['03','Contact Us']];
  let iy=y+90; items.forEach(([n,t])=>{
    s+=`<line x1="${M}" y1="${iy-30}" x2="${SX-40}" y2="${iy-30}" stroke="${LINE}" stroke-width="1"/>`;
    s+=tx(M,iy,22,'700',INDIGO,n+'.',{})+tx(M+52,iy,22,'400',INK,t,{}); iy+=66; });

@@ -10,7 +10,7 @@ Inherits [`../brand-core.md`](../brand-core.md), with a **light** print treatmen
 | # | Page | Contents |
 |---|---|---|
 | 1 | `cochl-media-kit_1-cover.svg` | Full-bleed cover photo (drop-zone) + top scrim, white logo, gradient **MEDIA KIT** spine, title + "Creating ears for AI". |
-| 2 | `cochl-media-kit_2-contents.svg` | Table of contents (01 About · 02 Traction & Recognition · 03 Contact & Press). |
+| 2 | `cochl-media-kit_2-contents.svg` | Table of contents (01 About Cochl · 02 In the Press · 03 Contact Us) — each item is pages 3–5's own header, verbatim. |
 | 3 | `cochl-media-kit_3-about.svg` | "ABOUT COCHL" + factual company paragraph, side image drop-zone, stats band + "NOTABLE CLIENTS". |
 | 4 | `cochl-media-kit_4-press.svg` | "IN THE PRESS" — two testimonial/quote blocks (headshot drop-zone + gradient quote panel). |
 | 5 | `cochl-media-kit_5-contact.svg` | "CONTACT US" — press email, downloadables, social. |
@@ -31,3 +31,5 @@ Anything unconfirmed is marked **`[NEEDS INPUT]`** and must be replaced with con
 `gen-presskit.mjs` (Node, no deps) emits all 5 pages; the embedded `cochl.` logo is inline vector. Render previews with headless Chrome at 2× (`--window-size=612,792 --force-device-scale-factor=2`).
 
 **Guard — no hardcoded spine labels.** `innerSpine(label)` takes each page's breadcrumb as an explicit argument; it has no default and must never fall back to a literal placeholder string (e.g. `'SUBTITLE'`) or reuse another page's value. Every call site sets its own: page 2 `'CONTENTS'`, page 3 `'ABOUT'`, page 4 `'PRESS'`, page 5 `'CONTACT'` (the cover, page 1, doesn't use this helper — it has its own full-width spine). Before shipping or regenerating, grep every emitted `pages/*.svg` for the literal string `SUBTITLE` — any match means a page's spine label was never substituted, and this bug reproduces silently (`innerSpine()` still renders fine with a missing argument — `label` is simply `undefined` in the output — so no error surfaces).
+
+**Guard — TOC entries must 1:1 match the pages they name.** Page 2's `items` array is the table of contents; each entry's label must be copied verbatim from the page-3–5 header it points to (`'About Cochl'` → page 3, `'In the Press'` → page 4, `'Contact Us'` → page 5), never an invented topic summary or a label that folds two pages into one line. Before shipping or regenerating, check `items` against the actual `header(...)`/title calls on pages 3–5: same count, same order, same wording. A TOC item with no matching page (or a page with no TOC entry) reproduces silently — the SVG still renders fine, nothing errors — so this can only be caught by reading the two side by side.
