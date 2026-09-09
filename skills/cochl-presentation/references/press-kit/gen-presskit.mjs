@@ -57,9 +57,11 @@ const pages={};
  s+=`<g id="logo" transform="translate(589,662) rotate(90) scale(0.1953)"><path d="${SYMB}" fill="url(#cg)"/><path d="${WORD}" fill="#fff"/><circle cx="499.067" cy="102.831" r="10.9334" fill="#fff"/></g>`;
  s+='</svg>';pages['1-cover.svg']=s;}
 
-// ── shared inner spine (thin rule + vertical COCHL / MEDIA KIT) ──
-const innerSpine=()=>`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`
-  +spineTxt(SX+46,60,'SUBTITLE',INK,20)+spineTxtThin(SX+41,214,'MEDIA KIT',GRAY,13)+mark(SX+37,H-70,34);
+// ── shared inner spine (thin rule + vertical <label> / MEDIA KIT) ──
+// `label` is this page's own short breadcrumb (e.g. 'CONTENTS', 'ABOUT', 'PRESS', 'CONTACT') —
+// every call site must pass its own page's label; never leave this as a hardcoded placeholder.
+const innerSpine=(label)=>`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`
+  +spineTxt(SX+46,60,label,INK,20)+spineTxtThin(SX+41,214,'MEDIA KIT',GRAY,13)+mark(SX+37,H-70,34);
 const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
   s+=tx(M,y,60,'800',INDIGO,l1,{}); if(l2){y+=64;s+=tx(M,y,60,'800',INDIGO,l2,{});}
   s+=`<line x1="${M}" y1="${y+26}" x2="${SX-40}" y2="${y+26}" stroke="${LINE}" stroke-width="1.5"/>`; return [s,y+26]; };
@@ -71,14 +73,14 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
    s+=`<line x1="${M}" y1="${iy-30}" x2="${SX-40}" y2="${iy-30}" stroke="${LINE}" stroke-width="1"/>`;
    s+=tx(M,iy,22,'700',INDIGO,n+'.',{})+tx(M+52,iy,22,'400',INK,t,{}); iy+=66; });
  s+=`<line x1="${M}" y1="${iy-30}" x2="${SX-40}" y2="${iy-30}" stroke="${LINE}" stroke-width="1"/>`;
- s+=innerSpine(); s+=foot(false); s+='</svg>';pages['2-contents.svg']=s;}
+ s+=innerSpine('CONTENTS'); s+=foot(false); s+='</svg>';pages['2-contents.svg']=s;}
 
 // ── Page 3 — ABOUT ──
 {let s=open();
  // right photo zone + spine (narrow column so body text clears it)
  const aix=SX-168;
  s+=imgBox('image-about',aix,0,168,462,'team / product · 이미지','corner');
- s+=`<line x1="${SX}" y1="40" x2="${SX}" y2="${H-40}" stroke="${LINE}" stroke-width="1.5"/>`+spineTxt(SX+46,60,'SUBTITLE',INK,20)+spineTxtThin(SX+41,214,'MEDIA KIT',GRAY,13);
+ s+=innerSpine('ABOUT');
  s+=logo(M,44,24);
  s+=tx(M,150,60,'800',INDIGO,'ABOUT',{})+tx(M,214,60,'800',INDIGO,'COCHL',{});
  s+=`<line x1="${M}" y1="240" x2="${aix-24}" y2="240" stroke="${LINE}" stroke-width="1.5"/>`;
@@ -96,7 +98,7 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
  // clients
  s+=tx(half+30,by+64,26,'800','#fff','NOTABLE',{})+tx(half+30,by+92,26,'800','#fff','CLIENTS',{});
  ['[NEEDS INPUT]','[NEEDS INPUT]','[NEEDS INPUT]'].forEach((c,k)=>{ s+=tx(half+30,by+134+k*30,13,'400','#fff','•  '+c,{f:'mono'}); });
- s+=mark(SX+37,H-70,34)+foot(false); s+='</svg>';pages['3-about.svg']=s;}
+ s+=foot(false); s+='</svg>';pages['3-about.svg']=s;}
 
 // ── Page 4 — VALUABLE FEEDBACK / PRESS ──
 {let s=open();
@@ -118,7 +120,7 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
    s+=tx(panX+24,by+ph-46,13,'700','#fff','[NEEDS INPUT] — Name, Title',{});
    s+=tx(panX+24,by+ph-26,11,'400','rgba(255,255,255,0.85)','Publication / Company',{f:'mono'});
  });
- s+=innerSpine()+foot(false); s+='</svg>';pages['4-press.svg']=s;}
+ s+=innerSpine('PRESS')+foot(false); s+='</svg>';pages['4-press.svg']=s;}
 
 // ── Page 5 — CONTACT ──
 {let s=open();
@@ -137,7 +139,7 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
    s+=`<rect x="${cx-20}" y="580" width="40" height="40" rx="10" fill="${INK}"/>`+tx(cx,607,16,'700','#fff',g,{anchor:'middle'}); });
  s+=tx(M,650,11,'400',GRAY,'Confirm official handles',{f:'mono'})+NI(M+250,650);
  s+=`<line x1="${M}" y1="676" x2="${SX-40}" y2="676" stroke="${LINE}" stroke-width="1"/>`;
- s+=innerSpine()+foot(false); s+='</svg>';pages['5-contact.svg']=s;}
+ s+=innerSpine('CONTACT')+foot(false); s+='</svg>';pages['5-contact.svg']=s;}
 
 for(const [n,svg] of Object.entries(pages)) writeFileSync(`${OUT}/pages/cochl-media-kit_${n}`,svg);
 console.log('✓ wrote',Object.keys(pages).length,'press-kit pages to',OUT+'/pages');
