@@ -8,6 +8,8 @@ Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit
 
 **Shared CSS token names are canonical — reuse them, never rename.** All deck types (and every artifact) must use the CSS token names defined in [`brand-core.md`](brand-core.md) §1 — `--bg`, `--bg-pure`, `--panel`, `--panel-2`, `--border`, `--text`, `--text-soft`, `--muted`, `--placeholder`, `--accent`, `--accent-purple`, `--mint` — **exactly as-is**. Do NOT introduce a deck-specific alias for a shared token (e.g. `--indigo` for `--accent`, `--purple` for `--accent-purple`) and do NOT invent additional tokens. A spec may **override a shared token's value** where `brand-core.md` allows (e.g. a light-theme doc), but it must reuse the same *name* — never a parallel one.
 
+**Repeated slide-type layouts are canonical — reuse them, don't reinvent.** When a deck type has a recurring slide archetype across builds (e.g. the `key-initiatives` card grid shared by the Corporate Strategy & Roadmap and QBR / Board Update specs), the layout registered for that archetype in the owning spec is the definitive structure — reuse it, don't author a new one. Adapting it to a different item count (e.g. redefining `grid-template-columns` to go from 4 cards to 14) is a legitimate adaptation of the same registered layout, not a new layout — but standing up a separate, differently-structured class for the same slide archetype is exactly the ad-hoc layout SKILL.md Routing step 5 already prohibits, just committed across repeated builds of the same deck type instead of within a single deck. Same deck type, same repeated slide → same registered layout, every time (see brand-core.md §4 → Shared-layout reuse check).
+
 ---
 
 ## Decks → `decks/`
