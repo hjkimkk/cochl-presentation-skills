@@ -37,6 +37,24 @@ function imgBox(id,x,y,w,h,caption,corner){
 const NI=(x,y,size=10.5,anchor)=>tx(x,y,size,'500',INDIGO,'[NEEDS INPUT]',{f:'mono',anchor,ls:'0.5'});
 const open=()=>`<svg width="${W}" height="${H}" viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg">${DEFS}<rect width="${W}" height="${H}" fill="#ffffff"/>`;
 const foot=(dark)=>tx(M,H-30,10,'400',dark?'#fff':GRAY,'www.cochl.ai',{f:'mono',ls:'1'});
+// Approx glyph-width estimator for IBM Plex Sans regular (no real font metrics at build time) —
+// good enough to pre-wrap SVG text so it never overruns a known box width.
+const AVG_CHAR_W = 0.52; // fraction of font-size per average glyph, incl. spacing
+const estWidth = (text,size)=>text.length*size*AVG_CHAR_W;
+// Greedy word-wrap: split `text` into lines no wider than `maxW`px at `size`px — computed from
+// the box it will render into, not a fixed line count. Any call site that draws multi-line text
+// into a fixed-width box must wrap through this rather than hand-splitting a literal string.
+function wrapText(text,maxW,size){
+  const words=text.split(' ');
+  const lines=[]; let cur='';
+  for(const w of words){
+    const trial = cur ? cur+' '+w : w;
+    if(estWidth(trial,size)>maxW && cur){ lines.push(cur); cur=w; }
+    else cur=trial;
+  }
+  if(cur) lines.push(cur);
+  return lines;
+}
 const pages={};
 
 // ── Page 1 — COVER ──
@@ -117,7 +135,10 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
    const panW = (SX-40)-(M+pw+gap);
    s+=imgBox(`image-quote-${by}`, imgX, by, pw, ph, 'headshot','corner');
    s+=`<rect x="${panX}" y="${by}" width="${panW}" height="${ph}" fill="url(#ig)"/>`;
-   const q=['“Add a confirmed press quote or customer','testimonial here. Keep it to 3–4 lines so it','stays readable at print size.”'];
+   // Wrap to the panel's actual usable width (24px padding each side), not a hand-split guess —
+   // the old hardcoded 3-line split ran ~50px wider than the panel, clipping/overrunning both quotes.
+   const quoteText='“Add a confirmed press quote or customer testimonial here. Keep it to 3–4 lines so it stays readable at print size.”';
+   const q=wrapText(quoteText, panW-48, 13.5);
    q.forEach((l,k)=>{ s+=tx(panX+24,by+40+k*22,13.5,'400','#fff',l,{}); });
    s+=tx(panX+24,by+ph-46,13,'700','#fff','[NEEDS INPUT] — Name, Title',{});
    s+=tx(panX+24,by+ph-26,11,'400','rgba(255,255,255,0.85)','Publication / Company',{f:'mono'});
