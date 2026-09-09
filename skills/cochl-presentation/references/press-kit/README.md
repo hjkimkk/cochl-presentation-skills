@@ -22,9 +22,12 @@ Inherits [`../brand-core.md`](../brand-core.md), with a **light** print treatmen
 - **Image drop-zones** — `image-*` groups (hatch + corner ticks + caption). Delete the placeholder and drop an `<image>` at the same x/y/w/h.
 - **Logo** — the `logo` group: gradient disc symbol + wordmark. Keep the gradient symbol; wordmark is black on light pages, white on the cover.
 - **Accent blocks / spine / mark** — `url(#ig)` indigo→purple; keep as the brand accent.
+- **Inner spine label** — the vertical breadcrumb on pages 2–5, drawn by the shared `innerSpine(label)` helper (thin rule + vertical page label + "MEDIA KIT" + gradient-disc mark). `label` is that page's own short breadcrumb — `CONTENTS`, `ABOUT`, `PRESS`, `CONTACT` — passed explicitly at each call site, never a shared constant.
 
 ## Facts discipline (hard rule)
 Anything unconfirmed is marked **`[NEEDS INPUT]`** and must be replaced with confirmed data before publishing: the About stats (numbers), Notable Clients, press quotes + attributions, the press email (`press@cochl.ai` is a placeholder — confirm), and social handles. The About paragraph is written from Cochl's general public positioning (sound AI) — verify before external use. Never fabricate metrics, client names, or quotes.
 
 ## Regenerate
 `gen-presskit.mjs` (Node, no deps) emits all 5 pages; the embedded `cochl.` logo is inline vector. Render previews with headless Chrome at 2× (`--window-size=612,792 --force-device-scale-factor=2`).
+
+**Guard — no hardcoded spine labels.** `innerSpine(label)` takes each page's breadcrumb as an explicit argument; it has no default and must never fall back to a literal placeholder string (e.g. `'SUBTITLE'`) or reuse another page's value. Every call site sets its own: page 2 `'CONTENTS'`, page 3 `'ABOUT'`, page 4 `'PRESS'`, page 5 `'CONTACT'` (the cover, page 1, doesn't use this helper — it has its own full-width spine). Before shipping or regenerating, grep every emitted `pages/*.svg` for the literal string `SUBTITLE` — any match means a page's spine label was never substituted, and this bug reproduces silently (`innerSpine()` still renders fine with a missing argument — `label` is simply `undefined` in the output — so no error surfaces).
