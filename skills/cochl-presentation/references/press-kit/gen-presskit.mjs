@@ -140,8 +140,11 @@ const header=(s,l1,l2)=>{ s+=logo(M,44,24); let y=150;
    const quoteText='“Add a confirmed press quote or customer testimonial here. Keep it to 3–4 lines so it stays readable at print size.”';
    const q=wrapText(quoteText, panW-48, 13.5);
    q.forEach((l,k)=>{ s+=tx(panX+24,by+40+k*22,13.5,'400','#fff',l,{}); });
+   // Name/title and publication/company are one citation — both fields stay at the same
+   // confirmation level. A bracketed name beside an unbracketed "Publication / Company" reads
+   // as a real, sourced outlet attached to a placeholder person; mark both [NEEDS INPUT].
    s+=tx(panX+24,by+ph-46,13,'700','#fff','[NEEDS INPUT] — Name, Title',{});
-   s+=tx(panX+24,by+ph-26,11,'400','rgba(255,255,255,0.85)','Publication / Company',{f:'mono'});
+   s+=tx(panX+24,by+ph-26,11,'400','rgba(255,255,255,0.85)','[NEEDS INPUT] — Publication / Company',{f:'mono'});
  });
  s+=innerSpine('PRESS')+foot(false); s+='</svg>';pages['4-press.svg']=s;}
 
