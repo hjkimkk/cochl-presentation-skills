@@ -19,6 +19,16 @@ A UX-research **usability testing report** deck. Delivered as an editable **Figm
 12. **Action plan** — 3 ✓ next-step cards + Notes bullets.
 13. **Thank you** — closer with cochl logo + gradient hero.
 
+## Subtitle convention — every slide subtitle is a reader-facing question, never an author instruction
+
+Each of the deck's 13 slides carries a short subtitle under its title, phrased as a question the slide answers for the reader (in the same register as the Agenda slide's per-item sub-questions). This is a whole-deck convention — check it slide by slide, not just once, since one correct slide doesn't confirm the rest.
+
+Never let an author-facing instruction or placeholder note ship as the subtitle. A real build shipped slide 11 (Supporting evidence — feedback) with its subtitle reading, verbatim, "Use this slide to highlight user feedback received during the test." — that's a note to whoever fills in the deck, not copy meant for an audience. Replace it with a question in the same voice as the other 12 slides:
+
+- **Slide 11 (Supporting evidence — feedback):** `What did users say?`
+
+Before shipping, read every slide's subtitle in order and confirm each one is phrased as a reader-facing question; flag and rewrite any that instead reads as a builder-facing instruction, template note, or placeholder label.
+
 ## NEEDS INPUT marker — Prototype link & Test date fields (template-local exception to brand-core §1b)
 
 Two fields in this deck are structured enough to warrant a **typed** marker instead of brand-core's plain `[NEEDS INPUT]`: the **Prototype link** (slide 6 Methodology's "Prototype" line, and slide 7's "Open prototype" pill) and the **Test date** (slide 6 Methodology's "Test date" line). Both are unconfirmed-until-filled placeholders that are easy to paraphrase into free text instead of a recognizable marker — real usability-report builds have shipped every one of the following instead of a standard marker:
