@@ -218,9 +218,13 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 ## Slide Archetypes Catalog
 
-### 1. COVER — Main (Full Bleed Black)
-**Source**: Both PPTX, slide 1  
+### 1. COVER — Main
+**Source**: PPTX1 (Proposal), slides 1–2 / PPTX2 (Direction Alignment), slide 1  
 **Used for**: Opening slide of every design review
+
+> The two templates use **different** cover layouts — do not merge them into one "black full bleed" cover. Pick the variant that matches the deck type.
+
+**Direction Alignment variant (PPTX2, slide 1) — Full Bleed Black:**
 
 - Background: `#000000`, NO persistent header
 - "DESIGN REVIEW" centered at y≈150px, 96px IBM Plex Sans 300, white
@@ -239,6 +243,32 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
     <div style="height:1px;background:rgba(255,255,255,0.15);margin:20px 0;"></div>
     <p style="text-align:center;font-size:21px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;color:#fff;letter-spacing:0.04em;">{team} &nbsp;|&nbsp; {presenters} &nbsp;|&nbsp; {date}</p>
     <div style="height:1px;background:rgba(255,255,255,0.15);margin-top:20px;margin-bottom:30px;"></div>
+  </div>
+</div>
+```
+
+**Proposal variant (PPTX1, slides 1–2) — Light Product Card:**
+
+- Background: `#FFFFFF`, NO persistent header (this cover is light, not black)
+- Title block, left-aligned at x≈98 / y≈250: two lines, 50px IBM Plex Sans bold, black
+  - Line 1 = review label (placeholder "Product review"), Line 2 = product name
+- Description under the title: 16px Roboto 300, black (placeholder "Add description")
+- Metadata strip along y≈535 — 5 equal cells (133px wide, ~160px step), each:
+  - Label chip: bg `#4B68FF` (Cochl indigo), 10px Public Sans uppercase, white text — `REVIEW STATUS` · `PRODUCT STAGE` · `TEST COVERAGE` · `KEY METRIC` · `NEXT ACTION`
+  - Value below chip: 10px Public Sans bold, black (e.g. `In Progress` · `Beta Release` · `12 User Sessions` · `92% Satisfaction` · `Iteration v2 Planned`)
+
+```html
+<div class="slide" style="background:#fff;position:relative;">
+  <div style="position:absolute;left:98px;top:250px;">
+    <h1 style="font-size:50px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:#000;line-height:1.05;margin:0;">{review label}<br>{product name}</h1>
+    <p style="font-size:16px;font-weight:300;font-family:'Roboto',sans-serif;color:#000;margin-top:16px;">{description}</p>
+  </div>
+  <div style="position:absolute;left:98px;top:533px;display:flex;gap:27px;">
+    <!-- repeat for each of the 5 metadata cells -->
+    <div style="width:133px;">
+      <div style="background:#4B68FF;color:#fff;font-size:10px;font-family:'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:0.06em;padding:6px 8px;">{LABEL}</div>
+      <p style="font-size:10px;font-weight:700;font-family:'Public Sans',sans-serif;color:#000;margin-top:6px;">{value}</p>
+    </div>
   </div>
 </div>
 ```
@@ -275,8 +305,10 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 ---
 
 ### 3. AGENDA
-**Source**: PPTX2, slides 3–4  
+**Source**: PPTX1 (Proposal), slides 3–4 / PPTX2 (Direction Alignment), slides 3–4  
 **Used for**: Listing review sections with numbered items
+
+**Direction Alignment variant (PPTX2, slides 3–4):**
 
 - Dark variant preferred (black bg, white text)
 - Left ~60%: "AGENDA" at 40px IBM Plex Sans 400, y≈370px from top
@@ -285,6 +317,14 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
   - Section number: 26px Roboto bold
   - Section title: 24px Roboto 400
   - Sub-items: 18px Roboto 400, muted
+
+**Proposal variant (PPTX1, slides 3–4) — Two-Column Statement:**
+
+- Background: `#FFFFFF`, no numbered/banded rows
+- Left ~45% (x≈93 / y≈140): "Today's Agenda:" — 79px IBM Plex Sans bold, black, two lines
+- Right ~40% (x≈647): plain section list, 37px IBM Plex Sans 400, black, generously spaced
+  - Items: `Project Overview` · `Discovery` · `Strategy & Process` · `Key Deliverables` · `Next Steps`
+  - No section numbers, no highlight bands, no sub-items
 
 ---
 
@@ -309,9 +349,11 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 ---
 
-### 5. THREE THINGS TO KNOW — 3-Column
-**Source**: PPTX2, slides 11–13  
-**Used for**: Overview section framing (3 key principles/problems/constraints)
+### 5. THREE THINGS TO KNOW / PRINCIPLES
+**Source**: PPTX1 (Proposal — "Principles"), slides 7–8 / PPTX2 (Direction Alignment — "Three Things To Know"), slides 11–13  
+**Used for**: Overview section framing (3 key principles/problems/constraints/insights)
+
+**Direction Alignment variant (PPTX2, slides 11–13) — 3-Column:**
 
 - Light or dark variant
 - Persistent header
@@ -338,11 +380,23 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 </div>
 ```
 
+**Proposal variant (PPTX1, slides 7–8) — Left Title + Stacked List:**
+
+- Background: `#FFFFFF`, no persistent header, NOT a 3-column grid
+- Left (x≈91, vertically centered): section title "Principles" — 50px IBM Plex Sans bold, black
+- Right (x≈634): 3 stacked insight rows (top-aligned), each:
+  - Small bullet: 13×13px black square, left of the label
+  - Label: `Insight 1` / `Insight 2` / `Insight 3` — 21px IBM Plex Sans bold, black
+  - Body: 12px Roboto 400, black, lh ~1.5, kept short
+- Same layout is reused for the Proposal "Project Goals" slide (see §6)
+
 ---
 
 ### 6. PROJECT GOALS
-**Source**: PPTX2, slide 14  
+**Source**: PPTX1 (Proposal), slides 9–10 / PPTX2 (Direction Alignment), slide 14  
 **Used for**: 3 measurable project goals with metrics
+
+**Direction Alignment variant (PPTX2, slide 14) — Cards:**
 
 - Background: `#F1F1F2`
 - Persistent header
@@ -351,6 +405,15 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
   - Goal label: "GOAL 1/2/3" — 40px IBM Plex Sans bold
   - Description: 20px Roboto 400, lh 1.45
   - Metric: 13px Public Sans uppercase, border-top 1px
+
+**Proposal variant (PPTX1, slides 9–10) — Left Title + Stacked List:**
+
+- Background: `#FFFFFF`, no persistent header, no cards (shares the Proposal "Principles" layout, §5)
+- Left (x≈91, vertically centered): section title "Project goals" — 50px IBM Plex Sans bold, black
+- Right (x≈634): 3 stacked goal rows, each:
+  - Small bullet: 13×13px black square, left of the label
+  - Label: `Goal 1` / `Goal 2` / `Goal 3` — 21px IBM Plex Sans bold, black
+  - Body: 12px Roboto 400, black, lh ~1.5 (no metric row / border-top in this variant)
 
 ---
 
@@ -488,8 +551,10 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 ---
 
 ### 16. DIRECTION CONTENT
-**Source**: PPTX2, slides 34–43  
+**Source**: PPTX2 (Direction Alignment), slides 34–43 — Direction-Alignment-only  
 **Used for**: Showing a design direction with screenshot and rationale
+
+> This layout is **specific to the Direction Alignment deck**. The Proposal deck presents its design directions with different archetypes — see §24 DESIGN DIRECTIONS COMPARISON (Proposal style) and §25 DIRECTION POLL (Proposal). Do not apply this keyword-bar layout to a Proposal deck.
 
 - White bg
 - Persistent header, NO section title block
@@ -717,11 +782,11 @@ def stitle(text: str, dark: bool = False) -> str:
 ### PROPOSAL REVIEW (type=proposal)
 Required slide order:
 ```
-1.  COVER — Main (black full bleed)
-2.  AGENDA
+1.  COVER — Main (Proposal light product card)
+2.  AGENDA (Proposal two-column statement)
 3.  SECTION DIVIDER — PROJECT OVERVIEW
-4.  THREE THINGS TO KNOW / PRINCIPLES
-5.  PROJECT GOALS
+4.  THREE THINGS TO KNOW / PRINCIPLES (Proposal left-title + stacked list)
+5.  PROJECT GOALS (Proposal left-title + stacked list)
 6.  SECTION DIVIDER — DISCOVERY
 7.  MARKET RESEARCH (top 5 competitors)
 8.  VALUE / EFFORT MATRIX
@@ -730,8 +795,8 @@ Required slide order:
 11. DESIGN PROCESS (timeline)
 12. SECTION DIVIDER — KEY DELIVERABLES
 13. DELIVERABLES list (2–3 items)
-14. DIRECTION CONTENT — Direction 1
-15. DIRECTION CONTENT — Direction 2
+14. DESIGN DIRECTIONS COMPARISON (Proposal style) — Direction 1
+15. DESIGN DIRECTIONS COMPARISON (Proposal style) — Direction 2
 16. SECTION DIVIDER — NEXT STEPS
 17. IMPROVEMENT / ACTION ITEMS
 18. DIRECTION POLL (A / B / C)
