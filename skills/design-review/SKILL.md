@@ -387,7 +387,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Background: `#FFFFFF`, no persistent header, NOT a 3-column grid
 - Left (x≈91, vertically centered): section title "Principles" — 50px IBM Plex Sans bold, black
 - Right (x≈634): 3 stacked insight rows (top-aligned), each:
-  - Small bullet: 13×13px black square, left of the label
+  - Small bullet: 13×13px black round dot (`border-radius:50%`), left of the label — house standard marker (not a square or bordered box)
   - Label: `Insight 1` / `Insight 2` / `Insight 3` — 21px IBM Plex Sans bold, black
   - Body: 12px Roboto 400, black, lh ~1.5, kept short
 - Same layout is reused for the Proposal "Project Goals" slide (see §6)
@@ -413,7 +413,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Background: `#FFFFFF`, no persistent header, no cards (shares the Proposal "Principles" layout, §5)
 - Left (x≈91, vertically centered): section title "Project goals" — 50px IBM Plex Sans bold, black
 - Right (x≈634): 3 stacked goal rows, each:
-  - Small bullet: 13×13px black square, left of the label
+  - Small bullet: 13×13px black round dot (`border-radius:50%`), left of the label — house standard marker (not a square or bordered box)
   - Label: `Goal 1` / `Goal 2` / `Goal 3` — 21px IBM Plex Sans bold, black
   - Body: 12px Roboto 400, black, lh ~1.5 (no metric row / border-top in this variant)
 
