@@ -55,6 +55,8 @@ color values, and structural rules. Everything below is derived from them.
 - **Output size**: 1440 × 810 px (16:9)
 - **PPTX source**: 960 × 540 px → scale factor **1.5×** applied to all measurements
 - Slides are rendered full-viewport and scaled via `transform:scale()` on resize
+- **Safe area — nothing may exceed the canvas.** `.dw` / `.slide` are `overflow:hidden`, so any element extending past **y = 810px** (or above the top under the 38px persistent header) is silently clipped — there is no scrollbar to reveal it. Every slide's content must fit within the vertical range 0–810px.
+- **Phone mockups + bottom callouts must fit vertically.** A phone frame plus any bottom keyword/callout bar has to sit between the header and y = 810. Do **not** pin the mockup with a fixed `top` whose `top + frame height (+ callout bar height)` exceeds 810 — that clips the bottom of the frame and its callout. Instead vertically center the mockup in the available area, or bottom-anchor the callout (`bottom:0`) and size the frame to fit above it. Always confirm the mockup's bottom edge and callout are fully visible; if they clip, reduce the mockup's `top`/height rather than letting it overflow.
 
 ### Color Tokens
 ```
