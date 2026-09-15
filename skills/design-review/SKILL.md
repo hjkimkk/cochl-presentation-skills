@@ -472,11 +472,18 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - White bg
 - Persistent header + "DESIGN PROCESS" section header (40px IBM Plex Sans) + 1px divider
 - Horizontal timeline spanning full width:
-  - 2px black horizontal line
+  - 2px horizontal line in black (`#000`)
   - 4 stage dots at x = 12.5%, 37.5%, 62.5%, 87.5%
   - Stages alternate above/below (1,3 above; 2,4 below)
   - Each: 10px circle dot + stage name (13px Public Sans uppercase) + date label (20px Roboto 300) + description (13px Roboto, muted)
 - Stages: PROBLEM ALIGNMENT → EXPLORATION → SOLUTION ALIGNMENT → HANDOFF
+
+**Timeline colors — brand tokens only:**
+- Base line and past-stage dots: black `#000`
+- Current-position dot / active highlight: `--accent` `#4B68FF` (Cochl indigo)
+- Muted labels: `rgba(0,0,0,0.4)`–`rgba(0,0,0,0.55)`
+
+> ⚠️ **Never** color the timeline line or dots with off-brand dark blues such as `#000CC8` or `#00088D` — they render nearly black on screen and break the brand palette. The source PPTX Design Process slides (Proposal 21–22, Direction 26–27) contain those values; when porting them, **override** every timeline blue to `#4B68FF` (accent) or `#000`. This rule applies to every generated deck.
 
 ---
 
