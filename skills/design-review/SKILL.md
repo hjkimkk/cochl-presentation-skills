@@ -680,7 +680,8 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 - White bg
 - Persistent header + section header
-- 4-cell grid: large metric value (40px+ Roboto bold) + metric label (13px Public Sans)
+- 4-cell grid: large metric value + metric label (13px Public Sans)
+  - **Large metric value: ~100–107px Roboto bold** (source PPTX is 53.44pt ≈ 107px at deck scale). The number must dominate its cell — do **not** shrink it to ~40–56px; all four cells use the same size for consistency across decks.
 
 ---
 
