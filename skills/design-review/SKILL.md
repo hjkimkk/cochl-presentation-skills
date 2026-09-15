@@ -788,6 +788,8 @@ def stitle(text: str, dark: bool = False) -> str:
 
 ## Template Flow Rules
 
+> ⚠️ **Every item in the required slide order below is mandatory.** Never drop a required archetype or swap it for an off-spec slide — each numbered item must appear, in order. If a slide has no real content yet, keep the required archetype with placeholder content rather than substituting a different slide type.
+
 ### PROPOSAL REVIEW (type=proposal)
 Required slide order:
 ```
