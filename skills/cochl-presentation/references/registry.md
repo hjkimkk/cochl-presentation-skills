@@ -39,7 +39,7 @@ Every artifact inherits **[`brand-core.md`](brand-core.md)**. Decks also inherit
 | Model performance & benchmark report | Research — metrics, ablations, comparison | `decks/model-benchmark-report-template.md` | 🟡 |
 | Technical deep-dive / conference talk | Research — talk-grade narrative | `decks/technical-deep-dive-template.md` | 🟡 |
 | Internal research review (journal-club) | Research — paper critique, discussion | `decks/research-journal-club-template.md` | 🟡 |
-| Cochl 101 | All / Event — company & product intro | `decks/cochl-101-template.md` | 🟡 |
+| Cochl 101 — class / lecture | All / Education — teach concept X to beginners | [`decks/101-class-lecture-template.md`](decks/101-class-lecture-template.md) — 33-slide teaching deck (light body + dark section dividers, editorial serif cards); content-intent format catalog (Introduce · Explain · Compare · Prove · Apply · Practice · Process · Close). **Figma Slides:** https://www.figma.com/slides/pXQZ3uLG34fLpafWDA92dl | ✅ |
 
 > **Design review** (proposal / direction-alignment) already lives in the separate **`design-review`** skill — route there rather than duplicating here.
 
