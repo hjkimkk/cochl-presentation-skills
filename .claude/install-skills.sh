@@ -1,42 +1,53 @@
 #!/bin/bash
-# Cochl Claude Skills Installer
-# Run from the project root:  bash .claude/install-skills.sh
-#
-# Discovery model: Claude Code loads each skill from a directory under
-# ~/.claude/skills/ that contains a SKILL.md (its `name:` is the slash command).
-# This installer copies every skill directory under ./skills/ accordingly.
+# Cochl Claude Skills Installer  (run once: bash .claude/install-skills.sh)
+# Copies skills to ~/.claude/skills AND installs a user-level SessionStart hook
+# so skills self-update from git every session, any project. --skip-hook = copy only.
 set -euo pipefail
 shopt -s nullglob
 
-SKILL_DIR="$HOME/.claude/skills"
-# install-skills.sh lives in .claude/, so the skills/ dir is one level up (repo root).
-SRC="$(cd "$(dirname "$0")/.." && pwd)/skills"
-mkdir -p "$SKILL_DIR"
+SKIP_HOOK=0
+for arg in "$@"; do case "$arg" in --skip-hook) SKIP_HOOK=1 ;; esac; done
 
+SKILL_DIR="$HOME/.claude/skills"
+REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
+SRC="$REPO_ROOT/skills"
+mkdir -p "$SKILL_DIR"
 echo "Installing Cochl Claude skills to $SKILL_DIR ..."
 
-# Flat single-file skills, if any live directly under ./skills/ (none by default).
-for f in "$SRC"/*.md; do
-  cp "$f" "$SKILL_DIR/$(basename "$f")"
-  echo "  ✓ $(basename "$f")"
-done
+for f in "$SRC"/*.md; do cp "$f" "$SKILL_DIR/$(basename "$f")"; echo "  ✓ $(basename "$f")"; done
 
-# Directory skills — clean-replace each so updates don't leave stale files.
 for d in "$SRC"/*/; do
-  name="$(basename "$d")"
-  rm -rf "$SKILL_DIR/$name"
-  cp -R "$d" "$SKILL_DIR/$name"
+  name="$(basename "$d")"; rm -rf "$SKILL_DIR/$name"; cp -R "$d" "$SKILL_DIR/$name"
   if [ -f "$d/SKILL.md" ]; then
     nm="$(grep -m1 '^name:' "$d/SKILL.md" | sed 's/name: *//' || true)"
     echo "  ✓ $name/  (skill: ${nm:-unknown})"
-  else
-    echo "  ✓ $name/  (support files — no SKILL.md)"
-  fi
+  else echo "  ✓ $name/  (support files)"; fi
 done
 
+if [ "$SKIP_HOOK" -eq 0 ] && command -v python3 >/dev/null 2>&1; then
+  SETTINGS="$HOME/.claude/settings.json"
+  HOOK_CMD=": cochl-skills-autoupdate; git -C \"$REPO_ROOT\" pull --ff-only -q 2>/dev/null || true; bash \"$REPO_ROOT/.claude/install-skills.sh\" --skip-hook >/dev/null 2>&1 || true"
+  python3 - "$SETTINGS" "$HOOK_CMD" <<'PY' || echo "  ! settings.json not updated (skills still installed)"
+import json, os, sys, shutil
+path, cmd = sys.argv[1], sys.argv[2]
+os.makedirs(os.path.dirname(path), exist_ok=True)
+data = {}
+if os.path.exists(path):
+    try: data = json.load(open(path)); shutil.copy(path, path+".bak")
+    except Exception: shutil.copy(path, path+".corrupt.bak"); data = {}
+if not isinstance(data, dict): data = {}
+hooks = data.setdefault("hooks", {})
+ss = hooks.get("SessionStart");  ss = ss if isinstance(ss, list) else []
+def mine(g):
+    return isinstance(g, dict) and any(isinstance(h, dict) and "cochl-skills-autoupdate" in h.get("command","") for h in g.get("hooks", []))
+ss = [g for g in ss if not mine(g)]
+ss.append({"hooks": [{"type": "command", "command": cmd}]})
+hooks["SessionStart"] = ss
+json.dump(data, open(path, "w"), indent=2)
+print("  ✓ auto-update hook installed in ~/.claude/settings.json")
+PY
+fi
+
 echo ""
-echo "Done! Restart Claude Code, then try:"
-echo "  /cochl-presentation   — build any Cochl deck, brochure, or social/press banner"
-echo "  /pitch-deck-skill     — update/rebuild within the Cochl PT template"
-echo "  /frontend-design      — apply the Cochl design system"
-echo "  /install-cochl-design-system"
+echo "Done! Restart Claude Code. Auto-update is ON (skills refresh from git each session)."
+echo "Turn it off: remove the 'cochl-skills-autoupdate' hook from ~/.claude/settings.json"

@@ -28,6 +28,37 @@ After install, skills are available in any Claude Code session:
 /proposal-doc            — create a styled proposal document
 ```
 
+## Stay up to date (auto-update)
+
+Skills are **copied** into `~/.claude/skills/` at install time — they do **not** refresh on
+their own. So after anyone updates a template on `main`, each teammate would otherwise have
+to `git pull` + re-install + restart Claude Code. To avoid chasing everyone, set up
+auto-update **once**; from then on every new Claude Code session pulls the latest templates
+automatically, **from any project**.
+
+Add this to your **`~/.claude/settings.json`** (create the file if it doesn't exist), and
+replace `/ABSOLUTE/PATH/TO/cochl-presentation-skills` with where you cloned this repo:
+
+```json
+{
+  "hooks": {
+    "SessionStart": [
+      { "hooks": [ { "type": "command",
+        "command": ": cochl-skills-autoupdate; git -C \"/ABSOLUTE/PATH/TO/cochl-presentation-skills\" pull --ff-only -q 2>/dev/null || true; bash \"/ABSOLUTE/PATH/TO/cochl-presentation-skills/.claude/install-skills.sh\" >/dev/null 2>&1 || true" } ] }
+    ]
+  }
+}
+```
+
+- **One-time setup — no more manual pulls or per-teammate update requests.**
+- It only fast-forwards (`--ff-only`), so it never clobbers local work; if it can't, it silently no-ops.
+- Turn it off by deleting the `cochl-skills-autoupdate` hook from `~/.claude/settings.json`.
+- Newly pulled skills load on the **next** session start.
+
+> **Just presenting or testing a deck (not generating a new one)?** You don't need the skill
+> installed at all — the canonical, always-latest deck is the shared **Figma** file. See
+> [docs/cochl-101-team-guide.md](./docs/cochl-101-team-guide.md).
+
 ## Repository Structure
 
 ```
