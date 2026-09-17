@@ -4,6 +4,8 @@
 
 This repo is a skill library for Claude Code. Skills are structured Markdown specifications that teach Claude how to produce specific outputs (HTML presentations, proposal documents, design system setups).
 
+> **Keeping skills current.** Skills are copied into `~/.claude/skills/` and don't refresh on their own. After you edit a spec here and it lands on `main`, teammates need the latest copy. Set up **auto-update once** so every session pulls the latest automatically — see [README → Stay up to date (auto-update)](../README.md#stay-up-to-date-auto-update). Team members who only present/test a deck should use the shared Figma instead — see [cochl-101-team-guide.md](./cochl-101-team-guide.md).
+
 ## Repository Structure
 
 ```
