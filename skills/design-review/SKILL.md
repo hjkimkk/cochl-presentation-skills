@@ -791,6 +791,8 @@ def stitle(text: str, dark: bool = False) -> str:
 
 > ⚠️ **Every item in the required slide order below is mandatory.** Never drop a required archetype or swap it for an off-spec slide — each numbered item must appear, in order. If a slide has no real content yet, keep the required archetype with placeholder content rather than substituting a different slide type.
 
+> ⚠️ **"Next Steps" is a PROPOSAL-only slide — never add it to a Direction deck.** `SECTION DIVIDER — NEXT STEPS` (Proposal item 16) and the `IMPROVEMENT / NEXT STEPS` content slide (§26) exist **only** in the Proposal flow. The **Direction Alignment flow has no Next Steps slide of any kind.** Its required ending is fixed: `22 DECISION TOOL → 23 FINDINGS & RECOMMENDATIONS → 24 FINAL MOCKUP → 25 CLOSING / THANK YOU`. Never insert, append, or substitute a `NEXT STEPS` / `SECTION DIVIDER — NEXT STEPS` slide into a Direction deck, and never replace a Direction ending item with one. If content is missing, keep Direction items **16 (PROPOSED CONCEPT), 23 (FINDINGS & RECOMMENDATIONS), and 24 (FINAL MOCKUP)** as placeholders — do not drop or swap them.
+
 ### PROPOSAL REVIEW (type=proposal)
 Required slide order:
 ```
@@ -817,6 +819,9 @@ Required slide order:
 ```
 
 ### DIRECTION ALIGNMENT & FEEDBACK REVIEW (type=direction)
+
+> ⚠️ **No Next Steps in this flow.** This flow has **no** `SECTION DIVIDER — NEXT STEPS` and **no** `NEXT STEPS` content slide — those belong to the Proposal flow (item 16 / §26). The ending is fixed at **22 → 23 → 24 → 25**; keep items **16, 23, 24** even as placeholders and never substitute a Next Steps slide.
+
 Required slide order:
 ```
 1.  COVER — Main (black full bleed, Phase + Round)
