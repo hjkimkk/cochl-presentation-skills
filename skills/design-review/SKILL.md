@@ -12,6 +12,8 @@ args:
   - name: type
     required: true
     description: "proposal | direction  — which template to follow"
+  - name: theme
+    description: "Section Divider variant applied to the WHOLE deck: light | dark (default: light). Every Section Divider uses this one variant. Cover — Main is unaffected (always follows its template spec — Direction = full-bleed black)."
   - name: project
     required: true
     description: "Project or feature name shown in the persistent header"
@@ -333,6 +335,8 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 ### 4. SECTION DIVIDER
 **Source**: Both PPTX  
 **Used for**: OVERVIEW, DISCOVERY, STRATEGY & PROCESS, KEY DELIVERABLES, NEXT STEPS
+
+> ⚠️ **One divider variant per deck — never mix light and dark.** Within a single deck, **every** Section Divider uses the **same** variant — all light **or** all dark. Do **not** alternate the variant from slide to slide. **Default: light (`#F1F1F2`).** Render all dividers dark (`#000000`) **only** when the user explicitly asks — via the `theme` arg (`light` | `dark`, default `light`) or an explicit request in the prompt. **`COVER — Main` (§1) is exempt** and always follows its own template spec (Direction = full-bleed black) regardless of `theme`.
 
 - Light variant bg: `#F1F1F2`; Dark variant bg: `#000000`
 - Persistent header present
@@ -893,7 +897,8 @@ If no screenshots are provided: render phone frame outlines with placeholder fil
 - [ ] Font: Roboto for all body text, numbered items, descriptions
 - [ ] Font: IBM Plex Mono for BEFORE/AFTER, DECISION MATRIX, FINDINGS, FINAL MOCKUP headers
 - [ ] Font: Lora only on full-bleed quote slide
-- [ ] Section divider bg: exactly `#F1F1F2` (not #F2F2F2, not #EEEEEE)
+- [ ] Section divider bg: `#F1F1F2` (light, default) or `#000000` (dark) — never #F2F2F2 / #EEEEEE
+- [ ] Section dividers: **one variant across the whole deck** (all light or all dark per `theme`, default light) — never mixed slide-to-slide; Cover — Main stays black regardless
 - [ ] Card bg on gray slides: `#E6E6E6`
 - [ ] Cover slides: NO persistent header
 - [ ] All content slides: persistent header present
