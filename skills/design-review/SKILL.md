@@ -315,8 +315,8 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Dark variant preferred (black bg, white text)
 - Left ~60%: "AGENDA" at 40px IBM Plex Sans 400, y≈370px from top
 - Right ~40%: numbered section list
-  - Section row height: ~60px, gray highlight band behind each section number
-  - Section number: 26px Roboto bold
+  - Section row height: ~60px, **no highlight band** — plain rows on the black background (correct per PPTX slide 3; the "gray highlight band behind each section number" in earlier docs was an error and does not exist in the source)
+  - Section number: 26px Roboto
   - Section title: 24px Roboto 400
   - Sub-items: 18px Roboto 400, muted
 
