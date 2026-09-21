@@ -56,6 +56,8 @@ The deck opens on a Cover and an **Agenda** that lists the 8 sections; each sect
 
 **Content-intent catalog.** The content slides are drawn from a reusable format library keyed by teaching intent — **Introduce · Explain · Compare · Prove · Apply · Practice · Process · Close** (the kicker prefix on each light slide, e.g. `EXPLAIN · ARCHITECTURE`). A real class picks the formats it needs from this catalog and drops the rest; you don't have to use all 33. Keep the section-divider cadence (one dark divider per section) whenever you keep a section.
 
+**Abbreviation rule — one definition at any length.** A shorter deck omits whole **sections**, not the structure. When the content doesn't fill all 8 sections, pick only the sections you'll actually cover and introduce **each kept section with its own dark section divider** — **never** flatten the deck into a plain light listing of slides in place of the dividers. The **Cover pattern, Closing pattern, and logo-placement rules above apply identically regardless of slide count**: a 10-slide class and the full 33-slide class use the same cover layout (60/40 split + right image placeholder, logo bottom-left), the same closing pattern (one-line `{presenter} · {email} · {lab/institution}`, logo top-left), and the same logo exposure (dark slides only; light content slides never). Slide count only changes **which sections appear** — never how the cover, closing, or logo are built or placed.
+
 **Density:** teaching-grade — one core idea per slide, ≤4–6 cards per grid, card body ≤2 short lines. Whitespace over boxes; borderless editorial cards with a thin top rule where the Figma uses them.
 
 ## Facts discipline (hard rule)
