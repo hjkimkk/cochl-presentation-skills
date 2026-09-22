@@ -1,0 +1,113 @@
+{
+  "_comment": "VERIFIED design snapshot for Alert (Figma 'Alert v1'), captured from the Figma MCP. Backgrounds/border/text/padding/radius read via get_design_context on the Basic Success (1371:1601) and Basic Error (1371:1602) nodes; variant axes via get_metadata. The stray canvas annotation 'Background color #FF7A00' is a stale text label and was NOT used — the real Error fill is #FFF4F4 per get_design_context.",
+  "component": "Alert",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "25:441",
+    "name": "Alert v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1371:1601",
+    "name": "theme=Light, type=Basic, state=Success"
+  },
+  "capturedVia": "figma-mcp get_metadata + get_variable_defs + get_design_context",
+  "fields": [
+    {
+      "key": "color.background.success",
+      "category": "color",
+      "value": "#EDF0FF",
+      "ref": "1371:1601",
+      "detail": "get_design_context bg-[#edf0ff]"
+    },
+    {
+      "key": "color.background.error",
+      "category": "color",
+      "value": "#FFF4F4",
+      "ref": "1371:1602",
+      "detail": "get_design_context bg-[#fff4f4]"
+    },
+    {
+      "key": "color.accent.success",
+      "category": "color",
+      "value": "#445EE5",
+      "ref": "1371:1601",
+      "detail": "border+text #445ee5 (var Light/Blue/70)"
+    },
+    {
+      "key": "color.accent.error",
+      "category": "color",
+      "value": "#E02E2E",
+      "ref": "1371:1602",
+      "detail": "border+text #e02e2e (var Light/Red)"
+    },
+    {
+      "key": "radius.border",
+      "category": "radius",
+      "value": "4px",
+      "ref": "1371:1601",
+      "detail": "get_design_context rounded-[4px]"
+    },
+    {
+      "key": "spacing.paddingX",
+      "category": "spacing",
+      "value": "20px",
+      "ref": "1371:1601",
+      "detail": "get_design_context px-[20px]"
+    },
+    {
+      "key": "spacing.paddingY",
+      "category": "spacing",
+      "value": "16px",
+      "ref": "1371:1601",
+      "detail": "get_design_context py-[16px]"
+    },
+    {
+      "key": "typography.label",
+      "category": "typography",
+      "value": {
+        "family": "IBM Plex Sans",
+        "weight": 500,
+        "size": 14
+      },
+      "ref": "1371:1601",
+      "detail": "var dashboard/1920/button"
+    },
+    {
+      "key": "variant.status",
+      "category": "variant",
+      "value": [
+        "Success",
+        "Error"
+      ],
+      "ref": "25:441",
+      "detail": "variant axis: state (Success/Error)"
+    },
+    {
+      "key": "variant.kinds",
+      "category": "variant",
+      "value": [
+        "Basic",
+        "Link"
+      ],
+      "ref": "25:441",
+      "detail": "variant axis: type (Basic/Link)"
+    },
+    {
+      "key": "variant.link",
+      "category": "variant",
+      "value": true,
+      "ref": "25:441",
+      "detail": "Figma type=Link present"
+    }
+  ],
+  "meta": {
+    "component": "Alert",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1371:1601",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata + get_variable_defs + get_design_context",
+    "sourceRevision": null,
+    "captureStatus": "captured"
+  }
+}

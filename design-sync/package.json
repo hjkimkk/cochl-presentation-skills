@@ -1,0 +1,19 @@
+{
+  "name": "design-sync",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Design-to-Code Sync — MVP proof of concept (Figma Cochl Design System ↔ @cochlearai/ui). Compares ONE component and emits a structured diff report. Zero runtime dependencies.",
+  "bin": {
+    "design-sync": "./cli.mjs"
+  },
+  "scripts": {
+    "compare": "node cli.mjs compare",
+    "analyze": "node cli.mjs analyze",
+    "report": "node cli.mjs report",
+    "test": "node test/diff.test.mjs && node test/fix.test.mjs && node test/mapping.test.mjs"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

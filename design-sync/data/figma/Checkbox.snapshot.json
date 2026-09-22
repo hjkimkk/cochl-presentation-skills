@@ -1,0 +1,40 @@
+{
+  "_comment": "VERIFIED via get_metadata + get_design_context (node 136:108). Checkbox renders as an SVG asset; the checked color token is #4B68FF (Light/Blue/60).",
+  "component": "Checkbox",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "52:717",
+    "name": "Checkbox v1"
+  },
+  "referenceVariant": {
+    "nodeId": "136:108",
+    "name": "isChecked=True, theme=Light"
+  },
+  "capturedVia": "figma-mcp get_metadata + get_design_context",
+  "fields": [
+    {
+      "key": "color.accent.checked",
+      "category": "color",
+      "value": "#4B68FF",
+      "ref": "136:108",
+      "detail": "checked fill (var Light/Blue/60)"
+    },
+    {
+      "key": "variant.checked",
+      "category": "variant",
+      "value": true,
+      "ref": "52:717",
+      "detail": "axis isChecked {True,False}"
+    }
+  ],
+  "meta": {
+    "component": "Checkbox",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "136:108",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata + get_design_context",
+    "sourceRevision": null,
+    "captureStatus": "captured"
+  }
+}

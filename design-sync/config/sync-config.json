@@ -1,0 +1,7 @@
+{
+  "_comment": "Runtime config for design-sync. Freshness threshold is configurable (not hardcoded); override per-run with --max-age-hours.",
+  "snapshot": {
+    "maxAgeHours": 168,
+    "_note": "Snapshots older than maxAgeHours are reported STALE (the run still executes). 168h = 7 days."
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "_comment": "Architectural finding. Figma 'Progress v1' maps to TWO code components (ProgressIndicator = spinner, CircleProgress = circular percent). 1:many mapping; surfaced as unmatched with a note.",
+  "component": "Progress",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "25:442",
+    "name": "Progress v1"
+  },
+  "referenceVariant": {
+    "nodeId": "25:442",
+    "name": "Progress v1 (1:many — see note)"
+  },
+  "capturedVia": "figma-mcp get_metadata (page) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "Progress",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "25:442",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata (page) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

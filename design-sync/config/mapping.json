@@ -1,0 +1,207 @@
+{
+  "_comment": "Authoritative, human-authored mapping. Each component declares: figma {name, role, page}, a `mapping` block {type, targets[]} with an explicit code ROLE per target (intent, not name), an optional `code` extraction recipe for the primary target, and `comparisons`. mapping.type ∈ ONE_TO_ONE | ONE_TO_MANY | UNMATCHED | AMBIGUOUS. Names are NOT trusted: same-name components with different roles are flagged AMBIGUOUS. This file supplies NO values (adapters do). Figma Code Connect is unavailable on this seat.",
+  "components": {
+    "Button": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:718", "name": "Button", "role": "action-button" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Button", "role": "action-button", "relationship": "exact" } ] },
+      "code": {
+        "package": "@cochlearai/ui", "component": "Button",
+        "extract": {
+          "prop.color": { "category": "variant", "method": "unionType", "typeName": "ButtonType" },
+          "state.disabled": { "category": "state", "method": "hasProp", "prop": "disabled" },
+          "prop.leftIcon": { "category": "property", "method": "hasProp", "prop": "leftIcon" },
+          "prop.rightIcon": { "category": "property", "method": "hasProp", "prop": "rightIcon" },
+          "prop.size": { "category": "variant", "method": "hasProp", "prop": "size" },
+          "radius.border": { "category": "radius", "method": "literal", "kind": "length", "pattern": "border-radius:\\s*([0-9]+px)" },
+          "color.background.primary": { "category": "color", "method": "themeColors", "path": "button.backgroundColor.primary.light" },
+          "color.text.primary": { "category": "color", "method": "themeColors", "path": "button.color.primary.light" },
+          "state.hover": { "category": "state", "method": "regexBool", "pattern": "&:hover", "detail": "CSS &:hover selector" },
+          "typography.label": { "category": "typography", "method": "regexBool", "pattern": "font-(family|size|weight)", "onFalseNeedsInput": true, "detail": "no font-* in component; inherited/Typo — not verifiable here" }
+        }
+      },
+      "comparisons": [
+        { "label": "Primary background color", "category": "color", "mode": "equal", "designKey": "color.background.primary", "codeKey": "color.background.primary", "severity": "high" },
+        { "label": "Primary text color", "category": "color", "mode": "equal", "designKey": "color.text.primary", "codeKey": "color.text.primary", "severity": "medium" },
+        { "label": "Border radius", "category": "radius", "mode": "equal", "designKey": "radius.border", "codeKey": "radius.border", "severity": "medium" },
+        { "label": "Label typography", "category": "typography", "mode": "equal", "designKey": "typography.label", "codeKey": "typography.label", "severity": "high" },
+        { "label": "Kind/variant taxonomy", "category": "variant", "mode": "setEqual", "designKey": "variant.kinds", "codeKey": "prop.color", "severity": "high",
+          "note": "Figma kinds = category(Primary/Secondary) ∪ type(Basic/Red/Link); code `color` = default/primary/secondary/danger. Likely: Red→danger, Basic→default, Link→HyperlinkButton." },
+        { "label": "Size variants", "category": "variant", "mode": "presence", "designKey": "variant.size", "codeKey": "prop.size", "severity": "high" },
+        { "label": "Link type", "category": "variant", "mode": "unmatched", "designKey": "variant.link", "severity": "medium", "note": "Figma type=Link → separate code component HyperlinkButton, not Button." },
+        { "label": "Disabled state", "category": "state", "mode": "presence", "designKey": "state.disabled", "codeKey": "state.disabled", "severity": "low" },
+        { "label": "Hover state", "category": "state", "mode": "presence", "designKey": "state.hover", "codeKey": "state.hover", "severity": "low" },
+        { "label": "Left icon", "category": "property", "mode": "presence", "designKey": "prop.leftIcon", "codeKey": "prop.leftIcon", "severity": "low" },
+        { "label": "Right icon", "category": "property", "mode": "presence", "designKey": "prop.rightIcon", "codeKey": "prop.rightIcon", "severity": "low" }
+      ]
+    },
+
+    "Alert": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:441", "name": "Alert", "role": "status-message" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Toast", "role": "status-message", "relationship": "renamed",
+        "note": "Figma 'Alert' → code 'Toast'. Name differs but role (status message with severity + optional action) matches → ONE_TO_ONE." } ] },
+      "code": {
+        "package": "@cochlearai/ui", "component": "Toast",
+        "extract": {
+          "color.background.success": { "category": "color", "method": "literal", "kind": "hex", "pattern": "severity === \"info\" \\? \"(#[0-9A-Fa-f]{6})\"" },
+          "color.background.error": { "category": "color", "method": "literal", "kind": "hex", "pattern": "\"#[0-9A-Fa-f]{6}\" : \"(#[0-9A-Fa-f]{6})\"" },
+          "color.accent.success": { "category": "color", "method": "tokenRef", "palette": "blue", "pattern": "p\\.theme\\.colors\\.blue\\[(\\d+)\\]" },
+          "color.accent.error": { "category": "color", "method": "tokenValue", "token": "red" },
+          "radius.border": { "category": "radius", "method": "literal", "kind": "length", "pattern": "border-radius:\\s*([0-9]+px)" },
+          "spacing.paddingX": { "category": "spacing", "method": "literal", "kind": "length", "pattern": "padding-left:\\s*([0-9]+px)" },
+          "spacing.paddingY": { "category": "spacing", "method": "literal", "kind": "length", "pattern": "padding-top:\\s*([0-9]+px)" },
+          "prop.severity": { "category": "variant", "method": "propUnion", "prop": "severity" },
+          "prop.link": { "category": "variant", "method": "hasProp", "prop": "buttonText" }
+        }
+      },
+      "comparisons": [
+        { "label": "Success/info background", "category": "color", "mode": "equal", "designKey": "color.background.success", "codeKey": "color.background.success", "severity": "high" },
+        { "label": "Error background", "category": "color", "mode": "equal", "designKey": "color.background.error", "codeKey": "color.background.error", "severity": "high" },
+        { "label": "Success/info accent", "category": "color", "mode": "equal", "designKey": "color.accent.success", "codeKey": "color.accent.success", "severity": "high",
+          "note": "Design Success accent Blue/70 (#445EE5); code Toast info accent blue[60] (#4B68FF). Mechanically fixable." },
+        { "label": "Error accent", "category": "color", "mode": "equal", "designKey": "color.accent.error", "codeKey": "color.accent.error", "severity": "high" },
+        { "label": "Border radius", "category": "radius", "mode": "equal", "designKey": "radius.border", "codeKey": "radius.border", "severity": "medium" },
+        { "label": "Padding X", "category": "spacing", "mode": "equal", "designKey": "spacing.paddingX", "codeKey": "spacing.paddingX", "severity": "low" },
+        { "label": "Padding Y", "category": "spacing", "mode": "equal", "designKey": "spacing.paddingY", "codeKey": "spacing.paddingY", "severity": "low" },
+        { "label": "Status/severity taxonomy", "category": "variant", "mode": "setEqual", "designKey": "variant.status", "codeKey": "prop.severity", "severity": "high",
+          "note": "Figma status {Success, Error} vs code severity {info, error}: Success↔info is a naming difference to reconcile." },
+        { "label": "Link/action variant", "category": "variant", "mode": "presence", "designKey": "variant.link", "codeKey": "prop.link", "severity": "low" }
+      ]
+    },
+
+    "Chip": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "12:2472", "name": "Chip", "role": "chip-tag" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Chip", "role": "chip-tag", "relationship": "exact" } ] },
+      "code": { "package": "@cochlearai/ui", "component": "Chip",
+        "extract": {
+          "color.text.default": { "category": "color", "method": "tokenValue", "token": "black" },
+          "radius.border": { "category": "radius", "method": "literal", "kind": "length", "pattern": "border-radius:\\s*([0-9]+px)" },
+          "spacing.paddingX": { "category": "spacing", "method": "literal", "kind": "length", "pattern": "padding-left:\\s*([0-9]+px)" },
+          "prop.types": { "category": "variant", "method": "hasProp", "prop": "type" }
+        }
+      },
+      "comparisons": [
+        { "label": "Text color", "category": "color", "mode": "equal", "designKey": "color.text.default", "codeKey": "color.text.default", "severity": "medium" },
+        { "label": "Border radius", "category": "radius", "mode": "equal", "designKey": "radius.border", "codeKey": "radius.border", "severity": "low",
+          "note": "Both are pill radii (element height 24px), so visually inert but literally drifted (74px vs 100px)." },
+        { "label": "Horizontal padding", "category": "spacing", "mode": "equal", "designKey": "spacing.paddingX", "codeKey": "spacing.paddingX", "severity": "low" },
+        { "label": "Variant types", "category": "variant", "mode": "presence", "designKey": "variant.types", "codeKey": "prop.types", "severity": "high",
+          "note": "Figma Chip has type {Clickable, Closable, Unclickable, Tag chip} + status; code `Chip` exposes NO variant props." }
+      ]
+    },
+
+    "Input": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:720", "name": "Input Field", "role": "text-input" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Input", "role": "text-input", "relationship": "exact" } ] },
+      "code": { "package": "@cochlearai/ui", "component": "Input",
+        "extract": {
+          "color.border": { "category": "color", "method": "paletteValue", "palette": "grey", "key": "30" },
+          "color.placeholder": { "category": "color", "method": "paletteValue", "palette": "grey", "key": "60" },
+          "radius.border": { "category": "radius", "method": "literal", "kind": "length", "pattern": "border-radius:\\s*([0-9]+px)" },
+          "spacing.padding": { "category": "spacing", "method": "literal", "kind": "length", "pattern": "padding:\\s*([0-9]+px)" }
+        }
+      },
+      "comparisons": [
+        { "label": "Border color", "category": "color", "mode": "equal", "designKey": "color.border", "codeKey": "color.border", "severity": "medium" },
+        { "label": "Placeholder color", "category": "color", "mode": "equal", "designKey": "color.placeholder", "codeKey": "color.placeholder", "severity": "low" },
+        { "label": "Border radius", "category": "radius", "mode": "equal", "designKey": "radius.border", "codeKey": "radius.border", "severity": "medium" },
+        { "label": "Padding", "category": "spacing", "mode": "equal", "designKey": "spacing.padding", "codeKey": "spacing.padding", "severity": "low" }
+      ]
+    },
+
+    "Checkbox": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:717", "name": "Checkbox", "role": "checkbox" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Checkbox", "role": "checkbox", "relationship": "exact" } ] },
+      "code": { "package": "@cochlearai/ui", "component": "Checkbox",
+        "extract": {
+          "color.accent.checked": { "category": "color", "method": "literal", "kind": "hex", "pattern": "(#4[bB]68[fF][fF])" },
+          "prop.selected": { "category": "variant", "method": "hasProp", "prop": "selected" }
+        }
+      },
+      "comparisons": [
+        { "label": "Checked color", "category": "color", "mode": "equal", "designKey": "color.accent.checked", "codeKey": "color.accent.checked", "severity": "high" },
+        { "label": "Checked state", "category": "variant", "mode": "presence", "designKey": "variant.checked", "codeKey": "prop.selected", "severity": "low",
+          "note": "Figma axis isChecked {True,False} ≈ code prop `selected`." }
+      ]
+    },
+
+    "Radio": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:723", "name": "Radio", "role": "radio" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "RadioButton", "role": "radio", "relationship": "renamed",
+        "note": "Figma 'Radio' → code 'RadioButton'. Name differs, role matches → ONE_TO_ONE." } ] },
+      "code": { "package": "@cochlearai/ui", "component": "RadioButton",
+        "extract": {
+          "color.accent.circle": { "category": "color", "method": "tokenRef", "palette": "blue", "pattern": "colors\\.blue\\[(\\d+)\\]" },
+          "prop.checked": { "category": "variant", "method": "hasProp", "prop": "checked" }
+        }
+      },
+      "comparisons": [
+        { "label": "Circle color", "category": "color", "mode": "equal", "designKey": "color.accent.circle", "codeKey": "color.accent.circle", "severity": "high" },
+        { "label": "Checked state", "category": "variant", "mode": "presence", "designKey": "variant.checked", "codeKey": "prop.checked", "severity": "low",
+          "note": "Figma state includes Selected ≈ code prop `checked`. Design note: light-theme radio values may be inaccurate." }
+      ]
+    },
+
+    "Tooltip": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "27:446", "name": "Tooltip", "role": "tooltip" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "InfoTooltip", "role": "tooltip", "relationship": "renamed",
+        "note": "Figma 'Tooltip' → code 'InfoTooltip'. Name differs, role matches → ONE_TO_ONE." } ] },
+      "code": { "package": "@cochlearai/ui", "component": "InfoTooltip",
+        "extract": {
+          "color.background": { "category": "color", "method": "paletteValue", "palette": "grey", "key": "90" },
+          "radius.border": { "category": "radius", "method": "literal", "kind": "length", "pattern": "border-radius:\\s*([0-9]+px)" },
+          "spacing.padding": { "category": "spacing", "method": "literal", "kind": "length", "pattern": "padding:\\s*([0-9]+px)" },
+          "prop.position": { "category": "variant", "method": "propUnion", "prop": "position" }
+        }
+      },
+      "comparisons": [
+        { "label": "Background color", "category": "color", "mode": "equal", "designKey": "color.background", "codeKey": "color.background", "severity": "high" },
+        { "label": "Border radius", "category": "radius", "mode": "equal", "designKey": "radius.border", "codeKey": "radius.border", "severity": "medium" },
+        { "label": "Padding", "category": "spacing", "mode": "equal", "designKey": "spacing.padding", "codeKey": "spacing.padding", "severity": "low" },
+        { "label": "Placement variants", "category": "variant", "mode": "setEqual", "designKey": "variant.placement", "codeKey": "prop.position", "severity": "medium",
+          "note": "Figma exposes 8+ placements (top/bottom/side × left/middle/right); code `position` has 4. Structural granularity mismatch." }
+      ]
+    },
+
+    "Dropdown": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "28:538", "name": "Dropdown", "role": "form-select" },
+      "mapping": {
+        "type": "AMBIGUOUS",
+        "targets": [ { "component": "Dropdown", "role": "popover-container", "relationship": "name-collision" } ],
+        "reason": "SAME NAME, DIFFERENT ROLE: Figma 'Dropdown' role=form-select (a select input) vs code 'Dropdown' role=popover-container (generic data/renderItem/isOpen wrapper). Intent not verified → AMBIGUOUS_MAPPING. A name-only match would be WRONG; needs a human mapping decision (likely a composed select built from Dropdown, not `Dropdown` itself)."
+      },
+      "code": { "package": "@cochlearai/ui", "component": "Dropdown", "extract": {} },
+      "comparisons": []
+    },
+
+    "Table": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "16:2873", "name": "Table", "role": "data-table" },
+      "mapping": {
+        "type": "ONE_TO_MANY",
+        "targets": [
+          { "component": "Table", "role": "table-root", "relationship": "container" },
+          { "component": "TableHead", "role": "table-header", "relationship": "part" },
+          { "component": "TableBody", "role": "table-body", "relationship": "part" },
+          { "component": "TableRow", "role": "table-row", "relationship": "part" },
+          { "component": "TableCell", "role": "table-cell", "relationship": "part" }
+        ],
+        "reason": "Figma 'Table' composes into 5 code components. Per-target property comparisons not yet captured."
+      },
+      "code": { "package": "@cochlearai/ui", "component": "Table", "extract": {} },
+      "comparisons": []
+    },
+
+    "Progress": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:442", "name": "Progress", "role": "progress-indicator" },
+      "mapping": {
+        "type": "ONE_TO_MANY",
+        "targets": [
+          { "component": "ProgressIndicator", "role": "spinner", "relationship": "variant", "note": "size large/medium spinner" },
+          { "component": "CircleProgress", "role": "circular-percent", "relationship": "variant", "note": "percent ring" }
+        ],
+        "reason": "Figma 'Progress' maps to two code components by variant (linear/spinner vs circular). Needs a variant→component router; per-target comparisons not yet captured."
+      },
+      "code": { "package": "@cochlearai/ui", "component": "ProgressIndicator", "extract": {} },
+      "comparisons": []
+    }
+  }
+}

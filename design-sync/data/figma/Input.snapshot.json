@@ -1,0 +1,54 @@
+{
+  "_comment": "VERIFIED via get_metadata + get_design_context (node 1174:266). Basic/Default box: bg white, border #E5E5E5 (Gray/30), radius 4px, placeholder #A5A5A6 (Gray/60), padding ~20px.",
+  "component": "Input",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "52:720",
+    "name": "Input Field v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1174:266",
+    "name": "theme=Light, type=Basic, state=Default, isDisabled=false"
+  },
+  "capturedVia": "figma-mcp get_metadata + get_design_context",
+  "fields": [
+    {
+      "key": "color.border",
+      "category": "color",
+      "value": "#E5E5E5",
+      "ref": "1174:266",
+      "detail": "border (var Gray/30)"
+    },
+    {
+      "key": "color.placeholder",
+      "category": "color",
+      "value": "#A5A5A6",
+      "ref": "1174:266",
+      "detail": "placeholder (var Gray/60)"
+    },
+    {
+      "key": "radius.border",
+      "category": "radius",
+      "value": "4px",
+      "ref": "1174:266",
+      "detail": "rounded-[4px]"
+    },
+    {
+      "key": "spacing.padding",
+      "category": "spacing",
+      "value": "20px",
+      "ref": "1174:266",
+      "detail": "inset padding-left 4.12% of 486 ≈ 20px"
+    }
+  ],
+  "meta": {
+    "component": "Input",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1174:266",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata + get_design_context",
+    "sourceRevision": null,
+    "captureStatus": "captured"
+  }
+}

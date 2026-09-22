@@ -1,0 +1,51 @@
+{
+  "_comment": "VERIFIED via get_metadata + get_design_context (node 3116:3041). Design annotation: outer/inner circle color #4B68FF (Light/Blue/60). Design note on canvas: 'no usage in light theme, values may be inaccurate' — recorded as provenance.",
+  "component": "Radio",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "52:723",
+    "name": "Radio v1"
+  },
+  "referenceVariant": {
+    "nodeId": "3116:3041",
+    "name": "theme=Light, type=Basic, state=Selected, withLabel=false"
+  },
+  "capturedVia": "figma-mcp get_metadata + get_design_context",
+  "fields": [
+    {
+      "key": "color.accent.circle",
+      "category": "color",
+      "value": "#4B68FF",
+      "ref": "3116:3041",
+      "detail": "outer/inner circle (var Light/Blue/60); design note: light-theme values may be inaccurate"
+    },
+    {
+      "key": "variant.checked",
+      "category": "variant",
+      "value": true,
+      "ref": "52:723",
+      "detail": "axis state includes Selected"
+    },
+    {
+      "key": "variant.states",
+      "category": "variant",
+      "value": [
+        "Default",
+        "Hovered",
+        "Selected"
+      ],
+      "ref": "52:723",
+      "detail": "variant axis: state"
+    }
+  ],
+  "meta": {
+    "component": "Radio",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "3116:3041",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata + get_design_context",
+    "sourceRevision": null,
+    "captureStatus": "captured"
+  }
+}
