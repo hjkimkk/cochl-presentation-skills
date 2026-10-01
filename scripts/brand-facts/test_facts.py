@@ -70,6 +70,48 @@ class DiffLogicTest(unittest.TestCase):
             self.assertEqual(same.returncode, 0, same.stdout + same.stderr)
             self.assertIn("no brand-fact differences", same.stdout)
 
+class AllowGateTest(unittest.TestCase):
+    THEME = ":root { --accent: #4b68ff; --text: #fff; --font-sans: 'IBM Plex Sans', Arial, sans-serif; }\n"
+
+    def gate(self, before, after, allow=True):
+        def facts(colors, fonts):
+            return {"kind": "html", "fonts": {f: 1 for f in fonts}, "colors": {c: 1 for c in colors},
+                    "canvas": [1440, 810], "layouts": ["hero"], "logos": []}
+        b = facts(before.get("colors", ["#4b68ff"]), before.get("fonts", ["IBM Plex Sans"]))
+        a = facts(after.get("colors", before.get("colors", ["#4b68ff"])),
+                  after.get("fonts", before.get("fonts", ["IBM Plex Sans"])))
+        with tempfile.TemporaryDirectory() as d:
+            pb, pa, pt = Path(d) / "b.json", Path(d) / "a.json", Path(d) / "theme.md"
+            pb.write_text(json.dumps(b)); pa.write_text(json.dumps(a)); pt.write_text(self.THEME)
+            args = [str(HERE / "diff.py"), str(pb), str(pa)] + (["--allow", str(pt)] if allow else [])
+            return run(*args)
+
+    def test_theme_color_swap_passes(self):
+        r = self.gate({"colors": ["#4b68ff", "#ececec"]}, {"colors": ["#4b68ff", "#ffffff"]})
+        self.assertEqual(r.returncode, 0, r.stdout + r.stderr)
+
+    def test_off_theme_added_color_fails(self):
+        r = self.gate({"colors": ["#4b68ff"]}, {"colors": ["#4b68ff", "#123456"]})
+        self.assertEqual(r.returncode, 1, r.stdout)
+        self.assertIn("#123456", r.stdout)
+        self.assertIn("off-theme", r.stdout)
+
+    def test_missing_theme_color_fails(self):
+        r = self.gate({"colors": ["#4b68ff", "#ececec"]}, {"colors": ["#ececec"]})
+        self.assertEqual(r.returncode, 1, r.stdout)
+        self.assertIn("#4b68ff", r.stdout)
+
+    def test_fonts(self):
+        bad = self.gate({}, {"fonts": ["IBM Plex Sans", "Comic Sans MS"]})
+        self.assertEqual(bad.returncode, 1, bad.stdout)
+        self.assertIn("Comic Sans MS", bad.stdout)
+        ok = self.gate({}, {"fonts": ["IBM Plex Sans", "Arial"]})
+        self.assertEqual(ok.returncode, 0, ok.stdout)
+
+    def test_without_allow_still_strict(self):
+        r = self.gate({"colors": ["#4b68ff", "#ececec"]}, {"colors": ["#4b68ff", "#ffffff"]}, allow=False)
+        self.assertEqual(r.returncode, 1, r.stdout)
+
 class PptxFactsTest(unittest.TestCase):
     def test_pptx_facts(self):
         from pptx import Presentation
