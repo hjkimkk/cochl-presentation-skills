@@ -61,3 +61,7 @@ test('addedLines parses unified=0 diff', () => {
     { file: 'skills/a/SKILL.md', line: 22, text: 'new #000' },
   ]);
 });
+
+test('scanLine detects Inter as a font', () => {
+  assert.deepEqual(scanLine("font-family:'Inter',sans-serif"), [{ kind: 'font', value: 'Inter' }]);
+});

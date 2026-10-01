@@ -1,14 +1,15 @@
 // Pure scanning helpers for the skills lint. No I/O here.
 export const FONT_NAMES = [
   'IBM Plex Sans', 'IBM Plex Mono', 'Century Gothic', 'CenturyGothic',
-  'Roboto', 'Public Sans', 'Lora', 'Helvetica Neue',
+  'Roboto', 'Public Sans', 'Lora', 'Helvetica Neue', 'Inter',
 ];
 
 const HEX_RE = /(?<![&\w/#.])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3})(?![0-9a-zA-Z_-])/g;
 // Longest names first so "Century Gothic" wins over a partial match.
+// Word boundaries keep short names (e.g. Inter) from matching inside words like "Internal".
 const FONT_RE = new RegExp(
-  [...FONT_NAMES].sort((a, b) => b.length - a.length)
-    .map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|'),
+  '\\b(?:' + [...FONT_NAMES].sort((a, b) => b.length - a.length)
+    .map(n => n.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).join('|') + ')\\b',
   'g',
 );
 
