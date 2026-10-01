@@ -127,3 +127,11 @@ skills/
 | pt-template output drifts after the merge | Brand-fact regression check + sign-off from the PT template owner |
 | Relative `../cochl-design/core/` paths break in the plugin layout | W3 namespacing check; CI path check |
 | Teammates get half-migrated skills | Integration branch; one merge to `main` after W4 |
+
+## 9. Amendment (2026-10-01, during planning)
+
+1. **Commands come from the skill's folder name**, not its `name:` frontmatter (the session skill list shows `pitch-deck`, `design-review`, `design-system`, not `pitch-deck-skill` / `design-review-template` / `frontend-design`). Working commands today: `/cochl-presentation`, `/pitch-deck`, `/design-review`, `/proposal-doc`, `/design-system`. D3 still holds — folder names don't change. Each `name:` is set equal to its folder name, and CI enforces it. The router folder is `cochl-design` → `/cochl-design`.
+2. **The hex/font rule covers code templates too.** HTML/CSS templates inside skill markdown use `var(--token)`; each theme file provides a `:root { … }` block that skills paste into their output `<style>`. The rule scans `.md` files only; `*.svg`, `*-previews/`, `examples/` and `assets/` are exempt (generated outputs, or editable artwork that needs literal colors).
+3. **Theme `plex` is the union of the IBM Plex-family tokens actually in use** (presentation dark surfaces, design-review light grays and its Roboto / Public Sans / Lora font roles, proposal-doc document colors), deduplicated. Template-specific font roles live in the theme, not in the template. There is still no third theme.
+4. **design-system's old navy tokens (`#0B1F3A`, `#6B4EFF`) are dropped**; brand-core already marks them superseded. HTML-mode output changes accordingly — intended, not a regression. React mode keeps reading `@cochlearai/ui`.
+5. **The lint script lands in W2** (before the per-skill brand PRs) so those PRs are checked; the spec's W3 slot becomes "make the CI job required".
