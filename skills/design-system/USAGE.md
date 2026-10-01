@@ -13,19 +13,12 @@
 
 ## What It Does
 - Installs design tokens (colors, typography, spacing) as CSS custom properties
-- Sets up IBM Plex Sans as the primary font
+- Sets up the brand font from the shared theme as the primary font
 - Scaffolds base theme provider and example components
 - Enforces no-hardcoded-colors rule via token references
 
-## Design Tokens (Core)
-| Token | Value | Use |
-|---|---|---|
-| `--c-enterprise` | `#0B1F3A` | Slide / page backgrounds |
-| `--c-ai` | `#6B4EFF` | Primary accent (purple) |
-| `--c-analytics` | `#2F80ED` | Secondary accent (blue) |
-| `--col-card` | `#0F2847` | Card surfaces |
-| `--col-muted` | `#8B9BB4` | Secondary text |
-| `--grad-main` | `135deg, #6B4EFF → #2F80ED` | KPI values, accent lines |
+## Design Tokens
+Brand tokens live in `../cochl-design/core/` (React mode: `tokens.md`; HTML mode: `brand-core.md` + `themes/plex.md`). Pitch decks and presentations: use the `cochl-presentation` skill.
 
 ## Examples
 See `examples/base-theme-example.tsx` and `examples/vite-react-install.md`.
