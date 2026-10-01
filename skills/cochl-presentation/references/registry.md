@@ -22,6 +22,7 @@ Every artifact inherits **[`brand-core.md`](../../cochl-design/core/brand-core.m
 | Quarterly business review (QBR) / board update | Business, board — quarter review + ask | [`decks/qbr-board-update-template.md`](decks/qbr-board-update-template.md) — 15 layouts | ✅ |
 | Market & competitive landscape | Business — sizing, share, positioning | [`decks/market-competitive-template.md`](decks/market-competitive-template.md) — 13 layouts | ✅ |
 | Trade show / conference booth | Business — event booth loop, big-type panels | [`decks/tradeshow-booth-template.md`](decks/tradeshow-booth-template.md) — 8-frame looping kiosk (1920×1080), auto-advance + QR; previews in `decks/tradeshow-booth-previews/` | ✅ |
+| PT template (official `Cochl_PT_template.pptx`) — id `pt-template` | All teams — update or rebuild decks in Cochl_PT_template.pptx (official PT template style, mixed light/dark slides) | [`decks/pt-template/pt-template.md`](decks/pt-template/pt-template.md) — 30 layouts, theme `pt-template`, 10×5.625in, always HTML + PPTX | ✅ |
 | Data pipeline & architecture overview | Data — collection→labeling→training flow | `decks/data-pipeline-architecture-template.md` | 🟡 |
 | Data labeling guideline / annotator training | Data — how-to, examples, do/don't | `decks/data-labeling-guideline-template.md` | 🟡 |
 | Dataset summary & collection progress | Data — coverage, counts, progress KPIs | `decks/dataset-progress-report-template.md` | 🟡 |
