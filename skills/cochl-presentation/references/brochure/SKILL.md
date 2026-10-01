@@ -42,9 +42,9 @@ Cochl 브로셔를 **Illustrator에서 편집 가능한 SVG**로 만든다.
 
 | 버전 | 성격 | 추천 상황 | 액센트 |
 |---|---|---|---|
-| **V1 Visual** | 이미지 중심, 텍스트 적음, 큰 인덱스 숫자 | 임팩트 있는 표지, 비주얼 중심 | 중립 `#141414` |
-| **V2 Balanced** | 텍스트↔이미지 균형, 테크 그리드 | 범용 제품 소개 (기본 추천) | 블루 `#4B68FF` |
-| **V3 Editorial** | 텍스트 많음, 통계·스펙 행, 회로·파형 장식 | 설명·수치·항목이 많은 기술 자료 | 그린 `#0FA068` |
+| **V1 Visual** | 이미지 중심, 텍스트 적음, 큰 인덱스 숫자 | 임팩트 있는 표지, 비주얼 중심 | 중립 `--brochure-neutral` |
+| **V2 Balanced** | 텍스트↔이미지 균형, 테크 그리드 | 범용 제품 소개 (기본 추천) | 블루 `--accent` |
+| **V3 Editorial** | 텍스트 많음, 통계·스펙 행, 회로·파형 장식 | 설명·수치·항목이 많은 기술 자료 | 그린 `--brochure-green` |
 
 크기: 세로 `595 × 842`, 가로 `842 × 595` (A4 비율)
 
@@ -61,10 +61,12 @@ Cochl 브로셔를 **Illustrator에서 편집 가능한 SVG**로 만든다.
 삽입 방법 — `line` 은 `fill="none" stroke="{색}" stroke-width="1.7"` 그룹으로, `fill` 은 `fill="{색}"` 그룹으로 감싸고 `transform="translate(x,y) scale(s)"` 로 배치한다.
 
 ```svg
-<g id="icon-drone" transform="translate(60,320) scale(1.5)" fill="none" stroke="#0FA068" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+<g id="icon-drone" transform="translate(60,320) scale(1.5)" fill="none" stroke="{액센트 hex}" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
   <!-- icon-data.json 의 line 마크업 -->
 </g>
 ```
+
+`{액센트 hex}` 는 선택한 버전의 액센트 토큰(`--brochure-neutral` / `--accent` / `--brochure-green`) 값을 `../../../cochl-design/core/themes/plex.md` 에서 그대로 가져온다 — 편집 가능 SVG(Illustrator)에서는 `var()` 를 쓸 수 없다.
 
 사용자가 직접 아이콘을 넣겠다고 하면, 아이콘 자리에 점선 박스 placeholder만 둔다.
 

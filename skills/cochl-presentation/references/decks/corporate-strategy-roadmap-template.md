@@ -4,7 +4,7 @@ Source of truth for the **Corporate strategy / product roadmap** variant. Derive
 15-page Cochl "Product Roadmap" deck (1920×1080). Page previews live in
 [`corporate-strategy-roadmap-previews/`](corporate-strategy-roadmap-previews/) (`p01`–`p15`). Treat
 this file as authoritative. Same Cochl **near-black / indigo / glow** family as the other variants;
-heading treatment is **IBM Plex Sans, Title Case** (like B2B) with a **mint secondary accent** and a
+heading treatment is **`--font-sans`, Title Case** (like B2B) with a **mint secondary accent** and a
 distinctive **gradient + glassy-ring cover**.
 
 Ships with placeholder tokens (`NEEDS INPUT`, `<insert … here>`, `xx`, `T1/T2/T3`, `NAME`,
@@ -16,24 +16,25 @@ facts — all figures (KPIs, weights, financials, targets) stay `NEEDS INPUT` un
 ## Design system (strategy/roadmap variant)
 
 ```css
---bg:        #0b0b12   /* near-black — statement & cover-adjacent slides */
---black:     #000000   /* pure black — most content slides */
---panel:     #14141c   /* dark rounded cards */
---text:      #FFFFFF
---muted:     #9a9aa6
---accent:    #4B68FF   /* indigo — titles accent, priority bars, tier tags, links */
---accent-purple: #832BFB   /* gradient + glow partner */
---mint:      #A6F0CE   /* MINT secondary — OKR badges, roadmap milestones, growth contributions */
---neg:       #EB5B6B   /* risk dot */
+/* "(theme token)" = use the same-named token from themes/plex.md unchanged */
+--bg:        (theme token)   /* near-black — statement & cover-adjacent slides */
+--black:     var(--bg-pure)   /* pure black — most content slides */
+--panel:     (theme token)   /* dark rounded cards */
+--text:      (theme token)
+--muted:     var(--muted-2)
+--accent:    (theme token)   /* indigo — titles accent, priority bars, tier tags, links */
+--accent-purple: (theme token)   /* gradient + glow partner */
+--mint:      (theme token)   /* MINT secondary — OKR badges, roadmap milestones, growth contributions */
+--neg:       (theme token)   /* risk dot */
 --radius:    18px
 --mx:        110px
 
 /* Typography */
---font-head: 'IBM Plex Sans'   /* slide titles: BOLD, Title Case (e.g. "Priorities, weighted") */
---font-body: 'IBM Plex Sans'
---font-label:'IBM Plex Mono'   /* kicker + labels + meta, UPPERCASE */
-kicker: IBM Plex Mono / 12–13px / .16em / UPPERCASE — the word is "STRATEGIC" on content slides
-title:  IBM Plex Sans / ~48px / 700 / Title Case
+--font-head: var(--font-sans)   /* slide titles: BOLD, Title Case (e.g. "Priorities, weighted") */
+--font-body: var(--font-sans)
+--font-label:var(--font-mono)   /* kicker + labels + meta, UPPERCASE */
+kicker: var(--font-mono) / 12–13px / .16em / UPPERCASE — the word is "STRATEGIC" on content slides
+title:  var(--font-sans) / ~48px / 700 / Title Case
 ```
 
 ### Chrome

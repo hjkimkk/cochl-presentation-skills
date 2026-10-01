@@ -4,7 +4,7 @@ A **5-page press/media kit document** in the Cochl brand — the packet a journa
 
 **Editable Figma source (Cochl_Internal):** https://www.figma.com/design/ZNt6fgUANTjRPk6GpgxODH/Cochl-Media-Kit — all 5 pages as editable frames (live text, gradient `cochl.` logo, indigo→purple blocks, image drop-zones). Prefer editing/duplicating this Figma file for a real kit; the `templates/` SVGs below are the offline mirror and the source these frames were imported from (identical layout/coords).
 
-Inherits [`brand-core.md`](../../../cochl-design/core/brand-core.md), with a **light** print treatment (white/​`#EEF2FF` panels, `#0F1B3D` ink) instead of the dark deck theme. Signature Cochl elements: the gradient `cochl.` logo (gradient disc symbol + wordmark — black on light pages, white on the cover photo), indigo `#4B68FF`→purple `#832BFB` accent blocks (replacing the reference's orange), a right-edge vertical **MEDIA KIT** spine, and a gradient-disc corner mark.
+Inherits [`brand-core.md`](../../../cochl-design/core/brand-core.md), with a **light** print treatment (white/​`--light-panel-indigo` panels, `--ink-navy` ink) instead of the dark deck theme. Signature Cochl elements: the gradient `cochl.` logo (gradient disc symbol + wordmark — black on light pages, white on the cover photo), indigo `--accent`→purple `--accent-purple` accent blocks (replacing the reference's orange), a right-edge vertical **MEDIA KIT** spine, and a gradient-disc corner mark.
 
 ## Pages (`templates/`)
 | # | Page | Contents |
@@ -18,7 +18,7 @@ Inherits [`brand-core.md`](../../../cochl-design/core/brand-core.md), with a **l
 `previews/` holds a 2× PNG of each page.
 
 ## Layers / edit points
-- **Text** — every heading/label/body line is a live `<text>` (IBM Plex Sans/Mono). Swap copy in place.
+- **Text** — every heading/label/body line is a live `<text>` (`--font-sans`/`--font-mono`). Swap copy in place.
 - **Image drop-zones** — `image-*` groups (hatch + corner ticks + caption). Delete the placeholder and drop an `<image>` at the same x/y/w/h.
 - **Logo** — the `logo` group: gradient disc symbol + wordmark. Keep the gradient symbol; wordmark is black on light pages, white on the cover.
 - **Accent blocks / spine / mark** — `url(#ig)` indigo→purple; keep as the brand accent.

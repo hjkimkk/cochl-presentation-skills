@@ -2,7 +2,7 @@
 
 A **looping, glanceable kiosk display** for a booth monitor or conference standee — not a narrated pitch. It must read from 3–5 m away in a noisy hall, attract a passerby in ~2 seconds, and communicate one idea per screen while auto-advancing on a seamless loop. Inherits [`brand-core.md`](../../../cochl-design/core/brand-core.md) (machinery in [`deck-engine.md`](../deck-engine.md)) for color, glow, logo, and type; **overrides** the type scale (much larger), replaces the page-nav pill with an auto-loop, and runs as a kiosk (no human navigation required).
 
-Heading treatment: IBM Plex Sans, Title Case or UPPERCASE display; mono kickers. Accent: indigo, glow-forward. This is the most visually dramatic Cochl deck — lean into the glow and oversized type.
+Heading treatment: `--font-sans`, Title Case or UPPERCASE display; mono kickers. Accent: indigo, glow-forward. This is the most visually dramatic Cochl deck — lean into the glow and oversized type.
 
 ## Format & behavior
 - **Canvas:** 1920×1080 landscape (booth monitor) by default. Portrait variant 1080×1920 for a vertical standee — same layouts, restacked. State which at build time.

@@ -27,9 +27,9 @@ Argument-driven **position / critical review paper** template, 14 sections. For 
 
 A full-bleed pull-quote slide, used at 04 and 08. This is genuinely new relative to `research-paper-template.md` — do not force it into that deck's rule-line card component, and do not reuse the same visual treatment for both instances beyond what's specified here (04 and 08 share the same *component*, which is correct — they are quoting, just from opposite sides of the argument — but must carry different index/eyebrow labels so they don't read as the same slide repeated).
 
-- **Theme:** dark section-transition surface (near-black `#0B0B12` + glow), matching Cover/Conclusion — a quotation is a pivot moment in the argument, not a body-slide fact.
+- **Theme:** dark section-transition surface (near-black `--bg` + glow), matching Cover/Conclusion — a quotation is a pivot moment in the argument, not a body-slide fact.
 - **Layout:** large serif italic quotation, vertically centered, generous margin (quote text should never span the full slide width — cap it, e.g. ~70% width, to keep line length readable).
-- **Attribution:** small IBM Plex Mono line beneath the quote, uppercase, muted — `— AUTHOR, "SOURCE TITLE" (YEAR)` — never presented without a real, checkable source.
+- **Attribution:** small `--font-mono` line beneath the quote, uppercase, muted — `— AUTHOR, "SOURCE TITLE" (YEAR)` — never presented without a real, checkable source.
 - **Eyebrow label:** a short mono tag above the quote distinguishing which side of the argument it's on — e.g. `THE CLAIM UNDER REVIEW` at 04 vs. `THE REFRAMING` at 08 — this is what keeps the two instances visually distinct despite sharing one component.
 - **Facts discipline:** every quotation slide must carry a real, verifiable citation. Do not fabricate or paraphrase-as-verbatim a quote — if the exact wording isn't available, use the Existing View / Alternative Position slide (paraphrase, cited) instead of this component.
 

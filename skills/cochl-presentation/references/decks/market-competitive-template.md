@@ -5,7 +5,7 @@ official 13-page Cochl "Competitive Landscape Analysis" deck (1920×1080). Previ
 [`market-competitive-previews/`](market-competitive-previews/) (`p01`–`p13`).
 
 Same Cochl **near-black / indigo / mint / glow** system as the strategy/roadmap and QBR variants
-(IBM Plex Sans titles + IBM Plex Mono `NN · SECTION` kickers, gradient + glassy-ring cover). This
+(`--font-sans` titles + `--font-mono` `NN · SECTION` kickers, gradient + glassy-ring cover). This
 variant's job is **competitor analysis**: size the market, rank players, profile alternatives,
 benchmark capabilities, map positioning, and stake Cochl's white space.
 
@@ -22,9 +22,10 @@ neither is a footnote. Never invent specific competitor data.
 ## Design system
 
 ```css
---bg:#0b0b12 (near-black)  --black:#000 (data slides)  --panel:#14141c
---accent:#4B68FF (indigo)  --accent-purple:#832BFB  --mint:#A6F0CE (leader/positive)  --grey:#2b2b38 (neutral bars)
-title: IBM Plex Sans Bold, Title Case   kicker: IBM Plex Mono UPPERCASE, "NN · SECTION"
+/* "(theme token)" = use the same-named token from themes/plex.md unchanged */
+--bg:(theme token) (near-black)  --black:var(--bg-pure) (data slides)  --panel:(theme token)
+--accent:(theme token) (indigo)  --accent-purple:(theme token)  --mint:(theme token) (leader/positive)  --grey:var(--neutral-bar) (neutral bars)
+title: var(--font-sans) Bold, Title Case   kicker: var(--font-mono) UPPERCASE, "NN · SECTION"
 chrome: cochl. logo bottom-left + "Market & Competitive Landscape" bottom-right
 cover: purple→blue gradient + glassy concentric-ring orb; content slides flat near-black/black
 ```

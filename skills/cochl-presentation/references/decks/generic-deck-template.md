@@ -37,7 +37,7 @@ Produce ~13 content slides unless told otherwise. Break slides add to that count
 
 ## Step 3 — Aesthetic layer (frontend-design)
 - Vary weight intentionally (700 stat / 600 heading / 400 body / 300 italic tagline).
-- Cover: left-aligned text, ~100px top padding, full-bleed background + glow. Content: max-width 1280px, 40px h-padding, flat `#0b0b12` (data is the visual). CTA: centered, frosted outcome cards.
+- Cover: left-aligned text, ~100px top padding, full-bleed background + glow. Content: max-width 1280px, 40px h-padding, flat `--bg` (data is the visual). CTA: centered, frosted outcome cards.
 - Anti-AI-look: no glassmorphism on content slides (cover/CTA only); ≤2 accent elements per slide; no rainbow charts; ≤1 icon per card; whitespace is breathing room.
 
 Everything else (colors, gradient rule, fonts) → **[`brand-core.md`](../../../cochl-design/core/brand-core.md)**; page-nav, motion, PPTX, QA → **[`deck-engine.md`](../deck-engine.md)**.

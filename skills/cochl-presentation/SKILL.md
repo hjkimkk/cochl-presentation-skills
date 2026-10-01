@@ -1,6 +1,6 @@
 ---
 name: cochl-presentation
-description: Creates production-grade Cochl presentation collateral from minimal input — slide decks (investor, B2B sales, corporate strategy/roadmap, QBR/board, market & competitive, plus team decks for Data/Design/Dev/Research), documents, editable-SVG brochures, and social media banners. Follows the Cochl brand system (near-black + indigo + purple→blue glow, IBM Plex Sans/Mono). Use whenever the user wants to build a Cochl deck, presentation, pitch, brochure/제품 소개서, or social media banner (LinkedIn/YouTube/Medium/Notion/OG).
+description: Creates production-grade Cochl presentation collateral from minimal input — slide decks (investor, B2B sales, corporate strategy/roadmap, QBR/board, market & competitive, plus team decks for Data/Design/Dev/Research), documents, editable-SVG brochures, and social media banners. Follows the Cochl brand system (plex theme: near-black + indigo + purple→blue glow; or the official PT template theme). Use whenever the user wants to build a Cochl deck, presentation, pitch, brochure/제품 소개서, or social media banner (LinkedIn/YouTube/Medium/Notion/OG).
 license: Complete terms in LICENSE.txt
 ---
 
