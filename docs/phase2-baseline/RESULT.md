@@ -18,7 +18,9 @@ A second run of the **unchanged old** pitch-deck skill (`before-control/`) was c
 - HTML: 7 findings, including canvas 1440×810 → 1280×720 and a logo distorted 100%.
 - PPTX: 5 findings (Courier New, Segoe UI Emoji, three off-theme colors).
 
-The after output has fewer findings than the old skill against itself, and it is closer to the PT spec (Roboto body font, 1440×810, white content slides + navy section break, undistorted logo). Conclusion: the pt-template differences come from LLM variance in a template family that ships no canonical stylesheet, not from the restructure. **Needs PT template owner sign-off** (compare `before/pt-template/` and `after/pt-template/`).
+The after output has fewer findings than the old skill against itself, and it is closer to the PT spec (Roboto body font, 1440×810, white content slides + navy section break, undistorted logo). Two of the four HTML findings are not variance: `#0b0b12` comes from deck-engine.md's page-nav background `rgba(11,11,18,0.82)`, and `Arial` most likely from the page-nav buttons (no font inheritance). Both are side effects of pt-template decks now inheriting deck-engine (spec D4) and are harmless chrome. The remaining findings (missing `#333333` / `#ebddff`) are covered by the control run: they come from LLM variance in a template family that ships no canonical stylesheet, not from the restructure. **Needs PT template owner sign-off** (compare `before/pt-template/` and `after/pt-template/`).
+
+Known gate limit (R10+R11): any value inside the theme union passes, e.g. Roboto appearing in a plex deck.
 
 Follow-up worth doing (not in this workstream): give `decks/pt-template/pt-template.md` one canonical base stylesheet, so agents stop writing CSS ad hoc. That is the main source of variance here.
 
