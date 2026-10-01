@@ -2,6 +2,7 @@
 export const FONT_NAMES = [
   'IBM Plex Sans', 'IBM Plex Mono', 'Century Gothic', 'CenturyGothic',
   'Roboto', 'Public Sans', 'Lora', 'Helvetica Neue', 'Inter',
+  'IBM Plex Serif',
 ];
 
 const HEX_RE = /(?<![&\w/#.])#(?:[0-9a-fA-F]{8}|[0-9a-fA-F]{6}|[0-9a-fA-F]{3})(?![0-9a-zA-Z_-])/g;

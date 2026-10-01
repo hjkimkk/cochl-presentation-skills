@@ -63,6 +63,10 @@ Part 1 tokens (names unchanged) come first; the `--pt-*` tokens after them name 
   --pt-navy-bg: #0B1F3A;            /* legacy dark slide background (quote / statement layouts) */
   --pt-navy-card: #0F2847;          /* legacy dark cards, donut track */
   --pt-chart-grid: #1E3050;         /* chart axis + grid lines */
+
+  /* aliases so brand-core components (NEEDS INPUT, stat caption) render in pt-template */
+  --accent: var(--c-primary);
+  --muted: var(--col-text-sub);
 }
 ```
 

@@ -65,3 +65,7 @@ test('addedLines parses unified=0 diff', () => {
 test('scanLine detects Inter as a font', () => {
   assert.deepEqual(scanLine("font-family:'Inter',sans-serif"), [{ kind: 'font', value: 'Inter' }]);
 });
+
+test("scanLine matches 'IBM Plex Serif' as a single font hit", () => {
+  assert.deepEqual(scanLine("'IBM Plex Serif', serif"), [{ kind: 'font', value: 'IBM Plex Serif' }]);
+});
