@@ -49,7 +49,7 @@ cochl-presentation-skills/
 │   ├── pitch-deck/           Cochl PT template
 │   ├── design-review/        PPTX source templates
 │   ├── proposal-doc/         source PDFs + examples
-│   └── design-system/        @cochlearai/ui INSTALL DOCS (no source) + frontend-design skill
+│   └── design-system/        @cochlearai/ui INSTALL DOCS (no source) + design-system skill
 ├── scripts/gen_pptx.py
 ├── shared/branding/          logos / brand assets
 ├── docs/                     architecture.md, onboarding.md, (this file)

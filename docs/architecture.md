@@ -14,7 +14,7 @@ skills/{skill-name}/
 └── templates/            — Reusable intermediate templates
 ```
 
-The skill index file (e.g., `pitch-deck-skill.md`) is what Claude Code's skill system reads to discover the skill. It registers the trigger words and points to SKILL.md for full instructions.
+The skill index file (e.g., `skills/pitch-deck/SKILL.md`) is what Claude Code's skill system reads to discover the skill. It registers the trigger words and points to SKILL.md for full instructions.
 
 ## Install Flow
 
