@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mobile Dashboard Redesign — Design Review · Cochl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Roboto:wght@300;400;500&family=Public+Sans:wght@400;500&family=Lora:ital,wght@0,400;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
+<style>:root {
+  /* Surfaces (dark) */
+  --bg: #0b0b12;              /* page / slide background (near-black) */
+  --bg-pure: #000000;         /* full-bleed cover/CTA base; pure-black data slides; design-review dark slides */
+  --panel: #14141c;           /* cards, table surfaces, drop-zones */
+  --panel-2: #1b1b26;         /* raised / hover surface */
+  --panel-3: #1c1c24;         /* b2b-sales dark rounded cards */
+  --bg-near: #16161c;         /* b2b-sales near-black charcoal (cover & glow slides) */
+  --neutral-bar: #2b2b38;     /* market-competitive neutral bars */
+  --brochure-neutral: #141414; /* brochure V1 Visual neutral accent */
+  --border: rgba(255,255,255,0.08);
+  --muted-on-dark: rgba(255,255,255,0.40); /* design-review muted text on dark slides */
+
+  /* Surfaces (light) */
+  --light-bg: #ffffff;        /* light slide / page background */
+  --light-gray: #f1f1f2;      /* design-review section-divider, goal-card and persona bg */
+  --light-card: #e6e6e6;      /* design-review cards on --light-gray slides */
+  --light-panel: #f6f7f9;     /* light-palette soft panels (101 lecture) */
+  --light-panel-indigo: #eef2ff; /* light print panels (press kit, usability, research findings) */
+  --light-panel-tint: #f4f7ff;   /* light print panels, lighter tint */
+  --light-rule: #e6e8ee;      /* light-palette rule lines */
+  --light-rule-2: #d4d7de;    /* editorial rule-line card top rule */
+  --img-placeholder: #ececec; /* light image-placeholder fill */
+  --doc-canvas: #e8e8e8;      /* proposal-doc screen wrapper; design-review phone placeholder fill */
+  --avatar-fill: #d8d8d8;     /* design-review avatar circle */
+  --doc-rule: #d0d0d0;        /* proposal-doc footer / letter rule */
+  --doc-line: #cccccc;        /* proposal-doc timeline + table lines */
+  --doc-box-border: #aaaaaa;  /* proposal-doc signature box border */
+  --doc-tick: #888888;        /* proposal-doc timeline tick */
+  --light-border: rgba(0,0,0,0.10);  /* borders on light slides */
+  --muted-on-light: rgba(0,0,0,0.40); /* muted text on light slides */
+
+  /* Ink */
+  --text: #ffffff;            /* text on dark */
+  --text-soft: #c9c9d4;       /* body on dark */
+  --muted: #9aa1ac;           /* captions, labels */
+  --muted-2: #9a9aa6;         /* corporate-strategy / b2b-sales muted body + labels */
+  --muted-3: #8a8a99;         /* investor grey body on light-heading slides */
+  --muted-light: #8a8e97;     /* small grey index numbers on light slides */
+  --placeholder: #565b6b;     /* template placeholder text (blank templates only) */
+  --ink: #111111;             /* headings / strong text on light; design-review viewer letterbox */
+  --ink-body: #1a1a1a;        /* proposal-doc body text; phone-mockup frame */
+  --ink-soft: #444444;        /* proposal-doc footer + notes */
+  --ink-muted: #555555;       /* proposal-doc dates, bullets, signature labels */
+  --ink-faint: #777777;       /* proposal-doc timeline durations */
+  --ink-navy: #0f1b3d;        /* light print ink (press kit, usability report) */
+  --doc-link: #1155cc;        /* proposal-doc fill-in variables (blue hyperlink color) */
+
+  /* Accents */
+  --accent: #4b68ff;          /* primary accent (indigo) — subtitles, glows, links, accent underline */
+  --accent-purple: #832bfb;   /* secondary accent (purple) — gradient + glow partner */
+  --mint: #a6f0ce;            /* tertiary accent (B2B / strategy secondary) */
+  --brochure-green: #0fa068;  /* brochure V3 Editorial accent */
+  --pos: #b7e4a0;             /* investor offering ✓ (soft green) */
+  --neg: #eb5b6b;             /* investor competitor ✕ / strategy risk dot (pink-red) */
+  --grad-brand: linear-gradient(135deg, var(--accent-purple), var(--accent));
+  --glow: radial-gradient(closest-side, rgba(75,104,255,0.55) 0%, rgba(131,43,251,0.22) 50%, rgba(75,104,255,0) 100%);
+
+  /* Logo gradient (do not recolor) */
+  --logo-g1: #9827ff;
+  --logo-g2: #4b7eff;
+  --logo-g3: #00d7ff;
+
+  /* Signals (use sparingly) */
+  --danger: #eb5757;
+  --success: #10b981;
+  --warning: #f59e0b;
+
+  /* Font roles */
+  --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-body: 'Roboto', sans-serif;      /* design-review body */
+  --font-ui: 'Public Sans', sans-serif;   /* design-review header bar */
+  --font-quote: 'Lora', serif;            /* design-review quote slides */
+  --font-doc: 'Inter', sans-serif;        /* proposal-doc body */
+  --font-link: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=Roboto:wght@300;400;500&family=Public+Sans:wght@400;500&family=Lora:ital,wght@0,400;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap'; /* reference only — load it with the <link> below */
+}</style>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);}
+body{display:flex;align-items:center;justify-content:center;font-family:var(--font-body);color:var(--bg-pure);}
+.dw{width:1440px;height:810px;position:relative;transform-origin:center center;overflow:hidden;}
+.slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .22s ease;overflow:hidden;}
+.slide.active{opacity:1;pointer-events:all;}
+.nd{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:9999;}
+.nd button{width:5px;height:5px;border-radius:50%;background:var(--muted);cursor:pointer;transition:all .2s;border:none;outline:none;padding:0;}
+.nd button.on{background:var(--text);transform:scale(1.45);}
+.ct{position:fixed;bottom:14px;right:28px;font-size:10px;color:var(--muted);z-index:9999;letter-spacing:.12em;font-family:var(--font-ui);}
+.arr{position:fixed;top:50%;transform:translateY(-50%);z-index:9999;background:var(--border);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.arr:hover{background:var(--panel-2);}
+.arr svg{width:14px;height:14px;stroke:var(--text);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+#ap{left:16px;}#an{right:16px;}
+.needs-input{ color:var(--accent); border-bottom:1px dashed var(--accent); font-style:italic; }
+.hdr{position:absolute;top:0;left:0;right:0;padding:10px 45px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--light-border);z-index:100;height:38px;}
+.hdr span{font-size:13px;font-weight:400;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:.08em;color:var(--muted-on-light);}
+.st{padding:70px 80px 0;text-align:center;}.st h2{font-size:40px;font-weight:400;font-family:var(--font-sans);text-transform:uppercase;}
+.rule{height:1px;background:var(--light-border);margin-top:18px;}
+.center{height:100%;display:flex;align-items:center;justify-content:center;}
+.div{font-size:96px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;letter-spacing:.02em;padding-top:38px;}
+.cov{font-size:50px;font-weight:700;font-family:var(--font-sans);line-height:1.05;}
+.chip{background:var(--accent);color:var(--text);font-size:10px;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:.06em;padding:6px 8px;}
+.cv{font-size:10px;font-weight:700;font-family:var(--font-ui);margin-top:6px;}
+.dot{width:13px;height:13px;border-radius:50%;background:var(--bg-pure);flex-shrink:0;margin-top:7px;}
+.lb{font-size:21px;font-weight:700;font-family:var(--font-sans);}.bd{font-size:12px;line-height:1.5;margin-top:6px;}
+.logo{height:90px;border:1px solid var(--light-border);background:var(--img-placeholder);}.lb2{font-size:16px;margin-top:14px;}
+.mx{position:relative;margin:70px auto 0;width:760px;height:430px;border:1px solid var(--light-border);}
+.q{position:absolute;width:50%;height:50%;border:1px solid var(--light-border);}
+.ax{position:absolute;font-size:13px;font-family:var(--font-ui);letter-spacing:.08em;color:var(--muted-on-light);}
+.dotb{width:18px;height:18px;border-radius:50%;background:var(--accent);}
+.big{font-size:100px;font-weight:700;font-family:var(--font-body);line-height:1.1;border-bottom-width:2px;display:inline-block;font-size:40px;}
+.cap{font-size:13px;color:var(--muted-on-light);margin-top:12px;line-height:1.4;}
+.ml{font-size:13px;font-family:var(--font-ui);text-transform:uppercase;margin-top:20px;}
+.ui{font-size:13px;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:.08em;}.sm{font-size:13px;color:var(--muted-on-light);}
+.ph{font-size:13px;font-family:var(--font-ui);color:var(--muted-on-light);text-transform:uppercase;}
+.opt{border:1px solid var(--light-border);padding:40px 60px;text-align:center;border-radius:4px;cursor:pointer;}
+</style>
+</head>
+<body>
+<div class="dw" id="dw">
+<section class="slide" style="background:var(--light-bg);"><div style="position:absolute;left:98px;top:250px;"><h1 class="cov">Proposal review<br>Mobile Dashboard Redesign</h1><p style="font-size:16px;font-weight:300;margin-top:16px;">Let ops managers check sound-event alerts on their phone. Team <span class="needs-input">[NEEDS INPUT]</span> · Presenters <span class="needs-input">[NEEDS INPUT]</span> · 2026-10-01</p></div><div style="position:absolute;left:98px;top:533px;display:flex;gap:27px;"><div style="width:133px"><div class="chip">REVIEW STATUS</div><p class="cv">Proposal Review</p></div><div style="width:133px"><div class="chip">PRODUCT STAGE</div><p class="cv"><span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:133px"><div class="chip">TEST COVERAGE</div><p class="cv"><span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:133px"><div class="chip">KEY METRIC</div><p class="cv"><span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:133px"><div class="chip">NEXT ACTION</div><p class="cv">Choose a direction</p></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><h2 style="position:absolute;left:93px;top:180px;font-size:79px;font-weight:700;font-family:var(--font-sans);line-height:1.05;">Today's<br>Agenda:</h2><div style="position:absolute;left:647px;top:150px;display:flex;flex-direction:column;gap:36px;"><p style="font-size:37px;font-family:var(--font-sans);">Project Overview</p><p style="font-size:37px;font-family:var(--font-sans);">Discovery</p><p style="font-size:37px;font-family:var(--font-sans);">Strategy &amp; Process</p><p style="font-size:37px;font-family:var(--font-sans);">Key Deliverables</p><p style="font-size:37px;font-family:var(--font-sans);">Next Steps</p></div></section>
+<section class="slide" style="background:var(--light-gray);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="center"><h2 class="div">PROJECT OVERVIEW</h2></div></section>
+<section class="slide" style="background:var(--light-bg);"><h2 style="position:absolute;left:91px;top:50%;transform:translateY(-50%);font-size:50px;font-weight:700;font-family:var(--font-sans);">Principles</h2><div style="position:absolute;left:634px;top:170px;width:700px;display:flex;flex-direction:column;gap:44px;"><div style="display:flex;gap:16px;"><div class="dot"></div><div><p class="lb">Insight 1</p><p class="bd">Ops managers need sound-event alerts reachable from a phone. Supporting insight <span class="needs-input">[NEEDS INPUT]</span></p></div></div><div style="display:flex;gap:16px;"><div class="dot"></div><div><p class="lb">Insight 2</p><p class="bd">Navigation pattern is an open question: tabs versus drawer. Evidence <span class="needs-input">[NEEDS INPUT]</span></p></div></div><div style="display:flex;gap:16px;"><div class="dot"></div><div><p class="lb">Insight 3</p><p class="bd">Alert density is an open question for the mobile view. Evidence <span class="needs-input">[NEEDS INPUT]</span></p></div></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><h2 style="position:absolute;left:91px;top:50%;transform:translateY(-50%);font-size:50px;font-weight:700;font-family:var(--font-sans);">Project goals</h2><div style="position:absolute;left:634px;top:170px;width:700px;display:flex;flex-direction:column;gap:44px;"><div style="display:flex;gap:16px;"><div class="dot"></div><div><p class="lb">Goal 1</p><p class="bd">Let ops managers check sound-event alerts on their phone.</p></div></div><div style="display:flex;gap:16px;"><div class="dot"></div><div><p class="lb">Goal 2</p><p class="bd">Settle the navigation pattern (tabs vs drawer). Measure <span class="needs-input">[NEEDS INPUT]</span></p></div></div><div style="display:flex;gap:16px;"><div class="dot"></div><div><p class="lb">Goal 3</p><p class="bd">Settle the alert density. Measure <span class="needs-input">[NEEDS INPUT]</span></p></div></div></div></section>
+<section class="slide" style="background:var(--light-gray);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="center"><h2 class="div">DISCOVERY</h2></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="st"><h2>MARKET RESEARCH</h2><div class="rule"></div></div><p style="text-align:center;margin-top:40px;font-size:20px;">Top 5 competitors in mobile alert monitoring</p><div style="display:flex;justify-content:space-between;padding:0 90px;margin-top:80px;"><div style="width:220px;text-align:center;"><div class="logo"></div><p class="lb2"><span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:220px;text-align:center;"><div class="logo"></div><p class="lb2"><span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:220px;text-align:center;"><div class="logo"></div><p class="lb2"><span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:220px;text-align:center;"><div class="logo"></div><p class="lb2"><span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:220px;text-align:center;"><div class="logo"></div><p class="lb2"><span class="needs-input">[NEEDS INPUT]</span></p></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="st"><h2>VALUE / EFFORT MATRIX</h2><div class="rule"></div></div><div class="mx"><div class="q" style="left:0;top:0"></div><div class="q" style="left:50%;top:0"></div><div class="q" style="left:0;top:50%"></div><div class="q" style="left:50%;top:50%"></div><span class="ax" style="left:-120px;top:20px">HIGH VALUE</span><span class="ax" style="left:-120px;bottom:20px">LOW VALUE</span><span class="ax" style="left:0;bottom:-34px">LOW EFFORT</span><span class="ax" style="right:0;bottom:-34px">HIGH EFFORT</span><div style="position:absolute;left:62%;top:22%;display:flex;align-items:center;gap:10px;"><div class="dotb"></div><span style="font-size:16px;">Mobile Dashboard — placement <span class="needs-input">[NEEDS INPUT]</span></span></div></div></section>
+<section class="slide" style="background:var(--light-gray);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="center"><h2 class="div">STRATEGY &amp; PROCESS</h2></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="st"><h2>KEY METRICS</h2><div class="rule"></div></div><div style="display:grid;grid-template-columns:repeat(4,1fr);padding:0 60px;margin-top:90px;"><div style="padding:0 30px;border-right:1px solid var(--light-border);"><p class="big needs-input">[NEEDS INPUT]</p><div class="cap">Pending verified research — do not present without a sourced figure.</div><p class="ml">KPI 1 label <span class="needs-input">[NEEDS INPUT]</span></p></div><div style="padding:0 30px;border-right:1px solid var(--light-border);"><p class="big needs-input">[NEEDS INPUT]</p><div class="cap">Pending verified research — do not present without a sourced figure.</div><p class="ml">KPI 2 label <span class="needs-input">[NEEDS INPUT]</span></p></div><div style="padding:0 30px;border-right:1px solid var(--light-border);"><p class="big needs-input">[NEEDS INPUT]</p><div class="cap">Pending verified research — do not present without a sourced figure.</div><p class="ml">KPI 3 label <span class="needs-input">[NEEDS INPUT]</span></p></div><div style="padding:0 30px;border-right:1px solid var(--light-border);"><p class="big needs-input">[NEEDS INPUT]</p><div class="cap">Pending verified research — do not present without a sourced figure.</div><p class="ml">KPI 4 label <span class="needs-input">[NEEDS INPUT]</span></p></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="st"><h2>DESIGN PROCESS</h2><div class="rule"></div></div><div style="position:absolute;left:0;right:0;top:300px;height:2px;background:var(--bg-pure);"></div><div style="position:absolute;left:12.5%;top:300px;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:var(--accent);"></div><div style="position:absolute;left:12.5%;top:150px;width:300px;margin-left:-150px;text-align:center;transform:translateY(0)"><p class="ui">PROBLEM ALIGNMENT</p><p style="font-size:20px;font-weight:300;margin:6px 0;"><span class="needs-input">[NEEDS INPUT]</span></p><p class="sm">Align on the alert-access problem</p></div><div style="position:absolute;left:37.5%;top:300px;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--bg-pure);"></div><div style="position:absolute;left:37.5%;top:330px;width:300px;margin-left:-150px;text-align:center;"><p class="ui">EXPLORATION</p><p style="font-size:20px;font-weight:300;margin:6px 0;"><span class="needs-input">[NEEDS INPUT]</span></p><p class="sm">Explore tabs-first and feed-first</p></div><div style="position:absolute;left:62.5%;top:300px;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--bg-pure);"></div><div style="position:absolute;left:62.5%;top:150px;width:300px;margin-left:-150px;text-align:center;transform:translateY(0)"><p class="ui">SOLUTION ALIGNMENT</p><p style="font-size:20px;font-weight:300;margin:6px 0;"><span class="needs-input">[NEEDS INPUT]</span></p><p class="sm">Converge on one direction</p></div><div style="position:absolute;left:87.5%;top:300px;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--bg-pure);"></div><div style="position:absolute;left:87.5%;top:330px;width:300px;margin-left:-150px;text-align:center;"><p class="ui">HANDOFF</p><p style="font-size:20px;font-weight:300;margin:6px 0;"><span class="needs-input">[NEEDS INPUT]</span></p><p class="sm">Prepare for build</p></div></section>
+<section class="slide" style="background:var(--light-gray);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="center"><h2 class="div">KEY DELIVERABLES</h2></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="st"><h2>DELIVERABLES</h2><div class="rule"></div></div><div style="padding:50px 160px;display:flex;flex-direction:column;gap:34px;"><div style="display:flex;gap:30px;align-items:baseline;border-bottom:1px solid var(--light-border);padding-bottom:24px;"><span style="font-size:40px;color:var(--muted-on-light);">01</span><div><p style="font-size:24px;font-family:var(--font-sans);">Tab-first direction</p><p class="bd" style="font-size:16px;font-weight:300;margin-top:6px;">Mobile dashboard concept organised around tabs.</p></div></div><div style="display:flex;gap:30px;align-items:baseline;border-bottom:1px solid var(--light-border);padding-bottom:24px;"><span style="font-size:40px;color:var(--muted-on-light);">02</span><div><p style="font-size:24px;font-family:var(--font-sans);">Feed-first direction</p><p class="bd" style="font-size:16px;font-weight:300;margin-top:6px;">Mobile dashboard concept organised around an alert feed.</p></div></div><div style="display:flex;gap:30px;align-items:baseline;border-bottom:1px solid var(--light-border);padding-bottom:24px;"><span style="font-size:40px;color:var(--muted-on-light);">03</span><div><p style="font-size:24px;font-family:var(--font-sans);">Supporting deliverable <span class="needs-input">[NEEDS INPUT]</span></p><p class="bd" style="font-size:16px;font-weight:300;margin-top:6px;"></p></div></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div style="position:absolute;top:38px;bottom:0;left:0;right:0;display:flex;"><div style="width:42%;padding:60px;display:flex;flex-direction:column;justify-content:center;"><h2 style="font-size:46px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;margin-bottom:28px;">DIRECTION 1</h2><p style="font-size:15px;font-weight:500;font-family:var(--font-sans);margin-bottom:14px;">Tab-first</p><p style="font-size:16px;font-weight:300;line-height:1.72;color:var(--muted-on-light);">Primary destinations sit in a tab bar so ops managers reach sound-event alerts in one tap. Alert density: <span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:58%;display:flex;align-items:center;justify-content:center;gap:90px;position:relative;"><div style="width:230px;height:440px;border-radius:28px;border:2.5px solid var(--ink-body);position:relative;overflow:hidden;box-shadow:0 4px 40px var(--light-border);background:var(--doc-canvas);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);width:50px;height:9px;background:var(--ink);border-radius:9px;"></div><span class="ph">Screenshot placeholder</span></div><div style="position:absolute;right:70px;top:150px;width:200px;"><div style="border-top:1px dotted var(--ink);margin-bottom:8px;"></div><p style="font-size:13px;">Callout: tab bar navigation</p></div></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div style="position:absolute;top:38px;bottom:0;left:0;right:0;display:flex;"><div style="width:42%;padding:60px;display:flex;flex-direction:column;justify-content:center;"><h2 style="font-size:46px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;margin-bottom:28px;">DIRECTION 2</h2><p style="font-size:15px;font-weight:500;font-family:var(--font-sans);margin-bottom:14px;">Feed-first</p><p style="font-size:16px;font-weight:300;line-height:1.72;color:var(--muted-on-light);">The home view is a running feed of sound-event alerts; other destinations sit behind a drawer. Alert density: <span class="needs-input">[NEEDS INPUT]</span></p></div><div style="width:58%;display:flex;align-items:center;justify-content:center;gap:90px;position:relative;"><div style="width:230px;height:440px;border-radius:28px;border:2.5px solid var(--ink-body);position:relative;overflow:hidden;box-shadow:0 4px 40px var(--light-border);background:var(--doc-canvas);flex-shrink:0;display:flex;align-items:center;justify-content:center;"><div style="position:absolute;top:8px;left:50%;transform:translateX(-50%);width:50px;height:9px;background:var(--ink);border-radius:9px;"></div><span class="ph">Screenshot placeholder</span></div><div style="position:absolute;right:70px;top:150px;width:200px;"><div style="border-top:1px dotted var(--ink);margin-bottom:8px;"></div><p style="font-size:13px;">Callout: alert feed</p></div></div></div></section>
+<section class="slide" style="background:var(--light-gray);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="center"><h2 class="div">NEXT STEPS</h2></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="st"><h2>Improvement</h2><div class="rule"></div></div><div style="padding:50px 160px;display:flex;flex-direction:column;gap:34px;"><div style="display:flex;gap:30px;align-items:baseline;"><span style="font-size:40px;color:var(--muted-on-light);">01</span><div><p style="font-size:24px;font-family:var(--font-sans);">Decide the navigation pattern</p><p class="bd" style="font-size:16px;font-weight:300;margin-top:6px;">Tabs versus drawer — feedback needed from this review.</p></div></div><div style="display:flex;gap:30px;align-items:baseline;"><span style="font-size:40px;color:var(--muted-on-light);">02</span><div><p style="font-size:24px;font-family:var(--font-sans);">Decide the alert density</p><p class="bd" style="font-size:16px;font-weight:300;margin-top:6px;">How many alerts the mobile view shows at once — feedback needed.</p></div></div><div style="display:flex;gap:30px;align-items:baseline;"><span style="font-size:40px;color:var(--muted-on-light);">03</span><div><p style="font-size:24px;font-family:var(--font-sans);">Further action <span class="needs-input">[NEEDS INPUT]</span></p><p class="bd" style="font-size:16px;font-weight:300;margin-top:6px;"></p></div></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="center" style="flex-direction:column;gap:50px;padding-top:38px;"><h2 style="font-size:40px;font-weight:400;font-family:var(--font-sans);">Which direction resonated with you the most?</h2><div style="display:flex;gap:40px;"><div class="opt"><span style="font-size:64px;font-weight:300;font-family:var(--font-sans);">A.</span><p style="font-size:20px;margin-top:10px;">Tab-first</p></div><div class="opt"><span style="font-size:64px;font-weight:300;font-family:var(--font-sans);">B.</span><p style="font-size:20px;margin-top:10px;">Feed-first</p></div><div class="opt"><span style="font-size:64px;font-weight:300;font-family:var(--font-sans);">C.</span><p style="font-size:20px;margin-top:10px;"><span class="needs-input">[NEEDS INPUT]</span></p></div></div></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="st"><h2>PROJECT ROADMAP</h2><div class="rule"></div></div><div class="center" style="flex-direction:column;gap:20px;height:70%;"><p style="font-size:20px;">Roadmap board (Miro link): <span class="needs-input">[NEEDS INPUT]</span></p></div></section>
+<section class="slide" style="background:var(--light-bg);"><div class="hdr"><span>Mobile Dashboard Redesign</span><span>2026-10-01</span></div><div class="center" style="flex-direction:column;gap:30px;padding-top:38px;"><h2 style="font-size:96px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;">THANKS</h2><p style="font-size:20px;font-weight:300;">contact@cochl.ai · www.cochl.ai · San Francisco, CA, USA</p><p class="ui">Mobile Dashboard Redesign · Proposal review · 2026-10-01</p></div></section>
+</div>
+<div class="nd" id="nd"></div>
+<div class="ct" id="ct">1 / 20</div>
+<button class="arr" id="ap"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
+<button class="arr" id="an"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
+<script>
+const ss=document.querySelectorAll('.slide'),nd=document.getElementById('nd'),ct=document.getElementById('ct');
+let c=0;
+ss.forEach((_,i)=>{const b=document.createElement('button');b.className=i===0?'on':'';b.onclick=e=>{e.stopPropagation();go(i);};nd.appendChild(b);});
+function go(n){ss[c].classList.remove('active');nd.children[c].classList.remove('on');c=Math.max(0,Math.min(n,ss.length-1));ss[c].classList.add('active');nd.children[c].classList.add('on');ct.textContent=(c+1)+' / '+ss.length;}
+document.addEventListener('keydown',e=>{if(e.key==='ArrowRight'||e.key===' '){e.preventDefault();go(c+1);}if(e.key==='ArrowLeft'){e.preventDefault();go(c-1);}});
+document.getElementById('ap').onclick=()=>go(c-1);
+document.getElementById('an').onclick=()=>go(c+1);
+ss[0].classList.add('active');ct.textContent='1 / '+ss.length;
+function sc(){const s=Math.min(innerWidth/1440,innerHeight/810)*.96;document.querySelector('.dw').style.transform='scale('+s+')';}
+sc();window.addEventListener('resize',sc);
+</script>
+</body>
+</html>

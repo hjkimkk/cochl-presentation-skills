@@ -1,0 +1,75 @@
+{
+  "canvas": [
+    1920,
+    1080
+  ],
+  "colors": {
+    "#000000": 20,
+    "#0b0b12": 12,
+    "#111111": 1,
+    "#14141c": 9,
+    "#1b1b26": 1,
+    "#4b68ff": 33,
+    "#8a8a99": 3,
+    "#8a8e97": 6,
+    "#9aa1ac": 37,
+    "#b7e4a0": 6,
+    "#c9c9d4": 21,
+    "#eb5b6b": 4,
+    "#ececec": 6,
+    "#ffffff": 65
+  },
+  "fonts": {
+    "Arial": 2,
+    "IBM Plex Mono": 42,
+    "IBM Plex Sans": 122
+  },
+  "kind": "html",
+  "layouts": [
+    "slide cover bg-pure",
+    "slide statement",
+    "slide problem",
+    "slide usecase",
+    "slide traction bg-pure",
+    "slide compcards bg-pure",
+    "slide offering bg-pure",
+    "slide market",
+    "slide revenue bg-pure",
+    "slide statement",
+    "slide thanks"
+  ],
+  "logos": [
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    },
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    },
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    },
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    },
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    },
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    },
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    },
+    {
+      "distortion": 0.0001,
+      "src": "x"
+    }
+  ]
+}
