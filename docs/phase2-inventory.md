@@ -5,84 +5,107 @@ The **Target** column is filled by hand in Task 5 (theme + token name, or "drop"
 
 | Kind | Value | Hits | Files | Target |
 |---|---|---|---|---|
-| font | `IBM Plex Sans` | 104 | skills/cochl-presentation/SKILL.md<br>skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/decks/tradeshow-booth-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md<br>skills/cochl-presentation/references/social-kit/README.md<br>skills/design-review/SKILL.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | |
-| font | `Roboto` | 76 | skills/design-review/SKILL.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| font | `Century Gothic` | 56 | skills/pitch-deck/SKILL.md | |
-| hex | `#832bfb` | 46 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/press-kit/README.md<br>skills/cochl-presentation/references/social-kit/README.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#ffffff` | 41 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/design-review/SKILL.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#4b68ff` | 34 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/brochure/SKILL.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md<br>skills/cochl-presentation/references/social-kit/README.md<br>skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| font | `Public Sans` | 27 | skills/design-review/SKILL.md | |
-| hex | `#fff` | 25 | skills/cochl-presentation/references/brand-core.md<br>skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md<br>skills/proposal-doc/SKILL.md | |
-| hex | `#333333` | 25 | skills/pitch-deck/SKILL.md | |
-| font | `IBM Plex Mono` | 24 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-position-paper-template.md<br>skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md<br>skills/proposal-doc/USAGE.md | |
-| hex | `#000` | 20 | skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/design-review/SKILL.md | |
-| hex | `#8b9bb4` | 18 | skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#2f80ed` | 17 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#6b4eff` | 13 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#0b0b12` | 13 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/generic-deck-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/decks/research-position-paper-template.md<br>skills/cochl-presentation/references/social-kit/README.md | |
-| hex | `#000000` | 11 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#0b1f3a` | 10 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#111` | 9 | skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md | |
-| hex | `#10b981` | 8 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#f1f1f2` | 8 | skills/design-review/SKILL.md | |
-| hex | `#0f2847` | 7 | skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#14141c` | 6 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md | |
-| font | `Lora` | 6 | skills/design-review/SKILL.md | |
-| hex | `#1e3050` | 6 | skills/pitch-deck/SKILL.md | |
-| hex | `#a6f0ce` | 5 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md | |
-| hex | `#555` | 5 | skills/proposal-doc/SKILL.md | |
-| hex | `#000cc8` | 4 | skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| font | `Inter` | 4 | skills/design-system/SKILL.md<br>skills/proposal-doc/SKILL.md | |
-| hex | `#ebddff` | 4 | skills/pitch-deck/SKILL.md | |
-| hex | `#4b72f4` | 4 | skills/pitch-deck/SKILL.md | |
-| hex | `#5d5bf8` | 4 | skills/pitch-deck/SKILL.md | |
-| hex | `#00c853` | 4 | skills/pitch-deck/SKILL.md | |
-| hex | `#eb5757` | 3 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#f59e0b` | 3 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | |
-| hex | `#eb5b6b` | 3 | skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md | |
-| hex | `#eef2ff` | 3 | skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md | |
-| hex | `#e6e6e6` | 3 | skills/design-review/SKILL.md | |
-| hex | `#1a1a1a` | 3 | skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md | |
-| hex | `#666666` | 3 | skills/pitch-deck/SKILL.md | |
-| hex | `#a08bff` | 3 | skills/pitch-deck/SKILL.md | |
-| hex | `#7240ff` | 3 | skills/pitch-deck/SKILL.md | |
-| hex | `#444` | 3 | skills/proposal-doc/SKILL.md | |
-| hex | `#ccc` | 3 | skills/proposal-doc/SKILL.md | |
-| hex | `#565b6b` | 2 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/social-kit/README.md | |
-| hex | `#0fa068` | 2 | skills/cochl-presentation/references/brochure/SKILL.md | |
-| hex | `#ececec` | 2 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/investor-template.md | |
-| hex | `#9a9aa6` | 2 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md | |
-| hex | `#f4f7ff` | 2 | skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md | |
-| hex | `#0f1b3d` | 2 | skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md | |
-| hex | `#e8e8e8` | 2 | skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md | |
-| hex | `#001974` | 2 | skills/pitch-deck/SKILL.md | |
-| hex | `#1155cc` | 2 | skills/proposal-doc/SKILL.md<br>skills/proposal-doc/USAGE.md | |
-| hex | `#d0d0d0` | 2 | skills/proposal-doc/SKILL.md | |
-| hex | `#1b1b26` | 1 | skills/cochl-presentation/references/brand-core.md | |
-| hex | `#c9c9d4` | 1 | skills/cochl-presentation/references/brand-core.md | |
-| hex | `#9aa1ac` | 1 | skills/cochl-presentation/references/brand-core.md | |
-| hex | `#9827ff` | 1 | skills/cochl-presentation/references/brand-core.md | |
-| hex | `#4b7eff` | 1 | skills/cochl-presentation/references/brand-core.md | |
-| hex | `#00d7ff` | 1 | skills/cochl-presentation/references/brand-core.md | |
-| font | `Helvetica Neue` | 1 | skills/cochl-presentation/references/brand-core.md | |
-| hex | `#141414` | 1 | skills/cochl-presentation/references/brochure/SKILL.md | |
-| hex | `#f6f7f9` | 1 | skills/cochl-presentation/references/decks/101-class-lecture-template.md | |
-| hex | `#e6e8ee` | 1 | skills/cochl-presentation/references/decks/101-class-lecture-template.md | |
-| hex | `#16161c` | 1 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md | |
-| hex | `#1c1c24` | 1 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md | |
-| hex | `#8a8a99` | 1 | skills/cochl-presentation/references/decks/investor-template.md | |
-| hex | `#b7e4a0` | 1 | skills/cochl-presentation/references/decks/investor-template.md | |
-| hex | `#2b2b38` | 1 | skills/cochl-presentation/references/decks/market-competitive-template.md | |
-| hex | `#d4d7de` | 1 | skills/cochl-presentation/references/decks/research-findings-summary-template.md | |
-| hex | `#8a8e97` | 1 | skills/cochl-presentation/references/decks/research-findings-summary-template.md | |
-| hex | `#d8d8d8` | 1 | skills/design-review/SKILL.md | |
-| hex | `#00088d` | 1 | skills/design-review/SKILL.md | |
-| hex | `#f2f2f2` | 1 | skills/design-review/SKILL.md | |
-| hex | `#eeeeee` | 1 | skills/design-review/SKILL.md | |
-| hex | `#06101e` | 1 | skills/design-system/SKILL.md | |
-| font | `CenturyGothic` | 1 | skills/pitch-deck/SKILL.md | |
-| hex | `#c084fc` | 1 | skills/pitch-deck/SKILL.md | |
-| hex | `#7fb3f5` | 1 | skills/pitch-deck/SKILL.md | |
-| hex | `#888` | 1 | skills/proposal-doc/SKILL.md | |
-| hex | `#777` | 1 | skills/proposal-doc/SKILL.md | |
-| hex | `#aaa` | 1 | skills/proposal-doc/SKILL.md | |
+| font | `IBM Plex Sans` | 104 | skills/cochl-presentation/SKILL.md<br>skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/decks/tradeshow-booth-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md<br>skills/cochl-presentation/references/social-kit/README.md<br>skills/design-review/SKILL.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | plex --font-sans; pt-template --font-web |
+| font | `Roboto` | 76 | skills/design-review/SKILL.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | plex --font-body; pt-template --font-body |
+| font | `Century Gothic` | 56 | skills/pitch-deck/SKILL.md | pt-template --font-heading |
+| hex | `#832bfb` | 46 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/press-kit/README.md<br>skills/cochl-presentation/references/social-kit/README.md<br>skills/pitch-deck/SKILL.md | plex --accent-purple; pt-template --c-primary |
+| hex | `#ffffff` | 41 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/design-review/SKILL.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | plex --light-bg / --text; pt-template --col-light-bg / --col-text-light |
+| hex | `#4b68ff` | 34 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/brochure/SKILL.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md<br>skills/cochl-presentation/references/social-kit/README.md<br>skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md | plex --accent; pt-template --pt-indigo |
+| font | `Public Sans` | 27 | skills/design-review/SKILL.md | plex --font-ui |
+| hex | `#fff` | 25 | skills/cochl-presentation/references/brand-core.md<br>skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md<br>skills/proposal-doc/SKILL.md | plex --light-bg / --text; pt-template --col-light-bg / --col-text-light |
+| hex | `#333333` | 25 | skills/pitch-deck/SKILL.md | pt-template --col-text-dark |
+| font | `IBM Plex Mono` | 24 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-position-paper-template.md<br>skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md<br>skills/proposal-doc/USAGE.md | plex --font-mono |
+| hex | `#000` | 20 | skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/design-review/SKILL.md | plex --bg-pure |
+| hex | `#8b9bb4` | 18 | skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | plex: drop (superseded navy); pt-template --pt-muted |
+| hex | `#2f80ed` | 17 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | plex: drop (old navy trio, prose only); pt-template --c-analytics |
+| hex | `#6b4eff` | 13 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | plex: drop (superseded navy); pt-template --pt-violet |
+| hex | `#0b0b12` | 13 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/101-class-lecture-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/generic-deck-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md<br>skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/research-paper-template.md<br>skills/cochl-presentation/references/decks/research-position-paper-template.md<br>skills/cochl-presentation/references/social-kit/README.md | plex --bg |
+| hex | `#000000` | 11 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md | plex --bg-pure; pt-template --pt-title-ink |
+| hex | `#0b1f3a` | 10 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | plex: drop (superseded navy); pt-template --pt-navy-bg |
+| hex | `#111` | 9 | skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md | plex --ink |
+| hex | `#10b981` | 8 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | plex --success; pt-template --c-success |
+| hex | `#f1f1f2` | 8 | skills/design-review/SKILL.md | plex --light-gray |
+| hex | `#0f2847` | 7 | skills/design-system/SKILL.md<br>skills/design-system/USAGE.md<br>skills/pitch-deck/SKILL.md | plex: drop (superseded navy); pt-template --pt-navy-card |
+| hex | `#14141c` | 6 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md | plex --panel |
+| font | `Lora` | 6 | skills/design-review/SKILL.md | plex --font-quote |
+| hex | `#1e3050` | 6 | skills/pitch-deck/SKILL.md | pt-template --pt-chart-grid |
+| hex | `#a6f0ce` | 5 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/market-competitive-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md | plex --mint |
+| hex | `#555` | 5 | skills/proposal-doc/SKILL.md | plex --ink-muted |
+| hex | `#000cc8` | 4 | skills/design-review/SKILL.md<br>skills/pitch-deck/SKILL.md | plex: drop (design-review "never use" counter-example, prose only); pt-template --pt-bar-deep |
+| font | `Inter` | 4 | skills/design-system/SKILL.md<br>skills/proposal-doc/SKILL.md | plex --font-doc |
+| hex | `#ebddff` | 4 | skills/pitch-deck/SKILL.md | pt-template --c-lavender / --col-text-lavender |
+| hex | `#4b72f4` | 4 | skills/pitch-deck/SKILL.md | pt-template --pt-layer-2 |
+| hex | `#5d5bf8` | 4 | skills/pitch-deck/SKILL.md | pt-template --pt-layer-3 |
+| hex | `#00c853` | 4 | skills/pitch-deck/SKILL.md | pt-template --pt-green |
+| hex | `#eb5757` | 3 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | plex --danger; pt-template --c-emergency |
+| hex | `#f59e0b` | 3 | skills/cochl-presentation/references/brand-core.md<br>skills/design-system/SKILL.md<br>skills/pitch-deck/SKILL.md | plex --warning; pt-template --c-warning |
+| hex | `#eb5b6b` | 3 | skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md<br>skills/cochl-presentation/references/decks/investor-template.md<br>skills/cochl-presentation/references/decks/qbr-board-update-template.md | plex --neg |
+| hex | `#eef2ff` | 3 | skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md | plex --light-panel-indigo |
+| hex | `#e6e6e6` | 3 | skills/design-review/SKILL.md | plex --light-card |
+| hex | `#1a1a1a` | 3 | skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md | plex --ink-body |
+| hex | `#666666` | 3 | skills/pitch-deck/SKILL.md | pt-template --col-text-sub |
+| hex | `#a08bff` | 3 | skills/pitch-deck/SKILL.md | pt-template --pt-violet-soft |
+| hex | `#7240ff` | 3 | skills/pitch-deck/SKILL.md | pt-template --pt-bar-violet |
+| hex | `#444` | 3 | skills/proposal-doc/SKILL.md | plex --ink-soft |
+| hex | `#ccc` | 3 | skills/proposal-doc/SKILL.md | plex --doc-line |
+| hex | `#565b6b` | 2 | skills/cochl-presentation/references/brand-core.md<br>skills/cochl-presentation/references/social-kit/README.md | plex --placeholder |
+| hex | `#0fa068` | 2 | skills/cochl-presentation/references/brochure/SKILL.md | plex --brochure-green |
+| hex | `#ececec` | 2 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/investor-template.md | plex --img-placeholder |
+| hex | `#9a9aa6` | 2 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md<br>skills/cochl-presentation/references/decks/corporate-strategy-roadmap-template.md | plex --muted-2 |
+| hex | `#f4f7ff` | 2 | skills/cochl-presentation/references/decks/research-findings-summary-template.md<br>skills/cochl-presentation/references/decks/usability-report-template.md | plex --light-panel-tint |
+| hex | `#0f1b3d` | 2 | skills/cochl-presentation/references/decks/usability-report-template.md<br>skills/cochl-presentation/references/press-kit/README.md | plex --ink-navy |
+| hex | `#e8e8e8` | 2 | skills/design-review/SKILL.md<br>skills/proposal-doc/SKILL.md | plex --doc-canvas |
+| hex | `#001974` | 2 | skills/pitch-deck/SKILL.md | pt-template --pt-deep-blue |
+| hex | `#1155cc` | 2 | skills/proposal-doc/SKILL.md<br>skills/proposal-doc/USAGE.md | plex --doc-link |
+| hex | `#d0d0d0` | 2 | skills/proposal-doc/SKILL.md | plex --doc-rule |
+| hex | `#1b1b26` | 1 | skills/cochl-presentation/references/brand-core.md | plex --panel-2 |
+| hex | `#c9c9d4` | 1 | skills/cochl-presentation/references/brand-core.md | plex --text-soft |
+| hex | `#9aa1ac` | 1 | skills/cochl-presentation/references/brand-core.md | plex --muted |
+| hex | `#9827ff` | 1 | skills/cochl-presentation/references/brand-core.md | plex --logo-g1 |
+| hex | `#4b7eff` | 1 | skills/cochl-presentation/references/brand-core.md | plex --logo-g2 |
+| hex | `#00d7ff` | 1 | skills/cochl-presentation/references/brand-core.md | plex --logo-g3 |
+| font | `Helvetica Neue` | 1 | skills/cochl-presentation/references/brand-core.md | plex --font-sans (fallback in stack) |
+| hex | `#141414` | 1 | skills/cochl-presentation/references/brochure/SKILL.md | plex --brochure-neutral |
+| hex | `#f6f7f9` | 1 | skills/cochl-presentation/references/decks/101-class-lecture-template.md | plex --light-panel |
+| hex | `#e6e8ee` | 1 | skills/cochl-presentation/references/decks/101-class-lecture-template.md | plex --light-rule |
+| hex | `#16161c` | 1 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md | plex --bg-near |
+| hex | `#1c1c24` | 1 | skills/cochl-presentation/references/decks/b2b-sales-proposal-template.md | plex --panel-3 |
+| hex | `#8a8a99` | 1 | skills/cochl-presentation/references/decks/investor-template.md | plex --muted-3 |
+| hex | `#b7e4a0` | 1 | skills/cochl-presentation/references/decks/investor-template.md | plex --pos |
+| hex | `#2b2b38` | 1 | skills/cochl-presentation/references/decks/market-competitive-template.md | plex --neutral-bar |
+| hex | `#d4d7de` | 1 | skills/cochl-presentation/references/decks/research-findings-summary-template.md | plex --light-rule-2 |
+| hex | `#8a8e97` | 1 | skills/cochl-presentation/references/decks/research-findings-summary-template.md | plex --muted-light |
+| hex | `#d8d8d8` | 1 | skills/design-review/SKILL.md | plex --avatar-fill |
+| hex | `#00088d` | 1 | skills/design-review/SKILL.md | plex: drop (design-review "never use" counter-example, prose only) |
+| hex | `#f2f2f2` | 1 | skills/design-review/SKILL.md | plex: drop (design-review "not this" counter-example, prose only) |
+| hex | `#eeeeee` | 1 | skills/design-review/SKILL.md | plex: drop (design-review "not this" counter-example, prose only) |
+| hex | `#06101e` | 1 | skills/design-system/SKILL.md | plex: drop (superseded navy) |
+| font | `CenturyGothic` | 1 | skills/pitch-deck/SKILL.md | pt-template --font-heading |
+| hex | `#c084fc` | 1 | skills/pitch-deck/SKILL.md | pt-template --pt-purple-soft |
+| hex | `#7fb3f5` | 1 | skills/pitch-deck/SKILL.md | pt-template --pt-blue-soft |
+| hex | `#888` | 1 | skills/proposal-doc/SKILL.md | plex --doc-tick |
+| hex | `#777` | 1 | skills/proposal-doc/SKILL.md | plex --ink-faint |
+| hex | `#aaa` | 1 | skills/proposal-doc/SKILL.md | plex --doc-box-border |
+
+**Target notation:** `plex --name` / `pt-template --name` = the token in `skills/cochl-design/core/themes/<theme>.md` that holds this value (several names = the value is listed under more than one role; `hex-to-var` uses the first). `plex: drop (…)` = no plex token on purpose: superseded navy, or a "never use / not this" counter-example that only appears in prose and is rewritten by hand later. Fonts map to font-role tokens.
+
+## Near-duplicates for HJ
+
+Pairs of distinct values closer than ΔE2000 = 2. Each keeps its own token; nothing was merged. Decide whether to collapse any of them.
+
+| ΔE2000 | Value A (token) | Value B (token) |
+|---|---|---|
+| 0.43 | `#e6e6e6` (plex --light-card) | `#e8e8e8` (plex --doc-canvas) |
+| 0.76 | `#141414` (plex --brochure-neutral) | `#111111` (plex --ink) |
+| 0.86 | `#ececec` (plex --img-placeholder) | `#e8e8e8` (plex --doc-canvas) |
+| 0.97 | `#d0d0d0` (plex --doc-rule) | `#cccccc` (plex --doc-line) |
+| 1.20 | `#f1f1f2` (plex --light-gray) | `#ececec` (plex --img-placeholder) |
+| 1.29 | `#e6e6e6` (plex --light-card) | `#ececec` (plex --img-placeholder) |
+| 1.30 | `#14141c` (plex --panel) | `#16161c` (plex --bg-near) |
+| 1.36 | `#f1f1f2` (plex --light-gray) | `#f6f7f9` (plex --light-panel) |
+| 1.81 | `#141414` (plex --brochure-neutral) | `#1a1a1a` (plex --ink-body) |
+| 1.85 | `#1b1b26` (plex --panel-2) | `#1c1c24` (plex --panel-3) |
+| 1.88 | `#d8d8d8` (plex --avatar-fill) | `#d0d0d0` (plex --doc-rule) |
+| 1.93 | `#ffffff` (plex --light-bg) | `#f6f7f9` (plex --light-panel) |
+
+Also close but above the threshold (ΔE2000 2–5) or same role, worth a look: `#14141c`/`#1c1c24`, `#111111`/`#1a1a1a`, `#9aa1ac`/`#9a9aa6` (--muted/--muted-2), `#8a8a99`/`#8a8e97` (--muted-3/--muted-light), `#eef2ff`/`#f4f7ff`, `#eb5757`/`#eb5b6b` (--danger/--neg, same role, ΔE ≈ 5+), `#832bfb`/`#9827ff` (--accent-purple/--logo-g1).
