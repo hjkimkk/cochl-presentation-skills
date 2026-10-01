@@ -1,13 +1,10 @@
 ---
-name: design-review-template
+name: design-review
 description: >
   Generates a self-contained interactive HTML design review presentation
   strictly following the two official Cochl PPTX templates:
   DESIGN REVIEW_Proposal.pptx and DESIGN REVIEW_Direction Alignment, and Feedback Meetings.pptx.
   Use when a team needs to run a Proposal Review or Direction Alignment & Feedback Meeting.
-triggers:
-  - /design-review-template
-  - /dr-template
 args:
   - name: type
     required: true
@@ -58,49 +55,44 @@ color values, and structural rules. Everything below is derived from them.
 - **Safe area — nothing may exceed the canvas.** `.dw` / `.slide` are `overflow:hidden`, so any element extending past **y = 810px** (or above the top under the 38px persistent header) is silently clipped — there is no scrollbar to reveal it. Every slide's content must fit within the vertical range 0–810px.
 - **Phone mockups + bottom callouts must fit vertically.** A phone frame plus any bottom keyword/callout bar has to sit between the header and y = 810. Do **not** pin the mockup with a fixed `top` whose `top + frame height (+ callout bar height)` exceeds 810 — that clips the bottom of the frame and its callout. Instead vertically center the mockup in the available area, or bottom-anchor the callout (`bottom:0`) and size the frame to fit above it. Always confirm the mockup's bottom edge and callout are fully visible; if they clip, reduce the mockup's `top`/height rather than letting it overflow.
 
-### Color Tokens
-```
---black:     #000000    cover, section dividers (dark variant), final mockup
---white:     #FFFFFF    standard content slide backgrounds
---gray-bg:   #F1F1F2    section-divider bg, goal cards bg, persona bg
---card-bg:   #E6E6E6    cards that sit on --gray-bg slides
---border:    rgba(0,0,0,0.10)
---accent:    #4B68FF    small label caps only (REVIEW STATUS, GOAL labels)
---muted-d:   rgba(255,255,255,0.40)   muted text on dark slides
---muted-l:   rgba(0,0,0,0.40)         muted text on light slides
-```
+### Brand
 
-### Font Stack
-```
-IBM Plex Sans   → cover title, section dividers, section header blocks, direction titles
-IBM Plex Mono   → tech/analysis headers: BEFORE/AFTER, DECISION MATRIX, FINDINGS, FINAL MOCKUP
-Roboto          → body text, numbered items, descriptions, goal card body
-Public Sans     → persistent header (top bar), keyword bars, column labels, attribution
-Lora            → full-bleed quote slides (italic)
-```
+**Brand:** read `../cochl-design/core/brand-core.md`, then `../cochl-design/core/themes/plex.md`. Default theme `plex`. Paste the theme's `:root` block into the output `<style>` before any template CSS. Run `../cochl-design/core/qa-checklist.md` before delivering.
 
-Google Fonts CDN import:
-```html
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Roboto:wght@300;400;500&family=Public+Sans:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-```
+Google Fonts link: see `../cochl-design/core/themes/plex.md`. Use only the tokens below; never write a literal color or font name.
+
+| Role | Token |
+|---|---|
+| Cover / dividers / final mockup bg | `--bg-pure` |
+| Content slide bg | `--light-bg` |
+| Divider / goal / persona bg | `--light-gray` |
+| Cards on gray slides | `--light-card` |
+| Small label caps | `--accent` |
+| Titles, dividers, direction titles | `--font-sans` |
+| Tech headers (BEFORE/AFTER, MATRIX, FINDINGS) | `--font-mono` |
+| Body, numbers, goal card body | `--font-body` |
+| Persistent header, keyword bars | `--font-ui` |
+| Full-bleed quotes | `--font-quote` |
+
+Borders use `--light-border`; muted text uses `--muted-on-dark` / `--muted-on-light`.
 
 ### Typography Scale (at 1440px output)
 | Role | Font | Size | Weight |
 |------|------|------|--------|
-| Cover main "DESIGN REVIEW" | IBM Plex Sans | 96px | 300 |
-| Cover project name | IBM Plex Sans | 64px | 300 |
-| Section divider title | IBM Plex Sans | 96px | 300 |
-| Section header block title | IBM Plex Sans | 40px | 400 |
-| Tech slide headers (Mono) | IBM Plex Mono | 40px | 400 |
-| Direction title "DIRECTION 1" | IBM Plex Sans | 46px | 300 |
-| Large numbers 01/02/03 | Roboto | 40px | 400 |
-| Large body | Roboto | 20px | 400 |
-| Standard body | Roboto | 16px | 300–400 |
-| Small / captions | Roboto | 13px | 400 |
-| Persistent header | Public Sans | 13px | 400 |
-| Keyword bar | Public Sans | 13px | 400 |
-| Cover metadata row | IBM Plex Sans | 21px | 300 |
-| Full-bleed quote | Lora | 40px | 400 italic |
+| Cover main "DESIGN REVIEW" | `--font-sans` | 96px | 300 |
+| Cover project name | `--font-sans` | 64px | 300 |
+| Section divider title | `--font-sans` | 96px | 300 |
+| Section header block title | `--font-sans` | 40px | 400 |
+| Tech slide headers (Mono) | `--font-mono` | 40px | 400 |
+| Direction title "DIRECTION 1" | `--font-sans` | 46px | 300 |
+| Large numbers 01/02/03 | `--font-body` | 40px | 400 |
+| Large body | `--font-body` | 20px | 400 |
+| Standard body | `--font-body` | 16px | 300–400 |
+| Small / captions | `--font-body` | 13px | 400 |
+| Persistent header | `--font-ui` | 13px | 400 |
+| Keyword bar | `--font-ui` | 13px | 400 |
+| Cover metadata row | `--font-sans` | 21px | 300 |
+| Full-bleed quote | `--font-quote` | 40px | 400 italic |
 
 ---
 
@@ -125,7 +117,7 @@ Google Fonts CDN import:
 }
 .hdr span {
   font-size: 13px; font-weight: 400;
-  font-family: 'Public Sans', sans-serif;
+  font-family: var(--font-ui);
   text-transform: uppercase; letter-spacing: 0.08em;
   color: rgba(0,0,0,0.4);
 }
@@ -149,11 +141,12 @@ Content area starts at `top: 38px`.
 <title>{Project Name} — Design Review · Cochl</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&family=Roboto:wght@300;400;500&family=Public+Sans:wght@400;500&family=Lora:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
+<!-- Google Fonts link: see ../cochl-design/core/themes/plex.md -->
+<style>/* paste plex :root block here */</style>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html,body{width:100%;height:100%;overflow:hidden;background:#111;}
-body{display:flex;align-items:center;justify-content:center;font-family:'Roboto',sans-serif;}
+html,body{width:100%;height:100%;overflow:hidden;background:var(--ink);}
+body{display:flex;align-items:center;justify-content:center;font-family:var(--font-body);}
 .dw{width:1440px;height:810px;position:relative;transform-origin:center center;overflow:hidden;}
 .slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .22s ease;}
 .slide.active{opacity:1;pointer-events:all;}
@@ -162,7 +155,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:'Roboto'
 .nd button{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .2s;border:none;outline:none;padding:0;}
 .nd button.on{background:rgba(255,255,255,.88);transform:scale(1.45);}
 /* counter */
-.ct{position:fixed;bottom:14px;right:28px;font-size:10px;color:rgba(255,255,255,.22);z-index:9999;letter-spacing:.12em;font-family:'Public Sans',sans-serif;}
+.ct{position:fixed;bottom:14px;right:28px;font-size:10px;color:rgba(255,255,255,.22);z-index:9999;letter-spacing:.12em;font-family:var(--font-ui);}
 /* arrow buttons */
 .arr{position:fixed;top:50%;transform:translateY(-50%);z-index:9999;background:rgba(255,255,255,.07);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
 .arr:hover{background:rgba(255,255,255,.16);}
@@ -228,22 +221,22 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 **Direction Alignment variant (PPTX2, slide 1) — Full Bleed Black:**
 
-- Background: `#000000`, NO persistent header
-- "DESIGN REVIEW" centered at y≈150px, 96px IBM Plex Sans 300, white
+- Background: `--bg-pure`, NO persistent header
+- "DESIGN REVIEW" centered at y≈150px, 96px `--font-sans` 300, white
 - Thin horizontal rules (1px, `rgba(255,255,255,0.15)`) at y≈550, 570, 610, 635
-- Between rules: metadata rows in 21px IBM Plex Sans 300, white, centered
+- Between rules: metadata rows in 21px `--font-sans` 300, white, centered
   - Row 1: `PHASE : XX  |  ROUND : XX`
   - Row 2: `DESIGN REVIEW  |  COMPANY / TEAM NAME  |  PERSON ONE, PERSON TWO  |  TODAY'S DATE`
 - Logo top-center if available
 
 ```html
-<div class="slide" style="background:#000;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;">
-  <h1 style="font-size:96px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;color:#fff;letter-spacing:0.04em;text-transform:uppercase;margin-top:140px;">DESIGN REVIEW</h1>
+<div class="slide" style="background:var(--bg-pure);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;">
+  <h1 style="font-size:96px;font-weight:300;font-family:var(--font-sans);color:var(--text);letter-spacing:0.04em;text-transform:uppercase;margin-top:140px;">DESIGN REVIEW</h1>
   <div style="position:absolute;bottom:0;left:0;right:0;">
     <div style="height:1px;background:rgba(255,255,255,0.15);margin-bottom:20px;"></div>
-    <p style="text-align:center;font-size:21px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;color:#fff;letter-spacing:0.06em;">PHASE : {phase} &nbsp;|&nbsp; ROUND : {round}</p>
+    <p style="text-align:center;font-size:21px;font-weight:300;font-family:var(--font-sans);color:var(--text);letter-spacing:0.06em;">PHASE : {phase} &nbsp;|&nbsp; ROUND : {round}</p>
     <div style="height:1px;background:rgba(255,255,255,0.15);margin:20px 0;"></div>
-    <p style="text-align:center;font-size:21px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;color:#fff;letter-spacing:0.04em;">{team} &nbsp;|&nbsp; {presenters} &nbsp;|&nbsp; {date}</p>
+    <p style="text-align:center;font-size:21px;font-weight:300;font-family:var(--font-sans);color:var(--text);letter-spacing:0.04em;">{team} &nbsp;|&nbsp; {presenters} &nbsp;|&nbsp; {date}</p>
     <div style="height:1px;background:rgba(255,255,255,0.15);margin-top:20px;margin-bottom:30px;"></div>
   </div>
 </div>
@@ -251,25 +244,25 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 **Proposal variant (PPTX1, slides 1–2) — Light Product Card:**
 
-- Background: `#FFFFFF`, NO persistent header (this cover is light, not black)
-- Title block, left-aligned at x≈98 / y≈250: two lines, 50px IBM Plex Sans bold, black
+- Background: `--light-bg`, NO persistent header (this cover is light, not black)
+- Title block, left-aligned at x≈98 / y≈250: two lines, 50px `--font-sans` bold, black
   - Line 1 = review label (placeholder "Product review"), Line 2 = product name
-- Description under the title: 16px Roboto 300, black (placeholder "Add description")
+- Description under the title: 16px `--font-body` 300, black (placeholder "Add description")
 - Metadata strip along y≈535 — 5 equal cells (133px wide, ~160px step), each:
-  - Label chip: bg `#4B68FF` (Cochl indigo), 10px Public Sans uppercase, white text — `REVIEW STATUS` · `PRODUCT STAGE` · `TEST COVERAGE` · `KEY METRIC` · `NEXT ACTION`
-  - Value below chip: 10px Public Sans bold, black (e.g. `In Progress` · `Beta Release` · `12 User Sessions` · `92% Satisfaction` · `Iteration v2 Planned`)
+  - Label chip: bg `--accent` (Cochl indigo), 10px `--font-ui` uppercase, white text — `REVIEW STATUS` · `PRODUCT STAGE` · `TEST COVERAGE` · `KEY METRIC` · `NEXT ACTION`
+  - Value below chip: 10px `--font-ui` bold, black (e.g. `In Progress` · `Beta Release` · `12 User Sessions` · `92% Satisfaction` · `Iteration v2 Planned`)
 
 ```html
-<div class="slide" style="background:#fff;position:relative;">
+<div class="slide" style="background:var(--light-bg);position:relative;">
   <div style="position:absolute;left:98px;top:250px;">
-    <h1 style="font-size:50px;font-weight:700;font-family:'IBM Plex Sans',sans-serif;color:#000;line-height:1.05;margin:0;">{review label}<br>{product name}</h1>
-    <p style="font-size:16px;font-weight:300;font-family:'Roboto',sans-serif;color:#000;margin-top:16px;">{description}</p>
+    <h1 style="font-size:50px;font-weight:700;font-family:var(--font-sans);color:var(--bg-pure);line-height:1.05;margin:0;">{review label}<br>{product name}</h1>
+    <p style="font-size:16px;font-weight:300;font-family:var(--font-body);color:var(--bg-pure);margin-top:16px;">{description}</p>
   </div>
   <div style="position:absolute;left:98px;top:533px;display:flex;gap:27px;">
     <!-- repeat for each of the 5 metadata cells -->
     <div style="width:133px;">
-      <div style="background:#4B68FF;color:#fff;font-size:10px;font-family:'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:0.06em;padding:6px 8px;">{LABEL}</div>
-      <p style="font-size:10px;font-weight:700;font-family:'Public Sans',sans-serif;color:#000;margin-top:6px;">{value}</p>
+      <div style="background:var(--accent);color:var(--text);font-size:10px;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:0.06em;padding:6px 8px;">{LABEL}</div>
+      <p style="font-size:10px;font-weight:700;font-family:var(--font-ui);color:var(--bg-pure);margin-top:6px;">{value}</p>
     </div>
   </div>
 </div>
@@ -281,25 +274,25 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Source**: PPTX2, slides 5–8  
 **Used for**: Second cover showing project name + phone mockup
 
-- Background: `#000000`, NO persistent header
+- Background: `--bg-pure`, NO persistent header
 - Left 50%: project branding (label, name, round)
 - Right 50%: phone mockup(s) centered
-- Bottom strip: 3 metadata items (Public Sans 13px, `rgba(255,255,255,0.3)`)
+- Bottom strip: 3 metadata items (`--font-ui` 13px, `rgba(255,255,255,0.3)`)
 
 ```html
-<div class="slide" style="background:#000;display:flex;">
+<div class="slide" style="background:var(--bg-pure);display:flex;">
   <div style="width:50%;padding:80px 60px;display:flex;flex-direction:column;justify-content:center;">
-    <p style="font-size:16px;font-family:'IBM Plex Sans',sans-serif;color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;">Cochl · {product line}</p>
-    <h2 style="font-size:64px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;color:#fff;text-transform:uppercase;line-height:1.0;margin-top:28px;">{PROJECT NAME}</h2>
-    <p style="font-size:18px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:28px;">ROUND {round}</p>
+    <p style="font-size:16px;font-family:var(--font-sans);color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;">Cochl · {product line}</p>
+    <h2 style="font-size:64px;font-weight:300;font-family:var(--font-sans);color:var(--text);text-transform:uppercase;line-height:1.0;margin-top:28px;">{PROJECT NAME}</h2>
+    <p style="font-size:18px;font-weight:300;font-family:var(--font-sans);color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:28px;">ROUND {round}</p>
   </div>
   <div style="width:50%;display:flex;align-items:center;justify-content:center;">
     <!-- phone() helper output here -->
   </div>
   <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid rgba(255,255,255,0.08);padding:14px 60px;display:flex;justify-content:space-between;">
-    <span style="font-size:13px;font-family:'Public Sans',sans-serif;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">PHASE : {phase}</span>
-    <span style="font-size:13px;font-family:'Public Sans',sans-serif;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">{team}</span>
-    <span style="font-size:13px;font-family:'Public Sans',sans-serif;color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">{date}</span>
+    <span style="font-size:13px;font-family:var(--font-ui);color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">PHASE : {phase}</span>
+    <span style="font-size:13px;font-family:var(--font-ui);color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">{team}</span>
+    <span style="font-size:13px;font-family:var(--font-ui);color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">{date}</span>
   </div>
 </div>
 ```
@@ -313,18 +306,18 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Direction Alignment variant (PPTX2, slides 3–4):**
 
 - Dark variant preferred (black bg, white text)
-- Left ~60%: "AGENDA" at 40px IBM Plex Sans 400, y≈370px from top
+- Left ~60%: "AGENDA" at 40px `--font-sans` 400, y≈370px from top
 - Right ~40%: numbered section list
   - Section row height: ~60px, gray highlight band behind each section number
-  - Section number: 26px Roboto bold
-  - Section title: 24px Roboto 400
-  - Sub-items: 18px Roboto 400, muted
+  - Section number: 26px `--font-body` bold
+  - Section title: 24px `--font-body` 400
+  - Sub-items: 18px `--font-body` 400, muted
 
 **Proposal variant (PPTX1, slides 3–4) — Two-Column Statement:**
 
-- Background: `#FFFFFF`, no numbered/banded rows
-- Left ~45% (x≈93 / y≈140): "Today's Agenda:" — 79px IBM Plex Sans bold, black, two lines
-- Right ~40% (x≈647): plain section list, 37px IBM Plex Sans 400, black, generously spaced
+- Background: `--light-bg`, no numbered/banded rows
+- Left ~45% (x≈93 / y≈140): "Today's Agenda:" — 79px `--font-sans` bold, black, two lines
+- Right ~40% (x≈647): plain section list, 37px `--font-sans` 400, black, generously spaced
   - Items: `Project Overview` · `Discovery` · `Strategy & Process` · `Key Deliverables` · `Next Steps`
   - No section numbers, no highlight bands, no sub-items
 
@@ -334,17 +327,17 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Source**: Both PPTX  
 **Used for**: OVERVIEW, DISCOVERY, STRATEGY & PROCESS, KEY DELIVERABLES, NEXT STEPS
 
-- Light variant bg: `#F1F1F2`; Dark variant bg: `#000000`
+- Light variant bg: `--light-gray`; Dark variant bg: `--bg-pure`
 - Persistent header present
-- Section title centered vertically: 96px IBM Plex Sans 300, uppercase
+- Section title centered vertically: 96px `--font-sans` 300, uppercase
   - Light: black text; Dark: white text
 
 ```html
 <!-- Light variant -->
-<div class="slide" style="background:#F1F1F2;">
+<div class="slide" style="background:var(--light-gray);">
   {hdr}
   <div style="height:100%;display:flex;align-items:center;justify-content:center;padding-top:38px;">
-    <h2 style="font-size:96px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;color:#000;text-transform:uppercase;letter-spacing:0.02em;">{SECTION TITLE}</h2>
+    <h2 style="font-size:96px;font-weight:300;font-family:var(--font-sans);color:var(--bg-pure);text-transform:uppercase;letter-spacing:0.02em;">{SECTION TITLE}</h2>
   </div>
 </div>
 ```
@@ -359,23 +352,23 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 - Light or dark variant
 - Persistent header
-- "THREE THINGS TO KNOW" — 40px IBM Plex Sans 400, centered, below header
+- "THREE THINGS TO KNOW" — 40px `--font-sans` 400, centered, below header
 - 1px horizontal rule below title
-- 3 equal columns: number (40px Roboto) + description (20px Roboto 400, lh 1.6)
+- 3 equal columns: number (40px `--font-body`) + description (20px `--font-body` 400, lh 1.6)
 
 ```html
-<div class="slide" style="background:#fff;">
+<div class="slide" style="background:var(--light-bg);">
   {hdr}
   <div style="padding-top:38px;">
     <div style="text-align:center;padding:48px 80px 0;">
-      <h2 style="font-size:40px;font-weight:400;font-family:'IBM Plex Sans',sans-serif;text-transform:uppercase;color:#000;">THREE THINGS TO KNOW</h2>
+      <h2 style="font-size:40px;font-weight:400;font-family:var(--font-sans);text-transform:uppercase;color:var(--bg-pure);">THREE THINGS TO KNOW</h2>
       <div style="height:1px;background:rgba(0,0,0,0.12);margin-top:18px;"></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0 80px;margin-top:48px;">
       <!-- repeat for 01, 02, 03 -->
       <div style="padding:0 48px;border-right:1px solid rgba(0,0,0,0.08);">
-        <p style="font-size:40px;font-weight:400;font-family:'Roboto',sans-serif;color:#000;margin-bottom:20px;">01</p>
-        <p style="font-size:20px;font-weight:400;font-family:'Roboto',sans-serif;color:#000;line-height:1.6;">{description}</p>
+        <p style="font-size:40px;font-weight:400;font-family:var(--font-body);color:var(--bg-pure);margin-bottom:20px;">01</p>
+        <p style="font-size:20px;font-weight:400;font-family:var(--font-body);color:var(--bg-pure);line-height:1.6;">{description}</p>
       </div>
     </div>
   </div>
@@ -384,12 +377,12 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 **Proposal variant (PPTX1, slides 7–8) — Left Title + Stacked List:**
 
-- Background: `#FFFFFF`, no persistent header, NOT a 3-column grid
-- Left (x≈91, vertically centered): section title "Principles" — 50px IBM Plex Sans bold, black
+- Background: `--light-bg`, no persistent header, NOT a 3-column grid
+- Left (x≈91, vertically centered): section title "Principles" — 50px `--font-sans` bold, black
 - Right (x≈634): 3 stacked insight rows (top-aligned), each:
   - Small bullet: 13×13px black round dot (`border-radius:50%`), left of the label — house standard marker (not a square or bordered box)
-  - Label: `Insight 1` / `Insight 2` / `Insight 3` — 21px IBM Plex Sans bold, black
-  - Body: 12px Roboto 400, black, lh ~1.5, kept short
+  - Label: `Insight 1` / `Insight 2` / `Insight 3` — 21px `--font-sans` bold, black
+  - Body: 12px `--font-body` 400, black, lh ~1.5, kept short
 - Same layout is reused for the Proposal "Project Goals" slide (see §6)
 
 ---
@@ -400,22 +393,22 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 **Direction Alignment variant (PPTX2, slide 14) — Cards:**
 
-- Background: `#F1F1F2`
+- Background: `--light-gray`
 - Persistent header
-- "PROJECT GOALS" — 40px IBM Plex Sans 400 + 1px divider
-- 3 equal cards, bg `#E6E6E6`, border-radius 4px, padding 40px 36px
-  - Goal label: "GOAL 1/2/3" — 40px IBM Plex Sans bold
-  - Description: 20px Roboto 400, lh 1.45
-  - Metric: 13px Public Sans uppercase, border-top 1px
+- "PROJECT GOALS" — 40px `--font-sans` 400 + 1px divider
+- 3 equal cards, bg `--light-card`, border-radius 4px, padding 40px 36px
+  - Goal label: "GOAL 1/2/3" — 40px `--font-sans` bold
+  - Description: 20px `--font-body` 400, lh 1.45
+  - Metric: 13px `--font-ui` uppercase, border-top 1px
 
 **Proposal variant (PPTX1, slides 9–10) — Left Title + Stacked List:**
 
-- Background: `#FFFFFF`, no persistent header, no cards (shares the Proposal "Principles" layout, §5)
-- Left (x≈91, vertically centered): section title "Project goals" — 50px IBM Plex Sans bold, black
+- Background: `--light-bg`, no persistent header, no cards (shares the Proposal "Principles" layout, §5)
+- Left (x≈91, vertically centered): section title "Project goals" — 50px `--font-sans` bold, black
 - Right (x≈634): 3 stacked goal rows, each:
   - Small bullet: 13×13px black round dot (`border-radius:50%`), left of the label — house standard marker (not a square or bordered box)
-  - Label: `Goal 1` / `Goal 2` / `Goal 3` — 21px IBM Plex Sans bold, black
-  - Body: 12px Roboto 400, black, lh ~1.5 (no metric row / border-top in this variant)
+  - Label: `Goal 1` / `Goal 2` / `Goal 3` — 21px `--font-sans` bold, black
+  - Body: 12px `--font-body` 400, black, lh ~1.5 (no metric row / border-top in this variant)
 
 ---
 
@@ -424,7 +417,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: Showing top 5 competitors
 
 - Persistent header
-- "MARKET RESEARCH" section header (40px IBM Plex Sans) + 1px divider
+- "MARKET RESEARCH" section header (40px `--font-sans`) + 1px divider
 - 5 company logo placeholders in a row (rectangles with name labels)
 
 ---
@@ -433,12 +426,12 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Source**: PPTX2, slides 19–20  
 **Used for**: 3 verbatim user research quotes
 
-- Background: `#F1F1F2` (light) or `#000000` (dark)
+- Background: `--light-gray` (light) or `--bg-pure` (dark)
 - Persistent header
-- "USER INSIGHTS" section header (40px IBM Plex Sans) + 1px divider
+- "USER INSIGHTS" section header (40px `--font-sans`) + 1px divider
 - 3-column quote layout:
-  - Quote: 20px Roboto 400, italic, lh 1.6, curly quotes
-  - Attribution: 13px Public Sans uppercase, muted, margin-top 8px
+  - Quote: 20px `--font-body` 400, italic, lh 1.6, curly quotes
+  - Attribution: 13px `--font-ui` uppercase, muted, margin-top 8px
 
 ---
 
@@ -446,13 +439,13 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Source**: PPTX2, slides 21–22  
 **Used for**: 2–3 user persona descriptions
 
-- Background: `#F1F1F2`
+- Background: `--light-gray`
 - Persistent header + "USER PERSONAS" section header + 1px divider
 - 3 equal columns (use 2 columns if only 2 personas):
-  - Avatar: 80×80px circle, bg `#D8D8D8`
-  - Name: 18px Roboto 400 uppercase
-  - Role: 13px Public Sans uppercase, muted
-  - Description: 14px Roboto 300, lh 1.65
+  - Avatar: 80×80px circle, bg `--avatar-fill`
+  - Name: 18px `--font-body` 400 uppercase
+  - Role: 13px `--font-ui` uppercase, muted
+  - Description: 14px `--font-body` 300, lh 1.65
 
 ---
 
@@ -462,8 +455,8 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 - White bg, NO section title block
 - Persistent header (date only)
-- Centered quote: 40px Lora italic, lh 1.55, max-width 900px, centered
-- Attribution: 13px Public Sans uppercase, muted
+- Centered quote: 40px `--font-quote` italic, lh 1.55, max-width 900px, centered
+- Attribution: 13px `--font-ui` uppercase, muted
 
 ---
 
@@ -472,20 +465,20 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: Showing the 4-stage design process + current position
 
 - White bg
-- Persistent header + "DESIGN PROCESS" section header (40px IBM Plex Sans) + 1px divider
+- Persistent header + "DESIGN PROCESS" section header (40px `--font-sans`) + 1px divider
 - Horizontal timeline spanning full width:
-  - 2px horizontal line in black (`#000`)
+  - 2px horizontal line in black (`--bg-pure`)
   - 4 stage dots at x = 12.5%, 37.5%, 62.5%, 87.5%
   - Stages alternate above/below (1,3 above; 2,4 below)
-  - Each: 10px circle dot + stage name (13px Public Sans uppercase) + date label (20px Roboto 300) + description (13px Roboto, muted)
+  - Each: 10px circle dot + stage name (13px `--font-ui` uppercase) + date label (20px `--font-body` 300) + description (13px `--font-body`, muted)
 - Stages: PROBLEM ALIGNMENT → EXPLORATION → SOLUTION ALIGNMENT → HANDOFF
 
 **Timeline colors — brand tokens only:**
-- Base line and past-stage dots: black `#000`
-- Current-position dot / active highlight: `--accent` `#4B68FF` (Cochl indigo)
+- Base line and past-stage dots: black `--bg-pure`
+- Current-position dot / active highlight: `--accent` `--accent` (Cochl indigo)
 - Muted labels: `rgba(0,0,0,0.4)`–`rgba(0,0,0,0.55)`
 
-> ⚠️ **Never** color the timeline line or dots with off-brand dark blues such as `#000CC8` or `#00088D` — they render nearly black on screen and break the brand palette. The source PPTX Design Process slides (Proposal 21–22, Direction 26–27) contain those values; when porting them, **override** every timeline blue to `#4B68FF` (accent) or `#000`. This rule applies to every generated deck.
+> ⚠️ **Never** color the timeline line or dots with off-brand saturated dark blues — they render nearly black on screen and break the brand palette. The source PPTX Design Process slides (Proposal 21–22, Direction 26–27) contain those values; when porting them, **override** every timeline blue to `--accent` (accent) or `--bg-pure`. This rule applies to every generated deck.
 
 ---
 
@@ -493,10 +486,10 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Source**: PPTX2, slide 28  
 **Used for**: Showing which design phase the review is in
 
-- Background: `#F1F1F2`
+- Background: `--light-gray`
 - Persistent header + "FEEDBACK NEEDED" section header + 1px divider
 - 4 category boxes in a row: CRAFT | STRUCTURE | EXPLORE | IMPLEMENT
-  - Each: 13px Public Sans uppercase, centered, border 1px solid rgba(0,0,0,0.1)
+  - Each: 13px `--font-ui` uppercase, centered, border 1px solid rgba(0,0,0,0.1)
   - Active category highlighted with black text and bold border
 
 ---
@@ -508,25 +501,25 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - White bg
 - Persistent header, NO section title block
 - Split layout: left 42% | right 58%
-  - Left: "FEEDBACK\nNEEDED" — 64px IBM Plex Sans 300, uppercase, vertically centered
+  - Left: "FEEDBACK\nNEEDED" — 64px `--font-sans` 300, uppercase, vertically centered
   - Vertical rule: 1px `rgba(0,0,0,0.1)` between halves
-  - Right: 3 bullet questions, 21px Roboto 300, lh 1.55
+  - Right: 3 bullet questions, 21px `--font-body` 300, lh 1.55
     - Bullet: 6×6px black circle, flex-shrink 0, margin-top 6px
     - Question text: left-aligned
 
 ```html
-<div class="slide" style="background:#fff;">
+<div class="slide" style="background:var(--light-bg);">
   {hdr}
   <div style="padding-top:38px;height:calc(100% - 38px);display:flex;">
     <div style="width:42%;display:flex;align-items:center;justify-content:center;padding:60px;">
-      <h2 style="font-size:64px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;text-transform:uppercase;line-height:1.1;color:#000;">FEEDBACK<br>NEEDED</h2>
+      <h2 style="font-size:64px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;line-height:1.1;color:var(--bg-pure);">FEEDBACK<br>NEEDED</h2>
     </div>
     <div style="width:1px;background:rgba(0,0,0,0.1);align-self:stretch;margin:40px 0;"></div>
     <div style="width:58%;padding:60px 70px;display:flex;flex-direction:column;justify-content:center;gap:32px;">
       <!-- repeat for each question -->
       <div style="display:flex;gap:18px;align-items:flex-start;">
-        <div style="width:6px;height:6px;border-radius:50%;background:#000;flex-shrink:0;margin-top:9px;"></div>
-        <p style="font-size:21px;font-weight:300;font-family:'Roboto',sans-serif;color:#000;line-height:1.55;">{question}</p>
+        <div style="width:6px;height:6px;border-radius:50%;background:var(--bg-pure);flex-shrink:0;margin-top:9px;"></div>
+        <p style="font-size:21px;font-weight:300;font-family:var(--font-body);color:var(--bg-pure);line-height:1.55;">{question}</p>
       </div>
     </div>
   </div>
@@ -540,10 +533,10 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: Side-by-side current vs. proposed solution comparison
 
 - White bg
-- Persistent header + "PROPOSED CONCEPT" section header (40px IBM Plex Sans) + 1px divider
+- Persistent header + "PROPOSED CONCEPT" section header (40px `--font-sans`) + 1px divider
 - Two halves separated by 1px vertical divider:
-  - Labels: "1" / "2" or "TODAY" / "TOMORROW" — 21px Roboto 500 uppercase, centered
-  - Sublabel: 13px Roboto 300 muted, text-align center
+  - Labels: "1" / "2" or "TODAY" / "TOMORROW" — 21px `--font-body` 500 uppercase, centered
+  - Sublabel: 13px `--font-body` 300 muted, text-align center
   - Phone mockup (220×420) centered below label
 
 ---
@@ -554,8 +547,8 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 - White bg (or black variant)
 - Persistent header
-- "DIRECTION" — 40px IBM Plex Sans 400, uppercase
-- "01" / "02" / "03" — 40px IBM Plex Sans 400, alongside or same line
+- "DIRECTION" — 40px `--font-sans` 400, uppercase
+- "01" / "02" / "03" — 40px `--font-sans` 400, alongside or same line
 
 ---
 
@@ -568,30 +561,30 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - White bg
 - Persistent header, NO section title block
 - Left 42%:
-  - Direction title: "DIRECTION 1" — 46px IBM Plex Sans 300, uppercase, margin-bottom 28px
-  - Direction name: 15px IBM Plex Sans 500
-  - Description: 16px Roboto 300, lh 1.72, `rgba(0,0,0,0.55)`
+  - Direction title: "DIRECTION 1" — 46px `--font-sans` 300, uppercase, margin-bottom 28px
+  - Direction name: 15px `--font-sans` 500
+  - Description: 16px `--font-body` 300, lh 1.72, `rgba(0,0,0,0.55)`
 - Right 58%: phone mockup(s) — single (276×556) or two side-by-side (216×436 each)
 - Bottom keyword bar (absolute, bottom:0):
   - `border-top:1px solid rgba(0,0,0,0.1)`
-  - 13px Public Sans uppercase, text-align center
+  - 13px `--font-ui` uppercase, text-align center
   - Format: `Keywords: Word 01, Word 02, Word 03`
 
 ```html
-<div class="slide" style="background:#fff;">
+<div class="slide" style="background:var(--light-bg);">
   {hdr}
   <div style="padding-top:38px;height:calc(100% - 38px);display:flex;">
     <div style="width:42%;padding:60px 60px 80px;display:flex;flex-direction:column;justify-content:center;">
-      <h2 style="font-size:46px;font-weight:300;font-family:'IBM Plex Sans',sans-serif;text-transform:uppercase;color:#000;margin-bottom:28px;">DIRECTION {n}</h2>
-      <p style="font-size:15px;font-weight:500;font-family:'IBM Plex Sans',sans-serif;color:#000;margin-bottom:14px;">{direction name}</p>
-      <p style="font-size:16px;font-weight:300;font-family:'Roboto',sans-serif;color:rgba(0,0,0,0.55);line-height:1.72;">{description}</p>
+      <h2 style="font-size:46px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;color:var(--bg-pure);margin-bottom:28px;">DIRECTION {n}</h2>
+      <p style="font-size:15px;font-weight:500;font-family:var(--font-sans);color:var(--bg-pure);margin-bottom:14px;">{direction name}</p>
+      <p style="font-size:16px;font-weight:300;font-family:var(--font-body);color:rgba(0,0,0,0.55);line-height:1.72;">{description}</p>
     </div>
     <div style="width:58%;display:flex;align-items:center;justify-content:center;gap:24px;">
       <!-- phone() output -->
     </div>
   </div>
   <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid rgba(0,0,0,0.1);padding:10px 60px;text-align:center;">
-    <span style="font-size:13px;font-family:'Public Sans',sans-serif;text-transform:uppercase;letter-spacing:0.08em;color:rgba(0,0,0,0.4);">Keywords: {word1}, {word2}, {word3}</span>
+    <span style="font-size:13px;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:0.08em;color:rgba(0,0,0,0.4);">Keywords: {word1}, {word2}, {word3}</span>
   </div>
 </div>
 ```
@@ -603,11 +596,11 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: 3-step workflow comparison across BEFORE / NOW / AFTER
 
 - White bg
-- Persistent header + "BEFORE/AFTER WORKFLOW" — 40px **IBM Plex Mono** 400 + 1px divider
-- Column headers: BEFORE | NOW | AFTER — 13px Public Sans uppercase
+- Persistent header + "BEFORE/AFTER WORKFLOW" — 40px **`--font-mono`** 400 + 1px divider
+- Column headers: BEFORE | NOW | AFTER — 13px `--font-ui` uppercase
 - 3 rows × 3 columns grid
-  - Step number: 40px Roboto, `rgba(0,0,0,0.2)`, margin-right 16px
-  - Step text: 16px Roboto 300, 2 lines
+  - Step number: 40px `--font-body`, `rgba(0,0,0,0.2)`, margin-right 16px
+  - Step text: 16px `--font-body` 300, 2 lines
 
 ---
 
@@ -616,7 +609,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: Structured trade-off analysis between options
 
 - White bg
-- Persistent header + "STRATEGIC DIRECTIONS" or "DECISION MATRIX" — 40px IBM Plex Mono + 1px divider
+- Persistent header + "STRATEGIC DIRECTIONS" or "DECISION MATRIX" — 40px `--font-mono` + 1px divider
 
 **Strategic Directions layout:**
 - Question row at top
@@ -634,7 +627,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: Comparing 4–5 options across benefits
 
 - White bg
-- Persistent header + "BENEFIT COMPARISON TABLE" — 40px IBM Plex Mono + 1px divider
+- Persistent header + "BENEFIT COMPARISON TABLE" — 40px `--font-mono` + 1px divider
 - Table: Benefit rows × Option columns (A/B/C/D/E)
 - Cells: checkmark (✓) or dash (—)
 
@@ -645,10 +638,10 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: Synthesizing review outcomes into a decision record
 
 - White bg
-- Persistent header + "FINDINGS & RECOMMENDATIONS" — 40px IBM Plex Mono + 1px divider
+- Persistent header + "FINDINGS & RECOMMENDATIONS" — 40px `--font-mono` + 1px divider
 - 2-column split: Findings | Recommendations
-  - Column header: 13px Public Sans uppercase
-  - Items: numbered 01/02/03, 40px Roboto number (muted) + 16px Roboto 300 text
+  - Column header: 13px `--font-ui` uppercase
+  - Items: numbered 01/02/03, 40px `--font-body` number (muted) + 16px `--font-body` 300 text
 
 ---
 
@@ -656,9 +649,9 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Source**: PPTX2, slide 52  
 **Used for**: Showing the committed direction as a full-bleed visual
 
-- Background: `#000000`, NO persistent header (or white persistent header on dark)
-- "FINAL MOCKUP" — 40px IBM Plex Mono 400, white, top-left (with padding)
-- Description: 20px Roboto 300, white, below title
+- Background: `--bg-pure`, NO persistent header (or white persistent header on dark)
+- "FINAL MOCKUP" — 40px `--font-mono` 400, white, top-left (with padding)
+- Description: 20px `--font-body` 300, white, below title
 - Large mockup image fills most of slide
 
 ---
@@ -680,8 +673,8 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 - White bg
 - Persistent header + section header
-- 4-cell grid: large metric value + metric label (13px Public Sans)
-  - **Large metric value: ~100–107px Roboto bold** (source PPTX is 53.44pt ≈ 107px at deck scale). The number must dominate its cell — do **not** shrink it to ~40–56px; all four cells use the same size for consistency across decks.
+- 4-cell grid: large metric value + metric label (13px `--font-ui`)
+  - **Large metric value: ~100–107px `--font-body` bold** (source PPTX is 53.44pt ≈ 107px at deck scale). The number must dominate its cell — do **not** shrink it to ~40–56px; all four cells use the same size for consistency across decks.
 
 ---
 
@@ -693,7 +686,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Persistent header, NO section title block
 - Left text panel: direction name + description
 - Right visual panel: mockup + callout annotations
-  - Callout: dotted line + 13px Roboto text label
+  - Callout: dotted line + 13px `--font-body` text label
 
 ---
 
@@ -723,9 +716,9 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Used for**: Final slide
 
 - White bg (or black variant)
-- "THANKS" or "Questions or new ideas?" — 96px IBM Plex Sans 300, centered
+- "THANKS" or "Questions or new ideas?" — 96px `--font-sans` 300, centered
 - Below: email, project link, phase/round metadata
-- Font: IBM Plex Sans
+- Font: `--font-sans`
 
 ---
 
@@ -749,10 +742,10 @@ def phone(src: str, w: int = 240, h: int = 480, pos: str = 'top') -> str:
     nh = max(8, int(h * 0.022))
     nt = max(8, int(h * 0.02))
     return (
-        f'<div style="width:{w}px;height:{h}px;border-radius:{r}px;border:2.5px solid #1a1a1a;'
-        f'position:relative;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.18);background:#fff;flex-shrink:0;">'
+        f'<div style="width:{w}px;height:{h}px;border-radius:{r}px;border:2.5px solid var(--ink-body);'
+        f'position:relative;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.18);background:var(--light-bg);flex-shrink:0;">'
         f'<div style="position:absolute;top:{nt}px;left:50%;transform:translateX(-50%);'
-        f'width:{nw}px;height:{nh}px;background:#111;border-radius:{nh}px;z-index:10;"></div>'
+        f'width:{nw}px;height:{nh}px;background:var(--ink);border-radius:{nh}px;z-index:10;"></div>'
         f'<img src="{src}" style="position:absolute;inset:0;width:100%;height:100%;'
         f'object-fit:cover;object-position:{pos};" alt="">'
         f'</div>'
@@ -765,20 +758,20 @@ def hdr(project: str = "PROJECT / FEATURE NAME", date: str = "TODAY'S DATE", dar
     return (
         f'<div style="position:absolute;top:0;left:0;right:0;padding:10px 45px;display:flex;'
         f'justify-content:space-between;align-items:center;border-bottom:1px solid {br};z-index:100;">'
-        f'<span style="font-size:13px;font-weight:400;font-family:\'Public Sans\',sans-serif;'
+        f'<span style="font-size:13px;font-weight:400;font-family:var(--font-ui);'
         f'text-transform:uppercase;letter-spacing:0.08em;color:{fg};">{project}</span>'
-        f'<span style="font-size:13px;font-weight:400;font-family:\'Public Sans\',sans-serif;'
+        f'<span style="font-size:13px;font-weight:400;font-family:var(--font-ui);'
         f'text-transform:uppercase;letter-spacing:0.08em;color:{fg};">{date}</span>'
         f'</div>'
     )
 
 def stitle(text: str, dark: bool = False) -> str:
     """Render a section title block (used at top of content slides)."""
-    fg = "#fff" if dark else "#000"
+    fg = "var(--text)" if dark else "var(--bg-pure)"
     br = "rgba(255,255,255,0.12)" if dark else "rgba(0,0,0,0.12)"
     return (
         f'<div style="text-align:center;padding:48px 80px 0;">'
-        f'<h2 style="font-size:40px;font-weight:400;font-family:\'IBM Plex Sans\',sans-serif;'
+        f'<h2 style="font-size:40px;font-weight:400;font-family:var(--font-sans);'
         f'text-transform:uppercase;letter-spacing:0em;color:{fg};">{text}</h2>'
         f'<div style="height:1px;background:{br};margin-top:18px;"></div>'
         f'</div>'
@@ -868,7 +861,7 @@ When screenshots are provided:
 | Direction 3 (right panel, 2 phones) | Both screenshots | top / bottom |
 | Final Mockup | First screenshot | center |
 
-If no screenshots are provided: render phone frame outlines with placeholder fill `#E8E8E8`.
+If no screenshots are provided: render phone frame outlines with placeholder fill `--doc-canvas`.
 
 ---
 
@@ -888,19 +881,19 @@ If no screenshots are provided: render phone frame outlines with placeholder fil
 
 ## QA Checklist
 
-- [ ] Font: IBM Plex Sans for ALL titles, section headers, cover text
-- [ ] Font: Public Sans for persistent header, keyword bars, column labels
-- [ ] Font: Roboto for all body text, numbered items, descriptions
-- [ ] Font: IBM Plex Mono for BEFORE/AFTER, DECISION MATRIX, FINDINGS, FINAL MOCKUP headers
-- [ ] Font: Lora only on full-bleed quote slide
-- [ ] Section divider bg: exactly `#F1F1F2` (not #F2F2F2, not #EEEEEE)
-- [ ] Card bg on gray slides: `#E6E6E6`
+- [ ] Font: `--font-sans` for ALL titles, section headers, cover text
+- [ ] Font: `--font-ui` for persistent header, keyword bars, column labels
+- [ ] Font: `--font-body` for all body text, numbered items, descriptions
+- [ ] Font: `--font-mono` for BEFORE/AFTER, DECISION MATRIX, FINDINGS, FINAL MOCKUP headers
+- [ ] Font: `--font-quote` only on full-bleed quote slide
+- [ ] Section divider bg: exactly `--light-gray` (never other near-white grays)
+- [ ] Card bg on gray slides: `--light-card`
 - [ ] Cover slides: NO persistent header
 - [ ] All content slides: persistent header present
 - [ ] "FEEDBACK NEEDED — Questions" has vertical 1px divider between left and right halves
 - [ ] Direction slides have keyword bar at absolute bottom with border-top
 - [ ] Design Process timeline: 2px horizontal line + 4 alternating dots
-- [ ] Phone mockups: CSS border 2.5px solid #1a1a1a, correct border-radius, notch rendered
+- [ ] Phone mockups: CSS border 2.5px solid `--ink-body`, correct border-radius, notch rendered
 - [ ] Screenshots embedded as base64 data URIs (fully self-contained output)
 - [ ] Nav dots functional (bottom center)
 - [ ] Arrow button navigation functional (left/right sides)
