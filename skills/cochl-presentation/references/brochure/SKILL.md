@@ -21,7 +21,7 @@ Cochl 브로셔를 **Illustrator에서 편집 가능한 SVG**로 만든다.
 
 ## 수치·성능치 하드가드 (stat-band — 값 단위 NEEDS INPUT)
 
-브로셔의 **stat-band**(뒷면 통계·스펙 행, V3 Editorial의 통계 행 포함)는 **사용자가 명시적으로 제공한 값만** 표시한다. 정확도·F1·지연시간(ms)·온디바이스 비율·클래스/폴트 수 같은 성능 수치는 확인된 소스가 없으면 '그럴듯한' 값을 지어내지 않고 **값마다 개별적으로** `[NEEDS INPUT]`(brand-core.md §1b `.needs-input` 컴포넌트)로 렌더링한다.
+브로셔의 **stat-band**(뒷면 통계·스펙 행, V3 Editorial의 통계 행 포함)는 **사용자가 명시적으로 제공한 값만** 표시한다. 정확도·F1·지연시간(ms)·온디바이스 비율·클래스/폴트 수 같은 성능 수치는 확인된 소스가 없으면 '그럴듯한' 값을 지어내지 않고 **값마다 개별적으로** `[NEEDS INPUT]`(`../../../cochl-design/core/brand-core.md` §1b `.needs-input` 컴포넌트)로 렌더링한다.
 
 - **필드 단위가 아니라 값 단위로 검사한다** — 같은 stat-band 안의 다른 필드가 이미 올바르게 NEEDS INPUT 처리되어 있어도 예외 없음.
 - `ILLUSTRATIVE` / `예시` 같은 라벨이 붙어도 면제되지 않는다 (상위 [`../../SKILL.md`](../../SKILL.md) → Facts & fabrication 규칙과 동일).
@@ -29,7 +29,7 @@ Cochl 브로셔를 **Illustrator에서 편집 가능한 SVG**로 만든다.
 
 ## 카피 다양성 & 커버 라벨
 
-**헤드라인 문장 구조** — 같은 브로슈어 패밀리의 세그먼트 변형(리테일·제조·보안 등 에디션) 간에 동일한 헤드라인 문장 구조를 반복하지 않는다. 예를 들어 `X before Y`("Catch shrinkage before it walks out." / "Hear problems before they break down.")를 여러 커버에 그대로 재사용하지 않는다 — 최근 커버 헤드라인 구조를 확인하고 질문형·선언형·대비형 등 다른 구조로 변형한다. (상위 [`../brand-core.md`](../brand-core.md) §2b *Overused headline templates* 규칙과 동일 · 값마다 다른 문장 형태.)
+**헤드라인 문장 구조** — 같은 브로슈어 패밀리의 세그먼트 변형(리테일·제조·보안 등 에디션) 간에 동일한 헤드라인 문장 구조를 반복하지 않는다. 예를 들어 `X before Y`("Catch shrinkage before it walks out." / "Hear problems before they break down.")를 여러 커버에 그대로 재사용하지 않는다 — 최근 커버 헤드라인 구조를 확인하고 질문형·선언형·대비형 등 다른 구조로 변형한다. (상위 [`brand-core.md`](../../../cochl-design/core/brand-core.md) §2b *Overused headline templates* 규칙과 동일 · 값마다 다른 문장 형태.)
 
 **커버 라벨** — 커버 우상단 라벨에서 문서 타입(예: `PRODUCT BROCHURE — 2026`)과 에디션명(예: `COLD OUTREACH EDITION`)을 케이스마다 임의로 바꾸지 않는다. 세그먼트별 에디션 브로슈어에서는 한 방식으로 통일한다:
 

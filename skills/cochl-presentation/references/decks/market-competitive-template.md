@@ -14,7 +14,7 @@ market size uses confirmed research (Grand View Research). Competitor **categori
 Audio analytics, Computer vision, Traditional sensors) are qualitative capability framing, not
 fabricated company facts — but each archetype card still stands in for a specific competitor slot,
 so the card's **title itself** must carry `[NEEDS INPUT]` unless the user supplied a real, confirmed
-name for it (brand-core.md §1c); the category tag is not a substitute for the title-level mark, and
+name for it (`../../../cochl-design/core/brand-core.md` §1c); the category tag is not a substitute for the title-level mark, and
 neither is a footnote. Never invent specific competitor data.
 
 ---
@@ -69,7 +69,7 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
   (what each alternative misses). The card's **name/title slot** renders `[NEEDS INPUT]` unless the
   user supplied a real, confirmed competitor name — the category tag (Speech AI, Audio analytics,
   Computer vision, Traditional sensors) is qualitative framing, not a substitute for the mark, and a
-  footnote is not a substitute either (brand-core.md §1c). Apply per card — all 4 are checked
+  footnote is not a substitute either (`../../../cochl-design/core/brand-core.md` §1c). Apply per card — all 4 are checked
   independently, not as a set.
 - **strengths-weaknesses** — left dark panel (mint heading, `+` rows) vs right cream panel (dark-green
   heading, `–` rows) — a deliberate light/dark contrast echoing an editorial compare.
@@ -81,7 +81,7 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
 - **customer-gaps** — left dark panel with an oversized `NEEDS INPUT` stat; right 4 gap rows
   (mono key + bold + sub): off-camera, alert fatigue, no context, audio unused. The stat's mandatory
   sourcing caption — "Pending verified research — do not present without a sourced figure." — renders
-  underneath it every time, per brand-core.md §1d; it is part of the stat component, not optional
+  underneath it every time, per `../../../cochl-design/core/brand-core.md` §1d; it is part of the stat component, not optional
   copy to add or drop per slide.
 - **strategic-takeaways** — centered title + 4 cards, same base grid as `competitor-profiles` (slide
   6) but deliberately **not** a copy of it: no image strip, a numbered mono kicker (`01`–`04`) in
@@ -89,13 +89,13 @@ strengths/weaknesses** contrast (dark panel + cream/light panel), and **numbered
   reused here because these are Cochl's edge, not a rival's) instead of the indigo card border.
   Card aspect is also squarer (no image slot to accommodate). This keeps the two 4-card sections
   visually distinguishable at a glance rather than reading as the same layout re-skinned with new
-  copy (SKILL.md Routing step 5; brand-core.md §4 → Card-layout reuse check).
+  copy (SKILL.md Routing step 5; [`../deck-engine.md`](../deck-engine.md) → Card-layout reuse check).
 - **differentiation-levers / action-plan** — Cochl's edge: real-time sound intelligence, rides
   existing infra, edge+cloud, multi-industry; closing anchors the category. `action-plan`'s closer
   is a **category-ownership statement, never a funding ask** — this deck has no round and no raise,
   so investor closing language ("not a funding round," "the ask," "Pitch Closing Questions") never
   belongs here even when the slide is adapted from the shared thanks-contact structure
-  (brand-core.md §2c).
+  (`../../../cochl-design/core/brand-core.md` §2c).
 
 ---
 

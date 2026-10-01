@@ -4,7 +4,7 @@ A **5-page press/media kit document** in the Cochl brand — the packet a journa
 
 **Editable Figma source (Cochl_Internal):** https://www.figma.com/design/ZNt6fgUANTjRPk6GpgxODH/Cochl-Media-Kit — all 5 pages as editable frames (live text, gradient `cochl.` logo, indigo→purple blocks, image drop-zones). Prefer editing/duplicating this Figma file for a real kit; the `templates/` SVGs below are the offline mirror and the source these frames were imported from (identical layout/coords).
 
-Inherits [`../brand-core.md`](../brand-core.md), with a **light** print treatment (white/​`#EEF2FF` panels, `#0F1B3D` ink) instead of the dark deck theme. Signature Cochl elements: the gradient `cochl.` logo (gradient disc symbol + wordmark — black on light pages, white on the cover photo), indigo `#4B68FF`→purple `#832BFB` accent blocks (replacing the reference's orange), a right-edge vertical **MEDIA KIT** spine, and a gradient-disc corner mark.
+Inherits [`brand-core.md`](../../../cochl-design/core/brand-core.md), with a **light** print treatment (white/​`#EEF2FF` panels, `#0F1B3D` ink) instead of the dark deck theme. Signature Cochl elements: the gradient `cochl.` logo (gradient disc symbol + wordmark — black on light pages, white on the cover photo), indigo `#4B68FF`→purple `#832BFB` accent blocks (replacing the reference's orange), a right-edge vertical **MEDIA KIT** spine, and a gradient-disc corner mark.
 
 ## Pages (`templates/`)
 | # | Page | Contents |

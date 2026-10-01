@@ -38,7 +38,7 @@ Do **not** render 08 with the same index-numbered (01→0N) card + arrow flow co
 - a **vertical timeline**: a connecting line running down the slide with a node/checkmark per stage and the stage's output or deliverable labeled beside it, or
 - a **left→right progress bar**: a single horizontal track with markers at each step and a short output label underneath each marker (what that step produced, not just its name).
 
-This is a specific instance of the general rule in `../brand-core.md` §4 → Card-layout reuse check — apply it here even though 06 and 08 are not both literally "cards," since an index+arrow flow is the same offending pattern (a reused compositional unit standing in for unrelated content).
+This is a specific instance of the general rule in [`../deck-engine.md`](../deck-engine.md) → Card-layout reuse check — apply it here even though 06 and 08 are not both literally "cards," since an index+arrow flow is the same offending pattern (a reused compositional unit standing in for unrelated content).
 
 ## Notes
 - **Tooling:** Canva (not Figma/SVG). Because the Cochl account has **no Canva brand kit**, Canva applied its own styling steered toward Cochl via a style prompt — palette/mood match, but the display face is a serif rather than IBM Plex Sans, and colors are approximate. For a pixel-exact Cochl deck, use the Figma-Slides path instead.

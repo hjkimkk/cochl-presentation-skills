@@ -1,6 +1,6 @@
 # Trade Show / Conference Booth Deck
 
-A **looping, glanceable kiosk display** for a booth monitor or conference standee — not a narrated pitch. It must read from 3–5 m away in a noisy hall, attract a passerby in ~2 seconds, and communicate one idea per screen while auto-advancing on a seamless loop. Inherits [`../brand-core.md`](../brand-core.md) for color, glow, logo, and type; **overrides** the type scale (much larger), replaces the page-nav pill with an auto-loop, and runs as a kiosk (no human navigation required).
+A **looping, glanceable kiosk display** for a booth monitor or conference standee — not a narrated pitch. It must read from 3–5 m away in a noisy hall, attract a passerby in ~2 seconds, and communicate one idea per screen while auto-advancing on a seamless loop. Inherits [`brand-core.md`](../../../cochl-design/core/brand-core.md) (machinery in [`deck-engine.md`](../deck-engine.md)) for color, glow, logo, and type; **overrides** the type scale (much larger), replaces the page-nav pill with an auto-loop, and runs as a kiosk (no human navigation required).
 
 Heading treatment: IBM Plex Sans, Title Case or UPPERCASE display; mono kickers. Accent: indigo, glow-forward. This is the most visually dramatic Cochl deck — lean into the glow and oversized type.
 
@@ -52,6 +52,6 @@ Frame CSS: `.frame{position:fixed;inset:0;opacity:0;transition:opacity .8s ease}
 The CTA QR must be generated at build time (offline). Encode the destination URL (default `https://cochl.ai`). Render as a self-contained SVG/PNG on a light rounded panel for scan contrast; embed inline (no external QR service). Confirm the exact URL / booth number with the user; unconfirmed → `[NEEDS INPUT]`.
 
 ## Output
-Primary = the self-contained looping **HTML** (kiosk). Then ask format per brand-core §4. A **PPTX** export is possible (each frame → 1920×1080 image via the brand-core recipe, set slide advance to auto ~6 s), but the HTML loop is the real deliverable — say so. Deliver HTML (and PPTX if asked); same basename/dir.
+Primary = the self-contained looping **HTML** (kiosk). Then ask format per [`deck-engine.md`](../deck-engine.md) → Output flow. A **PPTX** export is possible (each frame → 1920×1080 image via the [`deck-engine.md`](../deck-engine.md) recipe, set slide advance to auto ~6 s), but the HTML loop is the real deliverable — say so. Deliver HTML (and PPTX if asked); same basename/dir.
 
-Everything else (colors, gradient rule, fonts, logo, glow, PPTX recipe, QA) → **[`../brand-core.md`](../brand-core.md)**. Booth-specific QA: readable at 3–5 m? ≤7 words/frame? one glow + ≤one stat per frame? loop wraps seamlessly? opens on attract, closes on CTA-QR? no unconfirmed facts left unmarked?
+Everything else (colors, gradient rule, fonts, logo, glow) → **[`brand-core.md`](../../../cochl-design/core/brand-core.md)**; PPTX recipe, QA → **[`deck-engine.md`](../deck-engine.md)**. Booth-specific QA: readable at 3–5 m? ≤7 words/frame? one glow + ≤one stat per frame? loop wraps seamlessly? opens on attract, closes on CTA-QR? no unconfirmed facts left unmarked?
