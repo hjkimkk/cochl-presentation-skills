@@ -25,7 +25,7 @@
       return { src: i.src.slice(0, 80), distortion: natural ? Math.abs(rendered / natural - 1) : 0 };
     });
   const slides = [...document.querySelectorAll('section.slide, .slide, .pg, .page')];
-  const first = slides[0] ? slides[0].getBoundingClientRect() : { width: innerWidth, height: innerHeight };
+  const first = slides[0] ? { width: slides[0].offsetWidth, height: slides[0].offsetHeight } : { width: innerWidth, height: innerHeight };
   return {
     fonts, colors, logos,
     canvas: [Math.round(first.width), Math.round(first.height)],
