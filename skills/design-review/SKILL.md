@@ -57,9 +57,9 @@ color values, and structural rules. Everything below is derived from them.
 
 ### Brand
 
-**Brand:** read `../cochl-design/core/brand-core.md`, then `../cochl-design/core/themes/plex.md`. Default theme `plex`. Paste the theme's `:root` block into the output `<style>` before any template CSS. Run `../cochl-design/core/qa-checklist.md` before delivering.
+**Brand:** read `../cochl-design/core/brand-core.md`, then `../cochl-design/core/themes/plex.md`. Default theme `plex`. Paste the theme's `:root` block into the output `<style>` before any template CSS, and its Google Fonts `<link>` into `<head>`. Run `../cochl-design/core/qa-checklist.md` before delivering.
 
-Google Fonts link: see `../cochl-design/core/themes/plex.md`. Use only the tokens below; never write a literal color or font name.
+Use only the tokens below; never write a literal color or font name.
 
 | Role | Token |
 |---|---|
@@ -141,7 +141,7 @@ Content area starts at `top: 38px`.
 <title>{Project Name} — Design Review · Cochl</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- Google Fonts link: see ../cochl-design/core/themes/plex.md -->
+<!-- paste the <link> tag from ../cochl-design/core/themes/plex.md here -->
 <style>/* paste plex :root block here */</style>
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -475,10 +475,10 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 **Timeline colors — brand tokens only:**
 - Base line and past-stage dots: black `--bg-pure`
-- Current-position dot / active highlight: `--accent` `--accent` (Cochl indigo)
+- Current-position dot / active highlight: `--accent` (Cochl indigo)
 - Muted labels: `rgba(0,0,0,0.4)`–`rgba(0,0,0,0.55)`
 
-> ⚠️ **Never** color the timeline line or dots with off-brand saturated dark blues — they render nearly black on screen and break the brand palette. The source PPTX Design Process slides (Proposal 21–22, Direction 26–27) contain those values; when porting them, **override** every timeline blue to `--accent` (accent) or `--bg-pure`. This rule applies to every generated deck.
+> ⚠️ **Never** color the timeline line or dots with off-brand saturated dark blues — they render nearly black on screen and break the brand palette. The source PPTX Design Process slides (Proposal 21–22, Direction 26–27) contain those values; when porting them, **override** every timeline blue to `--accent` or `--bg-pure`. This rule applies to every generated deck.
 
 ---
 
@@ -881,6 +881,7 @@ If no screenshots are provided: render phone frame outlines with placeholder fil
 
 ## QA Checklist
 
+- [ ] Google Fonts `<link>` from themes/plex.md is present in `<head>`
 - [ ] Font: `--font-sans` for ALL titles, section headers, cover text
 - [ ] Font: `--font-ui` for persistent header, keyword bars, column labels
 - [ ] Font: `--font-body` for all body text, numbered items, descriptions
