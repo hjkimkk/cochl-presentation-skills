@@ -1,0 +1,21 @@
+name: skills-lint
+
+on:
+  pull_request:
+    paths: ["skills/**", "scripts/skills-lint/**", ".github/workflows/skills-lint.yml"]
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Unit tests
+        working-directory: scripts/skills-lint
+        run: npm test
+      - name: Lint skills
+        run: node scripts/skills-lint/lint.mjs --base "origin/${{ github.base_ref }}"
