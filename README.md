@@ -4,13 +4,17 @@ A reusable Claude Code skill library for creating Cochl presentations, design re
 
 ## Skills
 
-| Skill | Trigger | Purpose |
+| Skill | Command | Purpose |
 |---|---|---|
-| [cochl-presentation](./skills/cochl-presentation/) | `/cochl-presentation` | Build any Cochl presentation collateral — decks, documents, brochures, social media banners. Router over a **template registry** (`references/registry.md`) + shared **brand core** (`references/brand-core.md`). Ready: 6 deck variants (Investor, B2B sales, Corporate strategy/roadmap, QBR/board, Market & competitive, Trade-show/booth) in `references/decks/`, a **brochure SVG library** (`references/brochure/`, 12 layouts + 32 icons), a **Social Media Banner Kit** (`references/social-kit/`, LinkedIn/YouTube/Medium/Notion/OG), and a 5-page **Press / Media Kit** (`references/press-kit/`). Data/Design/Dev/Research team decks are registered and build on the same structure. |
-| [pitch-deck](./skills/pitch-deck/) | `/pitch-deck-skill` | Update/rebuild within the official Cochl PT template (HTML + PPTX) |
-| [design-review](./skills/design-review/) | `/design-review-template` · `/dr-template` | Generate Proposal or Direction Alignment review presentations |
-| [proposal-doc](./skills/proposal-doc/) | `/proposal-doc-template` · `/proposal-doc` | Create styled Cochl proposal documents (HTML → PDF) |
-| [design-system](./skills/design-system/) | `/install-cochl-design-system` · `/frontend-design` | Install and apply the Cochl design system in React projects |
+| [cochl-design](./skills/cochl-design/) | `/cochl-design` | Router: picks the right Cochl skill for a request and owns the shared brand core (`core/`: brand rules, themes, tokens, QA checklist) |
+| [cochl-presentation](./skills/cochl-presentation/) | `/cochl-presentation` | Build any Cochl presentation collateral — decks, documents, brochures, social media banners, press kit. Template registry in `references/registry.md`, deck engine in `references/deck-engine.md`, deck variants in `references/decks/`, brochure SVG library (`references/brochure/`), Social Media Banner Kit (`references/social-kit/`), Press / Media Kit (`references/press-kit/`) |
+| [pitch-deck](./skills/pitch-deck/) | `/pitch-deck` | Thin stub that forwards to `/cochl-presentation` with theme `pt-template` (official Cochl PT template look) |
+| [design-review](./skills/design-review/) | `/design-review` | Generate Proposal or Direction Alignment review presentations |
+| [proposal-doc](./skills/proposal-doc/) | `/proposal-doc` | Create styled Cochl proposal documents (HTML → PDF) |
+| [design-system](./skills/design-system/) | `/design-system` | Install and apply the Cochl design system (`@cochlearai/ui`) in React projects |
+| [design-sync](./skills/design-sync/) | `/design-sync` | Sync design tokens and check design/code drift (thin skill over the `design-sync/` engine) |
+
+Commands are the skill folder names.
 
 ## Quick Start
 
@@ -23,9 +27,11 @@ bash .claude/install-skills.sh
 After install, skills are available in any Claude Code session:
 
 ```
-/pitch-deck-skill        — update or build a Cochl pitch deck
-/design-review-template  — generate a design review HTML presentation
-/proposal-doc            — create a styled proposal document
+/cochl-design        — not sure which skill? start here (router)
+/cochl-presentation  — build a Cochl deck, brochure or social banner
+/pitch-deck          — update or build a deck in the PT template style
+/design-review       — generate a design review HTML presentation
+/proposal-doc        — create a styled proposal document
 ```
 
 ## Stay up to date (auto-update)
@@ -64,21 +70,33 @@ replace `/ABSOLUTE/PATH/TO/cochl-presentation-skills` with where you cloned this
 ```
 cochl-presentation-skills/
 ├── skills/
-│   ├── cochl-presentation/  — /cochl-presentation skill (router) + references/ (brand-core.md, registry.md, decks/, docs/, brochure/, social-kit/, assets/)
-│   ├── pitch-deck/          — /pitch-deck-skill + Cochl PT template (assets/)
+│   ├── cochl-design/        — /cochl-design router + shared brand core
+│   │   ├── SKILL.md
+│   │   └── core/            — brand-core.md, tokens.md, qa-checklist.md, themes/{plex,pt-template}.md
+│   ├── cochl-presentation/  — /cochl-presentation
+│   │   ├── SKILL.md
+│   │   └── references/      — deck-engine.md, registry.md, decks/ (incl. pt-template/), brochure/, social-kit/, press-kit/, assets/
+│   ├── pitch-deck/          — /pitch-deck stub → cochl-presentation, theme pt-template
 │   ├── design-review/       — Design review skill + PPTX source templates
 │   ├── proposal-doc/        — Proposal doc skill + source PDFs + examples
-│   └── design-system/       — Design system install + frontend-design skill
+│   ├── design-system/       — Design system install + apply (@cochlearai/ui)
+│   └── design-sync/         — /design-sync thin skill over the design-sync/ engine
 ├── scripts/
+│   ├── skills-lint/         — CI lint for skills (names, paths, brand-value rules)
+│   ├── brand-facts/         — Brand fact extraction + tests
+│   ├── check-leftovers.sh   — Leftover-reference check
 │   └── gen_pptx.py          — PPTX generation utility
+├── design-sync/             — Design-sync engine (YJ)
 ├── shared/
 │   └── branding/            — Shared logos and brand assets
 ├── docs/
 │   ├── architecture.md      — How the skills system works
 │   └── onboarding.md        — New contributor guide
 └── .claude/
-    └── install-skills.sh    — Copies skills to ~/.claude/skills/
+    └── install-skills.sh    — Copies every skills/<dir> to ~/.claude/skills/
 ```
+
+Brand values live only in `skills/cochl-design/core/` — CI (skills-lint) enforces it.
 
 ## Dependencies
 

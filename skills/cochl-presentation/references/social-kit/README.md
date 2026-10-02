@@ -1,6 +1,6 @@
 # Cochl — Social Media Banner Kit
 
-Editable banner templates in the Cochl dark brand (near-black `#0b0b12`, indigo `#4B68FF` → purple `#832BFB` glow, gradient `cochl.` symbol + white wordmark, IBM Plex Sans / Mono).
+Editable banner templates in the Cochl dark brand (near-black `--bg`, indigo `--accent` → purple `--accent-purple` glow, gradient `cochl.` symbol + white wordmark, `--font-sans` / `--font-mono`).
 
 Two sets:
 - **`templates/`** — BLANK templates (image drop-zones + text placeholders). Start here; drop context + images to fill.
@@ -21,7 +21,7 @@ Two sets:
 
 ## How to fill a blank template
 1. Pick the format's blank SVG in `templates/`.
-2. Replace each dim `#565b6b` placeholder `<text>` with real copy — font, size, and position are already set.
+2. Replace each dim `--placeholder` placeholder `<text>` with real copy — font, size, and position are already set.
 3. For each `image-*` group: delete the placeholder rect/hatch/ticks/caption and place your `<image>` (or photo frame) at the same x/y/w/h.
 4. Delete the `layer-guides` group before exporting (YouTube / Notion).
 5. Keep the `logo` group and the `cochlGrad` / `glow` gradients as-is for brand consistency.

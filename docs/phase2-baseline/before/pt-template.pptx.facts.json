@@ -1,0 +1,31 @@
+{
+  "canvas": [
+    10.0,
+    5.625
+  ],
+  "colors": {
+    "#000000": 23,
+    "#333333": 18,
+    "#4a3a6b": 1,
+    "#666666": 10,
+    "#832bfb": 24,
+    "#ebddff": 3,
+    "#ffffff": 10
+  },
+  "fonts": {
+    "Century Gothic": 39,
+    "Roboto": 50
+  },
+  "kind": "pptx",
+  "layouts": [
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank"
+  ],
+  "logos": []
+}

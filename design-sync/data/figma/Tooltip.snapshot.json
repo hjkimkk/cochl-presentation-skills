@@ -1,0 +1,63 @@
+{
+  "_comment": "VERIFIED via get_metadata + get_design_context (node 3117:3628). Box: bg #333333 (Light/Gray/90), radius 4px, padding 16px, text white.",
+  "component": "Tooltip",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "27:446",
+    "name": "Tooltip v1"
+  },
+  "referenceVariant": {
+    "nodeId": "3117:3628",
+    "name": "theme=Light, type=top-middle"
+  },
+  "capturedVia": "figma-mcp get_metadata + get_design_context",
+  "fields": [
+    {
+      "key": "color.background",
+      "category": "color",
+      "value": "#333333",
+      "ref": "3117:3628",
+      "detail": "bg #333 (var Light/Gray/90)"
+    },
+    {
+      "key": "radius.border",
+      "category": "radius",
+      "value": "4px",
+      "ref": "3117:3628",
+      "detail": "rounded-[4px]"
+    },
+    {
+      "key": "spacing.padding",
+      "category": "spacing",
+      "value": "16px",
+      "ref": "3117:3628",
+      "detail": "p-[16px]"
+    },
+    {
+      "key": "variant.placement",
+      "category": "variant",
+      "value": [
+        "top-left",
+        "top-middle",
+        "top-right",
+        "bottom-left",
+        "bottom-middle",
+        "bottom-right",
+        "side-left",
+        "side-right"
+      ],
+      "ref": "3117:3637",
+      "detail": "variant axis: type (placement)"
+    }
+  ],
+  "meta": {
+    "component": "Tooltip",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "3117:3628",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata + get_design_context",
+    "sourceRevision": null,
+    "captureStatus": "captured"
+  }
+}

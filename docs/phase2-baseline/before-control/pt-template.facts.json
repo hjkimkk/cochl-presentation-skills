@@ -1,0 +1,46 @@
+{
+  "canvas": [
+    1280,
+    720
+  ],
+  "colors": {
+    "#000000": 24,
+    "#2f80ed": 1,
+    "#333333": 28,
+    "#4b68ff": 6,
+    "#666666": 15,
+    "#832bfb": 14,
+    "#8b9bb4": 3,
+    "#c9c9d4": 2,
+    "#ebddff": 1,
+    "#f4f7fe": 1,
+    "#faf8ff": 9,
+    "#ffffff": 37
+  },
+  "fonts": {
+    "IBM Plex Mono": 8,
+    "IBM Plex Sans": 107
+  },
+  "kind": "html",
+  "layouts": [
+    "slide dark on",
+    "slide light",
+    "slide dark center",
+    "slide light",
+    "slide light",
+    "slide light",
+    "slide dark center",
+    "slide light",
+    "slide dark center"
+  ],
+  "logos": [
+    {
+      "distortion": 0.0003,
+      "src": "x"
+    },
+    {
+      "distortion": 1,
+      "src": "x"
+    }
+  ]
+}

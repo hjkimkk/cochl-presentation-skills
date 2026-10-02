@@ -1,0 +1,25 @@
+{
+  "_comment": "Architectural finding (verified by inspection). Figma 'Dropdown v1' is a SELECT FIELD; code `Dropdown` is a generic popover container (props: data/renderItem/isOpen/onClickOutside) — a different abstraction. Not fabricating a 1:1 value comparison; surfaced as a mapping/semantic mismatch.",
+  "component": "Dropdown",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "28:538",
+    "name": "Dropdown v1"
+  },
+  "referenceVariant": {
+    "nodeId": "28:538",
+    "name": "Dropdown v1 (semantic mismatch — see note)"
+  },
+  "capturedVia": "figma-mcp get_metadata (page) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "Dropdown",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "28:538",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata (page) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

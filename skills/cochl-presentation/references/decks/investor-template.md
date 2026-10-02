@@ -18,28 +18,29 @@ Distinct from the generic deck tokens — the investor template is **mono-headli
 indigo-accent** with signature glow motifs.
 
 ```css
---bg:        #0B0B12   /* near-black base for glow slides (cover, statements, problem, market, closing) */
---bg-black:  #000000   /* pure black for data slides (traction, competitors, offering, revenue, pipeline, financials) */
---panel:     #14141C   /* raised dark cards / competitor cards / tier cards */
---card-img:  #ECECEC   /* light image-placeholder fill (use-case & offering cards) */
---text:      #FFFFFF
---muted:     #8A8A99   /* grey body text on light-heading offering/use-case slides */
---accent:    #4B68FF   /* vivid indigo — subtitle, glows, contact icons, accent underline */
---accent-purple: #832BFB
---glow:      radial/linear #832BFB → #4B68FF   /* purple→blue */
---neg:       #EB5B6B   /* competitor ✕ (pink-red) */
---pos:       #B7E4A0   /* offering ✓ (soft green) */
+/* "(theme token)" = use the same-named token from themes/plex.md unchanged */
+--bg:        (theme token)   /* near-black base for glow slides (cover, statements, problem, market, closing) */
+--bg-black:  var(--bg-pure)   /* pure black for data slides (traction, competitors, offering, revenue, pipeline, financials) */
+--panel:     (theme token)   /* raised dark cards / competitor cards / tier cards */
+--card-img:  var(--img-placeholder)   /* light image-placeholder fill (use-case & offering cards) */
+--text:      (theme token)
+--muted:     var(--muted-3)   /* grey body text on light-heading offering/use-case slides */
+--accent:    (theme token)   /* vivid indigo — subtitle, glows, contact icons, accent underline */
+--accent-purple: (theme token)
+--glow:      radial/linear var(--accent-purple) → var(--accent)   /* purple→blue */
+--neg:       (theme token)   /* competitor ✕ (pink-red) */
+--pos:       (theme token)   /* offering ✓ (soft green) */
 --radius:    18px
 --margin-x:  110px     /* content left/right margin at 1920 */
 
 /* Typography — HEADLINE + KICKER ARE MONOSPACE (this is the signature) */
---font-head: 'IBM Plex Mono'   /* kicker + all slide titles, UPPERCASE, weight 500 */
---font-body: 'IBM Plex Sans'   /* body, statements, metric values, labels */
-kicker:  IBM Plex Mono / 13px / 500 / letter-spacing .15em / UPPERCASE / muted-white
-title:   IBM Plex Mono / 44px / 500 / UPPERCASE / white
-body:    IBM Plex Sans / 22px / 400 / lh 1.5
-statement (centered): IBM Plex Sans / ~64px / 500 / lh 1.25 / white
-metric value: IBM Plex Sans / ~120px / 700 (length-fitted)
+--font-head: var(--font-mono)   /* kicker + all slide titles, UPPERCASE, weight 500 */
+--font-body: var(--font-sans)   /* body, statements, metric values, labels */
+kicker:  var(--font-mono) / 13px / 500 / letter-spacing .15em / UPPERCASE / muted-white
+title:   var(--font-mono) / 44px / 500 / UPPERCASE / white
+body:    var(--font-sans) / 22px / 400 / lh 1.5
+statement (centered): var(--font-sans) / ~64px / 500 / lh 1.25 / white
+metric value: var(--font-sans) / ~120px / 700 (length-fitted)
 ```
 
 ### Standard chrome (content slides only — NOT cover/statement slides)
@@ -106,7 +107,7 @@ was missing only on this layout). MEDIUM-HIGH.
 
 ### 5 · traction-metrics
 Pure black. Kicker + mono title (e.g. `WHAT COCHL HAS ACHIEVED SO FAR?`). **3×2 grid** of
-oversized metric values (IBM Plex Sans 700) each with a small bold label beneath:
+oversized metric values (`--font-sans` 700) each with a small bold label beneath:
 `$XXM` Annual recurring revenue · `XX` Customers and counting · `%` Year on year growth ·
 `%` Customer retention rate · `X+` Years in business · `XX` Team members. Optional vertical
 mono meta up the right edge. Values length-fit to one line. HIGH. **Most important slide.**

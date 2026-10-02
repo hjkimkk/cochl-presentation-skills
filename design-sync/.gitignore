@@ -1,0 +1,4 @@
+# Generated sync reports — reproducible via `node cli.mjs compare <Component>`
+reports/
+# Sandbox working copy used by `fix --yes`
+.work/

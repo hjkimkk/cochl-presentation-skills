@@ -1,0 +1,33 @@
+{
+  "canvas": [
+    794,
+    1123
+  ],
+  "colors": {
+    "#111111": 33,
+    "#1155cc": 11,
+    "#1a1a1a": 51,
+    "#444444": 15,
+    "#555555": 7,
+    "#777777": 3,
+    "#888888": 4,
+    "#aaaaaa": 2,
+    "#cccccc": 2,
+    "#d0d0d0": 7,
+    "#ffffff": 6
+  },
+  "fonts": {
+    "IBM Plex Mono": 2,
+    "Inter": 115
+  },
+  "kind": "html",
+  "layouts": [
+    "page cover",
+    "page",
+    "page",
+    "page",
+    "page",
+    "page"
+  ],
+  "logos": []
+}

@@ -1,0 +1,44 @@
+{
+  "canvas": [
+    1440,
+    810
+  ],
+  "colors": {
+    "#000000": 191,
+    "#111111": 2,
+    "#1a1a1a": 2,
+    "#4b68ff": 7,
+    "#e8e8e8": 2,
+    "#f1f1f2": 10,
+    "#ffffff": 43
+  },
+  "fonts": {
+    "IBM Plex Sans": 42,
+    "Public Sans": 69,
+    "Roboto": 50
+  },
+  "kind": "html",
+  "layouts": [
+    "slide active",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide",
+    "slide"
+  ],
+  "logos": []
+}

@@ -1,0 +1,81 @@
+{
+  "_comment": "VERIFIED via get_metadata (variant axes) + get_design_context (node 1350:482). Not invented.",
+  "component": "Chip",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "12:2472",
+    "name": "Chip v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1350:482",
+    "name": "theme=Light, type=Clickable, status=Default"
+  },
+  "capturedVia": "figma-mcp get_metadata + get_design_context",
+  "fields": [
+    {
+      "key": "color.text.default",
+      "category": "color",
+      "value": "#131313",
+      "ref": "1350:482",
+      "detail": "text #131313 (var Light/Black)"
+    },
+    {
+      "key": "radius.border",
+      "category": "radius",
+      "value": "74px",
+      "ref": "1350:482",
+      "detail": "get_design_context rounded-[74px]"
+    },
+    {
+      "key": "spacing.paddingX",
+      "category": "spacing",
+      "value": "10px",
+      "ref": "1350:482",
+      "detail": "px-[10px]"
+    },
+    {
+      "key": "typography.label",
+      "category": "typography",
+      "value": {
+        "family": "IBM Plex Sans",
+        "weight": 400,
+        "size": 12,
+        "lineHeight": 15
+      },
+      "ref": "1350:482",
+      "detail": "var dashboard/1920/caption 1"
+    },
+    {
+      "key": "variant.types",
+      "category": "variant",
+      "value": [
+        "Clickable",
+        "Closable",
+        "Unclickable",
+        "Tag chip"
+      ],
+      "ref": "12:2472",
+      "detail": "variant axis: type"
+    },
+    {
+      "key": "variant.status",
+      "category": "variant",
+      "value": [
+        "Default",
+        "Active"
+      ],
+      "ref": "12:2472",
+      "detail": "variant axis: status"
+    }
+  ],
+  "meta": {
+    "component": "Chip",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1350:482",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata + get_design_context",
+    "sourceRevision": null,
+    "captureStatus": "captured"
+  }
+}

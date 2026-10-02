@@ -1,0 +1,123 @@
+name: design-sync
+
+# Design-to-Code drift: validates the mapping table, runs the batch against the
+# committed Figma snapshots + the published @cochlearai/ui package, and deploys the
+# drift dashboard to GitHub Pages (a self-service URL, no Claude required).
+#
+# Required repo secret:
+#   COCHLEARAI_NPM_TOKEN  — GitHub PAT with read:packages (to install @cochlearai/ui)
+# Optional repo secret (for the scheduled snapshot-freshness check):
+#   FIGMA_TOKEN           — Figma personal access token (File content read)
+#
+# Enable Pages once: repo Settings → Pages → Source = GitHub Actions.
+
+on:
+  push:
+    branches: [main]
+    paths: ["design-sync/**", ".github/workflows/design-sync.yml"]
+  pull_request:
+    paths: ["design-sync/**"]
+  workflow_dispatch:
+  schedule:
+    - cron: "0 6 * * 1" # Mondays 06:00 UTC — snapshot-freshness check
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: design-sync-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: design-sync
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      # 1) Validate the mapping table FIRST — a blocking mapping problem fails the run.
+      - name: Validate mapping
+        run: node cli.mjs mapping validate
+
+      # 2) Install the published component package (the "code" side).
+      - name: Install @cochlearai/ui
+        env:
+          COCHLEARAI_NPM_TOKEN: ${{ secrets.COCHLEARAI_NPM_TOKEN }}
+        run: |
+          if [ -z "$COCHLEARAI_NPM_TOKEN" ]; then
+            echo "::warning::COCHLEARAI_NPM_TOKEN not set — cannot install @cochlearai/ui; the code side will be unavailable."
+            exit 1
+          fi
+          mkdir -p "$RUNNER_TEMP/cochlui" && cd "$RUNNER_TEMP/cochlui"
+          npm init -y >/dev/null
+          printf '@cochlearai:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n' "$COCHLEARAI_NPM_TOKEN" > .npmrc
+          npm i @cochlearai/ui >/dev/null
+          echo "COCHL_UI_DIR=$RUNNER_TEMP/cochlui/node_modules/@cochlearai/ui" >> "$GITHUB_ENV"
+
+      # 3) Engine tests.
+      - name: Test engines
+        run: npm test
+
+      # 4) Batch sync (offline, uses committed snapshots). Drift is REPORTED, not
+      #    failed — design drift is expected; only mapping errors (exit 2) fail above.
+      - name: Run batch sync
+        run: |
+          set +e
+          node cli.mjs sync
+          code=$?
+          echo "sync exit code: $code (0 clean · 1 drift · 2 mapping-error · 3 needs-input/pending)"
+          { echo "### design-sync"; echo '```'; node cli.mjs sync | sed -n '/Design–Code Sync/,/exit/p'; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          # fail only on a mapping/config error
+          [ "$code" = "2" ] && exit 1 || exit 0
+
+      # 5) Build the shareable page and stage it as the Pages site.
+      - name: Build shareable dashboard
+        run: |
+          node scripts/gen-share.mjs
+          mkdir -p "$RUNNER_TEMP/site"
+          # A tiny index that loads the self-contained dashboard.
+          cp reports/dashboard-share.html "$RUNNER_TEMP/site/index.html"
+
+      - name: Upload Pages artifact
+        if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/site
+
+  deploy:
+    needs: sync
+    if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
+
+  # Scheduled snapshot-freshness check (does not fail the workflow; reports drift).
+  snapshot-freshness:
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: design-sync
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Check Figma snapshot freshness
+        continue-on-error: true
+        env:
+          FIGMA_TOKEN: ${{ secrets.FIGMA_TOKEN }}
+        run: |
+          if [ -z "$FIGMA_TOKEN" ]; then echo "::notice::FIGMA_TOKEN not set — skipping freshness check."; exit 0; fi
+          node scripts/capture.mjs | tee -a "$GITHUB_STEP_SUMMARY"

@@ -583,7 +583,7 @@ h2.section-title span {
       <div class="skill-icon">🎨</div>
       <div>
         <div class="skill-name">Pitch Deck Skill (슬라이드 수정)</div>
-        <span class="skill-cmd">/pitch-deck-skill</span>
+        <span class="skill-cmd">/pitch-deck</span>
       </div>
     </div>
     <div class="skill-desc">
@@ -601,7 +601,7 @@ h2.section-title span {
       <div class="skill-icon">💻</div>
       <div>
         <div class="skill-name">Frontend Design</div>
-        <span class="skill-cmd">/frontend-design</span>
+        <span class="skill-cmd">/design-system</span>
       </div>
     </div>
     <div class="skill-desc">
@@ -674,8 +674,8 @@ h2.section-title span {
         <div style="margin-top:10px;font-size:11.5px;color:var(--muted);">설치 성공 시 아래와 같이 출력됩니다:</div>
         <div class="code-block" style="margin-top:6px;">
           <pre><span class="green">✓</span> cochl-pitch-deck.md
-<span class="green">✓</span> pitch-deck-skill.md
-<span class="green">✓</span> frontend-design.md
+<span class="green">✓</span> pitch-deck/ (directory)
+<span class="green">✓</span> design-system/ (directory)
 <span class="green">✓</span> install-cochl-design-system/ (directory)
 
 Done! Restart Claude Code, then try:
@@ -813,18 +813,18 @@ Done! Restart Claude Code, then try:
   </div>
 </div>
 
-<!-- ═══════════════════════════════════════════════════════ PAGE 5 — /pitch-deck-skill & /frontend-design -->
+<!-- ═══════════════════════════════════════════════════════ PAGE 5 — /pitch-deck & /design-system -->
 <div class="page" style="padding-bottom: 80px;">
 
   <div class="section-label">Skill 02</div>
-  <h2 class="section-title"><span class="mono" style="font-size:20px;">/pitch-deck-skill</span></h2>
+  <h2 class="section-title"><span class="mono" style="font-size:20px;">/pitch-deck</span></h2>
   <div class="section-sub">기존 덱을 수정하거나, 다른 제품에 같은 Cochl 비주얼 시스템을 적용할 때 사용합니다.</div>
 
   <div class="two-col" style="margin-bottom:16px;">
     <div>
       <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">/cochl-pitch-deck 와 차이점</div>
       <table class="layout-table" style="font-size:11px;">
-        <thead><tr><th>항목</th><th>/cochl-pitch-deck</th><th>/pitch-deck-skill</th></tr></thead>
+        <thead><tr><th>항목</th><th>/cochl-pitch-deck</th><th>/pitch-deck</th></tr></thead>
         <tbody>
           <tr><td>목적</td><td>처음부터 생성</td><td>수정·변형</td></tr>
           <tr><td>입력</td><td>최소 텍스트</td><td>기존 파일+지시</td></tr>
@@ -836,11 +836,11 @@ Done! Restart Claude Code, then try:
     <div>
       <div style="font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.1em;margin-bottom:10px;">사용 예시</div>
       <div class="example-card" style="margin-bottom:10px;">
-        <div class="example-msg">슬라이드 7 (Performance) KPI 숫자를 최신 데이터로 업데이트해줘 /pitch-deck-skill</div>
+        <div class="example-msg">슬라이드 7 (Performance) KPI 숫자를 최신 데이터로 업데이트해줘 /pitch-deck</div>
         <div class="example-result">→ 해당 슬라이드만 교체, 나머지 보존</div>
       </div>
       <div class="example-card">
-        <div class="example-msg">Cochl Sense 제품용 새 덱을 AcousticShield 덱과 같은 스타일로 만들어줘 /pitch-deck-skill</div>
+        <div class="example-msg">Cochl Sense 제품용 새 덱을 AcousticShield 덱과 같은 스타일로 만들어줘 /pitch-deck</div>
         <div class="example-result">→ 동일 비주얼 시스템, 새 내용 적용</div>
       </div>
     </div>
@@ -849,7 +849,7 @@ Done! Restart Claude Code, then try:
   <div class="divider"></div>
 
   <div class="section-label">Skill 03</div>
-  <h2 class="section-title"><span class="mono" style="font-size:20px;">/frontend-design</span></h2>
+  <h2 class="section-title"><span class="mono" style="font-size:20px;">/design-system</span></h2>
   <div class="section-sub">웹 컴포넌트, 앱 페이지, HTML 아티팩트에 Cochl 디자인 시스템을 적용합니다.</div>
 
   <div class="three-col">
@@ -1154,10 +1154,10 @@ HTML 파일 요청</pre>
       <div class="code-label">슬라이드 내용 교체</div>
       <pre><span class="comment"># 특정 슬라이드 수정</span>
 슬라이드 7 Performance KPI를 아래 수치로 업데이트해줘:
-탐지 정확도 96%, 추론 150ms /pitch-deck-skill
+탐지 정확도 96%, 추론 150ms /pitch-deck
 
 <span class="comment"># 새 제품으로 전체 변환</span>
-<span class="purple">cochl_acousticshield_deck.html</span>을 Cochl Sense 제품 내용으로 교체 /pitch-deck-skill</pre>
+<span class="purple">cochl_acousticshield_deck.html</span>을 Cochl Sense 제품 내용으로 교체 /pitch-deck</pre>
     </div>
   </div>
 
@@ -1166,7 +1166,7 @@ HTML 파일 요청</pre>
     <div class="code-block">
       <div class="code-label">디자인 시스템 적용</div>
       <pre><span class="comment"># React 컴포넌트에 Cochl 스타일 적용</span>
-이 Dashboard 컴포넌트에 Cochl 디자인 시스템 적용해줘 /frontend-design
+이 Dashboard 컴포넌트에 Cochl 디자인 시스템 적용해줘 /design-system
 
 <span class="comment"># @cochlearai/ui 설치</span>
 /install-cochl-ds</pre>
@@ -1192,12 +1192,12 @@ HTML 파일 요청</pre>
         <td style="font-family:var(--mono);font-size:10.5px;color:var(--muted);">[제품명]_deck.html / .pptx</td>
       </tr>
       <tr>
-        <td><span class="mono">/pitch-deck-skill</span></td>
+        <td><span class="mono">/pitch-deck</span></td>
         <td>HTML + PPTX</td>
         <td style="font-family:var(--mono);font-size:10.5px;color:var(--muted);">cochl_[제품]_deck.html / .pptx</td>
       </tr>
       <tr>
-        <td><span class="mono">/frontend-design</span></td>
+        <td><span class="mono">/design-system</span></td>
         <td>수정된 소스 파일</td>
         <td style="font-family:var(--mono);font-size:10.5px;color:var(--muted);">기존 파일 in-place 수정</td>
       </tr>

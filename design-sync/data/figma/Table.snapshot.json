@@ -1,0 +1,25 @@
+{
+  "_comment": "Architectural finding. Figma 'Table v1' maps to MANY code components (Table + TableHead + TableBody + TableRow + TableCell). 1:many mapping not expressible as a single-component comparison; surfaced as unmatched with a note.",
+  "component": "Table",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "16:2873",
+    "name": "Table v1"
+  },
+  "referenceVariant": {
+    "nodeId": "16:2873",
+    "name": "Table v1 (1:many — see note)"
+  },
+  "capturedVia": "figma-mcp get_metadata (page) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "Table",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "16:2873",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata (page) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

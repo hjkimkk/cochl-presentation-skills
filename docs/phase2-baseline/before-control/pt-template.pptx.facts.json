@@ -1,0 +1,39 @@
+{
+  "canvas": [
+    10.0,
+    5.625
+  ],
+  "colors": {
+    "#000000": 22,
+    "#2f80ed": 1,
+    "#333333": 24,
+    "#4a3a66": 2,
+    "#4b68ff": 6,
+    "#666666": 15,
+    "#832bfb": 20,
+    "#8b9bb4": 3,
+    "#c9c9d4": 2,
+    "#d8d0e8": 3,
+    "#ebddff": 3,
+    "#ffffff": 16
+  },
+  "fonts": {
+    "Century Gothic": 44,
+    "Courier New": 5,
+    "Roboto": 65,
+    "Segoe UI Emoji": 3
+  },
+  "kind": "pptx",
+  "layouts": [
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank",
+    "Blank"
+  ],
+  "logos": []
+}

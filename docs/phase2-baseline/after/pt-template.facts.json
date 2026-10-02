@@ -1,0 +1,31 @@
+{
+  "canvas": [
+    1440,
+    810
+  ],
+  "colors": {
+    "#000000": 4,
+    "#0b0b12": 1,
+    "#0b1f3a": 1,
+    "#0f2847": 17,
+    "#666666": 6,
+    "#6b4eff": 6,
+    "#832bfb": 6,
+    "#8b9bb4": 10,
+    "#a08bff": 12,
+    "#ffffff": 66
+  },
+  "fonts": {
+    "Arial": 2,
+    "IBM Plex Sans": 50,
+    "Roboto": 54
+  },
+  "kind": "html",
+  "layouts": [],
+  "logos": [
+    {
+      "distortion": 0.0001,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    }
+  ]
+}

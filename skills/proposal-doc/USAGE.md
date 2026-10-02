@@ -31,8 +31,8 @@
 ## Writing Conventions
 - First person: "I will", "I'll", "I've"
 - Scope bullet descriptions end with semicolons
-- All placeholder variables in `<angle-bracket>` notation, rendered in blue (`#1155cc`)
-- GDPR and Governing Law headings use IBM Plex Mono
+- All placeholder variables in `<angle-bracket>` notation, rendered in the `--doc-link` blue
+- GDPR and Governing Law headings use the `--font-mono` role
 
 ## Examples
 See `examples/mobile-dashboard-proposal.html` for a complete reference proposal.

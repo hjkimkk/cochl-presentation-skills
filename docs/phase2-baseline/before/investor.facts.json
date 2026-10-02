@@ -1,0 +1,79 @@
+{
+  "canvas": [
+    1920,
+    1080
+  ],
+  "colors": {
+    "#000000": 26,
+    "#0b0b12": 10,
+    "#14141c": 4,
+    "#1a2a6e": 1,
+    "#2b44b8": 1,
+    "#333333": 2,
+    "#4b68ff": 42,
+    "#8a8a99": 9,
+    "#9aa1ac": 40,
+    "#b7e4a0": 6,
+    "#c9c9d4": 20,
+    "#eb5b6b": 4,
+    "#ececec": 7,
+    "#ffffff": 47
+  },
+  "fonts": {
+    "Arial": 2,
+    "IBM Plex Mono": 40,
+    "IBM Plex Sans": 127
+  },
+  "kind": "html",
+  "layouts": [
+    "slide cover",
+    "slide stmt",
+    "slide",
+    "slide band",
+    "slide black",
+    "slide",
+    "slide black",
+    "slide",
+    "slide black",
+    "slide stmt",
+    "slide thanks"
+  ],
+  "logos": [
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    },
+    {
+      "distortion": 0,
+      "src": "data:image/png;base64,iVBORw0KGgoAAAANSU"
+    }
+  ]
+}

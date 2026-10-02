@@ -16,26 +16,27 @@ Lorem ipsum). Map them to real content or explicit **`NEEDS INPUT`** slots. Neve
 ## Design system (B2B variant)
 
 ```css
---bg:        #000000   /* pure black — most content slides */
---near:      #16161c   /* near-black charcoal — cover & glow slides */
---panel:     #1c1c24   /* dark rounded cards (radius ~20px) */
---img:       #ececec   /* light image-placeholder fill */
---text:      #FFFFFF
---muted:     #9a9aa6   /* muted body / labels */
---accent:    #4B68FF   /* indigo — glows, arrows, links */
---accent-purple:#832BFB
---mint:      #A6F0CE   /* MINT/TEAL secondary accent — timeline highlight bars, status pills */
+/* "(theme token)" = use the same-named token from themes/plex.md unchanged */
+--bg:        var(--bg-pure)   /* pure black — most content slides */
+--near:      var(--bg-near)   /* near-black charcoal — cover & glow slides */
+--panel:     var(--panel-3)   /* dark rounded cards (radius ~20px) */
+--img:       var(--img-placeholder)   /* light image-placeholder fill */
+--text:      (theme token)
+--muted:     var(--muted-2)   /* muted body / labels */
+--accent:    (theme token)   /* indigo — glows, arrows, links */
+--accent-purple:(theme token)
+--mint:      (theme token)   /* MINT/TEAL secondary accent — timeline highlight bars, status pills */
 --radius:    20px
 --mx:        110px     /* content margin at 1920 */
 
 /* Typography — HEADINGS ARE SANS, TITLE CASE (this variant's signature; NOT mono/uppercase) */
---font-head: 'IBM Plex Sans'   /* slide titles: BOLD (700), Title Case, e.g. "Data Highlights" */
---font-body: 'IBM Plex Sans'   /* body */
---font-label:'IBM Plex Mono'   /* kicker, meta (NAME / date), small labels — mono, uppercase */
-title:  IBM Plex Sans / clamp(40–56px) / 700 / Title Case / white
-kicker: IBM Plex Mono / 12–13px / 500 / .15em / UPPERCASE / muted (e.g. CONFIDENTIAL + PROPRIETARY)
-metric value: IBM Plex Sans / very large / 700
-body:   IBM Plex Sans / 18–20px / 400 / lh 1.55 / muted
+--font-head: var(--font-sans)   /* slide titles: BOLD (700), Title Case, e.g. "Data Highlights" */
+--font-body: var(--font-sans)   /* body */
+--font-label:var(--font-mono)   /* kicker, meta (NAME / date), small labels — mono, uppercase */
+title:  var(--font-sans) / clamp(40–56px) / 700 / Title Case / white
+kicker: var(--font-mono) / 12–13px / 500 / .15em / UPPERCASE / muted (e.g. CONFIDENTIAL + PROPRIETARY)
+metric value: var(--font-sans) / very large / 700
+body:   var(--font-sans) / 18–20px / 400 / lh 1.55 / muted
 ```
 
 **Contrast with the investor variant:** investor = **mono UPPERCASE** titles; B2B = **Sans Title-Case**

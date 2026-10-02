@@ -1,0 +1,128 @@
+{
+  "_comment": "VERIFIED design snapshot for Button, captured from the Figma MCP (Cochl Design System). Values read via get_metadata (variant axes), get_variable_defs + get_design_context (tokens/radius). Not invented. Regenerate from live Figma when the design changes.",
+  "component": "Button",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "52:718",
+    "name": "Button v1"
+  },
+  "referenceVariant": {
+    "nodeId": "3251:7349",
+    "name": "theme=Light, category=Primary, type=Basic, state=Default"
+  },
+  "capturedVia": "figma-mcp get_metadata + get_variable_defs + get_design_context",
+  "fields": [
+    {
+      "key": "color.background.primary",
+      "category": "color",
+      "value": "#4B68FF",
+      "ref": "3251:7349",
+      "detail": "var Light/Blue/60"
+    },
+    {
+      "key": "color.text.primary",
+      "category": "color",
+      "value": "#FFFFFF",
+      "ref": "3251:7349",
+      "detail": "var Light/White"
+    },
+    {
+      "key": "typography.label",
+      "category": "typography",
+      "value": {
+        "family": "IBM Plex Sans",
+        "weight": 500,
+        "size": 14,
+        "lineHeight": 100
+      },
+      "ref": "3251:7349",
+      "detail": "var dashboard/button"
+    },
+    {
+      "key": "radius.border",
+      "category": "radius",
+      "value": "4px",
+      "ref": "3251:7349",
+      "detail": "get_design_context rounded-[4px]"
+    },
+    {
+      "key": "variant.category",
+      "category": "variant",
+      "value": [
+        "Primary",
+        "Secondary"
+      ],
+      "ref": "52:718",
+      "detail": "variant axis: category"
+    },
+    {
+      "key": "variant.size",
+      "category": "variant",
+      "value": [
+        "sm",
+        "md",
+        "lg"
+      ],
+      "ref": "52:718",
+      "detail": "variant axis: type (size values)"
+    },
+    {
+      "key": "variant.kinds",
+      "category": "variant",
+      "value": [
+        "Primary",
+        "Secondary",
+        "Basic",
+        "Red",
+        "Link"
+      ],
+      "ref": "52:718",
+      "detail": "combined kind vocabulary: category ∪ type(non-size)"
+    },
+    {
+      "key": "variant.link",
+      "category": "variant",
+      "value": true,
+      "ref": "52:718",
+      "detail": "Figma type=Link present"
+    },
+    {
+      "key": "state.disabled",
+      "category": "state",
+      "value": true,
+      "ref": "52:718",
+      "detail": "state axis includes Disabled"
+    },
+    {
+      "key": "state.hover",
+      "category": "state",
+      "value": true,
+      "ref": "52:718",
+      "detail": "state axis includes Hovered"
+    },
+    {
+      "key": "prop.leftIcon",
+      "category": "property",
+      "value": true,
+      "ref": "52:718",
+      "detail": "leftIcon toggle"
+    },
+    {
+      "key": "prop.rightIcon",
+      "category": "property",
+      "value": true,
+      "ref": "52:718",
+      "detail": "rightIcon toggle"
+    }
+  ],
+  "meta": {
+    "component": "Button",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "3251:7349",
+    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "captureMethod": "figma-mcp get_metadata + get_variable_defs + get_design_context",
+    "sourceRevision": null,
+    "captureStatus": "captured"
+  }
+}

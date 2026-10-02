@@ -1,0 +1,15 @@
+{
+  "_comment": "Scoped drift acceptances. Each entry matches ONE component + property (comparison label) + the EXACT figma/code values. A match reclassifies that mismatch to ACCEPTED_DRIFT — the underlying mismatch is retained (auditable), never deleted, and never auto-fixed. This is NOT a generic ignore: acceptance is per-comparison and value-specific, so if either value changes the acceptance no longer applies.",
+  "accepted": [
+    {
+      "component": "Chip",
+      "property": "Border radius",
+      "figmaValue": "74px",
+      "codeValue": "100px",
+      "reason": "Both are pill radii on a 24px-tall chip, so the rendered corners are identical; the literal value drift is visually inert.",
+      "acceptedBy": "hjkim@cochlear.ai",
+      "timestamp": "2026-09-22T15:30:00Z",
+      "reviewBy": "2026-12-31"
+    }
+  ]
+}

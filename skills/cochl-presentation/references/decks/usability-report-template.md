@@ -1,6 +1,6 @@
 # Usability Testing Report — deck (Design / UX Research)
 
-A UX-research **usability testing report** deck. Delivered as an editable **Figma Slides** file (the Design team's preferred medium), in the Cochl **light report** treatment. Inherits [`../brand-core.md`](../brand-core.md) with the light print palette (white bg, `#0F1B3D` ink, indigo `#4B68FF` accent, `#F4F7FF`/`#EEF2FF` panels), IBM Plex Sans/Mono, and the recurring signatures: a short **indigo underline** under each slide title, gradient `cochl.` logo on cover + closer, gradient hero panel (indigo→purple + mint/purple circles + dot grid).
+A UX-research **usability testing report** deck. Delivered as an editable **Figma Slides** file (the Design team's preferred medium), in the Cochl **light report** treatment. Inherits [`brand-core.md`](../../../cochl-design/core/brand-core.md) (machinery in [`deck-engine.md`](../deck-engine.md)) with the light print palette (white bg, `--ink-navy` ink, indigo `--accent` accent, `--light-panel-tint`/`--light-panel-indigo` panels), `--font-sans`/`--font-mono`, and the recurring signatures: a short **indigo underline** under each slide title, gradient `cochl.` logo on cover + closer, gradient hero panel (indigo→purple + mint/purple circles + dot grid).
 
 **Editable Figma Slides (Cochl_Internal):** https://www.figma.com/slides/j3AvEowJXBddgerOTd7fG3 — 13 slides. Duplicate this file for a real report and fill the placeholders. Slide previews (p01–p13) in [`usability-report-previews/`](usability-report-previews/).
 
@@ -52,4 +52,4 @@ None of these are acceptable — each reads as a plausible field label rather th
 The deck ships with **example/placeholder** content (bracketed `[ ... ]` slots, `Change 1–3`, `Data point 1–3`, `Tester #[ID]`, example %). Replace every bracket and example figure with real test data before sharing. Do not present placeholder metrics as real Cochl results.
 
 ## Rebuild / edit
-Built with the `figma-use` + `figma-use-slides` Plugin API (SVG-imported gradient logo; native text, shapes, gradient fills). To restyle, edit the Figma Slides file directly; to regenerate elsewhere, follow the slide structure above on `brand-core.md`.
+Built with the `figma-use` + `figma-use-slides` Plugin API (SVG-imported gradient logo; native text, shapes, gradient fills). To restyle, edit the Figma Slides file directly; to regenerate elsewhere, follow the slide structure above on `../../../cochl-design/core/brand-core.md`.

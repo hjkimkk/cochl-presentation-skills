@@ -1,12 +1,9 @@
 ---
-name: proposal-doc-template
+name: proposal-doc
 description: >
   Generates Cochl.ai design proposal documents strictly following the structure,
   layout grammar, and writing style extracted from the official Cochl proposal PDFs
   (01–06.pdf, examples/source-pdfs/).
-triggers:
-  - /proposal-doc-template
-  - /proposal-doc
 ---
 
 # Proposal Document Template Skill
@@ -16,6 +13,8 @@ triggers:
 This skill is derived from 6 official Cochl.ai proposal PDFs. Every structural rule,
 layout pattern, and writing convention below was extracted directly from those documents.
 **Do not invent sections or patterns not present in the source.**
+
+**Brand:** read `../cochl-design/core/brand-core.md`, then `../cochl-design/core/themes/plex.md`. Default theme `plex`. Paste the theme's `:root` block into the output `<style>` before any template CSS, and its Google Fonts `<link>` into `<head>`. Run `../cochl-design/core/qa-checklist.md` before delivering.
 
 ### Source pages (one PDF per section)
 ```
@@ -76,6 +75,8 @@ Each section is a **standalone page** — full page break before each. Never mer
 ## Typography System
 
 Extracted from the PDFs:
+
+Font roles (values in `../cochl-design/core/themes/plex.md`): body = `--font-doc`; headings = `--font-sans`; monospace headings = `--font-mono`.
 
 | Role | Size | Weight | Notes |
 |---|---|---|---|
@@ -400,12 +401,12 @@ This is the exact CSS and HTML structure validated against the 6 source PDFs.
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* ─── Screen wrapper ─────────────────────────────────── */
-html { background: #e8e8e8; }
+html { background: var(--doc-canvas); }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-doc);
   font-size: 15px;
   font-weight: 400;
-  color: #1a1a1a;
+  color: var(--ink-body);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -414,7 +415,7 @@ body {
 .page {
   width: 210mm;
   min-height: 297mm;
-  background: #fff;
+  background: var(--light-bg);
   margin: 32px auto;
   padding: 52px 56px 36px;
   display: flex;
@@ -424,14 +425,14 @@ body {
 .page-body { flex: 1; }
 
 /* ─── Typography ─────────────────────────────────────── */
-h1 { font-size: 52px; font-weight: 900; letter-spacing: -0.025em; line-height: 1.05; color: #111; }
+h1 { font-size: 52px; font-weight: 900; letter-spacing: -0.025em; line-height: 1.05; color: var(--ink); }
 h1.sub { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin-top: 10px; }
-h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin-top: 36px; margin-bottom: 12px; color: #111; }
-h2.mono { font-family: 'IBM Plex Mono', monospace; font-size: 18px; font-weight: 500; margin-top: 32px; }
+h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin-top: 36px; margin-bottom: 12px; color: var(--ink); }
+h2.mono { font-family: var(--font-mono); font-size: 18px; font-weight: 500; margin-top: 32px; }
 p { margin-bottom: 10px; }
 
 /* ─── Variable placeholders ──────────────────────────── */
-.var { color: #1155cc; }
+.var { color: var(--doc-link); }
 
 /* ─── Cover ──────────────────────────────────────────── */
 .cover { justify-content: space-between; }
@@ -441,26 +442,26 @@ p { margin-bottom: 10px; }
   align-items: center; justify-content: center;
   text-align: center; padding: 60px 0 80px;
 }
-.cover-date { font-size: 14px; font-weight: 400; color: #555; margin-bottom: 24px; }
+.cover-date { font-size: 14px; font-weight: 400; color: var(--ink-muted); margin-bottom: 24px; }
 
 /* ─── Footer ─────────────────────────────────────────── */
 .footer {
   margin-top: 48px; padding-top: 10px;
-  border-top: 1px solid #d0d0d0;
+  border-top: 1px solid var(--doc-rule);
   display: flex; justify-content: space-between; align-items: flex-start;
-  font-size: 10.5px; color: #444; line-height: 1.55;
+  font-size: 10.5px; color: var(--ink-soft); line-height: 1.55;
 }
-.footer-left strong { font-weight: 600; color: #111; display: block; }
+.footer-left strong { font-weight: 600; color: var(--ink); display: block; }
 .footer-right { text-align: right; }
 
 /* ─── Bullet lists ───────────────────────────────────── */
 ul { list-style: none; padding-left: 0; margin: 4px 0; }
 ul li { position: relative; padding-left: 20px; margin-bottom: 8px; }
-ul li::before { content: '·'; position: absolute; left: 6px; color: #555; font-size: 16px; line-height: 1.5; }
+ul li::before { content: '·'; position: absolute; left: 6px; color: var(--ink-muted); font-size: 16px; line-height: 1.5; }
 ul.scope > li { margin-bottom: 18px; padding-left: 0; }
 ul.scope > li::before { display: none; }
-ul.scope > li > strong { display: block; font-weight: 600; margin-bottom: 2px; color: #111; }
-ul.scope > li > strong::before { content: '· '; color: #555; }
+ul.scope > li > strong { display: block; font-weight: 600; margin-bottom: 2px; color: var(--ink); }
+ul.scope > li > strong::before { content: '· '; color: var(--ink-muted); }
 ul ul { margin-top: 6px; margin-left: 16px; }
 ul ul li::before { content: '○'; font-size: 9px; top: 4px; left: 4px; }
 ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
@@ -472,29 +473,29 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
 }
 .timeline::before {
   content: ''; position: absolute; top: 46px; left: 0; right: 0;
-  height: 1px; background: #ccc;
+  height: 1px; background: var(--doc-line);
 }
 .tl-node { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
 .tl-node:last-child { flex: 0 0 80px; }
-.tl-date { font-size: 11px; color: #555; margin-bottom: 10px; }
-.tl-tick { width: 1px; height: 12px; background: #888; margin-bottom: 8px; }
-.tl-name { font-size: 13px; font-weight: 600; color: #111; line-height: 1.3; }
-.tl-dur { font-size: 11px; color: #777; margin-top: 3px; }
+.tl-date { font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; }
+.tl-tick { width: 1px; height: 12px; background: var(--doc-tick); margin-bottom: 8px; }
+.tl-name { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.tl-dur { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
 
 /* ─── Payment table ──────────────────────────────────── */
 .pay-table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 12px; font-size: 14px; }
-.pay-table thead tr th { font-weight: 700; padding: 10px 8px; text-align: left; border-top: 1.5px solid #111; border-bottom: 1px solid #ccc; }
+.pay-table thead tr th { font-weight: 700; padding: 10px 8px; text-align: left; border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--doc-line); }
 .pay-table thead tr th:last-child { text-align: right; }
 .pay-table tbody tr td { padding: 10px 8px; }
 .pay-table tbody tr td:last-child { text-align: right; }
-.pay-table tfoot tr td { padding: 10px 8px; font-weight: 700; border-top: 1px solid #ccc; border-bottom: 1.5px solid #111; }
+.pay-table tfoot tr td { padding: 10px 8px; font-weight: 700; border-top: 1px solid var(--doc-line); border-bottom: 1.5px solid var(--ink); }
 .pay-table tfoot tr td:last-child { text-align: right; font-weight: 900; font-size: 15px; }
-.pay-note { font-size: 12.5px; color: #444; margin-top: 8px; line-height: 1.5; }
+.pay-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.5; }
 
 /* ─── Signature ──────────────────────────────────────── */
 .sig-prompt { font-size: 14px; margin-bottom: 20px; }
 .sig-boxes { display: flex; gap: 20px; }
-.sig-box { flex: 1; border: 1.5px solid #aaa; padding: 16px 16px 40px; font-size: 13px; color: #555; font-weight: 500; }
+.sig-box { flex: 1; border: 1.5px solid var(--doc-box-border); padding: 16px 16px 40px; font-size: 13px; color: var(--ink-muted); font-weight: 500; }
 
 /* ─── Final summary logo ─────────────────────────────── */
 .summary-logo { display: flex; justify-content: center; margin-top: 48px; margin-bottom: 8px; }
@@ -502,7 +503,7 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
 /* ─── Letter ─────────────────────────────────────────── */
 .letter-body p { margin-bottom: 16px; }
 .letter-sig { margin-top: 24px; line-height: 1.8; }
-.letter-rule { height: 1px; background: #d0d0d0; margin: 32px 0; }
+.letter-rule { height: 1px; background: var(--doc-rule); margin: 32px 0; }
 
 /* ─── Print ──────────────────────────────────────────── */
 @media print {
@@ -514,13 +515,14 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
 
 ### Google Fonts link (required)
 ```html
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- paste the <link> tag from ../cochl-design/core/themes/plex.md here -->
 ```
 
 ---
 
 ## Logo
 
+Logo rules (clear space, minimum size, do-not-recolor): `../cochl-design/core/brand-core.md` → Logo.
 Source file: `assets/logo_cochl_top.svg`
 
 Always embed inline (not via `<img src>`). Use unique `linearGradient` IDs per instance to avoid SVG defs conflicts.
@@ -615,7 +617,7 @@ Every page uses this wrapper:
         </ul>
       </li>
       <li>[Process phase name]<br>
-        <span style="font-size:13.5px;color:#444;">[process note ending with semicolon];</span>
+        <span style="font-size:13.5px;color:var(--ink-soft);">[process note ending with semicolon];</span>
       </li>
     </ul>
     <h2>Milestone 2: [Phase Name(s)]</h2>
@@ -720,6 +722,6 @@ Every page uses this wrapper:
 - [ ] All unfilled variables use `<span class="var">&lt;name&gt;</span>`
 - [ ] Final Summary has `.letter-body`, `.letter-sig`, `.letter-rule`, `.sig-boxes`, `.summary-logo`
 - [ ] Footer identical on all 6 pages
-- [ ] Google Fonts CDN link present in `<head>`
+- [ ] Google Fonts `<link>` from themes/plex.md is present in `<head>`
 - [ ] `@media print` rules present (page-break-after: always per .page)
 - [ ] File is self-contained — no external asset refs except Google Fonts CDN
