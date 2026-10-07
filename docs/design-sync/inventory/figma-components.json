@@ -1,0 +1,451 @@
+[
+  {
+    "family": "Tabs",
+    "page": "Tabs v1",
+    "pageId": "25:444",
+    "frameId": "1516:1973",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Basic"
+      ],
+      "state": [
+        "Default",
+        "Focus",
+        "Active"
+      ]
+    },
+    "symbolCount": 6,
+    "notes": "Page name carries v1 suffix. Spec frames on page are mis-named 'InputField_Specs/Light' (copy-paste from Input Field page); 'Frame 1269' is a page header."
+  },
+  {
+    "family": "Alert",
+    "page": "Alert v1",
+    "pageId": "25:441",
+    "frameId": "1372:2003",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Basic",
+        "Link"
+      ],
+      "state": [
+        "Success",
+        "Error"
+      ]
+    },
+    "symbolCount": 8,
+    "notes": "Page name carries v1 suffix. "
+  },
+  {
+    "family": "Alert_Icons",
+    "page": "Alert v1",
+    "pageId": "25:441",
+    "frameId": "3132:5485",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "state": [
+        "Success",
+        "Error"
+      ]
+    },
+    "symbolCount": 4,
+    "notes": "Page name carries v1 suffix. Sub-component of Alert."
+  },
+  {
+    "family": "Progress",
+    "page": "Progress v1",
+    "pageId": "25:442",
+    "frameId": null,
+    "variants": {},
+    "symbolCount": 0,
+    "notes": "Page name carries v1 suffix. INCOMPLETE: get_metadata for this page fails deterministically (SSE JSON truncation at ~45KB), so frame id, variants and symbol count could not be read. Exists as component_set 'Progress' (componentSetKey e242317d5a03597c2c3f178efe06ab4118439144) per search_design_system; Welcome page uses it as bar, thin line and circular instances."
+  },
+  {
+    "family": "Menu",
+    "page": "Menu v1",
+    "pageId": "27:445",
+    "frameId": "1765:1692",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Notification",
+        "UserMenu",
+        "Basic"
+      ],
+      "state": [
+        "Default",
+        "Empty"
+      ],
+      "notifOn": [
+        "true",
+        "false"
+      ]
+    },
+    "symbolCount": 10,
+    "notes": "Page name carries v1 suffix. "
+  },
+  {
+    "family": "MenuItem",
+    "page": "Menu v1",
+    "pageId": "27:445",
+    "frameId": "1821:1070",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Basic"
+      ],
+      "state": [
+        "Default",
+        "LastItem"
+      ],
+      "notifOn": [
+        "true",
+        "false"
+      ]
+    },
+    "symbolCount": 8,
+    "notes": "Page name carries v1 suffix. Sub-component of Menu."
+  },
+  {
+    "family": "Tooltip",
+    "page": "Tooltip v1",
+    "pageId": "27:446",
+    "frameId": "3117:3637",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "top-left",
+        "top-middle",
+        "top-right",
+        "side-left",
+        "side-right",
+        "bottom-left",
+        "bottom-middle",
+        "bottom-right"
+      ]
+    },
+    "symbolCount": 16,
+    "notes": "Page name carries v1 suffix. Page also has non-component spec frames 'Tooltip/light' and 'Tooltip/dark' (frames 208:1619, 3116:3394) with tooltip/left|center|right frames; no state prop."
+  },
+  {
+    "family": "Chip",
+    "page": "Chip v1",
+    "pageId": "12:2472",
+    "frameId": "1350:640",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Clickable",
+        "Closable",
+        "Unclickable",
+        "Tag chip"
+      ],
+      "status": [
+        "Default",
+        "Active"
+      ],
+      "left-icon": [
+        "false",
+        "true"
+      ],
+      "right-icon": [
+        "false",
+        "true"
+      ]
+    },
+    "symbolCount": 22,
+    "notes": "Page name carries v1 suffix. "
+  },
+  {
+    "family": "Table",
+    "page": "Table v1",
+    "pageId": "16:2873",
+    "frameId": "2068:308",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Basic"
+      ],
+      "state": [
+        "Default"
+      ]
+    },
+    "symbolCount": 2,
+    "notes": "Page name carries v1 suffix. "
+  },
+  {
+    "family": "Table_Header",
+    "page": "Table v1",
+    "pageId": "16:2873",
+    "frameId": "2068:319",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Basic"
+      ],
+      "state": [
+        "Default"
+      ]
+    },
+    "symbolCount": 2,
+    "notes": "Page name carries v1 suffix. Sub-component of Table."
+  },
+  {
+    "family": "Table_Body",
+    "page": "Table v1",
+    "pageId": "16:2873",
+    "frameId": "2071:158",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Button",
+        "Basic",
+        "Secondary",
+        "Chip"
+      ],
+      "state": [
+        "Default"
+      ],
+      "isLastItem": [
+        "true",
+        "false"
+      ]
+    },
+    "symbolCount": 17,
+    "notes": "Page name carries v1 suffix. Sub-component of Table."
+  },
+  {
+    "family": "Date picker",
+    "page": "Date picker",
+    "pageId": "1439:1380",
+    "frameId": null,
+    "variants": {},
+    "symbolCount": 0,
+    "notes": "Unversioned page name. INCOMPLETE: get_metadata for this page fails deterministically (SSE truncation at ~20KB), so frame ids/variants/symbol count could not be read. Exists as component_set 'Date picker' (key 569935bdf11bbd2fd142515d1536cc2e37eae6da) plus related sets 'date range days' and 'Header' (x2) per search_design_system; library path suggests Date picker/<Light|Dark>/<day of month|...>/<state>."
+  },
+  {
+    "family": "Checkbox",
+    "page": "Checkbox v1",
+    "pageId": "52:717",
+    "frameId": "136:109",
+    "variants": {
+      "isChecked": [
+        "True",
+        "False"
+      ],
+      "theme": [
+        "Light",
+        "Dark"
+      ]
+    },
+    "symbolCount": 4,
+    "notes": "Page name carries v1 suffix. Two separate component sets on page: box (16x16) and 'Option' (checkbox with label)."
+  },
+  {
+    "family": "Checkbox/Option",
+    "page": "Checkbox v1",
+    "pageId": "52:717",
+    "frameId": "136:179",
+    "variants": {
+      "isChecked": [
+        "True",
+        "False"
+      ],
+      "theme": [
+        "Light",
+        "Dark"
+      ]
+    },
+    "symbolCount": 4,
+    "notes": "Page name carries v1 suffix. Checkbox with label; frame name is 'Option'."
+  },
+  {
+    "family": "Button",
+    "page": "Button v1",
+    "pageId": "52:718",
+    "frameId": "3251:7381",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "category": [
+        "Primary",
+        "Secondary"
+      ],
+      "type": [
+        "Basic",
+        "Red",
+        "md",
+        "sm",
+        "lg",
+        "Link",
+        "ComplexButton"
+      ],
+      "state": [
+        "Default",
+        "Disabled",
+        "Hovered"
+      ],
+      "leftIcon": [
+        "false",
+        "true"
+      ],
+      "rightIcon": [
+        "false",
+        "true"
+      ]
+    },
+    "symbolCount": 210,
+    "notes": "Page name carries v1 suffix. Large set; type mixes style (Basic/Red/Link/ComplexButton) and size (sm/md/lg); verify combos per category."
+  },
+  {
+    "family": "Input Field",
+    "page": "Input Field v1",
+    "pageId": "52:720",
+    "frameId": "1174:283",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Basic",
+        "withIcon",
+        "smIcon",
+        "TagChipInput",
+        "NonEditable"
+      ],
+      "state": [
+        "Default",
+        "Focus",
+        "Active",
+        "Filled",
+        "Error",
+        "DefaultLabel",
+        "smDesc",
+        "withIcon",
+        "bigLabel"
+      ],
+      "isDisabled": [
+        "true",
+        "false"
+      ]
+    },
+    "symbolCount": 50,
+    "notes": "Page name carries v1 suffix. state mixes interaction states with layout variants (DefaultLabel, smDesc, withIcon, bigLabel); likely messy."
+  },
+  {
+    "family": "Dropdown",
+    "page": "Dropdown v1",
+    "pageId": "28:538",
+    "frameId": "1259:1277",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "sm",
+        "timePicker",
+        "emailSelect"
+      ],
+      "state": [
+        "Default",
+        "Focus",
+        "Active",
+        "ActiveFocus",
+        "disabled",
+        "Filled",
+        "FilledActive",
+        "FilledFocus"
+      ]
+    },
+    "symbolCount": 34,
+    "notes": "Page name carries v1 suffix. State coverage differs by type: sm and timePicker use Default/Focus/Active/ActiveFocus/disabled; emailSelect adds Filled/FilledActive/FilledFocus (no ActiveFocus). Dark timePicker/sm sizes differ. Page also holds ~20 legacy doc-frame symbols/instances named 'Dropdown/<Light|Dark>/<type>/<State>/<true|false>' (e.g. 1261:601, 1263:187, 'Group 1493' 1268:195, 'date filter' 1268:197, typo 'FiiledActive' 1263:183) = old naming scheme, likely duplicates/deprecated, not counted."
+  },
+  {
+    "family": "Radio",
+    "page": "Radio v1",
+    "pageId": "52:723",
+    "frameId": "3116:3045",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "type": [
+        "Basic"
+      ],
+      "state": [
+        "Default",
+        "Hovered",
+        "Selected"
+      ],
+      "withLabel": [
+        "true",
+        "false"
+      ]
+    },
+    "symbolCount": 12,
+    "notes": "Page name carries v1 suffix. Spec frames on page are misnamed 'Chip'; note on page says light theme has no current usage so values may be inaccurate."
+  },
+  {
+    "family": "Icons",
+    "page": "Icons v1",
+    "pageId": "1166:305",
+    "frameId": "2731:635",
+    "variants": {
+      "theme": [
+        "Light",
+        "Dark"
+      ],
+      "size": [
+        "sm",
+        "lg"
+      ],
+      "type": [
+        "Main",
+        "Gray",
+        "Pending"
+      ],
+      "notifOn": [
+        "off",
+        "true"
+      ]
+    },
+    "symbolCount": 56,
+    "notes": "Page name carries v1 suffix. Icon library: 24 sub-families, each its own frame with theme=Light|Dark symbols (Plus, Minus, ArrowDown[size], Arrow, Close, ThreeDots, Filter, Refresh, Search, Time, Copy, Redirect, Edit, CloudAPI, EdgeSDK, Info, UserIcon[type], NotificationBell[notifOn], CheckCircle[Property 1=Light|Dark], Upload, Mic, code, SpeakerRec, CheckX). size only on ArrowDown, type only on UserIcon, notifOn only on NotificationBell. Plus a stray symbol '*ic/Security' (4992:276) on Icons/Dark spec frame; naming inconsistent (CheckCircle prop 'Property 1', notifOn off/true, 'code' lowercase, 'EdgeSDk' in layers). Card-brand image frames (Icons/CardIcons) are not components."
+  }
+]
