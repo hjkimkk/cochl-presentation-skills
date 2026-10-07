@@ -64,3 +64,30 @@ Checked 2026-10-07.
 - **mapping.json:** 10 entries, of which 7 are complete and 1 is AMBIGUOUS
 - **Coverage, based on Figma families:** 9/14 mapped = 64% (target ≥ 80%). Unmapped: Tabs, Menu, Icons, Date picker; Dropdown is pending a fix.
 - Whether the 18 components in section 2 count toward the denominator depends on whether there is a separate Figma file for them (ask NS).
+
+## 6. Storybook → Figma check (library search, 2026-10-07)
+
+A `search_design_system` lookup (details: `figma-other-libraries.md`) found several components that the page scan of the DS file did not. The search returns library component keys, not node IDs, so these hits must be **confirmed** by opening them in Figma: they may sit on pages the scan missed, or in a separately published file with the same name.
+
+| Storybook | Code | Figma status |
+|---|---|---|
+| Form/Number Input | `NumberInput` | ◐ "Number Input" in Cochl Design System library (confirm) |
+| Form/Popover | `Popover` | ◐ PopoverList, PopoverItem (confirm) |
+| Data Display/Card | `Card` | ◐ Card, Cards/action, Cards/link (confirm) |
+| Data Display/Code View | `CodeView` | ◐ component named "code" (confirm) |
+| Feedback/Skeleton | `Skeleton` | ◐ Skeleton, SkeletonText, SkeletonCircle (confirm) |
+| Overlay/Modal | `Modal` | ◐ ModalContent, ModalOverlay (confirm) |
+| Disclosure/Navigation | `GNB` | ◐ "Navigation" (confirm) |
+| Analytics/Heatmap | `Heatmap` | ◐ partial: Heatmap-value, Chart tooltip |
+| Feedback/Alert | `Notification` | ◐ partial: NotificationBell only |
+| Overlay/Modal | `ConfirmModal` | legacy only: ADDS "Modal/ContinueAbort/delete" |
+| Disclosure/Navigation | `LNB`, `FNB` | legacy only: [DRAFT] Web Dashboard Design System (ADDS) |
+| Feedback/Alert | `Toast` | name only in ADDS / B2C (Cochl DS maps it via "Alert") |
+| Data Display/Usage Bar, UsageBarContent | `UsageBar`, `UsageBarContent` | ✗ not found (closest: Progress) |
+| Overlay/User Profile | `UserProfile` | ✗ not found |
+| Disclosure/Accordian | `Accordian` | ✗ not found |
+| Disclosure/Navigation | `ProjectNavi` | ✗ not found (closest: NavButton) |
+| Analytics/PieChart, Barchart, Timeseries | `Chart` | ✗ not found |
+| Feedback/Alert | `Banner` | ✗ not found |
+| (no story) | `Scroll` | ✗ not found; internal utility |
+| Theme/Typography, Theme/Color | `Typo`, colors | n/a: text styles and variables, not components |
