@@ -74,4 +74,23 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
   ok("acceptance is scoped, value-specific, and honors expiry");
 }
 
+// The real mapping table: no blocking issues, node IDs present, Dropdown resolved,
+// and extra (variant) targets don't change a ONE_TO_ONE entry's status.
+{
+  const { readFileSync } = await import("node:fs");
+  const real = JSON.parse(readFileSync(new URL("../config/mapping.json", import.meta.url), "utf8"));
+  const { hasBlocking } = validateMappings(real, null);
+  assert.equal(hasBlocking, false, "config/mapping.json has no blocking issues");
+  for (const [name, cfg] of Object.entries(real.components)) {
+    assert.match(cfg.figma?.nodeId ?? "", /^\d+:\d+$/, `${name} has a figma.nodeId`);
+  }
+  assert.equal(resolveMapping("Dropdown", real.components.Dropdown).effectiveStatus, MAPPING_TYPE.ONE_TO_MANY);
+  for (const n of ["Button", "Input"]) {
+    const r = resolveMapping(real.components[n].figma.name, real.components[n]);
+    assert.equal(r.effectiveStatus, MAPPING_TYPE.ONE_TO_ONE, `${n} stays ONE_TO_ONE`);
+    assert.equal(r.primary.component, n, `${n} primary target unchanged`);
+  }
+  ok("mapping.json: no blocking issues, node IDs, Dropdown ONE_TO_MANY, Button/Input primary kept");
+}
+
 console.log(`\n  ${passed} assertions passed.`);
