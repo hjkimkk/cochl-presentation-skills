@@ -176,13 +176,13 @@
       "mapping": {
         "type": "ONE_TO_MANY",
         "targets": [
-          { "component": "MultiSelectDropdown", "role": "form-select-multi", "relationship": "variant", "variant": "type=EmailSection" },
-          { "component": "ListDropdown", "role": "form-select-list", "relationship": "variant", "variant": "type=sm" },
-          { "component": "DropdownButton", "role": "select-trigger", "relationship": "part", "variant": "type=sm|timePicker" },
-          { "component": "Dropdown", "role": "popover-container", "relationship": "part", "variant": "type=timePicker" },
-          { "component": "DropdownItem", "role": "select-option", "relationship": "part", "variant": "type=timePicker" }
+          { "component": "MultiSelectDropdown", "role": "form-select-multi", "relationship": "variant", "variant": "type=Email Selection" },
+          { "component": "ListDropdown", "role": "form-select-list", "relationship": "variant", "variant": "type=Small Dropdown" },
+          { "component": "DropdownButton", "role": "select-trigger", "relationship": "part", "variant": "type=Small Dropdown|Time Picker" },
+          { "component": "Dropdown", "role": "popover-container", "relationship": "part", "variant": "type=Time Picker" },
+          { "component": "DropdownItem", "role": "select-option", "relationship": "part", "variant": "type=Time Picker" }
         ],
-        "reason": "Figma Dropdown is a select-field family (type=sm|timePicker|EmailSection; emailSelect renamed EmailSection in Figma 2026-10-08); Storybook Form/Dropdown has the same three stories. Decided 2026-10-07 (YJ: option a), verified against cochl-dashboard packages/cochl-ui/stories/form/Dropdown.stories.tsx. Code `Dropdown` alone is only the popover part. sm/timePicker trigger styles live in the story file, not the library (see mismatch audit)."
+        "reason": "Figma Dropdown is a select-field family (type=Small Dropdown|Time Picker|Email Selection — renamed in Figma 2026-10-08 to match the Storybook story names exactly; previously sm|timePicker|emailSelect); Storybook Form/Dropdown has the same three stories. Decided 2026-10-07 (YJ: option a), verified against cochl-dashboard packages/cochl-ui/stories/form/Dropdown.stories.tsx. Code `Dropdown` alone is only the popover part. sm/timePicker trigger styles live in the story file, not the library (see mismatch audit)."
       },
       "code": { "package": "@cochlearai/ui", "component": "MultiSelectDropdown", "extract": {} },
       "comparisons": []

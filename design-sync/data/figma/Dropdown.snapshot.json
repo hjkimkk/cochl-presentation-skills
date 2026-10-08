@@ -1,5 +1,5 @@
 {
-  "_comment": "Mapping decided 2026-10-07 (YJ, option a): Figma 'Dropdown v1' is a select-field family (type=sm|timePicker|EmailSection) that maps ONE_TO_MANY by type — EmailSection (was emailSelect)→MultiSelectDropdown, sm→ListDropdown+DropdownButton, timePicker→Dropdown+DropdownButton+DropdownItem (see config/mapping.json). No 1:1 value comparison is captured yet; per-variant comparisons are pending.",
+  "_comment": "Mapping decided 2026-10-07 (YJ, option a): Figma 'Dropdown' is a select-field family that maps ONE_TO_MANY by type — Email Selection→MultiSelectDropdown, Small Dropdown→ListDropdown+DropdownButton, Time Picker→Dropdown+DropdownButton+DropdownItem (see config/mapping.json). Figma type values renamed 2026-10-08 to match the Storybook Form/Dropdown story names exactly (were emailSelect/sm/timePicker). No 1:1 value comparison is captured yet; per-variant comparisons are pending.",
   "component": "Dropdown",
   "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
   "fileName": "Cochl Design System",
