@@ -97,7 +97,7 @@
     "Input": {
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:720", "nodeId": "1174:283", "name": "Input Field", "role": "text-input" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [
-        { "component": "Input", "role": "text-input", "relationship": "exact", "variant": "type=Basic|withIcon|smIcon|NonEditable" }
+        { "component": "Input", "role": "text-input", "relationship": "exact", "variant": "type=Basic|withIcon|SmallwithIcon|NonEditable" }
       ],
         "pendingTargets": [ { "component": "TagChipInput", "role": "tag-input", "relationship": "variant", "variant": "type=TagChipInput", "note": "In cochl-dashboard source (main) but not in published @cochlearai/ui@1.0.5; move into targets after the next publish." } ],
         "reason": "Primary target Input drives the value comparisons. type=TagChipInput is a separate code component (display-only in code; see mismatch audit). Kept ONE_TO_ONE so Input's drift status stays visible; extra targets are informational until per-variant routing (D4)." },
