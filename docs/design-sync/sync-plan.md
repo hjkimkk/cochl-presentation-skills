@@ -43,6 +43,18 @@ Answers needed before the denominator and the backlog are fixed.
 - **D3 (NS + Dev):** Promote Date picker and the Dropdown `sm`/`timePicker` fields into library components? (recommended: yes, as `DatePicker`, `SmallDropdown`, `TimePicker`)
 - **D4 (YJ):** Variant-level mapping. Keep ONE_TO_MANY with a `variant` field per target (as proposed for Dropdown), or extend the engine with a `VARIANT_MAP` type?
 - **D5 (HJ/Dev):** `Scroll` is an internal utility → exclude from the DS count?
+- **D6 (NS):** Are the older libraries (ADDS, B2C app, Dashboard_App_Design_System, Design_System, Dashboard_Ideation) still in use, or can they be archived?
+- **D7 (NS):** Token source of truth: Figma paint/text styles (today) or Figma variables with Light/Dark modes?
+
+#### Answers (2026-10-12)
+| # | Answer | Consequence |
+|---|---|---|
+| D1 | **All in this file.** The "missing" components are on the Cochl Design System file's 38 pages (the first scan only read 15). | Denominator = the full Figma set, not 14 families. |
+| D5 | **Yes, exclude `Scroll`.** It's an internal utility. | Not counted in coverage; listed as code-only with that reason. |
+| D6 | **`Design_System` stays:** it is the homepage design system. **`Dashboard_App_Design_System` is idle:** it's for the notification app, which isn't used now, so it can be archived. ADDS, B2C app and Dashboard_Ideation: no answer yet. | design-sync ignores `Design_System` (different product) and `Dashboard_App_Design_System`. Ask again about ADDS, B2C app, Dashboard_Ideation. |
+| D7 | **Variables split by Light/Dark mode** (one token, a value per mode). Fix the `Light/Semantic/Gray/10,20` paint styles either way (they hold the dark values #18191a/#111112; should be #f9f9fa/#f1f1f2). | New todo: build a color variable collection with Light and Dark modes from the 95 paint styles, then bind components to it. Interpretation to confirm with NS: modes in one collection, not two separate Light/Dark collections. |
+
+Still open: D2, D3 (NS), D4 (YJ).
 
 ### Phase 1: Fix the existing mapping (week of Oct 7)
 Unblocks pushing `main` (design-sync CI).
