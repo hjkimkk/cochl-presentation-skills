@@ -62,6 +62,8 @@ Not read in detail: `HyperlinkButton.stories.tsx`, `ListDropdown.stories.tsx`, `
 
 ## 2. Input Field (+ TagChipInput)
 
+> Detailed property-by-property comparison (both themes, all types incl. TagChipInput): [input-field.md](input-field.md) (2026-10-12).
+
 **Figma** page 52:720, set 1174:283 `Input Field`, 50 variants.
 - theme: Light | Dark
 - type: Basic | withIcon | smIcon | TagChipInput | NonEditable
