@@ -218,5 +218,21 @@
       "code": { "package": "@cochlearai/ui", "component": "ProgressIndicator", "extract": {} },
       "comparisons": []
     }
+  },
+  "pending": {
+    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish.",
+    "NumberInput": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:721", "nodeId": "1153:404", "name": "Number Input", "role": "number-input" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [
+        { "component": "NumberInput", "role": "number-input", "relationship": "renamed", "variant": "type=Basic" }
+      ],
+        "reason": "Figma 'Number Input' → code 'NumberInput'. Figma status {Default, Focus, Active, Filled, Error} + isDisabled match the Storybook story `form-number-input--basic` states one-to-one (Default, Focus, Active, Filled, Error, Disabled); checked 2026-10-12 against cochl-dashboard beta @ 083f601." },
+      "storybook": { "id": "form-number-input--basic", "states": { "status=Default": "DEFAULT", "status=Focus": "FOCUS", "status=Active": "ACTIVE", "status=Filled": "FILLED", "status=Error": "ERROR", "isDisabled=true": "DISABLED" } },
+      "notes": [
+        "Code renders Error via `error` prop with aria-invalid=\"false\" (inverted, same bug as Input).",
+        "Story has no parameters.design link to 1153:404.",
+        "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache)."
+      ]
+    }
   }
 }

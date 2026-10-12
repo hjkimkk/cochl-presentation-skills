@@ -91,6 +91,15 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
     assert.equal(r.primary.component, n, `${n} primary target unchanged`);
   }
   ok("mapping.json: no blocking issues, node IDs, Dropdown ONE_TO_MANY, Button/Input primary kept");
+
+  // `pending` entries (code not published yet) stay out of `components` but are complete.
+  for (const [name, cfg] of Object.entries(real.pending ?? {})) {
+    if (name.startsWith("_")) continue;
+    assert.equal(real.components[name], undefined, `${name} is not also in components`);
+    assert.match(cfg.figma?.nodeId ?? "", /^\d+:\d+$/, `pending ${name} has a figma.nodeId`);
+    assert.ok(cfg.mapping?.targets?.length, `pending ${name} declares targets`);
+  }
+  ok("mapping.json: pending entries are complete and kept out of components");
 }
 
 console.log(`\n  ${passed} assertions passed.`);
