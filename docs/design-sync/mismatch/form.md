@@ -170,6 +170,8 @@ Not read in detail: `HyperlinkButton.stories.tsx`, `ListDropdown.stories.tsx`, `
 
 ## 5. Radio
 
+> Detailed comparison against `beta`, the live Storybook and the app usage (2026-10-12): [radio.md](radio.md).
+
 **Figma** page 52:723, set 3116:3045 `Radio`, 12 variants: theme Dark|Light; type Basic; state Default|Hovered|Selected; withLabel false|true (TEXT Text).
 
 **Code** `src/RadioButton/RadioButton.tsx` :: `RadioButtonProps { name, value, checked?, isBtnType?, onChange }`. The visible label is `value` (no separate label prop); `id={value}`. `isBtnType` renders a button-style pill with hidden radio and blue text when checked. Colors hard-coded (`#ffffff`, `#000000`, box-shadow); no theme, no disabled.
