@@ -140,6 +140,8 @@ Not read in detail: `HyperlinkButton.stories.tsx`, `ListDropdown.stories.tsx`, `
 
 ## 4. Checkbox
 
+> Detailed comparison against `beta` and the live Storybook (2026-10-12): [checkbox.md](checkbox.md). Since this section was written, `beta` replaced the hard-coded colours with theme tokens.
+
 **Figma** page 52:717. Set 136:109 `Checkbox` (4 variants: isChecked True|False x theme Light|Dark); set 136:179 `Option` (box + label, TEXT Text, same props).
 
 **Code** `src/Checkbox/Checkbox.tsx` :: `CheckBoxProps { selected: boolean, label?: string, onChange }`. Colors hard-coded: `#fff`, `#e5e5e6`, `#4b68ff`, `white`; no theme, no disabled, no hover/focus, no indeterminate.
