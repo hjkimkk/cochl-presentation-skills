@@ -27,21 +27,16 @@
 
 Claude Code에서 `/cochl-presentation` 호출 후 "Cochl 101 강의 덱"을 요청하면 최신 `101-class-lecture-template` 스펙으로 만들어 줍니다.
 
-단, 스킬은 `~/.claude/skills/`에 **복사된 스냅샷**이라 저절로 갱신되지 않습니다. **매번 최신으로 쓰려면 자동 업데이트를 한 번만 설정**하세요 → [README의 "Stay up to date (auto-update)"](../README.md#stay-up-to-date-auto-update)
-
-설정 후에는 **새 세션마다 자동으로 최신 템플릿**을 당겨옵니다. 팀원마다 매번 pull 부탁할 필요가 없어집니다.
+스킬은 `cochl-design` **플러그인**으로 설치합니다 → [README의 "Install (plugin, v2)"](../README.md#install-plugin-v2). 자동 업데이트를 켜 두면 새 버전이 나올 때마다 알아서 최신으로 바뀝니다. 팀원마다 pull을 부탁할 필요가 없습니다.
 
 ## 3) "옛날 버전이 보여요" 증상 해결
 
-예전 `cochl-101-template.md`(빈 계획 파일)가 보이거나 스펙이 Figma와 다르면 = **로컬이 옛 버전**입니다:
+예전 `cochl-101-template.md`(빈 계획 파일)가 보이거나 스펙이 Figma와 다르면 = **로컬이 옛 버전**입니다.
 
-```bash
-cd cochl-presentation-skills
-git checkout main && git pull
-bash .claude/install-skills.sh
-```
+- 아직 옛 방식(`install-skills.sh` 복사)으로 쓰고 있다면, 클론한 폴더에서 한 번만: `bash scripts/migrate-to-plugin.sh`
+- 이미 플러그인이라면: `claude plugin marketplace update cochl` 후 `claude plugin update cochl-design@cochl`
 
-그리고 **Claude Code 세션을 새로 시작**하세요. (자동 업데이트를 설정해 뒀다면 이 과정이 세션마다 자동으로 일어납니다.)
+그리고 **Claude Code 세션을 새로 시작**하세요.
 
 **최신 확인 한 줄:**
 ```bash

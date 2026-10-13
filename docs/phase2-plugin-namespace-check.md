@@ -1,6 +1,8 @@
 # Phase 2: plugin namespacing check
 
-Status: PENDING (HJ). The automated probe could not run (see "Probe attempt").
+Status: **answered from the docs (2026-10-13); live check still PENDING (HJ).** The automated probe could not run (see "Probe attempt").
+
+Docs answer (code.claude.com/docs/en/skills.md, plugins/*): plugin skills are namespaced `/<plugin>:<skill>`, and a bare `/<skill>` "also invokes the skill unless another command already uses that name". So once `scripts/migrate-to-plugin.sh` has moved the v1 copies out of `~/.claude/skills/`, bare `/cochl-design`, `/cochl-presentation` etc. resolve to the plugin. The router is reachable as `/cochl-design` and `/cochl-design:cochl-design`; no move to a root skill needed unless the live check shows otherwise.
 
 ## Question
 

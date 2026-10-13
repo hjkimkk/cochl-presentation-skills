@@ -4,7 +4,7 @@
 
 This repo is a skill library for Claude Code. Skills are structured Markdown specifications that teach Claude how to produce specific outputs (HTML presentations, proposal documents, design system setups).
 
-> **Keeping skills current.** Skills are copied into `~/.claude/skills/` and don't refresh on their own. After you edit a spec here and it lands on `main`, teammates need the latest copy. Set up **auto-update once** so every session pulls the latest automatically — see [README → Stay up to date (auto-update)](../README.md#stay-up-to-date-auto-update). Team members who only present/test a deck should use the shared Figma instead — see [cochl-101-team-guide.md](./cochl-101-team-guide.md).
+> **Keeping skills current.** The skills ship as the `cochl-design` plugin. Teammates get your change when it is released (version bump in `.claude-plugin/plugin.json`, see [README → Releases and updates](../README.md#releases-and-updates)). Team members who only present/test a deck should use the shared Figma instead — see [cochl-101-team-guide.md](./cochl-101-team-guide.md).
 
 ## Repository Structure
 
@@ -14,8 +14,8 @@ cochl-presentation-skills/
 ├── scripts/          — Shared utilities (gen_pptx.py)
 ├── shared/           — Cross-skill brand assets
 ├── docs/             — Architecture and contributor docs
-└── .claude/          — Install script
-    └── install-skills.sh
+├── .claude-plugin/   — plugin.json (version) + marketplace.json
+└── CHANGELOG.md      — add a line under "Unreleased" in every skill PR
 ```
 
 ## Adding a New Skill
@@ -66,9 +66,9 @@ USAGE.md is for humans. Keep it under one page. Include: triggers, args table, o
 
 Put a representative output in `examples/`. For HTML-output skills, the example should be a complete, working HTML file.
 
-### 6. Register the install
+### 6. Add a CHANGELOG line
 
-Add a copy command to `.claude/install-skills.sh` so the skill is installed when users run the setup script.
+Nothing to register: the plugin picks up every `skills/<name>/SKILL.md`. Add a line under **Unreleased** in `CHANGELOG.md` (CI fails without it).
 
 ### 7. Update README.md
 

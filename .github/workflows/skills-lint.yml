@@ -2,7 +2,7 @@ name: skills-lint
 
 on:
   pull_request:
-    paths: ["skills/**", "scripts/skills-lint/**", ".github/workflows/skills-lint.yml"]
+    paths: ["skills/**", ".claude-plugin/**", "CHANGELOG.md", "scripts/skills-lint/**", ".github/workflows/skills-lint.yml"]
 
 jobs:
   lint:
@@ -19,3 +19,5 @@ jobs:
         run: npm test
       - name: Lint skills
         run: node scripts/skills-lint/lint.mjs --base "origin/${{ github.base_ref }}"
+      - name: Plugin release check (manifests, CHANGELOG)
+        run: node scripts/skills-lint/release.mjs --base "origin/${{ github.base_ref }}"

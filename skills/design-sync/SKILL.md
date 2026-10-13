@@ -7,7 +7,7 @@ description: Checks drift between the Figma Cochl Design System and @cochlearai/
 
 The engine lives in the repo at `design-sync/` and is owned by YJ. This skill only runs it.
 
-1. Find the repo: the folder containing `design-sync/cli.mjs` (ask the user for the path if it isn't the current repo).
+1. Find the engine: `design-sync/cli.mjs` in the current repo, or, when this skill runs from the `cochl-design` plugin, `../../design-sync/cli.mjs` next to this skill folder. Ask the user for the path if neither exists.
 2. Pick the command:
 
 | Ask | Command (run in `design-sync/`) |

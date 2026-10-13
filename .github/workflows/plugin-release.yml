@@ -1,0 +1,37 @@
+name: plugin-release
+
+# When plugin.json's version changes on main, tag v<version> and publish a GitHub
+# release with that version's CHANGELOG section. Teammates' Claude Code picks the
+# new version up through the `cochl` marketplace (auto-update on via the migration script).
+
+on:
+  push:
+    branches: [main]
+    paths: [".claude-plugin/plugin.json"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Release check
+        run: node scripts/skills-lint/release.mjs
+      - name: Tag and release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          VERSION=$(node -p "require('./.claude-plugin/plugin.json').version")
+          if git rev-parse -q --verify "refs/tags/v$VERSION" >/dev/null; then
+            echo "v$VERSION already tagged; nothing to do"; exit 0
+          fi
+          node scripts/skills-lint/release.mjs --notes "$VERSION" > notes.md
+          gh release create "v$VERSION" --target "$GITHUB_SHA" --title "cochl-design v$VERSION" --notes-file notes.md

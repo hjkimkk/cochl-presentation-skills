@@ -19,10 +19,10 @@ The skill index file (e.g., `skills/pitch-deck/SKILL.md`) is what Claude Code's 
 ## Install Flow
 
 ```
-git clone → bash .claude/install-skills.sh
+claude plugin marketplace add hjkimkk/cochl-presentation-skills → claude plugin install cochl-design@cochl
 ```
 
-`install-skills.sh` copies skill index files to `~/.claude/skills/` and folder-based skills to `~/.claude/skills/{skill-name}/`. This makes them available in any Claude Code session on the machine.
+The repo is a Claude Code plugin (`.claude-plugin/plugin.json`) and its own marketplace (`.claude-plugin/marketplace.json`, name `cochl`, plugin source `.`). Claude Code caches the plugin and discovers every `skills/<name>/SKILL.md`; skills answer to `/<name>` and `/cochl-design:<name>`. Updates arrive when `plugin.json`'s version changes and marketplace auto-update is on. v1 installs (copy script + SessionStart `git pull` hook) migrate once with `scripts/migrate-to-plugin.sh`.
 
 ## Skill Loading Order
 

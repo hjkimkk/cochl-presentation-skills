@@ -1,0 +1,17 @@
+{
+  "name": "cochl",
+  "owner": {
+    "name": "Cochl design team",
+    "email": "hjkim@cochlear.ai"
+  },
+  "metadata": {
+    "description": "Cochl design team plugins."
+  },
+  "plugins": [
+    {
+      "name": "cochl-design",
+      "source": ".",
+      "description": "Cochl design team toolkit: one install, one entry point (/cochl-design), one brand source."
+    }
+  ]
+}

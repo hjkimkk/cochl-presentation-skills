@@ -1,4 +1,7 @@
 #!/bin/bash
+# DEPRECATED (v2.0.0): the skills ship as the `cochl-design` plugin now.
+# Run `bash scripts/migrate-to-plugin.sh` once instead. This copy installer is kept
+# only so teammates who haven't migrated keep getting updates through the old hook.
 # Cochl Claude Skills Installer  (run once: bash .claude/install-skills.sh)
 # Copies skills to ~/.claude/skills AND installs a user-level SessionStart hook
 # so skills self-update from git every session, any project. --skip-hook = copy only.
@@ -12,6 +15,7 @@ SKILL_DIR="$HOME/.claude/skills"
 REPO_ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 SRC="$REPO_ROOT/skills"
 mkdir -p "$SKILL_DIR"
+echo "! Deprecated: run 'bash scripts/migrate-to-plugin.sh' to switch to the cochl-design plugin."
 echo "Installing Cochl Claude skills to $SKILL_DIR ..."
 
 for f in "$SRC"/*.md; do cp "$f" "$SKILL_DIR/$(basename "$f")"; echo "  ✓ $(basename "$f")"; done

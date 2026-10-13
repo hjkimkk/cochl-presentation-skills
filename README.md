@@ -16,15 +16,29 @@ A reusable Claude Code skill library for creating Cochl presentations, design re
 
 Commands are the skill folder names.
 
-## Quick Start
+## Install (plugin, v2)
+
+The skills ship as one Claude Code plugin, `cochl-design`, from the `cochl` marketplace in this repo.
+
+**New teammate:**
 
 ```bash
-git clone https://github.com/hjkimkk/cochl-presentation-skills.git
-cd cochl-presentation-skills
-bash .claude/install-skills.sh
+claude plugin marketplace add hjkimkk/cochl-presentation-skills
+claude plugin install cochl-design@cochl --scope user
 ```
 
-After install, skills are available in any Claude Code session:
+Then turn on auto-update once: in Claude Code run `/plugin` → Marketplaces → `cochl` → Enable auto-update.
+
+**Already installed the old way** (`.claude/install-skills.sh` + the `cochl-skills-autoupdate` hook)? Run once from a clone:
+
+```bash
+bash scripts/migrate-to-plugin.sh
+```
+
+It removes the old hook, moves the copied skills out of `~/.claude/skills/` (backup, not deleted),
+installs the plugin and turns auto-update on. Add `--dry-run` to see what it would change.
+
+Restart Claude Code, then:
 
 ```
 /cochl-design        — not sure which skill? start here (router)
@@ -34,32 +48,17 @@ After install, skills are available in any Claude Code session:
 /proposal-doc        — create a styled proposal document
 ```
 
-## Stay up to date (auto-update)
+Plugin skills also answer to their namespaced form, e.g. `/cochl-design:cochl-presentation`.
 
-Skills are **copied** into `~/.claude/skills/` at install time — they do **not** refresh on
-their own. So after anyone updates a template on `main`, each teammate would otherwise have
-to `git pull` + re-install + restart Claude Code. To avoid chasing everyone, set up
-auto-update **once**; from then on every new Claude Code session pulls the latest templates
-automatically, **from any project**.
+**Private repo:** installs and background updates use your git credentials and never prompt.
+Set them up once with `gh auth login` and `gh auth setup-git` (or an SSH key in ssh-agent).
 
-Add this to your **`~/.claude/settings.json`** (create the file if it doesn't exist), and
-replace `/ABSOLUTE/PATH/TO/cochl-presentation-skills` with where you cloned this repo:
+## Releases and updates
 
-```json
-{
-  "hooks": {
-    "SessionStart": [
-      { "hooks": [ { "type": "command",
-        "command": ": cochl-skills-autoupdate; git -C \"/ABSOLUTE/PATH/TO/cochl-presentation-skills\" pull --ff-only -q 2>/dev/null || true; bash \"/ABSOLUTE/PATH/TO/cochl-presentation-skills/.claude/install-skills.sh\" >/dev/null 2>&1 || true" } ] }
-    ]
-  }
-}
-```
-
-- **One-time setup — no more manual pulls or per-teammate update requests.**
-- It only fast-forwards (`--ff-only`), so it never clobbers local work; if it can't, it silently no-ops.
-- Turn it off by deleting the `cochl-skills-autoupdate` hook from `~/.claude/settings.json`.
-- Newly pulled skills load on the **next** session start.
+- Version lives in `.claude-plugin/plugin.json` (semver). Teammates only get an update when it changes.
+- Every PR that changes `skills/` or `.claude-plugin/` adds a line under **Unreleased** in [CHANGELOG.md](./CHANGELOG.md) (CI checks it).
+- Every two weeks: move Unreleased under a new version heading, bump `plugin.json`, merge to `main`.
+  The `plugin-release` workflow tags `v<version>` and publishes the GitHub release; auto-update delivers it.
 
 > **Just presenting or testing a deck (not generating a new one)?** You don't need the skill
 > installed at all — the canonical, always-latest deck is the shared **Figma** file. See
@@ -82,7 +81,8 @@ cochl-presentation-skills/
 │   ├── design-system/       — Design system install + apply (@cochlearai/ui)
 │   └── design-sync/         — /design-sync thin skill over the design-sync/ engine
 ├── scripts/
-│   ├── skills-lint/         — CI lint for skills (names, paths, brand-value rules)
+│   ├── skills-lint/         — CI lint for skills (names, paths, brand-value rules) + release check
+│   ├── migrate-to-plugin.sh — one-time v1 → plugin migration
 │   ├── brand-facts/         — Brand fact extraction + tests
 │   ├── check-leftovers.sh   — Leftover-reference check
 │   └── gen_pptx.py          — PPTX generation utility
@@ -92,8 +92,12 @@ cochl-presentation-skills/
 ├── docs/
 │   ├── architecture.md      — How the skills system works
 │   └── onboarding.md        — New contributor guide
+├── .claude-plugin/
+│   ├── plugin.json          — plugin name + version (semver)
+│   └── marketplace.json     — the `cochl` marketplace (this repo)
+├── CHANGELOG.md
 └── .claude/
-    └── install-skills.sh    — Copies every skills/<dir> to ~/.claude/skills/
+    └── install-skills.sh    — DEPRECATED v1 copy installer (use scripts/migrate-to-plugin.sh)
 ```
 
 Brand values live only in `skills/cochl-design/core/` — CI (skills-lint) enforces it.
@@ -101,7 +105,7 @@ Brand values live only in `skills/cochl-design/core/` — CI (skills-lint) enfor
 ## Dependencies
 
 - Claude Code CLI
-- Skills install to `~/.claude/skills/` and are available globally
+- Installed as the `cochl-design` plugin (user scope), available in every project
 - `scripts/gen_pptx.py` requires `python-pptx` — `pip install python-pptx`
 
 ## Contributing
