@@ -8,6 +8,18 @@
         { "component": "HyperlinkButton", "role": "link-button", "relationship": "variant", "variant": "type=Link" }
       ],
         "pendingTargets": [ { "component": "ComplexButton", "role": "complex-button", "relationship": "variant", "variant": "type=ComplexButton", "note": "In cochl-dashboard source (main) but not in published @cochlearai/ui@1.0.5; move into targets after the next publish." } ],
+        "propMap": [
+          { "figma": "category=Primary, type=Basic", "code": "<Button color=\"primary\">", "confidence": "verified", "evidence": "fill #4B68FF (3251:7349) = button.backgroundColor.primary.light #4B68FF" },
+          { "figma": "type=Red", "code": "<Button color=\"danger\">", "confidence": "verified", "evidence": "fill #E02E2E (3251:7373) = button.backgroundColor.danger.light #E02E2E" },
+          { "figma": "category=Primary, type=md", "code": "<Button color=\"primary\">", "confidence": "verified", "evidence": "same fill as Basic; 50px height has no size prop (style only)" },
+          { "figma": "category=Secondary, type=sm|md|lg", "code": "<Button color=\"secondary\">", "confidence": "verified", "evidence": "outlined gray (3253:7385) = button.border/color.secondary; value drift: Figma #727273 vs code #8C8C8C; sm/md/lg have no size prop" },
+          { "figma": "type=Link", "code": "<HyperlinkButton text={Text} rightArrow={rightIcon}>", "confidence": "verified", "evidence": "HyperlinkButtonProps { text, rightArrow, onClick }; no disabled prop" },
+          { "figma": "type=ComplexButton", "code": "<ComplexButton title subtitle>", "confidence": "pending", "evidence": "not in published @cochlearai/ui@1.0.5" },
+          { "figma": "state=Disabled", "code": "disabled", "confidence": "verified", "evidence": "ButtonProps.disabled" },
+          { "figma": "state=Hovered", "code": "(CSS :hover, no prop)", "confidence": "verified", "evidence": "theme button.backgroundColor.hover.*" },
+          { "figma": "leftIcon=true / rightIcon=true", "code": "leftIcon={<Icon/>} / rightIcon={<Icon/>}", "confidence": "verified", "evidence": "ButtonProps.leftIcon/rightIcon: ReactNode" },
+          { "figma": "theme=Light|Dark", "code": "(ThemeProvider, no prop)", "confidence": "verified", "evidence": "ThemeColors light/dark" }
+        ],
         "reason": "Primary target Button drives the value comparisons. type=Link and type=ComplexButton are separate code components (verified 2026-10-08 against cochl-dashboard packages/cochl-ui/stories/actions/Button.stories.tsx). Kept ONE_TO_ONE so Button's drift status stays visible; extra targets are informational until the engine supports per-variant routing (D4)." },
       "code": {
         "package": "@cochlearai/ui", "component": "Button",
@@ -30,7 +42,7 @@
         { "label": "Border radius", "category": "radius", "mode": "equal", "designKey": "radius.border", "codeKey": "radius.border", "severity": "medium" },
         { "label": "Label typography", "category": "typography", "mode": "equal", "designKey": "typography.label", "codeKey": "typography.label", "severity": "high" },
         { "label": "Kind/variant taxonomy", "category": "variant", "mode": "setEqual", "designKey": "variant.kinds", "codeKey": "prop.color", "severity": "high",
-          "note": "Figma kinds = category(Primary/Secondary) ∪ type(Basic/Red/Link); code `color` = default/primary/secondary/danger. Likely: Red→danger, Basic→default, Link→HyperlinkButton." },
+          "note": "Figma kinds = category(Primary/Secondary) ∪ type(Basic/Red/Link); code `color` = default/primary/secondary/danger. Verified 2026-10-13 (see mapping.propMap): Primary Basic→primary, Red→danger, Secondary→secondary, Link→HyperlinkButton; code `default` has no Figma twin." },
         { "label": "Size variants", "category": "variant", "mode": "presence", "designKey": "variant.size", "codeKey": "prop.size", "severity": "high" },
         { "label": "Link type", "category": "variant", "mode": "unmatched", "designKey": "variant.link", "severity": "medium", "note": "Figma type=Link → separate code component HyperlinkButton, not Button." },
         { "label": "Disabled state", "category": "state", "mode": "presence", "designKey": "state.disabled", "codeKey": "state.disabled", "severity": "low" },

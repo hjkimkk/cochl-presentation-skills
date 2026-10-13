@@ -74,8 +74,22 @@ Rules: Place `BaseTheme` as high as possible. Never nest multiple providers. Don
 ### 4. Verify with a test component
 ```tsx
 import { Button } from '@cochlearai/ui';
-<Button variant="primary">Design System Active</Button>
+<Button color="primary">Design System Active</Button>
 ```
+
+### 5. From a Figma component to code (mapping)
+
+When the user gives a Figma node, a Figma URL or a Figma component name, don't guess the component. Read the mapping (Code Connect stand-in, Phase 2 Path 2):
+
+1. Open `../../design-sync/config/mapping.json` (inside the plugin), or `design-sync/config/mapping.json` in the cochl-presentation-skills repo.
+2. Find the entry whose `figma.nodeId` or `relatedNodeIds` matches the node (URL `node-id=3251-7381` → `3251:7381`), else match `figma.name`. Look in `components` first, then `pending`.
+3. Use, in this order:
+   - `mapping.propMap`: exact Figma variant → JSX rows (e.g. `type=Red` → `<Button color="danger">`, `type=Link` → `<HyperlinkButton>`). Rows marked `pending` are not published yet.
+   - `mapping.targets[].variant` and `.props`: which code component and props a Figma variant becomes.
+   - `mapping.iconMap` for Icons: Figma icon set → code icon; `probable`/`ambiguous` rows need a visual check.
+4. An entry in `pending` means the component is not in the published `@cochlearai/ui` yet (or lives in another package, see `code.package`). Tell the user; don't import it from `@cochlearai/ui`.
+5. Theme (`theme=Light|Dark`) is never a prop: it comes from `BaseTheme` / `ThemeType`.
+6. No entry for the component → say so and build from library primitives; don't invent a component name.
 
 ### React QA checklist
 - [ ] `.npmrc` uses env variable, not raw token
@@ -84,6 +98,7 @@ import { Button } from '@cochlearai/ui';
 - [ ] `BaseTheme` wraps root with `ThemeType.LIGHT`
 - [ ] `npm run build` completes with no errors
 - [ ] No unrelated layout changes made
+- [ ] Figma components were turned into code via `mapping.json` (step 5), not by guessing names
 
 ---
 

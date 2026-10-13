@@ -10,6 +10,11 @@ under a version heading.
 
 ## Unreleased
 
+- design-system: turn a Figma node into code via `design-sync/config/mapping.json` (Code Connect
+  stand-in, Path 2); test snippet uses `color="primary"` (was a non-existent `variant` prop).
+- design-sync: Button `propMap` verified against Figma fills (Red → `color="danger"`, Primary →
+  `primary`, Secondary → `secondary`, Link → `HyperlinkButton`).
+
 ## 2.0.0 — 2026-10-13
 
 First release as a Claude Code plugin (Phase 2, Workstream A + B).

@@ -60,6 +60,9 @@ Still open: D2, D3 (NS), D4 (YJ).
 
 **Phase 1 status (2026-10-13): done.** Dropdown ONE_TO_MANY by type, Button/Input/Alert variant targets, node IDs on all 10 entries, NumberInput parked in `pending`; `mapping validate` exit 0.
 
+### Decision gate (W4): Path 2 for now (recorded 2026-10-13)
+No Figma Dev seat → Code Connect can't be published (`docs/design-to-code-architecture.md` §1.5). `mapping.json` is the Code Connect stand-in: `skills/design-system` (ds-install) reads it (step 5) and Button carries a verified `propMap`. If a seat is approved later, Path 1 generates `*.figma.tsx` from the same `mapping.json`; nothing is lost. Owner of the seat request: HJ → NS.
+
 ### Phase 1: Fix the existing mapping (week of Oct 7)
 Unblocks pushing `main` (design-sync CI).
 - Dropdown → ONE_TO_MANY by `type` (emailSelect → `MultiSelectDropdown`; sm → `ListDropdown` + `DropdownButton`; timePicker → `Dropdown` + `DropdownButton` + `DropdownItem`).
