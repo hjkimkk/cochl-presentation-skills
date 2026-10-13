@@ -103,6 +103,17 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
     ok("mapping.json: Alert Basic + Link both map to Toast (ONE_TO_ONE)");
   }
 
+  // Icons: one module target; every Figma icon set appears once in iconMap.
+  {
+    const icons = real.components.Icons;
+    assert.equal(resolveMapping(icons.figma.name, icons).effectiveStatus, MAPPING_TYPE.ONE_TO_ONE);
+    const families = icons.mapping.iconMap.map((r) => r.figma);
+    assert.equal(families.length, 24, "24 Figma icon sets mapped");
+    assert.equal(new Set(families).size, 24, "no Figma icon set listed twice");
+    assert.ok(icons.mapping.iconMap.every((r) => ["exact", "renamed", "probable", "ambiguous"].includes(r.confidence)));
+    ok("mapping.json: Icons covers all 24 Figma icon sets");
+  }
+
   // `pending` entries (code not published yet) stay out of `components` but are complete.
   for (const [name, cfg] of Object.entries(real.pending ?? {})) {
     if (name.startsWith("_")) continue;

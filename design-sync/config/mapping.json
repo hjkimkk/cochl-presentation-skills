@@ -225,6 +225,47 @@
       },
       "code": { "package": "@cochlearai/ui", "component": "ProgressIndicator", "extract": {} },
       "comparisons": []
+    },
+
+    "Icons": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "1166:305", "nodeId": "2731:635", "name": "Icons", "role": "icon-library" },
+      "mapping": {
+        "type": "ONE_TO_ONE",
+        "targets": [
+          { "component": "Icons", "role": "icon-library", "relationship": "exact", "note": "The @cochlearai/ui Icons module (one export per icon). Per-icon matches are in iconMap; pendingIcons are in cochl-dashboard main but not published." }
+        ],
+        "pendingIcons": ["UploadIcon", "CodeIcon", "VoiceIcon", "SRIcon"],
+        "iconMap": [
+          { "figma": "Plus", "code": "PlusIcon", "confidence": "exact", "evidence": "12x12 = 12x12" },
+          { "figma": "Minus", "code": "MinusIcon", "confidence": "exact", "evidence": "12x1 vs 12x2" },
+          { "figma": "ArrowDown", "code": "ArrowDownIcon", "confidence": "exact", "evidence": "size=sm 6x4 = path 6x4; size=lg (23x12) has no code size variant" },
+          { "figma": "Arrow", "code": "ArrowForwardIcon", "confidence": "probable", "evidence": "12x8 = 12x8 (audit also lists ArrowRight/Left/RightBar)" },
+          { "figma": "Close", "code": "ModalCloseIcon", "confidence": "probable", "evidence": "16x16 = 16x16 (InputCancel/RoundClose are other sizes)" },
+          { "figma": "ThreeDots", "code": "MoreIcon", "confidence": "probable", "evidence": "horizontal dots; 16x16 frame vs 16x4 glyph" },
+          { "figma": "Filter", "code": "FilterIcon", "confidence": "exact", "evidence": "20x17 frame vs 14-wide path" },
+          { "figma": "Refresh", "code": "RefreshIcon", "confidence": "exact", "evidence": "20x20; code size from props" },
+          { "figma": "Search", "code": "SearchIcon", "confidence": "exact", "evidence": "20x20 vs viewBox 12" },
+          { "figma": "Time", "code": "HistoryIcon", "confidence": "probable", "evidence": "20x20 vs 14x14" },
+          { "figma": "Copy", "code": "CopyIcon", "confidence": "exact", "evidence": "20x20 = 20x20" },
+          { "figma": "Redirect", "code": "ExternalIcon", "confidence": "probable", "evidence": "16x16 vs 20x20" },
+          { "figma": "Edit", "code": "EditIcon", "confidence": "exact", "evidence": "19x19 vs 18x18" },
+          { "figma": "CloudAPI", "code": "CloudAPIIcon", "confidence": "exact", "evidence": "25x18 vs 30x30" },
+          { "figma": "EdgeSDK", "code": "EdgeSDKIcon", "confidence": "exact", "evidence": "23x25 vs 30x30" },
+          { "figma": "Info", "code": "InfoIcon", "confidence": "exact", "evidence": "25x25; code size from props" },
+          { "figma": "UserIcon", "code": "UserIcon", "confidence": "exact", "evidence": "25x25 = 25x25; type Main|Gray|Pending has no code prop" },
+          { "figma": "NotificationBell", "code": "NotiIcon", "confidence": "renamed", "evidence": "25x25 = 25x25; notifOn=off has no code equivalent (dot always drawn)" },
+          { "figma": "CheckCircle", "code": "ToastCheckIcon", "confidence": "probable", "evidence": "14x14 = 14x14" },
+          { "figma": "CheckX", "code": "ToastErrorIcon", "confidence": "probable", "evidence": "14x14 = 14x14 (audit: or ToastCloseIcon 12x12)" },
+          { "figma": "Upload", "code": "UploadIcon", "confidence": "exact", "evidence": "in cochl-dashboard main, not in published 1.0.5" },
+          { "figma": "code", "code": "CodeIcon", "confidence": "exact", "evidence": "in cochl-dashboard main, not in published 1.0.5" },
+          { "figma": "Mic", "code": "VoiceIcon", "confidence": "ambiguous", "evidence": "or RecordIcon; neither in published 1.0.5" },
+          { "figma": "SpeakerRec", "code": "SRIcon", "confidence": "probable", "evidence": "in cochl-dashboard main, not in published 1.0.5" }
+        ],
+        "figmaOnly": ["*ic/Security (4992:276, loose symbol)"],
+        "reason": "Figma Icons is a frame of 24 icon sets (theme Light|Dark each); code exports one component per icon. Matched by name and by Figma symbol size vs code SVG size/viewBox (published @cochlearai/ui@1.0.5, 2026-10-13) plus docs/design-sync/mismatch/navigation-icons.md §5. 'probable' and 'ambiguous' rows need a visual check before they count as exact. About 30 published code icons have no Figma set (D2)."
+      },
+      "code": { "package": "@cochlearai/ui", "component": "Icons", "extract": {} },
+      "comparisons": []
     }
   },
   "pending": {
@@ -240,6 +281,38 @@
         "Code renders Error via `error` prop with aria-invalid=\"false\" (inverted, same bug as Input).",
         "Story has no parameters.design link to 1153:404.",
         "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache)."
+      ]
+    },
+
+    "Tabs": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:444", "nodeId": "1516:1973", "name": "Tabs", "role": "tab-navigation" },
+      "mapping": { "type": "ONE_TO_MANY", "targets": [
+        { "component": "Tab", "role": "tab-list", "relationship": "container" },
+        { "component": "TabItem", "role": "tab", "relationship": "part", "props": "state=Default → <TabItem>; state=Active → selected; state=Focus → none (no focus style in code)" }
+      ],
+        "reason": "Figma Tabs (theme Light|Dark, type Basic, state Default|Focus|Active, text prop Text) composes into Tab + TabItem. Storybook Disclosure/Tabs (disclosure-tabs--states). From docs/design-sync/mismatch/navigation-icons.md §1." },
+      "storybook": { "id": "disclosure-tabs--states", "states": { "state=Default": "Default", "state=Focus": "Focus (story-only FocusTabItem)", "state=Active": "Active" } },
+      "notes": [
+        "Figma state=Focus has no code prop or :focus-visible style; TabItem is a non-focusable li (High).",
+        "Spec frames on the Tabs page are misnamed InputField_Specs.",
+        "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."
+      ]
+    },
+
+    "Menu": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "27:445", "nodeId": "1765:1692", "relatedNodeIds": ["1821:1070"], "name": "Menu", "role": "menu-overlay" },
+      "mapping": { "type": "ONE_TO_MANY", "targets": [
+        { "component": "Menu", "role": "menu-container", "relationship": "variant", "variant": "type=Basic" },
+        { "component": "NotificationMenu", "role": "notification-menu", "relationship": "variant", "variant": "type=Notification", "props": "state=Default → notifications=[...]; state=Empty → notifications={[]}" },
+        { "component": "UserMenu", "role": "user-menu", "relationship": "variant", "variant": "type=UserMenu" },
+        { "component": "NotificationMenuItem", "role": "menu-item", "relationship": "part", "props": "MenuItem notifOn=true → read=false (unread dot); state=LastItem → showDivider={false}" }
+      ],
+        "reason": "Figma Menu (theme, type Notification|UserMenu|Basic, state Default|Empty, notifOn) + MenuItem (1821:1070) map to Menu, NotificationMenu, UserMenu and NotificationMenuItem. Storybook Overlay/Menu. From docs/design-sync/mismatch/feedback-overlay.md (Menu section)." },
+      "storybook": { "id": "overlay-menu--basic", "stories": ["overlay-menu--basic", "overlay-menu--notification", "overlay-menu--notification-empty", "overlay-menu--user-menu-story"] },
+      "notes": [
+        "No Dark story; Figma has no Dark/Basic variant.",
+        "UserMenu adds a Logout row not in Figma.",
+        "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."
       ]
     }
   }

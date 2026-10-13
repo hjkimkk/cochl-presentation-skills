@@ -1,0 +1,70 @@
+{
+  "_comment": "VERIFIED via figma-mcp get_metadata on frame 2731:635 (2026-10-13). Icon library frame: 24 sets, each theme=Light|Dark. Per-icon code matches live in mapping.json Icons.mapping.iconMap; no value comparisons yet.",
+  "component": "Icons",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "1166:305",
+    "name": "Icons v1"
+  },
+  "referenceVariant": {
+    "nodeId": "2731:635",
+    "name": "Icons (frame of 24 icon sets)"
+  },
+  "capturedVia": "figma-mcp get_metadata",
+  "fields": [
+    {
+      "key": "variant.families",
+      "category": "variant",
+      "value": [
+        "Plus",
+        "Minus",
+        "ArrowDown",
+        "Arrow",
+        "Close",
+        "ThreeDots",
+        "Filter",
+        "Refresh",
+        "Search",
+        "Time",
+        "Copy",
+        "Redirect",
+        "Edit",
+        "CloudAPI",
+        "EdgeSDK",
+        "Info",
+        "UserIcon",
+        "NotificationBell",
+        "CheckCircle",
+        "Upload",
+        "Mic",
+        "code",
+        "SpeakerRec",
+        "CheckX"
+      ],
+      "ref": "2731:635",
+      "detail": "24 icon set frames"
+    },
+    {
+      "key": "variant.extraAxes",
+      "category": "variant",
+      "value": {
+        "ArrowDown": "size sm|lg",
+        "UserIcon": "type Main|Gray|Pending",
+        "NotificationBell": "notifOn off|true",
+        "CheckCircle": "Property 1 Light|Dark (not theme)"
+      },
+      "ref": "2731:635",
+      "detail": "axes beyond theme"
+    }
+  ],
+  "meta": {
+    "component": "Icons",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "2731:635",
+    "capturedAt": "2026-10-13T17:48:02.174Z",
+    "captureMethod": "figma-mcp get_metadata",
+    "sourceRevision": null,
+    "captureStatus": "verified"
+  }
+}
