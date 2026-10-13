@@ -30,9 +30,9 @@ First release as a Claude Code plugin (Phase 2, Workstream A + B).
 - CI: `skills-lint` on every PR (frontmatter, referenced paths, no brand values outside `core/`,
   manifests agree, CHANGELOG line for plugin changes); `plugin-release` tags `v<version>` and
   publishes a GitHub release when `plugin.json`'s version changes on `main`.
-- design-sync: Figma ↔ code inventory and mismatch audits (`docs/design-sync/`); mapping for
-  Dropdown (by type), Button/Input/Alert variant targets, Figma node IDs on all 10 entries,
-  NumberInput pending publish.
+- design-sync: Figma ↔ code inventory and mismatch audits (`docs/design-sync/`); mapping covers
+  all 20 Figma families (15 checked by `sync`, 5 pending publish/engine), 0 AMBIGUOUS
+  (`design-sync/scripts/coverage.mjs`, coverage KPI on the dashboard).
 
 ### Removed
 - Root leftovers: root `SKILL.md`, `cochl-brochure-skill/`, `cochl-social-kit/`, nested
