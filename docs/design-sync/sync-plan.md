@@ -122,7 +122,7 @@ Per D2:
 | 13 | Storybook `parameters.design` on every story | Dev | Nov 3 – Nov 28 | 42/42 stories link a Figma node |
 | 14 | Figma cleanup (frame names, legacy symbols, typo, Input states) | NS | Nov 10 – Nov 28 | items in inventory §5 closed |
 | 15 | ◐ `scripts/coverage.mjs` + CI step + dashboard KPI done (2026-10-13); `cli.mjs inventory` regeneration still open | HJ + YJ | Nov 17 – Dec 4 | dashboard shows coverage from CI |
-| 16 | Hand UNMATCHED backlog to YJ's live-site Design QA | HJ → YJ | Dec 4 | list delivered |
+| 16 | ✅ Hand UNMATCHED backlog to YJ's live-site Design QA (`unmatched-backlog.md`, 2026-10-13; send to YJ) | HJ → YJ | Dec 4 | list delivered |
 
 ## Risks
 
