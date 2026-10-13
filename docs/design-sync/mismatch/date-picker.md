@@ -25,7 +25,9 @@
 | Selected (single / start / end) | 32px `blue[60]` circle, text `white` | text `white`; circle not set in this wrapper (react-dates default; needs checking in the app) | 32px `blue[60]` circle | story ✓; code unverified |
 | In-range days | **square band** `grey[10]` (#f9f9fa / #171717), text `blue[60]` | `grey[10]` band, text `blue[60]` | **circles** `grey[20]`, text `black` | code ✓; story ✗ |
 | Hovered day | `grey[10]` square + `blue[60]` text | `white` + `blue[60]` text | `blue[60]` text only | ✗ both (no grey hover square) |
-| Inputs | 2 × 169×30, r4, fill `white` / #18191a | `renderInputComponents` slot | 2 × 169×30, `grey[30]` border | ≈ |
+| Inputs | 2 × 169×30 at the **bottom**, placeholder `mm / dd / yyyy`, r4, fill `white` / #18191a | `renderInputComponents` slot in the bottom bar ✓ | at the **top**, filled with date + time | story ✗ |
+| Buttons | none in day of month; **custom** has `Cancel` (grey) then `Confirm` (blue) at bottom right | `renderButtonComonents` slot, `row-reverse` | `Confirm` then `Cancel` (order reversed) | story ✗ |
+| Row height | ~49px per week row (402×477 panel) | react-dates cell size | 32px cells + 4px gap (shorter panel) | story ✗ |
 
 ## 2. Other styles
 
@@ -53,6 +55,7 @@
 - **Arrows:** `MonthYearPicker` arrows are `grey[70]`; Figma uses `grey[80]`.
 
 ### Figma
+0. **Content typo:** "month of year" shows "Feb" twice; the third month should be "Mar".
 1. **Invisible backspace characters** in property names and values: `\bprevious` (Header `2447:6728`), `\bcustom` and `\bmonth of year` (Date picker `2447:6741`). This is the same problem as Card's `\bsize` / `\bm`.
 2. **Incomplete matrix:** custom, month of year and year over year exist only as `hovered`. There are no `default` variants for them.
 3. **Duplicates:**
