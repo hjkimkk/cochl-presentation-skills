@@ -9,6 +9,8 @@ args:
   - name: type
     required: true
     description: "proposal | direction  — which template to follow"
+  - name: theme
+    description: "Section Divider variant applied to the WHOLE deck: light | dark (default: light). Every Section Divider uses this one variant. Cover — Main is unaffected (always follows its template spec — Direction = full-bleed black)."
   - name: project
     required: true
     description: "Project or feature name shown in the persistent header"
@@ -308,7 +310,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Dark variant preferred (black bg, white text)
 - Left ~60%: "AGENDA" at 40px `--font-sans` 400, y≈370px from top
 - Right ~40%: numbered section list
-  - Section row height: ~60px, gray highlight band behind each section number
+  - Section row height: ~60px, **no highlight band** — plain rows on the black background (correct per PPTX slide 3; the "gray highlight band behind each section number" in earlier docs was an error and does not exist in the source)
   - Section number: 26px `--font-body` bold
   - Section title: 24px `--font-body` 400
   - Sub-items: 18px `--font-body` 400, muted
@@ -326,6 +328,8 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 ### 4. SECTION DIVIDER
 **Source**: Both PPTX  
 **Used for**: OVERVIEW, DISCOVERY, STRATEGY & PROCESS, KEY DELIVERABLES, NEXT STEPS
+
+> ⚠️ **One divider variant per deck — never mix light and dark.** Within a single deck, **every** Section Divider uses the **same** variant — all light **or** all dark. Do **not** alternate the variant from slide to slide. **Default: light (`--light-gray`).** Render all dividers dark (`--bg-pure`) **only** when the user explicitly asks — via the `theme` arg (`light` | `dark`, default `light`) or an explicit request in the prompt. **`COVER — Main` (§1) is exempt** and always follows its own template spec (Direction = full-bleed black) regardless of `theme`.
 
 - Light variant bg: `--light-gray`; Dark variant bg: `--bg-pure`
 - Persistent header present
@@ -887,7 +891,8 @@ If no screenshots are provided: render phone frame outlines with placeholder fil
 - [ ] Font: `--font-body` for all body text, numbered items, descriptions
 - [ ] Font: `--font-mono` for BEFORE/AFTER, DECISION MATRIX, FINDINGS, FINAL MOCKUP headers
 - [ ] Font: `--font-quote` only on full-bleed quote slide
-- [ ] Section divider bg: exactly `--light-gray` (never other near-white grays)
+- [ ] Section divider bg: `--light-gray` (light, default) or `--bg-pure` (dark) — never other near-white grays
+- [ ] Section dividers: **one variant across the whole deck** (all light or all dark per `theme`, default light) — never mixed slide-to-slide; Cover — Main stays black regardless
 - [ ] Card bg on gray slides: `--light-card`
 - [ ] Cover slides: NO persistent header
 - [ ] All content slides: persistent header present
