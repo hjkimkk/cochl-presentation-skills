@@ -1,0 +1,54 @@
+{
+  "_comment": "Structure only, from docs/design-sync/mismatch/data-display.md (Plugin API read 2026-10-08). No value fields yet; add comparisons when value extraction is set up.",
+  "component": "Card",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "12:2070",
+    "name": "Card v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1850:660",
+    "name": "Card set"
+  },
+  "capturedVia": "figma plugin API (mismatch audit)",
+  "fields": [
+    {
+      "key": "variant.axes",
+      "category": "variant",
+      "value": {
+        "type": [
+          "basic",
+          "card with action",
+          "Card with supporting text",
+          "card with items",
+          "fullLength"
+        ],
+        "size": [
+          "sm",
+          "m",
+          "fl"
+        ],
+        "state": [
+          "default",
+          "hovered"
+        ],
+        "theme": [
+          "light",
+          "dark"
+        ]
+      },
+      "ref": "1850:660",
+      "detail": "variant axes"
+    }
+  ],
+  "meta": {
+    "component": "Card",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1850:660",
+    "capturedAt": "2026-10-08T00:00:00.000Z",
+    "captureMethod": "figma plugin API (mismatch audit)",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

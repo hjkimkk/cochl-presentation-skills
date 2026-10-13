@@ -1,0 +1,46 @@
+{
+  "_comment": "Structure only, from docs/design-sync/mismatch/feedback-overlay.md §6 (Plugin API read 2026-10-08). No value fields yet; add comparisons when value extraction is set up.",
+  "component": "Modal",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "27:447",
+    "name": "Modal v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1869:1110",
+    "name": "Modal set"
+  },
+  "capturedVia": "figma plugin API (mismatch audit)",
+  "fields": [
+    {
+      "key": "variant.axes",
+      "category": "variant",
+      "value": {
+        "type": [
+          "Modal with subtitles and cta",
+          "Modal with heading"
+        ],
+        "state": [
+          "Default",
+          "Enabled"
+        ],
+        "theme": [
+          "Light",
+          "Dark"
+        ]
+      },
+      "ref": "1869:1110",
+      "detail": "variant axes"
+    }
+  ],
+  "meta": {
+    "component": "Modal",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1869:1110",
+    "capturedAt": "2026-10-08T00:00:00.000Z",
+    "captureMethod": "figma plugin API (mismatch audit)",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

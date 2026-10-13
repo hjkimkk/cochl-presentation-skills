@@ -77,6 +77,12 @@ jobs:
           # fail only on a mapping/config error
           [ "$code" = "2" ] && exit 1 || exit 0
 
+      # 4b) Figma coverage (mapped + pending of all DS families). Fails on AMBIGUOUS.
+      - name: Coverage
+        run: |
+          node scripts/coverage.mjs | tee coverage.txt
+          { echo "### Figma coverage"; echo '```'; cat coverage.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       # 5) Build the shareable page and stage it as the Pages site.
       - name: Build shareable dashboard
         run: |

@@ -266,10 +266,52 @@
       },
       "code": { "package": "@cochlearai/ui", "component": "Icons", "extract": {} },
       "comparisons": []
+    },
+
+    "Popover": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "3751:1864", "nodeId": "3752:305", "relatedNodeIds": ["3752:407"], "name": "PopoverList", "role": "popover-list" },
+      "mapping": { "type": "ONE_TO_MANY", "targets": [
+        { "component": "Popover", "role": "popover-container", "relationship": "container", "props": "type=Default → content={list}; type=RightButton|LeftButton → align=\"end\"|\"start\" around a trigger Button" },
+        { "component": "DropdownItem", "role": "popover-item", "relationship": "part", "props": "PopoverItem state=Default → <DropdownItem>; state=Selected → no prop (story override)" }
+      ],
+        "reason": "Figma PopoverList (theme, type Default|Divider|RightButton|LeftButton) + PopoverItem (3752:407) compose Popover + DropdownItem; list container, divider and selected item exist only in the story. From docs/design-sync/mismatch/form.md (Popover)." },
+      "code": { "package": "@cochlearai/ui", "component": "Popover", "extract": {} },
+      "comparisons": []
+    },
+
+    "Card": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "12:2070", "nodeId": "1850:660", "name": "Card", "role": "card-surface" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [
+        { "component": "Card", "role": "card-surface", "relationship": "exact", "props": "type=basic state=hovered → hoverEffect; other types are composed content; size sm|m|fl has no prop" }
+      ],
+        "reason": "Figma Card (14 variants: type × size × state × theme) is one Card surface; the 5 templates are story compositions. From docs/design-sync/mismatch/data-display.md (Card)." },
+      "code": { "package": "@cochlearai/ui", "component": "Card", "extract": {} },
+      "comparisons": []
+    },
+
+    "Skeleton": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:443", "nodeId": "1913:12477", "relatedNodeIds": ["1913:12479", "1913:12496"], "name": "Skeleton", "role": "loading-placeholder" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [
+        { "component": "Skeleton", "role": "loading-placeholder", "relationship": "exact", "props": "Skeleton → variant=\"rectangle\"; SkeletonText (1913:12479) → variant=\"text\"; SkeletonCircle (1913:12496) → variant=\"circle\"" }
+      ],
+        "reason": "Three Figma sets are one code component with a variant prop. Figma property name contains U+0008 ('\\btheme'). From docs/design-sync/mismatch/feedback-overlay.md §3." },
+      "code": { "package": "@cochlearai/ui", "component": "Skeleton", "extract": {} },
+      "comparisons": []
+    },
+
+    "Modal": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "27:447", "nodeId": "1869:1110", "relatedNodeIds": ["1869:1060"], "name": "ModalContent", "role": "modal-dialog" },
+      "mapping": { "type": "ONE_TO_MANY", "targets": [
+        { "component": "Modal", "role": "modal-container", "relationship": "container", "props": "ModalOverlay (1869:1060) → dim (default true)" },
+        { "component": "ConfirmModal", "role": "modal-dialog", "relationship": "variant", "variant": "type=Modal with heading", "props": "Title → title; Subtitles → subTitle; Button → onAbort/onConfirm" }
+      ],
+        "reason": "Figma ModalContent + ModalOverlay map to Modal and ConfirmModal. type='Modal with subtitles and cta' has no library component (story-local; app ProjectCreateModal) → D2 backlog. From docs/design-sync/mismatch/feedback-overlay.md §6." },
+      "code": { "package": "@cochlearai/ui", "component": "Modal", "extract": {} },
+      "comparisons": []
     }
   },
   "pending": {
-    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish.",
+    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish. Exception: an entry with `blockedBy` waits on an engine change, not a publish.",
     "NumberInput": {
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:721", "nodeId": "1153:404", "name": "Number Input", "role": "number-input" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [
@@ -314,6 +356,37 @@
         "UserMenu adds a Logout row not in Figma.",
         "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."
       ]
+    },
+
+    "DatePicker": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "1439:1380", "nodeId": "2447:6741", "relatedNodeIds": ["2447:7072", "2447:6728", "2845:3965"], "name": "Date picker", "role": "date-picker" },
+      "mapping": { "type": "ONE_TO_MANY", "targets": [
+        { "component": "Calendar", "role": "day-of-month", "relationship": "variant", "variant": "style=day of month" },
+        { "component": "Calendar", "role": "range-picker", "relationship": "variant", "variant": "style=custom", "props": "two months + DayPickerRangeControllerInputs + CalendarBottomButtons" },
+        { "component": "MonthYearPicker", "role": "month-year-grid", "relationship": "variant", "variant": "style=month of year|year over year" },
+        { "component": "CalendarBottomButtons", "role": "actions", "relationship": "part" },
+        { "component": "DayPickerRangeControllerInputs", "role": "inputs", "relationship": "part" }
+      ],
+        "reason": "The production date picker is @cochlearai/calendar@1.0.1 (packages/cochl-calendar), not @cochlearai/ui; the cochl-ui 'Data Display/Date picker' story is a static mock. Exports verified in the Yarn cache 2026-10-13. From docs/design-sync/mismatch/date-picker.md." },
+      "code": { "package": "@cochlearai/calendar" },
+      "blockedBy": "Engine reads only @cochlearai/ui (codeAdapter resolvePackageDir + validate). Move into components once the engine supports code.package (YJ).",
+      "notes": [
+        "@cochlearai/calendar has no Storybook stories; add stories that mirror Figma (date-picker.md §4).",
+        "Supersedes sync-plan Phase 3 'move DatePicker into the library': the component exists, in a separate package."
+      ]
+    },
+
+    "Navigation": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "1185:1204", "nodeId": "3602:1114", "relatedNodeIds": ["6535:417", "6533:2777"], "name": "Navigation", "role": "navigation-bar" },
+      "mapping": { "type": "ONE_TO_MANY", "targets": [
+        { "component": "GNB", "role": "global-nav", "relationship": "variant", "variant": "type=GNB", "props": "NavButton (6535:417) → GNBLink" },
+        { "component": "LNB", "role": "local-nav", "relationship": "variant", "variant": "type=LNB", "props": "tabs → LNBTab + LNBTabItem" },
+        { "component": "FNB", "role": "footer-nav", "relationship": "variant", "variant": "type=Footer" },
+        { "component": "ProjectNavi", "role": "project-nav", "relationship": "variant", "variant": "type=ProjectNav", "props": "PageButton (6533:2777) → ProjectNaviItem" }
+      ],
+        "reason": "Figma Navigation (48 variants: theme × type × size xl..mobile) maps by type. Code is fixed to media.size.lg; no responsive sizes. Storybook Disclosure/Navigation. From docs/design-sync/mismatch/navigation.md." },
+      "storybook": { "id": "disclosure-navigation--gnb-story" },
+      "notes": ["Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."]
     }
   }
 }

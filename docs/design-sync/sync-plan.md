@@ -56,6 +56,8 @@ Answers needed before the denominator and the backlog are fixed.
 
 Still open: D2, D3 (NS), D4 (YJ).
 
+**Coverage (2026-10-13): 100% mapped (20/20 Figma families), 75% checked by `sync` (15), 5 pending, 0 AMBIGUOUS** — `node design-sync/scripts/coverage.mjs`. Pending: NumberInput, Tabs, Menu, Navigation (not in published `@cochlearai/ui@1.0.5`), DatePicker (`@cochlearai/calendar`, needs engine support). Popover, Card, Skeleton, Modal and Icons are mapped by structure only (no value comparisons yet). Icons has 8 `probable` + 1 `ambiguous` icon matches to confirm visually.
+
 **Phase 1 status (2026-10-13): done.** Dropdown ONE_TO_MANY by type, Button/Input/Alert variant targets, node IDs on all 10 entries, NumberInput parked in `pending`; `mapping validate` exit 0.
 
 ### Phase 1: Fix the existing mapping (week of Oct 7)
@@ -111,15 +113,15 @@ Per D2:
 | 4 | ✅ Complete Button / Input / Alert targets (Alert: Basic + Link → Toast, 2026-10-13) | HJ, YJ review | Oct 8–10 | entries list all code targets |
 | 5 | ✅ Add component node IDs to all 10 entries | HJ | Oct 10–14 | every entry has `figma.nodeId` |
 | 6 | ✅ Push `main` (Workstream A) — pushed 2026-10-13 (01e06ad) | HJ | after 3 | design-sync CI passes |
-| 7 | Map Tabs, Menu, Icons + snapshots | HJ | Oct 27 – Nov 7 | `sync` runs; coverage 86% |
-| 8 | Read Progress + Date picker variants | HJ | Oct 27 – Nov 7 | rows complete in figma-components.md |
-| 9 | Move DatePicker into the library + story | Dev | Nov 3–21 | `src/DatePicker` exported |
+| 7 | ✅ Map Tabs, Menu, Icons + snapshots (2026-10-13; Tabs/Menu pending publish) | HJ | Oct 27 – Nov 7 | `sync` runs; coverage 86% |
+| 8 | ✅ Read Progress + Date picker variants (mismatch audits) | HJ | Oct 27 – Nov 7 | rows complete in figma-components.md |
+| 9 | ~~Move DatePicker into the library~~ → **changed:** it exists in `@cochlearai/calendar`; add calendar stories + engine support for a 2nd package (YJ) | Dev | Nov 3–21 | `src/DatePicker` exported |
 | 10 | Add SmallDropdown / TimePicker to library | Dev | Nov 3–21 | story uses library components only |
-| 11 | Map Date picker | HJ | after 9 | coverage 14/14 |
+| 11 | ✅ Map Date picker (pending: engine reads only `@cochlearai/ui`) | HJ | after 9 | coverage 14/14 |
 | 12 | Figma: design or mark the 18 code-only items (per D2) | NS | Nov 10 – Dec 4 | each has a Figma set or an UNMATCHED entry |
 | 13 | Storybook `parameters.design` on every story | Dev | Nov 3 – Nov 28 | 42/42 stories link a Figma node |
 | 14 | Figma cleanup (frame names, legacy symbols, typo, Input states) | NS | Nov 10 – Nov 28 | items in inventory §5 closed |
-| 15 | `cli.mjs inventory` + weekly CI + dashboard coverage % | HJ + YJ | Nov 17 – Dec 4 | dashboard shows coverage from CI |
+| 15 | ◐ `scripts/coverage.mjs` + CI step + dashboard KPI done (2026-10-13); `cli.mjs inventory` regeneration still open | HJ + YJ | Nov 17 – Dec 4 | dashboard shows coverage from CI |
 | 16 | Hand UNMATCHED backlog to YJ's live-site Design QA | HJ → YJ | Dec 4 | list delivered |
 
 ## Risks

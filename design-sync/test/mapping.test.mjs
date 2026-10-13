@@ -124,4 +124,16 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
   ok("mapping.json: pending entries are complete and kept out of components");
 }
 
+// Coverage: every Figma family mapped, none ambiguous, families list matches entries.
+{
+  const { readFileSync } = await import("node:fs");
+  const { coverage } = await import("../scripts/coverage.mjs");
+  const read = (p) => JSON.parse(readFileSync(new URL(p, import.meta.url), "utf8"));
+  const c = coverage(read("../config/figma-families.json").families, read("../config/mapping.json"));
+  assert.equal(c.ambiguous, 0, "no AMBIGUOUS family");
+  assert.equal(c.unmapped, 0, `unmapped: ${c.rows.filter((r) => r.status === "unmapped").map((r) => r.family).join(", ")}`);
+  assert.ok(c.percent >= 80, "coverage ≥ 80% (Phase 2 target)");
+  ok(`coverage ${c.percent}% (${c.mapped} checked + ${c.pending} pending of ${c.total})`);
+}
+
 console.log(`\n  ${passed} assertions passed.`);

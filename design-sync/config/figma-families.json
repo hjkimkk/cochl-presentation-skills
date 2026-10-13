@@ -1,0 +1,25 @@
+{
+  "_comment": "Every component family in the Figma Cochl Design System (aUrjRMAnE8ND8o6lAI0VcM), one row per top-level component set. Source: docs/design-sync/inventory + mismatch audits (Plugin API, 38 pages, 2026-10-08/13). Sub-sets (Alert_Icons, MenuItem, Table_Header/Body, PopoverItem, SkeletonText/Circle, NavButton/PageButton) count with their parent. Denominator for scripts/coverage.mjs.",
+  "families": [
+    { "family": "Button", "nodeId": "3251:7381" },
+    { "family": "Input Field", "nodeId": "1174:283" },
+    { "family": "Number Input", "nodeId": "1153:404" },
+    { "family": "Checkbox", "nodeId": "136:109" },
+    { "family": "Radio", "nodeId": "3116:3045" },
+    { "family": "Dropdown", "nodeId": "1259:1277" },
+    { "family": "Popover", "nodeId": "3752:305" },
+    { "family": "Card", "nodeId": "1850:660" },
+    { "family": "Chip", "nodeId": "1350:640" },
+    { "family": "Table", "nodeId": "2068:308" },
+    { "family": "Date picker", "nodeId": "2447:6741" },
+    { "family": "Alert", "nodeId": "1372:2003" },
+    { "family": "Progress", "nodeId": "1424:1266" },
+    { "family": "Skeleton", "nodeId": "1913:12477" },
+    { "family": "Menu", "nodeId": "1765:1692" },
+    { "family": "Tooltip", "nodeId": "3117:3637" },
+    { "family": "Modal", "nodeId": "1869:1110" },
+    { "family": "Tabs", "nodeId": "1516:1973" },
+    { "family": "Navigation", "nodeId": "3602:1114" },
+    { "family": "Icons", "nodeId": "2731:635" }
+  ]
+}

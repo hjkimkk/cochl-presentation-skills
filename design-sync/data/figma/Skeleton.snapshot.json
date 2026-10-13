@@ -1,0 +1,43 @@
+{
+  "_comment": "Structure only, from docs/design-sync/mismatch/feedback-overlay.md §3 (Plugin API read 2026-10-08). No value fields yet; add comparisons when value extraction is set up.",
+  "component": "Skeleton",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "25:443",
+    "name": "Skeleton v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1913:12477",
+    "name": "Skeleton set"
+  },
+  "capturedVia": "figma plugin API (mismatch audit)",
+  "fields": [
+    {
+      "key": "variant.axes",
+      "category": "variant",
+      "value": {
+        "sets": [
+          "Skeleton",
+          "SkeletonText",
+          "SkeletonCircle"
+        ],
+        "theme": [
+          "Light",
+          "Dark"
+        ]
+      },
+      "ref": "1913:12477",
+      "detail": "variant axes"
+    }
+  ],
+  "meta": {
+    "component": "Skeleton",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1913:12477",
+    "capturedAt": "2026-10-08T00:00:00.000Z",
+    "captureMethod": "figma plugin API (mismatch audit)",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

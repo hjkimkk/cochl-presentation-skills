@@ -87,7 +87,8 @@ if (S.staleSnapshots > 0) document.getElementById('warn').innerHTML = '<div clas
 const kpi = (n,l)=>'<div class="kpi"><div class="n">'+n+'</div><div class="l">'+l+'</div></div>';
 document.getElementById('kpis').innerHTML =
   kpi(S.byStatus.SYNC||0,'in sync')+kpi(S.byStatus.DRIFT||0,'drift')+kpi(S.byStatus.ONE_TO_MANY||0,'1:many')+
-  kpi(S.byStatus.AMBIGUOUS||0,'ambiguous')+kpi(S.totals.fixable,'auto-fixable')+kpi(S.totals.accepted,'accepted')+kpi(S.totals.manual,'manual');
+  kpi(S.byStatus.AMBIGUOUS||0,'ambiguous')+kpi(S.totals.fixable,'auto-fixable')+kpi(S.totals.accepted,'accepted')+kpi(S.totals.manual,'manual')+
+  (S.coverage ? kpi(S.coverage.percent+'%','Figma coverage ('+(S.coverage.mapped+S.coverage.pending)+'/'+S.coverage.total+', '+S.coverage.pending+' pending)') : '');
 const cell=(v)=> (v? '<b>'+v+'</b>' : '<span class="no">0</span>');
 document.getElementById('rows').innerHTML = R.map((r,i)=>{
   if(r.status==='CONFIG_ERROR') return '<tr onclick="show('+i+')"><td>'+r.component+'</td><td class="no">—</td><td><span class="pill CONFIG_ERROR">CONFIG_ERROR</span></td><td colspan="7" class="src">'+ (r.error||'') +'</td></tr>';
