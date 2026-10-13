@@ -92,6 +92,17 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
   }
   ok("mapping.json: no blocking issues, node IDs, Dropdown ONE_TO_MANY, Button/Input primary kept");
 
+  // Alert: both Figma types are Toast; still ONE_TO_ONE, renamed.
+  {
+    const alert = real.components.Alert;
+    const r = resolveMapping(alert.figma.name, alert);
+    assert.equal(r.effectiveStatus, MAPPING_TYPE.ONE_TO_ONE);
+    assert.equal(r.primary.component, "Toast");
+    assert.deepEqual(alert.mapping.targets.map((t) => t.variant), ["type=Basic", "type=Link"]);
+    assert.ok(alert.mapping.targets.every((t) => t.component === "Toast"), "Banner/Notification are not Alert targets");
+    ok("mapping.json: Alert Basic + Link both map to Toast (ONE_TO_ONE)");
+  }
+
   // `pending` entries (code not published yet) stay out of `components` but are complete.
   for (const [name, cfg] of Object.entries(real.pending ?? {})) {
     if (name.startsWith("_")) continue;

@@ -42,8 +42,16 @@
 
     "Alert": {
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:441", "nodeId": "1372:2003", "relatedNodeIds": ["3132:5485"], "name": "Alert", "role": "status-message" },
-      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Toast", "role": "status-message", "relationship": "renamed",
-        "note": "Figma 'Alert' → code 'Toast'. Name differs but role (status message with severity + optional action) matches → ONE_TO_ONE." } ] },
+      "mapping": {
+        "type": "ONE_TO_ONE",
+        "targets": [
+          { "component": "Toast", "role": "status-message", "relationship": "renamed", "variant": "type=Basic",
+            "props": "state=Success → severity=\"info\"; state=Error → severity=\"error\"; Text → message",
+            "note": "Figma 'Alert' → code 'Toast'. Name differs but role (status message with severity + optional action) matches → ONE_TO_ONE." },
+          { "component": "Toast", "role": "status-message", "relationship": "variant", "variant": "type=Link", "props": "Hyperlink → buttonText (+ onClick)" }
+        ],
+        "reason": "Both Figma types are Toast; type=Link is Toast with buttonText/onClick. Alert_Icons (3132:5485) Success/Error are ToastCheckIcon/ToastErrorIcon, internal to Toast. Banner and Notification share the Storybook group Feedback/Alert but are not Alert: Banner has no Figma component (D2 backlog) and Notification is the GNB bell (Menu/Navigation family). Decided 2026-10-13 from docs/design-sync/mismatch/feedback-overlay.md §1."
+      },
       "code": {
         "package": "@cochlearai/ui", "component": "Toast",
         "extract": {
