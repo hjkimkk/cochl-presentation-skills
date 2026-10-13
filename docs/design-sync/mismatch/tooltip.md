@@ -15,11 +15,16 @@
 | Fill | #333333 / #ffffff (`grey[90]`) | `grey[90]` | ✓ |
 | Text | 14/20 Regular, #ffffff / #1c1d1e (`white`) | `Typo body` 14/20, `white` | ✓ |
 | Padding / radius | 16 / 4 | 16 / 4 | ✓ |
-| Width | 280 (top/bottom), 451 (side; one line) | `max-width: 286px` | ≈ (side tooltips wrap at 286 instead of staying one line) |
+| Width | "flex" in the doc frame: hugs short text ("Tooltip on right"); the long sample wraps at 280 (top/bottom) or runs to 451 on one line (side) | hugs text, `max-width: 286px` | ✓ top/bottom; side wraps at 286 |
 | **Shadow** | `0 0 5px #989898` @30% | none (`boxShadow: unset`) | ✗ |
 | Arrow | 10×10 square rotated 45°, sticking out ~7px | `arrowSize={6}` triangle | ≈ |
 | **Arrow alignment** | left / middle / right: arrow **23px** from the box edge for left/right | `align="center"` only; arrow always centred | ✗ no left/right variants |
 | Placements | top-*, bottom-*, side-left, side-right | `position` top / bottom / left / right | ✓ (×3 alignment missing) |
+
+**Live check (2026-10-13, dashboardstorybook.cochl.ai, built from `main`):** hovering the icon opens a 74×52 box above it:
+- `#333333` fill, white 14/20 text, 16px padding, 4px radius ✓;
+- box-shadow `none` ✗;
+- arrow centred under the box, pointing at the icon.
 
 ## 2. Storybook
 - **One story, closed by default:** it opens only on hover, so the docs page and Chromatic show just the info icon. None of the 8 Figma placements is visible.
