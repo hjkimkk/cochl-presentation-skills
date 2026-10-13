@@ -85,9 +85,11 @@ Theme tokens below are the code names; Light / Dark hex come from `lib/Colors.ts
 
 ## 6. Figma
 
-- **Leftovers on the page:**
-  - legacy frames `Navigation Bar/Dark` `1185:1205` and `Navigation Bar/Light` `1185:1274`, plus `Frame 1269` `3350:1467`;
-  - two screenshots (`5809:746`, `5809:748`) and a loose logo group `8064:2789`.
+- **Page content (checked, keep):**
+  - `Navigation Bar/Dark` `1185:1205` and `Navigation Bar/Light` `1185:1274` are the usage docs (Korean notes, built from current instances);
+  - `Frame 1269` `3350:1467` is the page header;
+  - the two screenshots (`5809:746`, `5809:748`) are the cochl.ai homepage footer (May 2025), a reference;
+  - `8064:2789` is the colour logo.
 - **Breakpoints differ by type:**
   - sm: GNB/LNB 60px side padding (880) vs ProjectNav 20px (960);
   - xs: GNB 20 vs LNB 25;
@@ -107,4 +109,5 @@ Theme tokens below are the code names; Light / Dark hex come from `lib/Colors.ts
   - Fix the `@see` links.
 - **Responsive (larger change, design to confirm):** side padding per breakpoint (sm 60 or 20, xs/mobile 20–25) and the GNB hamburger at xs/mobile.
 - **Stories:** one per Figma type, named `GNB`, `LNB`, `Footer`, `ProjectNav`, each with its Figma link. Keep the full-page examples. Rename "States" to the Figma `NavButton` states (Default / Selected).
-- **Figma (NS):** archive the leftover frames, align the breakpoint paddings and widths, drop the duplicate `beta` BOOLEAN, and make the LNB tab a component.
+- **Figma (NS):** align the breakpoint paddings and widths, drop the duplicate `beta` BOOLEAN, and make the LNB tab a component.
+- **Done:** code and story fixes in branch `feat/navigation-figma-sync` (`261c7d6`). Also fixed: the count badge font weight (inherited 500 from the tab, Figma Regular 400).
