@@ -56,6 +56,8 @@ Answers needed before the denominator and the backlog are fixed.
 
 Still open: D2, D3 (NS), D4 (YJ).
 
+**Phase 1 status (2026-10-13): done.** Dropdown ONE_TO_MANY by type, Button/Input/Alert variant targets, node IDs on all 10 entries, NumberInput parked in `pending`; `mapping validate` exit 0.
+
 ### Phase 1: Fix the existing mapping (week of Oct 7)
 Unblocks pushing `main` (design-sync CI).
 - Dropdown → ONE_TO_MANY by `type` (emailSelect → `MultiSelectDropdown`; sm → `ListDropdown` + `DropdownButton`; timePicker → `Dropdown` + `DropdownButton` + `DropdownItem`).
@@ -103,12 +105,12 @@ Per D2:
 
 | # | Task | Owner | When | Done when |
 |---|---|---|---|---|
-| 1 | Share inventory + ask D1, D2, D3, D5 | HJ → NS, Dev | Oct 7–9 | Answers recorded in this file |
-| 2 | Ask D4 (variant mapping format) | HJ → YJ | Oct 7–9 | Format chosen |
-| 3 | Fix Dropdown mapping (variant targets) | HJ, YJ review | Oct 8–10 | validate exit 0 |
-| 4 | Complete Button / Input / Alert targets | HJ, YJ review | Oct 8–10 | entries list all code targets |
-| 5 | Add component node IDs to all 10 entries | HJ | Oct 10–14 | every entry has `figma.nodeId` |
-| 6 | Push `main` (Workstream A) once CI is green | HJ | after 3 | design-sync CI passes |
+| 1 | Share inventory + ask D1, D2, D3, D5 — **partly done**: D1, D5 answered; D2, D3 open | HJ → NS, Dev | Oct 7–9 | Answers recorded in this file |
+| 2 | Ask D4 (variant mapping format) — **open**; interim: `variant` field per target | HJ → YJ | Oct 7–9 | Format chosen |
+| 3 | ✅ Fix Dropdown mapping (variant targets) | HJ, YJ review | Oct 8–10 | validate exit 0 |
+| 4 | ✅ Complete Button / Input / Alert targets (Alert: Basic + Link → Toast, 2026-10-13) | HJ, YJ review | Oct 8–10 | entries list all code targets |
+| 5 | ✅ Add component node IDs to all 10 entries | HJ | Oct 10–14 | every entry has `figma.nodeId` |
+| 6 | ✅ Push `main` (Workstream A) — pushed 2026-10-13 (01e06ad) | HJ | after 3 | design-sync CI passes |
 | 7 | Map Tabs, Menu, Icons + snapshots | HJ | Oct 27 – Nov 7 | `sync` runs; coverage 86% |
 | 8 | Read Progress + Date picker variants | HJ | Oct 27 – Nov 7 | rows complete in figma-components.md |
 | 9 | Move DatePicker into the library + story | Dev | Nov 3–21 | `src/DatePicker` exported |
