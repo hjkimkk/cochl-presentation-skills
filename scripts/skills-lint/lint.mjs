@@ -51,7 +51,7 @@ function brandHits(rel, entries) {
     scanLine(text).map((h) => `${rel}:${line} brand ${h.kind} "${h.value}" outside skills/cochl-design/core/`));
 }
 
-export function lintStrict(root, dir) {
+export function lintStrict(root, dir = 'skills') {
   return walk(join(root, dir)).flatMap((file) => {
     const rel = posix(relative(root, file));
     if (isExempt(rel)) return [];

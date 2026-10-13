@@ -1,6 +1,6 @@
 ---
 name: cochl-design
-description: Single entry point for the Cochl design team toolkit. Use when the user asks for anything Cochl-branded — decks, pitches, brochures, banners, press kits, design reviews, proposal documents, installing or applying the Cochl design system (@cochlearai/ui), or checking Figma ↔ code drift — or types /cochl-design. Routes the request to the right Cochl skill.
+description: Single entry point for the Cochl design team toolkit. Use when the user asks for anything Cochl-branded — decks, pitches, brochures, banners, press kits, design reviews, proposal documents, installing or applying the Cochl design system (@cochlearai/ui), or checking Figma ↔ code drift — or types /cochl-design or an old command name (/pitch-deck-skill, /dr-template, /design-review-template, /proposal-doc-template). Routes the request to the right Cochl skill.
 ---
 
 # Cochl Design — router
@@ -25,5 +25,12 @@ You do not build anything here. Pick the skill, load its SKILL.md, and follow it
 3. **`/cochl-design` with no request** → show the six rows as a menu, one line each, and wait.
 4. The user may ask for the other theme in words; there is no third theme.
 5. Every skill can still be called directly (`/cochl-presentation`, `/pitch-deck`, `/design-review`, `/proposal-doc`, `/design-system`, `/design-sync`).
+6. **Old command names** → treat as the current skill, no question asked:
+
+| Old name | Load |
+|---|---|
+| `/pitch-deck-skill` | `../pitch-deck/SKILL.md` |
+| `/design-review-template`, `/dr-template` | `../design-review/SKILL.md` |
+| `/proposal-doc-template` | `../proposal-doc/SKILL.md` |
 
 Brand rules for all skills: `core/brand-core.md`.
