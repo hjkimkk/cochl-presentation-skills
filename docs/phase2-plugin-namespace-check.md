@@ -1,6 +1,8 @@
 # Phase 2: plugin namespacing check
 
-Status: **answered from the docs (2026-10-13); live check still PENDING (HJ).** The automated probe could not run (see "Probe attempt").
+Status: **answered from the docs (2026-10-13); partly confirmed live on HJ's machine after migration (2026-10-13).**
+
+Live: `claude plugin list` shows `cochl-design@cochl` 2.0.0 (user scope, enabled, marketplace auto-update on). The session skill list shows all seven as `cochl-design:<name>` (`cochl-design:cochl-design`, `cochl-design:cochl-presentation`, `cochl-design:pitch-deck`, `cochl-design:design-review`, `cochl-design:proposal-doc`, `cochl-design:design-system`, `cochl-design:design-sync`); the v1 copies are gone from `~/.claude/skills/`. Still to confirm by typing: does bare `/cochl-design` and `/cochl-presentation` run the plugin skill? The automated probe could not run (see "Probe attempt").
 
 Docs answer (code.claude.com/docs/en/skills.md, plugins/*): plugin skills are namespaced `/<plugin>:<skill>`, and a bare `/<skill>` "also invokes the skill unless another command already uses that name". So once `scripts/migrate-to-plugin.sh` has moved the v1 copies out of `~/.claude/skills/`, bare `/cochl-design`, `/cochl-presentation` etc. resolve to the plugin. The router is reachable as `/cochl-design` and `/cochl-design:cochl-design`; no move to a root skill needed unless the live check shows otherwise.
 
