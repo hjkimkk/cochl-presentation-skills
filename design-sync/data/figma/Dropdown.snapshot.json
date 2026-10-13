@@ -1,5 +1,5 @@
 {
-  "_comment": "Architectural finding (verified by inspection). Figma 'Dropdown v1' is a SELECT FIELD; code `Dropdown` is a generic popover container (props: data/renderItem/isOpen/onClickOutside) — a different abstraction. Not fabricating a 1:1 value comparison; surfaced as a mapping/semantic mismatch.",
+  "_comment": "Mapping decided 2026-10-07 (YJ, option a): Figma 'Dropdown' is a select-field family that maps ONE_TO_MANY by type — Email Selection→MultiSelectDropdown, Small Dropdown→ListDropdown+DropdownButton, Time Picker→Dropdown+DropdownButton+DropdownItem (see config/mapping.json). Figma type values renamed 2026-10-08 to match the Storybook Form/Dropdown story names exactly (were emailSelect/sm/timePicker). No 1:1 value comparison is captured yet; per-variant comparisons are pending.",
   "component": "Dropdown",
   "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
   "fileName": "Cochl Design System",
@@ -8,8 +8,8 @@
     "name": "Dropdown v1"
   },
   "referenceVariant": {
-    "nodeId": "28:538",
-    "name": "Dropdown v1 (semantic mismatch — see note)"
+    "nodeId": "1259:1277",
+    "name": "Dropdown (component set, 34 variants)"
   },
   "capturedVia": "figma-mcp get_metadata (page) + code inspection",
   "fields": [],

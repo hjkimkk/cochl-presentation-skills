@@ -74,4 +74,43 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
   ok("acceptance is scoped, value-specific, and honors expiry");
 }
 
+// The real mapping table: no blocking issues, node IDs present, Dropdown resolved,
+// and extra (variant) targets don't change a ONE_TO_ONE entry's status.
+{
+  const { readFileSync } = await import("node:fs");
+  const real = JSON.parse(readFileSync(new URL("../config/mapping.json", import.meta.url), "utf8"));
+  const { hasBlocking } = validateMappings(real, null);
+  assert.equal(hasBlocking, false, "config/mapping.json has no blocking issues");
+  for (const [name, cfg] of Object.entries(real.components)) {
+    assert.match(cfg.figma?.nodeId ?? "", /^\d+:\d+$/, `${name} has a figma.nodeId`);
+  }
+  assert.equal(resolveMapping("Dropdown", real.components.Dropdown).effectiveStatus, MAPPING_TYPE.ONE_TO_MANY);
+  for (const n of ["Button", "Input"]) {
+    const r = resolveMapping(real.components[n].figma.name, real.components[n]);
+    assert.equal(r.effectiveStatus, MAPPING_TYPE.ONE_TO_ONE, `${n} stays ONE_TO_ONE`);
+    assert.equal(r.primary.component, n, `${n} primary target unchanged`);
+  }
+  ok("mapping.json: no blocking issues, node IDs, Dropdown ONE_TO_MANY, Button/Input primary kept");
+
+  // Alert: both Figma types are Toast; still ONE_TO_ONE, renamed.
+  {
+    const alert = real.components.Alert;
+    const r = resolveMapping(alert.figma.name, alert);
+    assert.equal(r.effectiveStatus, MAPPING_TYPE.ONE_TO_ONE);
+    assert.equal(r.primary.component, "Toast");
+    assert.deepEqual(alert.mapping.targets.map((t) => t.variant), ["type=Basic", "type=Link"]);
+    assert.ok(alert.mapping.targets.every((t) => t.component === "Toast"), "Banner/Notification are not Alert targets");
+    ok("mapping.json: Alert Basic + Link both map to Toast (ONE_TO_ONE)");
+  }
+
+  // `pending` entries (code not published yet) stay out of `components` but are complete.
+  for (const [name, cfg] of Object.entries(real.pending ?? {})) {
+    if (name.startsWith("_")) continue;
+    assert.equal(real.components[name], undefined, `${name} is not also in components`);
+    assert.match(cfg.figma?.nodeId ?? "", /^\d+:\d+$/, `pending ${name} has a figma.nodeId`);
+    assert.ok(cfg.mapping?.targets?.length, `pending ${name} declares targets`);
+  }
+  ok("mapping.json: pending entries are complete and kept out of components");
+}
+
 console.log(`\n  ${passed} assertions passed.`);

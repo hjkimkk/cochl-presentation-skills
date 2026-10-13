@@ -2,8 +2,13 @@
   "_comment": "Authoritative, human-authored mapping. Each component declares: figma {name, role, page}, a `mapping` block {type, targets[]} with an explicit code ROLE per target (intent, not name), an optional `code` extraction recipe for the primary target, and `comparisons`. mapping.type ∈ ONE_TO_ONE | ONE_TO_MANY | UNMATCHED | AMBIGUOUS. Names are NOT trusted: same-name components with different roles are flagged AMBIGUOUS. This file supplies NO values (adapters do). Figma Code Connect is unavailable on this seat.",
   "components": {
     "Button": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:718", "name": "Button", "role": "action-button" },
-      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Button", "role": "action-button", "relationship": "exact" } ] },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:718", "nodeId": "3251:7381", "name": "Button", "role": "action-button" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [
+        { "component": "Button", "role": "action-button", "relationship": "exact", "variant": "type=Basic|Red|md|sm|lg" },
+        { "component": "HyperlinkButton", "role": "link-button", "relationship": "variant", "variant": "type=Link" }
+      ],
+        "pendingTargets": [ { "component": "ComplexButton", "role": "complex-button", "relationship": "variant", "variant": "type=ComplexButton", "note": "In cochl-dashboard source (main) but not in published @cochlearai/ui@1.0.5; move into targets after the next publish." } ],
+        "reason": "Primary target Button drives the value comparisons. type=Link and type=ComplexButton are separate code components (verified 2026-10-08 against cochl-dashboard packages/cochl-ui/stories/actions/Button.stories.tsx). Kept ONE_TO_ONE so Button's drift status stays visible; extra targets are informational until the engine supports per-variant routing (D4)." },
       "code": {
         "package": "@cochlearai/ui", "component": "Button",
         "extract": {
@@ -36,9 +41,17 @@
     },
 
     "Alert": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:441", "name": "Alert", "role": "status-message" },
-      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Toast", "role": "status-message", "relationship": "renamed",
-        "note": "Figma 'Alert' → code 'Toast'. Name differs but role (status message with severity + optional action) matches → ONE_TO_ONE." } ] },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:441", "nodeId": "1372:2003", "relatedNodeIds": ["3132:5485"], "name": "Alert", "role": "status-message" },
+      "mapping": {
+        "type": "ONE_TO_ONE",
+        "targets": [
+          { "component": "Toast", "role": "status-message", "relationship": "renamed", "variant": "type=Basic",
+            "props": "state=Success → severity=\"info\"; state=Error → severity=\"error\"; Text → message",
+            "note": "Figma 'Alert' → code 'Toast'. Name differs but role (status message with severity + optional action) matches → ONE_TO_ONE." },
+          { "component": "Toast", "role": "status-message", "relationship": "variant", "variant": "type=Link", "props": "Hyperlink → buttonText (+ onClick)" }
+        ],
+        "reason": "Both Figma types are Toast; type=Link is Toast with buttonText/onClick. Alert_Icons (3132:5485) Success/Error are ToastCheckIcon/ToastErrorIcon, internal to Toast. Banner and Notification share the Storybook group Feedback/Alert but are not Alert: Banner has no Figma component (D2 backlog) and Notification is the GNB bell (Menu/Navigation family). Decided 2026-10-13 from docs/design-sync/mismatch/feedback-overlay.md §1."
+      },
       "code": {
         "package": "@cochlearai/ui", "component": "Toast",
         "extract": {
@@ -69,7 +82,7 @@
     },
 
     "Chip": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "12:2472", "name": "Chip", "role": "chip-tag" },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "12:2472", "nodeId": "1350:640", "name": "Chip", "role": "chip-tag" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Chip", "role": "chip-tag", "relationship": "exact" } ] },
       "code": { "package": "@cochlearai/ui", "component": "Chip",
         "extract": {
@@ -90,8 +103,12 @@
     },
 
     "Input": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:720", "name": "Input Field", "role": "text-input" },
-      "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Input", "role": "text-input", "relationship": "exact" } ] },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:720", "nodeId": "1174:283", "name": "Input Field", "role": "text-input" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [
+        { "component": "Input", "role": "text-input", "relationship": "exact", "variant": "type=Basic|withIcon|SmallwithIcon|NonEditable" }
+      ],
+        "pendingTargets": [ { "component": "TagChipInput", "role": "tag-input", "relationship": "variant", "variant": "type=TagChipInput", "note": "In cochl-dashboard source (main) but not in published @cochlearai/ui@1.0.5; move into targets after the next publish." } ],
+        "reason": "Primary target Input drives the value comparisons. type=TagChipInput is a separate code component (display-only in code; see mismatch audit). Kept ONE_TO_ONE so Input's drift status stays visible; extra targets are informational until per-variant routing (D4)." },
       "code": { "package": "@cochlearai/ui", "component": "Input",
         "extract": {
           "color.border": { "category": "color", "method": "paletteValue", "palette": "grey", "key": "30" },
@@ -109,7 +126,7 @@
     },
 
     "Checkbox": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:717", "name": "Checkbox", "role": "checkbox" },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:717", "nodeId": "136:109", "relatedNodeIds": ["136:179"], "name": "Checkbox", "role": "checkbox" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "Checkbox", "role": "checkbox", "relationship": "exact" } ] },
       "code": { "package": "@cochlearai/ui", "component": "Checkbox",
         "extract": {
@@ -125,7 +142,7 @@
     },
 
     "Radio": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:723", "name": "Radio", "role": "radio" },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:723", "nodeId": "3116:3045", "name": "Radio", "role": "radio" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "RadioButton", "role": "radio", "relationship": "renamed",
         "note": "Figma 'Radio' → code 'RadioButton'. Name differs, role matches → ONE_TO_ONE." } ] },
       "code": { "package": "@cochlearai/ui", "component": "RadioButton",
@@ -142,7 +159,7 @@
     },
 
     "Tooltip": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "27:446", "name": "Tooltip", "role": "tooltip" },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "27:446", "nodeId": "3117:3637", "name": "Tooltip", "role": "tooltip" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [ { "component": "InfoTooltip", "role": "tooltip", "relationship": "renamed",
         "note": "Figma 'Tooltip' → code 'InfoTooltip'. Name differs, role matches → ONE_TO_ONE." } ] },
       "code": { "package": "@cochlearai/ui", "component": "InfoTooltip",
@@ -163,18 +180,24 @@
     },
 
     "Dropdown": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "28:538", "name": "Dropdown", "role": "form-select" },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "28:538", "nodeId": "1259:1277", "name": "Dropdown", "role": "form-select" },
       "mapping": {
-        "type": "AMBIGUOUS",
-        "targets": [ { "component": "Dropdown", "role": "popover-container", "relationship": "name-collision" } ],
-        "reason": "SAME NAME, DIFFERENT ROLE: Figma 'Dropdown' role=form-select (a select input) vs code 'Dropdown' role=popover-container (generic data/renderItem/isOpen wrapper). Intent not verified → AMBIGUOUS_MAPPING. A name-only match would be WRONG; needs a human mapping decision (likely a composed select built from Dropdown, not `Dropdown` itself)."
+        "type": "ONE_TO_MANY",
+        "targets": [
+          { "component": "MultiSelectDropdown", "role": "form-select-multi", "relationship": "variant", "variant": "type=Email Selection|Multi Select Dropdown" },
+          { "component": "ListDropdown", "role": "form-select-list", "relationship": "variant", "variant": "type=Small Dropdown|List Dropdown" },
+          { "component": "DropdownButton", "role": "select-trigger", "relationship": "part", "variant": "type=Small Dropdown|Time Picker" },
+          { "component": "Dropdown", "role": "popover-container", "relationship": "part", "variant": "type=Time Picker" },
+          { "component": "DropdownItem", "role": "select-option", "relationship": "part", "variant": "type=Time Picker" }
+        ],
+        "reason": "Figma Dropdown is a select-field family (type=Small Dropdown|Time Picker|Email Selection|List Dropdown|Multi Select Dropdown — names match the five Storybook Form/Dropdown stories exactly; renamed 2026-10-08 from sm|timePicker|emailSelect, and List Dropdown / Multi Select Dropdown added the same day as copies of Small Dropdown / Email Selection); Storybook Form/Dropdown has the same three stories. Decided 2026-10-07 (YJ: option a), verified against cochl-dashboard packages/cochl-ui/stories/form/Dropdown.stories.tsx. Code `Dropdown` alone is only the popover part. sm/timePicker trigger styles live in the story file, not the library (see mismatch audit)."
       },
-      "code": { "package": "@cochlearai/ui", "component": "Dropdown", "extract": {} },
+      "code": { "package": "@cochlearai/ui", "component": "MultiSelectDropdown", "extract": {} },
       "comparisons": []
     },
 
     "Table": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "16:2873", "name": "Table", "role": "data-table" },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "16:2873", "nodeId": "2068:308", "relatedNodeIds": ["2068:319", "2071:158"], "name": "Table", "role": "data-table" },
       "mapping": {
         "type": "ONE_TO_MANY",
         "targets": [
@@ -191,7 +214,7 @@
     },
 
     "Progress": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:442", "name": "Progress", "role": "progress-indicator" },
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:442", "nodeId": "1424:1266", "name": "Progress", "role": "progress-indicator" },
       "mapping": {
         "type": "ONE_TO_MANY",
         "targets": [
@@ -202,6 +225,22 @@
       },
       "code": { "package": "@cochlearai/ui", "component": "ProgressIndicator", "extract": {} },
       "comparisons": []
+    }
+  },
+  "pending": {
+    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish.",
+    "NumberInput": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:721", "nodeId": "1153:404", "name": "Number Input", "role": "number-input" },
+      "mapping": { "type": "ONE_TO_ONE", "targets": [
+        { "component": "NumberInput", "role": "number-input", "relationship": "renamed", "variant": "type=Basic" }
+      ],
+        "reason": "Figma 'Number Input' → code 'NumberInput'. Figma status {Default, Focus, Active, Filled, Error} + isDisabled match the Storybook story `form-number-input--basic` states one-to-one (Default, Focus, Active, Filled, Error, Disabled); checked 2026-10-12 against cochl-dashboard beta @ 083f601." },
+      "storybook": { "id": "form-number-input--basic", "states": { "status=Default": "DEFAULT", "status=Focus": "FOCUS", "status=Active": "ACTIVE", "status=Filled": "FILLED", "status=Error": "ERROR", "isDisabled=true": "DISABLED" } },
+      "notes": [
+        "Code renders Error via `error` prop with aria-invalid=\"false\" (inverted, same bug as Input).",
+        "Story has no parameters.design link to 1153:404.",
+        "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache)."
+      ]
     }
   }
 }
