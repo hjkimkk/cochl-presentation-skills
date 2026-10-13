@@ -2,6 +2,8 @@
 
 A reusable Claude Code skill library for creating Cochl presentations, design reviews, proposal documents, and design system workflows.
 
+**Team hub:** https://hjkimkk.github.io/cochl-presentation-skills/ (install, commands, owners, links) · drift dashboard at [`/drift/`](https://hjkimkk.github.io/cochl-presentation-skills/drift/). Source: [`docs/hub/index.html`](./docs/hub/index.html).
+
 ## Skills
 
 | Skill | Command | Purpose |

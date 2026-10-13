@@ -14,7 +14,7 @@ name: design-sync
 on:
   push:
     branches: [main]
-    paths: ["design-sync/**", ".github/workflows/design-sync.yml"]
+    paths: ["design-sync/**", "docs/hub/**", ".github/workflows/design-sync.yml"]
   pull_request:
     paths: ["design-sync/**"]
   workflow_dispatch:
@@ -87,9 +87,10 @@ jobs:
       - name: Build shareable dashboard
         run: |
           node scripts/gen-share.mjs
-          mkdir -p "$RUNNER_TEMP/site"
-          # A tiny index that loads the self-contained dashboard.
-          cp reports/dashboard-share.html "$RUNNER_TEMP/site/index.html"
+          # Site: the team hub at / and the drift dashboard at /drift/.
+          mkdir -p "$RUNNER_TEMP/site/drift"
+          cp ../docs/hub/index.html "$RUNNER_TEMP/site/index.html"
+          cp reports/dashboard-share.html "$RUNNER_TEMP/site/drift/index.html"
 
       - name: Upload Pages artifact
         if: github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch'

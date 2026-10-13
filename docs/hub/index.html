@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cochl Design Toolkit</title>
+<meta name="description" content="One install, one command, one brand source: the Cochl design team's Claude Code toolkit.">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+/* Tokens copied from skills/cochl-design/core/themes/plex.md (the brand source). */
+:root {
+  --bg: #0b0b12; --panel: #14141c; --panel-2: #1b1b26; --border: rgba(255,255,255,0.08);
+  --text: #ffffff; --text-soft: #c9c9d4; --muted: #9aa1ac;
+  --accent: #4b68ff; --accent-purple: #832bfb; --mint: #a6f0ce; --warning: #f59e0b;
+  --grad-brand: linear-gradient(135deg, var(--accent-purple), var(--accent));
+  --glow: radial-gradient(closest-side, rgba(75,104,255,0.55) 0%, rgba(131,43,251,0.22) 50%, rgba(75,104,255,0) 100%);
+  --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body { margin: 0; background: var(--bg); color: var(--text-soft); font: 400 16px/1.6 var(--font-sans); }
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.wrap { max-width: 1040px; margin: 0 auto; padding: 0 16px; }
+header { position: relative; overflow: hidden; padding: 72px 0 48px; }
+header::before { content: ""; position: absolute; width: 720px; height: 720px; right: -240px; top: -320px; background: var(--glow); pointer-events: none; }
+.kicker { font: 500 12px/1 var(--font-mono); letter-spacing: .14em; text-transform: uppercase; color: var(--accent); }
+h1 { position: relative; margin: 14px 0 12px; color: var(--text); font-weight: 600; font-size: clamp(32px, 6vw, 52px); line-height: 1.1; }
+.lede { position: relative; max-width: 620px; margin: 0; font-size: 18px; }
+.pills { position: relative; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 24px; }
+.pill { font: 500 12px/1 var(--font-mono); padding: 8px 12px; border: 1px solid var(--border); border-radius: 999px; color: var(--text); background: var(--panel); }
+section { padding: 40px 0; border-top: 1px solid var(--border); }
+h2 { margin: 0 0 6px; color: var(--text); font-size: 24px; font-weight: 600; }
+h2::after { content: ""; display: block; width: 48px; height: 3px; margin-top: 10px; background: var(--grad-brand); border-radius: 2px; }
+.sub { margin: 12px 0 24px; color: var(--muted); }
+.grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.card { background: var(--panel); border: 1px solid var(--border); border-radius: 12px; padding: 20px; min-width: 0; }
+.card h3 { margin: 0 0 8px; color: var(--text); font-size: 17px; font-weight: 600; }
+.card p { margin: 0 0 12px; }
+.step { font: 500 12px/1 var(--font-mono); color: var(--muted); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 10px; }
+pre { position: relative; margin: 8px 0 0; padding: 38px 12px 12px; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; overflow-x: auto; }
+code { font: 400 13px/1.6 var(--font-mono); color: var(--text); }
+p code, td code, li code { background: var(--panel-2); padding: 1px 6px; border-radius: 4px; font-size: 13px; }
+.copy { position: absolute; top: 8px; right: 8px; font: 500 11px/1 var(--font-mono); color: var(--text-soft); background: var(--panel-2); border: 1px solid var(--border); border-radius: 6px; padding: 6px 8px; cursor: pointer; }
+.copy:hover { color: var(--text); }
+.table { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; }
+table { width: 100%; border-collapse: collapse; min-width: 560px; }
+th, td { text-align: left; padding: 12px 16px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { font: 500 12px/1.4 var(--font-mono); text-transform: uppercase; letter-spacing: .08em; color: var(--muted); background: var(--panel); }
+tr:last-child td { border-bottom: 0; }
+td:first-child { color: var(--text); }
+.stat { font-size: 40px; font-weight: 600; line-height: 1; background: var(--grad-brand); -webkit-background-clip: text; background-clip: text; color: transparent; }
+.stat-l { margin-top: 8px; color: var(--muted); font-size: 14px; }
+.note { border-left: 3px solid var(--warning); padding: 8px 12px; background: var(--panel); border-radius: 0 8px 8px 0; color: var(--text-soft); font-size: 14px; }
+ul.links { list-style: none; padding: 0; margin: 0; }
+ul.links li { padding: 8px 0; border-bottom: 1px solid var(--border); }
+ul.links li:last-child { border-bottom: 0; }
+footer { padding: 32px 0 48px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; }
+@media (max-width: 600px) { header { padding: 48px 0 32px; } section { padding: 32px 0; } }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="kicker">Cochl design team · Phase 2</div>
+    <h1>Cochl Design Toolkit</h1>
+    <p class="lede">One install, one command, one brand source. Decks, design reviews, proposals, the design system and Figma ↔ code drift, all from <code>/cochl-design</code> in Claude Code.</p>
+    <div class="pills">
+      <span class="pill">plugin cochl-design</span>
+      <span class="pill" id="version">v2.0.0</span>
+      <span class="pill">auto-update</span>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <section id="install">
+    <h2>Install</h2>
+    <p class="sub">Once per computer. Then restart Claude Code and type <code>/cochl-design</code>.</p>
+    <div class="grid">
+      <div class="card">
+        <div class="step">New teammate</div>
+        <h3>Install the plugin</h3>
+        <pre><code>claude plugin marketplace add hjkimkk/cochl-presentation-skills
+claude plugin install cochl-design@cochl --scope user</code><button class="copy" type="button">Copy</button></pre>
+        <p style="margin-top:12px">Then in Claude Code: <code>/plugin</code> → Marketplaces → <code>cochl</code> → Enable auto-update.</p>
+      </div>
+      <div class="card">
+        <div class="step">Installed before October 2026</div>
+        <h3>Migrate once</h3>
+        <p>Removes the old <code>git pull</code> hook and copied skills (kept as a backup), installs the plugin and turns auto-update on.</p>
+        <pre><code>bash scripts/migrate-to-plugin.sh</code><button class="copy" type="button">Copy</button></pre>
+        <p style="margin-top:12px">Run it from your clone of the repo. Add <code>--dry-run</code> to preview.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="commands">
+    <h2>What do you want to make?</h2>
+    <p class="sub">Not sure? Type <code>/cochl-design</code> and describe it. The router picks the right skill.</p>
+    <div class="table">
+      <table>
+        <thead><tr><th>You want</th><th>Command</th><th>Owner</th></tr></thead>
+        <tbody>
+          <tr><td>A deck: investor, B2B sales, strategy, QBR, market, 101 lecture, research; brochure, social banner, press kit</td><td><code>/cochl-presentation</code></td><td>HJ</td></tr>
+          <tr><td>A deck in the official PT template (.pptx + HTML)</td><td><code>/pitch-deck</code></td><td>HJ</td></tr>
+          <tr><td>A Proposal review or Direction Alignment &amp; Feedback deck</td><td><code>/design-review</code></td><td>HJ</td></tr>
+          <tr><td>A design proposal document (HTML → PDF)</td><td><code>/proposal-doc</code></td><td>HJ</td></tr>
+          <tr><td>Install or apply <code>@cochlearai/ui</code>; turn a Figma component into code</td><td><code>/design-system</code></td><td>NS</td></tr>
+          <tr><td>Check whether code matches Figma; drift and coverage</td><td><code>/design-sync</code></td><td>YJ (engine) · HJ</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="sub" style="margin-top:16px">Every command also works as <code>/cochl-design:&lt;name&gt;</code>. Old names (<code>/pitch-deck-skill</code>, <code>/dr-template</code>, <code>/proposal-doc-template</code>) still route through <code>/cochl-design</code>.</p>
+  </section>
+
+  <section id="design-code">
+    <h2>Figma ↔ code</h2>
+    <p class="sub">Which <code>@cochlearai/ui</code> component and props each Figma component becomes, and where they drift apart.</p>
+    <div class="grid">
+      <div class="card"><div class="stat">100%</div><div class="stat-l">Figma families mapped (20 of 20), 0 ambiguous</div></div>
+      <div class="card"><div class="stat">75%</div><div class="stat-l">checked by the drift engine; 5 wait on a library publish</div></div>
+      <div class="card">
+        <h3>Example</h3>
+        <p>Figma <code>Button type=Red</code> → <code>&lt;Button color="danger"&gt;</code><br>Figma <code>type=Link</code> → <code>&lt;HyperlinkButton&gt;</code></p>
+      </div>
+    </div>
+    <ul class="links" style="margin-top:20px">
+      <li><a href="./drift/">Drift dashboard</a>: per-component status, coverage, auto-fixable items</li>
+      <li><a href="https://github.com/hjkimkk/cochl-presentation-skills/blob/main/design-sync/config/mapping.json">mapping.json</a>: the Figma → code mapping (Code Connect stand-in)</li>
+      <li><a href="https://github.com/hjkimkk/cochl-presentation-skills/blob/main/docs/design-sync/unmatched-backlog.md">Unmatched backlog</a>: components that exist on one side only</li>
+    </ul>
+  </section>
+
+  <section id="help">
+    <h2>Help and contributing</h2>
+    <p class="sub">Brand colors and fonts live only in <code>skills/cochl-design/core/</code>. CI blocks them anywhere else.</p>
+    <div class="grid">
+      <div class="card">
+        <h3>Something looks old</h3>
+        <p>Restart Claude Code. Still old? Run the migration above, or <code>claude plugin update cochl-design@cochl</code>.</p>
+        <div class="note">Only presenting a Cochl 101 deck? Duplicate the shared Figma file instead; no install needed.</div>
+      </div>
+      <div class="card">
+        <h3>Add a template or fix a skill</h3>
+        <ul class="links">
+          <li><a href="https://github.com/hjkimkk/cochl-presentation-skills/blob/main/docs/onboarding.md">Contribution guide</a> (owners, checks, release steps)</li>
+          <li><a href="https://github.com/hjkimkk/cochl-presentation-skills/blob/main/skills/cochl-presentation/references/registry.md">Template registry</a></li>
+          <li><a href="https://github.com/hjkimkk/cochl-presentation-skills/blob/main/CHANGELOG.md">Changelog</a> · <a href="https://github.com/hjkimkk/cochl-presentation-skills/releases">Releases</a> (every two weeks)</li>
+        </ul>
+      </div>
+      <div class="card">
+        <h3>Project</h3>
+        <ul class="links">
+          <li><a href="https://cochl.atlassian.net/wiki/spaces/UXIT/pages/2134278154/Unified+Design+Ecosystem+Phase+2+Execution+Plan+Q4+2026">Phase 2 plan (Confluence)</a></li>
+          <li><a href="https://github.com/hjkimkk/cochl-presentation-skills/blob/main/docs/phase2-onboarding-sessions.md">Team onboarding sessions</a></li>
+          <li><a href="https://github.com/hjkimkk/cochl-presentation-skills">Repository</a></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">Cochl design team · NS (design system) · YJ (design-to-code) · HJ (presentation &amp; brand). Questions: ask in the design channel.</div>
+</footer>
+
+<script>
+document.querySelectorAll('.copy').forEach(function (btn) {
+  btn.addEventListener('click', function () {
+    var text = btn.parentElement.querySelector('code').innerText;
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy'; }, 1500); };
+    if (navigator.clipboard) navigator.clipboard.writeText(text).then(done, function () {});
+  });
+});
+</script>
+</body>
+</html>
