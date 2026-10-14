@@ -12,6 +12,9 @@ under a version heading.
 
 - design-system: turn a Figma node into code via `design-sync/config/mapping.json` (Code Connect
   stand-in, Path 2); test snippet uses `color="primary"` (was a non-existent `variant` prop).
+- design-sync skill (review by YJ): `report <Component>` (last compare result, not a full report);
+  exit `1` can be a run error, not only drift; debug (`analyze`, `code`), coverage and
+  `fix --dry-run` listed; mapping changes are filed for the owners, not edited.
 - design-sync: Button `propMap` verified against Figma fills (Red → `color="danger"`, Primary →
   `primary`, Secondary → `secondary`, Link → `HyperlinkButton`).
 
