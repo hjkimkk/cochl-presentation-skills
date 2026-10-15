@@ -33,7 +33,7 @@ App-only (in `packages/client`, not the library): `TypeSelectButton`; delete-pro
 
 ## 3. Mapped, but confirm before relying on it
 
-- **Icons:** 8 `probable` and 1 `ambiguous` matches in `mapping.json` → `Icons.mapping.iconMap` (Arrow, Close, ThreeDots, Time, Redirect, CheckCircle, CheckX, SpeakerRec; Mic). Check visually.
+- **Icons:** ~~8 `probable` and 1 `ambiguous` matches~~ Resolved 2026-10-15: all 9 shape-checked against the Figma vectors and marked `exact`. Mic maps to `RecordIcon`, not `VoiceIcon`.
 - **Structure-only entries** (no value comparisons yet, so `sync` shows SYNC by default): Popover, Card, Skeleton, Modal, Icons.
 - **Stale snapshots:** the 10 original snapshots date from 2026-09-22. Refresh needs `FIGMA_TOKEN` (repo secret) → `node scripts/capture.mjs`.
 

@@ -31,7 +31,7 @@ Fill the **Result** column on the day; the **How to measure** column is reproduc
 | D4 (variant-level mapping format) | YJ | `sync-plan.md` |
 | Engine support for a 2nd package (`@cochlearai/calendar`) | YJ | `mapping.json` → `pending.DatePicker.blockedBy` |
 | Move pending entries after the next `@cochlearai/ui` publish | HJ | `mapping.json` → `pending` |
-| Icon matches marked probable/ambiguous (9) | HJ + NS | `mapping.json` → `Icons.mapping.iconMap` |
+| ~~Icon matches marked probable/ambiguous (9)~~ Done 2026-10-15: all exact; Mic → `RecordIcon` | HJ + NS | `mapping.json` → `Icons.mapping.iconMap` |
 | Refresh stale Figma snapshots (`FIGMA_TOKEN` secret) | YJ | `design-sync/scripts/capture.mjs` |
 | PT template owner sign-off on regression | PT owner | `docs/phase2-baseline/RESULT.md` |
 | Live check of plugin namespacing (run the migration first) | HJ | `docs/phase2-plugin-namespace-check.md` |
