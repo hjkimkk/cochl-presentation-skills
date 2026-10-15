@@ -10,6 +10,14 @@ under a version heading.
 
 ## Unreleased
 
+## 2.1.0 — 2026-10-15
+
+First update after the plugin launch: Figma ↔ code mapping in `design-system` and a working
+drift dashboard.
+
+### Added
+- Team hub page (`docs/hub/`, published with the drift dashboard on GitHub Pages): install,
+  commands, owners, Figma ↔ code and where to get help.
 - design-system: turn a Figma node into code via `design-sync/config/mapping.json` (Code Connect
   stand-in, Path 2); test snippet uses `color="primary"` (was a non-existent `variant` prop).
 - design-sync skill (review by YJ): `report <Component>` (last compare result, not a full report);
@@ -17,6 +25,14 @@ under a version heading.
   `fix --dry-run` listed; mapping changes are filed for the owners, not edited.
 - design-sync: Button `propMap` verified against Figma fills (Red → `color="danger"`, Primary →
   `primary`, Secondary → `secondary`, Link → `HyperlinkButton`).
+
+### Fixed
+- design-sync CI downloads `@cochlearai/ui` with `npm pack`: `npm i` failed because the published
+  package keeps a yarn `workspace:^` dependency. The drift dashboard now deploys.
+- design-sync: all 14 Figma snapshots re-verified against the current Figma file (all FRESH);
+  Button `variant.kinds` gained `ComplexButton`.
+- design-sync: the 9 `probable`/`ambiguous` icon matches confirmed by shape; Mic maps to
+  `RecordIcon` (was `VoiceIcon`).
 
 ## 2.0.0 — 2026-10-13
 
