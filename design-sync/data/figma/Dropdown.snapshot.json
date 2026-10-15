@@ -17,9 +17,14 @@
     "component": "Dropdown",
     "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
     "figmaNodeId": "28:538",
-    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "capturedAt": "2026-10-15T13:50:06.000Z",
     "captureMethod": "figma-mcp get_metadata (page) + code inspection",
     "sourceRevision": null,
-    "captureStatus": "architectural-note"
+    "captureStatus": "architectural-note",
+    "lastVerified": {
+      "at": "2026-10-15T13:50:06.000Z",
+      "via": "figma-mcp use_figma (Plugin API)",
+      "result": "values re-checked against current nodes; unchanged"
+    }
   }
 }

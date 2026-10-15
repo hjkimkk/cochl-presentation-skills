@@ -32,9 +32,14 @@
     "component": "Checkbox",
     "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
     "figmaNodeId": "136:108",
-    "capturedAt": "2026-09-22T15:35:40.731Z",
+    "capturedAt": "2026-10-15T13:50:06.000Z",
     "captureMethod": "figma-mcp get_metadata + get_design_context",
     "sourceRevision": null,
-    "captureStatus": "captured"
+    "captureStatus": "captured",
+    "lastVerified": {
+      "at": "2026-10-15T13:50:06.000Z",
+      "via": "figma-mcp use_figma (Plugin API)",
+      "result": "values re-checked against current nodes; unchanged"
+    }
   }
 }
