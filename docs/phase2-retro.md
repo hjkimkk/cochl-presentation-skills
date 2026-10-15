@@ -29,7 +29,7 @@ Fill the **Result** column on the day; the **How to measure** column is reproduc
 | D2 (18 code-only components: add to Figma or mark code-only) | NS | `docs/design-sync/unmatched-backlog.md` |
 | D3 (story-only variants → library) | NS + Dev | `docs/design-sync/sync-plan.md` |
 | D4 (variant-level mapping format) | YJ | `sync-plan.md` |
-| Engine support for a 2nd package (`@cochlearai/calendar`) | YJ | `mapping.json` → `pending.DatePicker.blockedBy` |
+| ~~Engine support for a 2nd package (`@cochlearai/calendar`)~~ Done 2026-10-15 (branch `design-sync/calendar-package`, YJ to review): `code.package` + `COCHL_CALENDAR_DIR`; DatePicker checked by sync | YJ | `adapters/code/codeAdapter.mjs`, `mapping.json` → `components.DatePicker` |
 | Move pending entries after the next `@cochlearai/ui` publish | HJ | `mapping.json` → `pending` |
 | ~~Icon matches marked probable/ambiguous (9)~~ Done 2026-10-15: all exact; Mic → `RecordIcon` | HJ + NS | `mapping.json` → `Icons.mapping.iconMap` |
 | Refresh stale Figma snapshots (`FIGMA_TOKEN` secret) | YJ | `design-sync/scripts/capture.mjs` |

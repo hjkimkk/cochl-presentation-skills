@@ -1,0 +1,25 @@
+{
+  "_comment": "Architectural finding. Figma 'Date picker' (style: day of month | custom | month of year | year over year) maps to MANY components in the separate package @cochlearai/calendar (Calendar, MonthYearPicker, CalendarBottomButtons, DayPickerRangeControllerInputs). No value fields yet; details in docs/design-sync/mismatch/date-picker.md.",
+  "component": "DatePicker",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "1439:1380",
+    "name": "Date picker"
+  },
+  "referenceVariant": {
+    "nodeId": "2447:6741",
+    "name": "Date picker (1:many — see note)"
+  },
+  "capturedVia": "figma-mcp use_figma (Plugin API) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "DatePicker",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "2447:6741",
+    "capturedAt": "2026-10-15T15:30:00.000Z",
+    "captureMethod": "figma-mcp use_figma (Plugin API) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

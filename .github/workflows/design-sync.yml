@@ -46,8 +46,9 @@ jobs:
       - name: Validate mapping
         run: node cli.mjs mapping validate
 
-      # 2) Install the published component package (the "code" side).
-      - name: Install @cochlearai/ui
+      # 2) Install the published component packages (the "code" side):
+      #    @cochlearai/ui, and @cochlearai/calendar for components with code.package.
+      - name: Install @cochlearai/ui and @cochlearai/calendar
         env:
           COCHLEARAI_NPM_TOKEN: ${{ secrets.COCHLEARAI_NPM_TOKEN }}
         run: |
@@ -60,11 +61,14 @@ jobs:
           # Download the package tarball only. `npm i` fails because the published
           # package.json keeps a yarn `workspace:^` dependency, and design-sync only
           # reads files from dist/, so it doesn't need the dependencies installed.
-          tarball=$(npm pack @cochlearai/ui --silent | tail -n 1)
-          mkdir -p node_modules/@cochlearai/ui
-          tar -xzf "$tarball" -C node_modules/@cochlearai/ui --strip-components=1
-          echo "Installed @cochlearai/ui $(node -p "require('./node_modules/@cochlearai/ui/package.json').version")"
+          for name in ui calendar; do
+            tarball=$(npm pack "@cochlearai/$name" --silent | tail -n 1)
+            mkdir -p "node_modules/@cochlearai/$name"
+            tar -xzf "$tarball" -C "node_modules/@cochlearai/$name" --strip-components=1
+            echo "Installed @cochlearai/$name $(node -p "require('./node_modules/@cochlearai/$name/package.json').version")"
+          done
           echo "COCHL_UI_DIR=$RUNNER_TEMP/cochlui/node_modules/@cochlearai/ui" >> "$GITHUB_ENV"
+          echo "COCHL_CALENDAR_DIR=$RUNNER_TEMP/cochlui/node_modules/@cochlearai/calendar" >> "$GITHUB_ENV"
 
       # 3) Engine tests.
       - name: Test engines

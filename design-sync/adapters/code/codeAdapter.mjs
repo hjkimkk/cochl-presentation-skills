@@ -5,8 +5,10 @@
 // recipe. Every value carries `file:line` provenance and, when the value sits in a
 // patchable literal/token, an `edit` descriptor the fix engine can act on.
 //
-// Package location: local Yarn cache by default (the deployed artifact), or the
-// COCHL_UI_DIR env var to point at any installed / cloned / working-copy package.
+// Package location: local Yarn cache by default (the deployed artifact), or an env
+// var to point at any installed / cloned / working-copy package: COCHL_UI_DIR for
+// @cochlearai/ui, COCHL_<NAME>_DIR for other @cochlearai packages (e.g.
+// COCHL_CALENDAR_DIR). A component picks its package with mapping.json `code.package`.
 
 import { readFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
@@ -15,21 +17,41 @@ import { homedir } from "node:os";
 import { model, field } from "../../core/model.mjs";
 import { normHex, normLength } from "../../core/normalize.mjs";
 
-export function resolvePackageDir() {
-  if (process.env.COCHL_UI_DIR && existsSync(process.env.COCHL_UI_DIR)) return process.env.COCHL_UI_DIR;
+export const DEFAULT_PACKAGE = "@cochlearai/ui";
+
+/** Env var that overrides a package's location: COCHL_UI_DIR, COCHL_CALENDAR_DIR, … */
+export function packageEnvVar(pkg = DEFAULT_PACKAGE) {
+  const name = pkg.split("/").pop().toUpperCase().replace(/[^A-Z0-9]/g, "_");
+  return `COCHL_${name}_DIR`;
+}
+
+export function resolvePackageDir(pkg = DEFAULT_PACKAGE) {
+  const envVar = packageEnvVar(pkg);
+  if (process.env[envVar] && existsSync(process.env[envVar])) return process.env[envVar];
+  const [scope, name] = pkg.replace(/^@/, "").split("/");
   const cache = join(homedir(), "Library", "Caches", "Yarn", "v6");
   if (existsSync(cache)) {
     const hit = readdirSync(cache)
-      .filter((d) => d.startsWith("npm-@cochlearai-ui-"))
-      .map((d) => join(cache, d, "node_modules", "@cochlearai", "ui"))
+      .filter((d) => d.startsWith(`npm-@${scope}-${name}-`))
+      .map((d) => join(cache, d, "node_modules", `@${scope}`, name))
       .filter((p) => existsSync(join(p, "package.json")))
       .sort();
     if (hit.length) return hit[hit.length - 1];
   }
-  throw new Error("Could not locate @cochlearai/ui. Set COCHL_UI_DIR to an installed/cloned package dir.");
+  throw new Error(`Could not locate ${pkg}. Set ${envVar} to an installed/cloned package dir.`);
 }
 
-const rel = (pkgDir, file) => `@cochlearai/ui/${file.replace(pkgDir + "/", "")}`;
+// Provenance paths are prefixed with the package name read from the package itself.
+const pkgNames = new Map();
+const pkgNameOf = (pkgDir) => {
+  if (!pkgNames.has(pkgDir)) {
+    let n = DEFAULT_PACKAGE;
+    try { n = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8")).name || n; } catch { /* keep default */ }
+    pkgNames.set(pkgDir, n);
+  }
+  return pkgNames.get(pkgDir);
+};
+const rel = (pkgDir, file) => `${pkgNameOf(pkgDir)}/${file.replace(pkgDir + "/", "")}`;
 const lineOf = (text, idx) => text.slice(0, idx).split("\n").length;
 
 // Resolve the package's own colour palette (for token-name ↔ hex mapping).
@@ -45,13 +67,14 @@ async function loadPalette(pkgDir) {
 
 /**
  * @param {string} component logical component name (e.g. "Alert")
- * @param {object} codeCfg   mapping.json `code` entry: { component, extract }
+ * @param {object} codeCfg   mapping.json `code` entry: { package?, component, extract }
  */
 export async function loadCodeModel(component, codeCfg) {
-  const pkgDir = resolvePackageDir();
+  const pkg = codeCfg.package || DEFAULT_PACKAGE;
+  const pkgDir = resolvePackageDir(pkg);
   const version = JSON.parse(readFileSync(join(pkgDir, "package.json"), "utf8")).version;
   const codeName = codeCfg.component; // dir name in dist (may differ from logical name)
-  const ref = `@cochlearai/ui@${version} (${codeName})`;
+  const ref = `${pkg}@${version} (${codeName})`;
 
   const dtsPath = join(pkgDir, "dist", "types", codeName, `${codeName}.d.ts`);
   const jsPath = join(pkgDir, "dist", "esm", codeName, `${codeName}.js`);
