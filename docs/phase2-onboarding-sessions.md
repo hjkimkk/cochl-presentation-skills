@@ -1,6 +1,6 @@
 # Phase 2 onboarding: 30-minute team sessions
 
-- **When:** W8–W11 (Nov 23 – Dec 18, 2026) · **Host:** HJ · **Material:** this page, [README install](../README.md#install-plugin-v2), [Cochl 101 team guide](./cochl-101-team-guide.md)
+- **When:** W8–W11 (Nov 23 – Dec 18, 2026) · **Host:** HJ · **Material:** this page, [session deck](./phase2-onboarding-deck.html) (13 slides, Cochl 101 template), [README install](../README.md#install-plugin-v2), [Cochl 101 team guide](./cochl-101-team-guide.md)
 - **Goal:** everyone leaves with the plugin installed, auto-update on, and one real output made with `/cochl-design`.
 
 ## Before the session (send 2 days ahead)
@@ -8,6 +8,24 @@
 1. Claude Code installed and signed in.
 2. GitHub access to `hjkimkk/cochl-presentation-skills`, with git credentials that work without a prompt: `gh auth login` then `gh auth setup-git`.
 3. Bring one real request you'd use this week (a deck, a review, a proposal).
+
+### Invite email (copy, fill the brackets, send 2 days ahead)
+
+> **Subject:** 30 min: set up the Cochl design toolkit ([Team], [Date, Time])
+>
+> Hi [Team],
+>
+> On [Date] at [Time] ([Room / link]) we'll spend 30 minutes setting up the Cochl design toolkit, one Claude Code plugin for decks, brochures, banners, design reviews, proposals and the design system. You'll leave with it installed, updating itself, and one real output made with `/cochl-design`.
+>
+> Before the session, please:
+> 1. Install Claude Code and sign in.
+> 2. Check GitHub access to `hjkimkk/cochl-presentation-skills`, and set up git credentials so they work without a prompt: run `gh auth login`, then `gh auth setup-git`.
+> 3. Bring one real request you'd use this week, for example [team example: "a QBR deck with these numbers" / "a research position paper deck" / "a proposal review" / "apply @cochlearai/ui in a page"].
+>
+> Team hub (install, commands, help): https://hjkimkk.github.io/cochl-presentation-skills/
+>
+> Thanks,
+> HJ
 
 ## Common agenda (all teams)
 
