@@ -56,9 +56,14 @@ jobs:
             exit 1
           fi
           mkdir -p "$RUNNER_TEMP/cochlui" && cd "$RUNNER_TEMP/cochlui"
-          npm init -y >/dev/null
           printf '@cochlearai:registry=https://npm.pkg.github.com\n//npm.pkg.github.com/:_authToken=%s\n' "$COCHLEARAI_NPM_TOKEN" > .npmrc
-          npm i @cochlearai/ui >/dev/null
+          # Download the package tarball only. `npm i` fails because the published
+          # package.json keeps a yarn `workspace:^` dependency, and design-sync only
+          # reads files from dist/, so it doesn't need the dependencies installed.
+          tarball=$(npm pack @cochlearai/ui --silent | tail -n 1)
+          mkdir -p node_modules/@cochlearai/ui
+          tar -xzf "$tarball" -C node_modules/@cochlearai/ui --strip-components=1
+          echo "Installed @cochlearai/ui $(node -p "require('./node_modules/@cochlearai/ui/package.json').version")"
           echo "COCHL_UI_DIR=$RUNNER_TEMP/cochlui/node_modules/@cochlearai/ui" >> "$GITHUB_ENV"
 
       # 3) Engine tests.
