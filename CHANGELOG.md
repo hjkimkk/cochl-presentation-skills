@@ -10,6 +10,10 @@ under a version heading.
 
 ## Unreleased
 
+- brand-core §1e/§1f: a quote's name, title and publication share one confirmation level, and
+  repeated fields (social handles) are confirmed per instance, never derived from another field;
+  matching QA checks. Press kit: the quote's publication line is `[NEEDS INPUT]` (port of #21).
+
 ## 2.1.0 — 2026-10-15
 
 First update after the plugin launch: Figma ↔ code mapping in `design-system` and a working
