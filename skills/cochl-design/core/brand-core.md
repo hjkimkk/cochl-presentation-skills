@@ -48,6 +48,18 @@ Any oversized or hero-position stat rendered as `[NEEDS INPUT]` — a big-stat c
 
 This caption is a **built-in part of the stat component itself**, the same way §1b's dashed-underline/italic treatment is non-optional — it is not supporting copy the builder adds or skips per slide. Every `.needs-input` hero/stat number carries it, every time; a slide that includes it and a slide that omits it are not two valid renderings of the same component. See `qa-checklist.md` → NEEDS INPUT stat caption.
 
+## 1e. Quote/citation component — uniform field-level confirmation (single definition — do not mix per field)
+
+Any quote, testimonial, or citation component that names a source — a press quote's reporter attribution, a customer testimonial, or any similar quoted-attribution block — carries several source fields at once: the speaker's name, their title, and the publication or company they're attributed to. These fields are **not independently gradable**. If any one of them is unconfirmed, every field in that same citation is marked `[NEEDS INPUT]` (§1b) at the same level — never a mix of bracketed and unbracketed, real-sounding fields within one citation.
+
+A citation with `[Reporter Name]` / `[Title]` correctly bracketed sitting beside an unbracketed, real publication name (e.g. "TechCrunch") does not read as "partially confirmed" — it reads as a real quote, from a real outlet, attributed to a placeholder person, which is a worse fabrication risk than leaving the whole citation unconfirmed. The same applies when the quote body itself is unconfirmed placeholder copy: a note in the authoring template or spec marking it "sample quote for layout purposes" is not a substitute for marking the citation in the delivered document. Apply this **per citation, independently** — one correctly-bracketed citation does not exempt its neighbors. See `qa-checklist.md` → Quote/citation fields.
+
+## 1f. Repeated-instance fields (social handles, and similar) — never a shared guessed value (single definition — do not fill from another field)
+
+Any component with multiple parallel instances of the same field type — a social-handle row (one handle per platform icon), a multi-language contact list, or any similar repeated slot — treats **each instance as independently unconfirmed** unless that specific instance has its own confirmed value. Being confirmed for one instance never carries over to the rest; apply this per instance, independently, the same way §1c and §1e apply per card and per citation.
+
+A confirmed value from a **different field** does not transfer to a distinct field just because the two look related — e.g. §3b's confirmed web domain `www.cochl.ai` is not a confirmed social handle, even though a company's handle conventionally resembles its domain. Reusing one guessed value across every repeated instance compounds the failure: four platforms all showing the identical `@cochl.ai` is not four confirmed handles, it's one unconfirmed guess pasted four times. See `qa-checklist.md` → Repeated fields.
+
 ## 2. Typography (plex)
 
 - `--font-sans` — headings & body. Weights: 700 stat/hero, 600 heading, 400 body, 300 italic tagline/quote.

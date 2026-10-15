@@ -32,6 +32,8 @@ Run before delivering any Cochl artifact. Brand items only — layout and struct
 - [ ] **Bracket format** — every occurrence of the marker, prose and captions included, is exactly `[NEEDS INPUT]` (`brand-core.md` §1b).
 - [ ] **Stat caption** — every hero/stat `[NEEDS INPUT]` has the fixed caption "Pending verified research — do not present without a sourced figure." directly beneath it (`brand-core.md` §1d).
 - [ ] **Competitor cards** — each competitor card's title slot carries `[NEEDS INPUT]` unless the user supplied a confirmed name for that card; check each card independently (`brand-core.md` §1c).
+- [ ] **Quote/citation fields** — in every quote/testimonial/citation, the source fields (name, title, publication/company) share one confirmation level: if any is `[NEEDS INPUT]`, all are; a placeholder quote body means the attribution is bracketed too. Check each citation independently (`brand-core.md` §1e).
+- [ ] **Repeated fields** — each repeated instance (social handles per platform, multi-language contacts) is confirmed on its own; flag one value reused across instances or borrowed from a different confirmed field, e.g. the web domain used as a handle (`brand-core.md` §1f).
 - [ ] **Version consistency** — a language/audience variant keeps every `[NEEDS INPUT]` its source had; if its count falls below half the source's, re-review before saving.
 - [ ] **Placeholder variables** (proposal-doc) — every unfilled variable uses the `.var` span in `--doc-link`.
 
