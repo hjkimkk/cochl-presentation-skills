@@ -72,6 +72,8 @@ Components: `Button`, `Alert`. `compare` exits `2` when there is unresolved drif
   `Button.d.ts` (props/variants), `Button.js` (style literals, e.g. `border-radius`),
   and **dynamically imports** `lib/ThemeColors.js` to resolve real token hexes.
   Default location is the local Yarn cache; override with `COCHL_UI_DIR=/path/to/@cochlearai/ui`.
+  A component in another package sets `code.package` in `mapping.json` (e.g. DatePicker →
+  `@cochlearai/calendar`); override its location with `COCHL_<NAME>_DIR` (e.g. `COCHL_CALENDAR_DIR`).
 - **Mapping** — `config/mapping.json` is the human-authored, authoritative mapping
   (Figma Code Connect is unavailable on this seat). It declares which design key
   compares to which code key and how (`equal` / `setEqual` / `presence` / `unmatched`).

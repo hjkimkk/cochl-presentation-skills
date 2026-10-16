@@ -320,10 +320,29 @@
         "reason": "Figma ModalContent + ModalOverlay map to Modal and ConfirmModal. type='Modal with subtitles and cta' has no library component (story-local; app ProjectCreateModal) → D2 backlog. From docs/design-sync/mismatch/feedback-overlay.md §6." },
       "code": { "package": "@cochlearai/ui", "component": "Modal", "extract": {} },
       "comparisons": []
+    },
+
+    "DatePicker": {
+      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "1439:1380", "nodeId": "2447:6741", "relatedNodeIds": ["2447:7072", "2447:6728", "2845:3965"], "name": "Date picker", "role": "date-picker" },
+      "mapping": { "type": "ONE_TO_MANY", "targets": [
+        { "component": "Calendar", "role": "day-of-month", "relationship": "variant", "variant": "style=day of month" },
+        { "component": "Calendar", "role": "range-picker", "relationship": "variant", "variant": "style=custom", "props": "two months + DayPickerRangeControllerInputs + CalendarBottomButtons" },
+        { "component": "MonthYearPicker", "role": "month-year-grid", "relationship": "variant", "variant": "style=month of year|year over year" },
+        { "component": "CalendarBottomButtons", "role": "actions", "relationship": "part" },
+        { "component": "DayPickerRangeControllerInputs", "role": "inputs", "relationship": "part" }
+      ],
+        "reason": "The production date picker is @cochlearai/calendar@1.0.1 (packages/cochl-calendar), not @cochlearai/ui; the cochl-ui 'Data Display/Date picker' story is a static mock. Exports verified in the Yarn cache 2026-10-13. From docs/design-sync/mismatch/date-picker.md." },
+      "code": { "package": "@cochlearai/calendar", "component": "Calendar", "extract": {} },
+      "comparisons": [],
+      "notes": [
+        "@cochlearai/calendar has no Storybook stories; add stories that mirror Figma (date-picker.md §4).",
+        "Supersedes sync-plan Phase 3 'move DatePicker into the library': the component exists, in a separate package.",
+        "Moved from `pending` 2026-10-15: the engine reads `code.package`, so targets are checked in @cochlearai/calendar."
+      ]
     }
   },
   "pending": {
-    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish. Exception: an entry with `blockedBy` waits on an engine change, not a publish.",
+    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish.",
     "NumberInput": {
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:721", "nodeId": "1153:404", "name": "Number Input", "role": "number-input" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [
@@ -367,24 +386,6 @@
         "No Dark story; Figma has no Dark/Basic variant.",
         "UserMenu adds a Logout row not in Figma.",
         "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."
-      ]
-    },
-
-    "DatePicker": {
-      "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "1439:1380", "nodeId": "2447:6741", "relatedNodeIds": ["2447:7072", "2447:6728", "2845:3965"], "name": "Date picker", "role": "date-picker" },
-      "mapping": { "type": "ONE_TO_MANY", "targets": [
-        { "component": "Calendar", "role": "day-of-month", "relationship": "variant", "variant": "style=day of month" },
-        { "component": "Calendar", "role": "range-picker", "relationship": "variant", "variant": "style=custom", "props": "two months + DayPickerRangeControllerInputs + CalendarBottomButtons" },
-        { "component": "MonthYearPicker", "role": "month-year-grid", "relationship": "variant", "variant": "style=month of year|year over year" },
-        { "component": "CalendarBottomButtons", "role": "actions", "relationship": "part" },
-        { "component": "DayPickerRangeControllerInputs", "role": "inputs", "relationship": "part" }
-      ],
-        "reason": "The production date picker is @cochlearai/calendar@1.0.1 (packages/cochl-calendar), not @cochlearai/ui; the cochl-ui 'Data Display/Date picker' story is a static mock. Exports verified in the Yarn cache 2026-10-13. From docs/design-sync/mismatch/date-picker.md." },
-      "code": { "package": "@cochlearai/calendar" },
-      "blockedBy": "Engine reads only @cochlearai/ui (codeAdapter resolvePackageDir + validate). Move into components once the engine supports code.package (YJ).",
-      "notes": [
-        "@cochlearai/calendar has no Storybook stories; add stories that mirror Figma (date-picker.md §4).",
-        "Supersedes sync-plan Phase 3 'move DatePicker into the library': the component exists, in a separate package."
       ]
     },
 

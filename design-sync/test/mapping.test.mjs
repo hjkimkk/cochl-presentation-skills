@@ -48,6 +48,31 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
   ok("validateMappings flags duplicate + ambiguous + one-to-many");
 }
 
+// validateMappings checks each component's targets in its own package (`code.package`).
+{
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const mkPkg = (names) => {
+    const dir = mkdtempSync(join(tmpdir(), "ds-pkg-"));
+    for (const n of names) { mkdirSync(join(dir, "dist", "types", n), { recursive: true }); writeFileSync(join(dir, "dist", "types", n, `${n}.d.ts`), ""); }
+    return dir;
+  };
+  const ui = mkPkg(["Button"]), cal = mkPkg(["Calendar"]);
+  const mapping = { components: {
+    B: { figma: { name: "B", role: "x" }, mapping: { type: "ONE_TO_ONE", targets: [{ component: "Button", role: "x" }] }, code: { component: "Button" } },
+    D: { figma: { name: "D", role: "y" }, mapping: { type: "ONE_TO_MANY", targets: [{ component: "Calendar" }, { component: "MonthYearPicker" }] }, code: { package: "@cochlearai/calendar", component: "Calendar" } },
+  }};
+  const dirs = { "@cochlearai/ui": ui, "@cochlearai/calendar": cal };
+  const { issues } = validateMappings(mapping, (pkg) => dirs[pkg] ?? null);
+  const bad = issues.filter((i) => i.kind === "invalid-ref");
+  assert.equal(bad.length, 1, "only the missing calendar target is reported");
+  assert.match(bad[0].message, /MonthYearPicker.*@cochlearai\/calendar/);
+  // A plain dir string still means @cochlearai/ui; other packages are skipped.
+  assert.equal(validateMappings(mapping, ui).issues.filter((i) => i.kind === "invalid-ref").length, 0);
+  ok("validateMappings checks targets in each component's code.package");
+}
+
 // Freshness
 {
   const now = Date.parse("2026-09-22T12:00:00Z");

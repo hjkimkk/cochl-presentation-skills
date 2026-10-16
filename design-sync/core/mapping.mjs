@@ -58,9 +58,14 @@ export function resolveMapping(figmaName, cfg) {
  * Validate every mapping BEFORE comparison. Detects duplicate, unresolved,
  * ambiguous, 1:many, same-name collisions, missing targets, invalid refs.
  * @param {object} mapping parsed mapping.json
- * @param {string} pkgDir  resolved @cochlearai/ui dir (to check target existence)
+ * @param {string|function|null} pkgDir resolved @cochlearai/ui dir, or a function
+ *   `(packageName) => dir | null` for components whose `code.package` is another
+ *   package. `null` (or a null result) skips the target-existence check.
  */
 export function validateMappings(mapping, pkgDir) {
+  const dirFor = typeof pkgDir === "function"
+    ? pkgDir
+    : (pkg) => (pkg === "@cochlearai/ui" ? pkgDir : null);
   const issues = [];
   const add = (component, kind, severity, message) => issues.push({ component, kind, severity, message });
   const oneToOneTargetUsage = new Map(); // code component -> [figma components]
@@ -71,9 +76,11 @@ export function validateMappings(mapping, pkgDir) {
     if (!cfg.mapping) add(name, "no-mapping-block", "warning", "No explicit `mapping` block; assumed ONE_TO_ONE from `code.component`.");
     if (res.targets.length === 0) add(name, "unresolved", "error", "No code targets declared.");
 
+    const pkg = cfg.code?.package || "@cochlearai/ui";
+    const dir = dirFor(pkg);
     for (const t of res.targets) {
-      const exists = pkgDir ? existsSync(join(pkgDir, "dist", "types", t.component, `${t.component}.d.ts`)) || existsSync(join(pkgDir, "dist", "esm", t.component)) : true;
-      if (!exists) add(name, "invalid-ref", "error", `Code target "${t.component}" not found in @cochlearai/ui.`);
+      const exists = dir ? existsSync(join(dir, "dist", "types", t.component, `${t.component}.d.ts`)) || existsSync(join(dir, "dist", "esm", t.component)) : true;
+      if (!exists) add(name, "invalid-ref", "error", `Code target "${t.component}" not found in ${pkg}.`);
     }
 
     switch (res.effectiveStatus) {

@@ -97,8 +97,10 @@ async function main() {
   if (cmd === "code") { dumpModel(await loadCodeModel(component, MAPPING.components[component].code)); return; }
 
   if (cmd === "mapping" && pos[0] === "validate") {
-    let pkgDir = null; try { pkgDir = resolvePackageDir(); } catch { /* validate refs skipped */ }
-    const { issues, byKind, hasBlocking } = validateMappings(MAPPING, pkgDir);
+    // Each component's targets are checked in its own package (`code.package`);
+    // a package that can't be located skips that check.
+    const dirFor = (pkg) => { try { return resolvePackageDir(pkg); } catch { return null; } };
+    const { issues, byKind, hasBlocking } = validateMappings(MAPPING, dirFor);
     console.log("\n  design-sync mapping validate");
     console.log("  " + "─".repeat(70));
     if (!issues.length) console.log("  ✓ no mapping issues.");
