@@ -10,9 +10,16 @@ under a version heading.
 
 ## Unreleased
 
+## 2.1.1 — 2026-10-19
+
+Patch: brand rules for quotes and repeated fields, and design-sync checks the date picker.
+
+### Fixed
 - brand-core §1e/§1f: a quote's name, title and publication share one confirmation level, and
   repeated fields (social handles) are confirmed per instance, never derived from another field;
   matching QA checks. Press kit: the quote's publication line is `[NEEDS INPUT]` (port of #21).
+- design-sync: the engine also reads `@cochlearai/calendar` (`code.package` in `mapping.json`),
+  so DatePicker is checked by `sync`: 16 of 20 families (80%), 0 AMBIGUOUS.
 
 ## 2.1.0 — 2026-10-15
 
