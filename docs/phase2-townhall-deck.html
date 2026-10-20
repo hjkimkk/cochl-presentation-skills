@@ -171,6 +171,14 @@ table.cmp td code{font-size:22px;color:var(--accent)}
 /* Compare table, 3-column variant (who gets what) */
 table.cmp.three td:first-child{font-family:var(--font-serif);font-weight:600;font-size:28px;width:22%}
 table.cmp.three td:nth-child(2){width:36%}
+/* Terminology (101 catalog slide 8): skill glossary grid, 3 x 2, thin top rule */
+.terms{display:grid;grid-template-columns:repeat(3,1fr);gap:44px 56px;margin-top:52px}
+.term{border-top:2px solid var(--light-rule-2);padding-top:24px}
+.term .nm{font-family:var(--font-mono);font-size:20px;color:var(--accent)}
+.term h3{font-family:var(--font-serif);font-weight:600;font-size:34px;margin-top:12px;line-height:1.2}
+.term h3 code{color:var(--accent);font-size:30px}
+.term p{font-size:23px;color:var(--ink-soft);margin-top:12px;line-height:1.45}
+.subtitle code{color:var(--accent)}
 /* Next steps, five-item variant */
 .next.five{margin-top:40px}
 .next.five .item{padding:20px 0}
@@ -247,8 +255,29 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 5 · Who gets what (compare, 3 columns) (light) -->
+<!-- 5 · The skills inside (terminology grid) (light) -->
 <section class="slide light" id="slide-5">
+  <div class="slide-inner">
+    <div class="head">
+      <div class="kicker">Explain · The skills inside</div>
+      <h2>Six skills behind <span class="grad-text">one command</span></h2>
+      <div class="uline"></div>
+      <p class="subtitle">Not sure which one? Type <code>/cochl-design</code>: it asks what you need and routes your request. Each skill also runs directly as <code>/cochl-design:&lt;name&gt;</code>, and the old command names still work.</p>
+    </div>
+    <div class="terms">
+      <div class="term"><div class="nm">cochl-presentation</div><h3>Decks, brochures, banners</h3><p>Investor, B2B, strategy, QBR and team decks; editable-SVG brochures, social banners and press kits.</p></div>
+      <div class="term"><div class="nm">pitch-deck</div><h3>Official PT-template decks</h3><p>Maps new content into the Cochl pitch deck style. Always outputs HTML and PPTX.</p></div>
+      <div class="term"><div class="nm">design-review</div><h3>Design review decks</h3><p>Proposal Review or Direction Alignment &amp; Feedback meetings, from the two official templates.</p></div>
+      <div class="term"><div class="nm">proposal-doc</div><h3>Design proposal documents</h3><p>The structure, layout and writing style of the official Cochl proposals.</p></div>
+      <div class="term"><div class="nm">design-system</div><h3>Build UI with <code>@cochlearai/ui</code></h3><p>Cochl tokens in React/Vite; a Figma node becomes the right component and props.</p></div>
+      <div class="term"><div class="nm">design-sync</div><h3>Figma ↔ code drift</h3><p>Does code match Figma? Drift and coverage reports, tracked on the dashboard.</p></div>
+    </div>
+  </div>
+  <div class="footer-title">Cochl Design Toolkit · Town hall</div>
+</section>
+
+<!-- 6 · Who gets what (compare, 3 columns) (light) -->
+<section class="slide light" id="slide-6">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Compare · Who gets what</div>
@@ -268,8 +297,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 6 · Divider 02 (dark) -->
-<section class="slide dark divider" id="slide-6">
+<!-- 7 · Divider 02 (dark) -->
+<section class="slide dark divider" id="slide-7">
   <div class="glow" style="right:-300px;top:-200px"></div>
   <div class="slide-inner">
     <div class="num">02</div>
@@ -280,8 +309,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 7 · Process timeline (light) -->
-<section class="slide light" id="slide-7">
+<!-- 8 · Process timeline (light) -->
+<section class="slide light" id="slide-8">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Process · Install</div>
@@ -300,8 +329,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 8 · Divider 03 (dark) -->
-<section class="slide dark divider" id="slide-8">
+<!-- 9 · Divider 03 (dark) -->
+<section class="slide dark divider" id="slide-9">
   <div class="glow" style="right:-300px;top:-200px"></div>
   <div class="slide-inner">
     <div class="num">03</div>
@@ -312,8 +341,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 9 · Team demos overview (4-card grid) (light) -->
-<section class="slide light" id="slide-9">
+<!-- 10 · Team demos overview (4-card grid) (light) -->
+<section class="slide light" id="slide-10">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Apply · Team demos</div>
@@ -331,8 +360,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 10 · Live demo · Business (light) -->
-<section class="slide light" id="slide-10">
+<!-- 11 · Live demo · Business (light) -->
+<section class="slide light" id="slide-11">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Apply · Live demo · Business</div>
@@ -364,8 +393,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 11 · Live demo · Research (light) -->
-<section class="slide light" id="slide-11">
+<!-- 12 · Live demo · Research (light) -->
+<section class="slide light" id="slide-12">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Apply · Live demo · Research</div>
@@ -397,8 +426,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 12 · Live demo · Design (light) -->
-<section class="slide light" id="slide-12">
+<!-- 13 · Live demo · Design (light) -->
+<section class="slide light" id="slide-13">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Apply · Live demo · Design</div>
@@ -430,8 +459,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 13 · Live demo · Dev (light) -->
-<section class="slide light" id="slide-13">
+<!-- 14 · Live demo · Dev (light) -->
+<section class="slide light" id="slide-14">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Apply · Live demo · Dev</div>
@@ -463,8 +492,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 14 · Divider 04 (dark) -->
-<section class="slide dark divider" id="slide-14">
+<!-- 15 · Divider 04 (dark) -->
+<section class="slide dark divider" id="slide-15">
   <div class="glow" style="right:-300px;top:-200px"></div>
   <div class="slide-inner">
     <div class="num">04</div>
@@ -475,8 +504,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 15 · Exercise (light) -->
-<section class="slide light" id="slide-15">
+<!-- 16 · Exercise (light) -->
+<section class="slide light" id="slide-16">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Practice · Your turn</div>
@@ -502,8 +531,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 16 · Divider 05 (dark) -->
-<section class="slide dark divider" id="slide-16">
+<!-- 17 · Divider 05 (dark) -->
+<section class="slide dark divider" id="slide-17">
   <div class="glow" style="right:-300px;top:-200px"></div>
   <div class="slide-inner">
     <div class="num">05</div>
@@ -514,8 +543,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 17 · Troubleshooting (compare, 2 columns) (light) -->
-<section class="slide light" id="slide-17">
+<!-- 18 · Troubleshooting (compare, 2 columns) (light) -->
+<section class="slide light" id="slide-18">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Compare · Troubleshooting</div>
@@ -535,8 +564,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 18 · Next steps (numbered) (light) -->
-<section class="slide light" id="slide-18">
+<!-- 19 · Next steps (numbered) (light) -->
+<section class="slide light" id="slide-19">
   <div class="slide-inner">
     <div class="head">
       <div class="kicker">Close · After today</div>
@@ -554,8 +583,8 @@ table.cmp.three td:nth-child(2){width:36%}
   <div class="footer-title">Cochl Design Toolkit · Town hall</div>
 </section>
 
-<!-- 19 · Q&A / Thank you (dark) -->
-<section class="slide dark closing" id="slide-19">
+<!-- 20 · Q&A / Thank you (dark) -->
+<section class="slide dark closing" id="slide-20">
   <div class="glow" style="right:-260px;bottom:-320px"></div>
   <img class="logo-top" src="data:image/png;base64,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" alt="cochl.">
   <div class="slide-inner">
@@ -567,7 +596,7 @@ table.cmp.three td:nth-child(2){width:36%}
 
 <div id="page-nav">
   <button class="pn-btn" id="pn-prev" onclick="pnPrev()">&#8249;</button>
-  <span id="pn-counter">1 / 19</span>
+  <span id="pn-counter">1 / 20</span>
   <button class="pn-btn" id="pn-next" onclick="pnNext()">&#8250;</button>
 </div>
 <script>
