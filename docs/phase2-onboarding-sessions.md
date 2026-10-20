@@ -3,6 +3,23 @@
 - **When:** W8–W11 (Nov 23 – Dec 18, 2026) · **Host:** HJ · **Material:** this page, [session deck](./phase2-onboarding-deck.html) (13 slides, Cochl 101 template), [README install](../README.md#install-plugin-v2), [Cochl 101 team guide](./cochl-101-team-guide.md)
 - **Goal:** everyone leaves with the plugin installed, auto-update on, and one real output made with `/cochl-design`.
 
+## Schedule (proposal, to confirm)
+
+One team per week, so feedback from one session can improve the next. Calendar invites go out two
+weeks ahead; the prep email below goes two days ahead. Times are a proposal: availability wasn't
+checked.
+
+| Team | Proposed slot | Calendar invite by | Prep email | Owner of the demo |
+|---|---|---|---|---|
+| Business | Tue Nov 24, 14:00–14:30 | Nov 10 | Nov 22 | HJ |
+| Research | Tue Dec 1, 14:00–14:30 | Nov 17 | Nov 29 | HJ |
+| Design | Tue Dec 8, 14:00–14:30 | Nov 24 | Dec 6 | NS, YJ |
+| Dev | Tue Dec 15, 14:00–14:30 | Dec 1 | Dec 13 | YJ, NS |
+
+After each session: send form A from [`phase2-feedback-form.md`](./phase2-feedback-form.md) and
+fill the attendance log below. Dev goes last because `@cochlearai/ui` 1.0.6 should be published
+by then (Figma → code demo on the current package).
+
 ## Before the session (send 2 days ahead)
 
 1. Claude Code installed and signed in.
@@ -34,7 +51,7 @@
 | 0–5 | Why: one install, one command, one brand source, automatic updates | — |
 | 5–12 | Install live. New: `claude plugin marketplace add hjkimkk/cochl-presentation-skills` → `claude plugin install cochl-design@cochl --scope user` → `/plugin` → Marketplaces → cochl → Enable auto-update. Old install: `bash scripts/migrate-to-plugin.sh` | `/cochl-design` shows the menu |
 | 12–25 | Team demo (below), then each person runs their own request | one output per person |
-| 25–30 | Where to get help, how to request a template, feedback form | questions logged |
+| 25–30 | Where to get help, how to request a template, feedback form ([form A](./phase2-feedback-form.md#form-a-after-the-session)) | questions logged, form A sent |
 
 ## Team demos
 
