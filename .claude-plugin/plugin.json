@@ -1,6 +1,6 @@
 {
   "name": "cochl-design",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "Cochl design team toolkit: /cochl-design router, decks, brochures and banners (cochl-presentation), design reviews, proposal documents, @cochlearai/ui install, and Figma ↔ code drift (design-sync). Brand rules live in skills/cochl-design/core/.",
   "author": { "name": "Cochl design team", "email": "hjkim@cochlear.ai" },
   "repository": "https://github.com/hjkimkk/cochl-presentation-skills",
