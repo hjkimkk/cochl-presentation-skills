@@ -3,7 +3,7 @@
 Two short forms, built in Google Forms (or any form tool) from the questions below. The link of
 form A goes on deck slide 12 (`Feedback form: [NEEDS INPUT]`) and in the session follow-up message.
 
-- **Form A, after the session** (2 minutes, everyone, at the end of each of the 4 sessions): did
+- **Form A, after the town hall** (2 minutes, everyone, at the end of the town hall): did
   setup work, what will you use, what's missing.
 - **Form B, version check** (30 seconds, design team, 7 days after each plugin release): measures
   the success metric "everyone on the design team on the latest version within 7 days of each
@@ -11,7 +11,7 @@ form A goes on deck slide 12 (`Feedback form: [NEEDS INPUT]`) and in the session
 
 Answers feed the retro on Dec 18 (`docs/phase2-retro.md` §1–§4) and the Phase 3 shortlist.
 
-## Form A: after the session
+## Form A: after the town hall
 
 | # | Question | Type | Options / note | Feeds |
 |---|---|---|---|---|
@@ -47,7 +47,7 @@ in the retro, e.g. "v2.1.1 (Oct 20): 4/4 by Oct 27".
 | v2.1.0 | 2026-10-15 | 2026-10-22 | |
 | v2.1.1 | 2026-10-20 | 2026-10-27 | |
 
-## Message to send with form A (after each session)
+## Message to send with form A (after the town hall)
 
 > Thanks for joining. Two minutes of feedback helps us decide what to build next:
 > [form A link]

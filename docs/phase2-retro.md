@@ -14,7 +14,7 @@ Fill the **Result** column on the day; the **How to measure** column is reproduc
 | SKILL.md lines down ≥ 30% | `wc -l skills/*/SKILL.md` vs tag `phase2-before` (3,907) | ✅ 1,818 (−53%) | |
 | Design team on latest version within 7 days of each release | `claude plugin list` per person, collected with [form B](./phase2-feedback-form.md#form-b-7-day-version-check) 7 days after each release | first update **v2.1.0** prepared (PR `phase2/milestone3-prep`); count from its release date | |
 | Code Connect / mapping ≥ 80% of DS components, zero AMBIGUOUS | `node design-sync/scripts/coverage.mjs` | ✅ 100% mapped, 0 AMBIGUOUS; checked by sync 75% → **80% (16/20)** with PR #42 (DatePicker via `@cochlearai/calendar`); last 4 wait for the next `@cochlearai/ui` publish (cochl-dashboard `fix/publish-packages-workflow`). Drift dashboard live; snapshots re-verified 2026-10-15 | |
-| Onboarding: 4 teams | attendance log in `phase2-onboarding-sessions.md` | not started (W8–W11) | |
+| Onboarding: all 4 teams reached | town hall attendance log (per team) in `phase2-onboarding-sessions.md` | one town hall instead of 4 sessions (decided 2026-10-20); deck `phase2-townhall-deck.html`; date to confirm | |
 
 ## 2. What worked / what didn't
 
