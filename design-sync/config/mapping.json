@@ -5,16 +5,16 @@
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:718", "nodeId": "3251:7381", "name": "Button", "role": "action-button" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [
         { "component": "Button", "role": "action-button", "relationship": "exact", "variant": "type=Basic|Red|md|sm|lg" },
-        { "component": "HyperlinkButton", "role": "link-button", "relationship": "variant", "variant": "type=Link" }
+        { "component": "HyperlinkButton", "role": "link-button", "relationship": "variant", "variant": "type=Link" },
+        { "component": "ComplexButton", "role": "complex-button", "relationship": "variant", "variant": "type=ComplexButton" }
       ],
-        "pendingTargets": [ { "component": "ComplexButton", "role": "complex-button", "relationship": "variant", "variant": "type=ComplexButton", "note": "In cochl-dashboard source (main) but not in published @cochlearai/ui@1.0.5; move into targets after the next publish." } ],
         "propMap": [
           { "figma": "category=Primary, type=Basic", "code": "<Button color=\"primary\">", "confidence": "verified", "evidence": "fill #4B68FF (3251:7349) = button.backgroundColor.primary.light #4B68FF" },
           { "figma": "type=Red", "code": "<Button color=\"danger\">", "confidence": "verified", "evidence": "fill #E02E2E (3251:7373) = button.backgroundColor.danger.light #E02E2E" },
           { "figma": "category=Primary, type=md", "code": "<Button color=\"primary\">", "confidence": "verified", "evidence": "same fill as Basic; 50px height has no size prop (style only)" },
           { "figma": "category=Secondary, type=sm|md|lg", "code": "<Button color=\"secondary\">", "confidence": "verified", "evidence": "outlined gray (3253:7385) = button.border/color.secondary; value drift: Figma #727273 vs code #8C8C8C; sm/md/lg have no size prop" },
           { "figma": "type=Link", "code": "<HyperlinkButton text={Text} rightArrow={rightIcon}>", "confidence": "verified", "evidence": "HyperlinkButtonProps { text, rightArrow, onClick }; no disabled prop" },
-          { "figma": "type=ComplexButton", "code": "<ComplexButton title subtitle>", "confidence": "pending", "evidence": "not in published @cochlearai/ui@1.0.5" },
+          { "figma": "type=ComplexButton", "code": "<ComplexButton title subtitle>", "confidence": "pending", "evidence": "in @cochlearai/ui 1.0.6 (beta build); props not compared yet" },
           { "figma": "state=Disabled", "code": "disabled", "confidence": "verified", "evidence": "ButtonProps.disabled" },
           { "figma": "state=Hovered", "code": "(CSS :hover, no prop)", "confidence": "verified", "evidence": "theme button.backgroundColor.hover.*" },
           { "figma": "leftIcon=true / rightIcon=true", "code": "leftIcon={<Icon/>} / rightIcon={<Icon/>}", "confidence": "verified", "evidence": "ButtonProps.leftIcon/rightIcon: ReactNode" },
@@ -339,21 +339,21 @@
         "Supersedes sync-plan Phase 3 'move DatePicker into the library': the component exists, in a separate package.",
         "Moved from `pending` 2026-10-15: the engine reads `code.package`, so targets are checked in @cochlearai/calendar."
       ]
-    }
-  },
-  "pending": {
-    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish.",
+    },
+
     "NumberInput": {
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "52:721", "nodeId": "1153:404", "name": "Number Input", "role": "number-input" },
       "mapping": { "type": "ONE_TO_ONE", "targets": [
         { "component": "NumberInput", "role": "number-input", "relationship": "renamed", "variant": "type=Basic" }
       ],
         "reason": "Figma 'Number Input' → code 'NumberInput'. Figma status {Default, Focus, Active, Filled, Error} + isDisabled match the Storybook story `form-number-input--basic` states one-to-one (Default, Focus, Active, Filled, Error, Disabled); checked 2026-10-12 against cochl-dashboard beta @ 083f601." },
+      "code": { "package": "@cochlearai/ui", "component": "NumberInput", "extract": {} },
+      "comparisons": [],
       "storybook": { "id": "form-number-input--basic", "states": { "status=Default": "DEFAULT", "status=Focus": "FOCUS", "status=Active": "ACTIVE", "status=Filled": "FILLED", "status=Error": "ERROR", "isDisabled=true": "DISABLED" } },
       "notes": [
         "Code renders Error via `error` prop with aria-invalid=\"false\" (inverted, same bug as Input).",
         "Story has no parameters.design link to 1153:404.",
-        "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache)."
+        "Moved from `pending` 2026-10-20 for @cochlearai/ui 1.0.6: targets checked against the beta build (cochl-dashboard 509a5f10). Merge only after 1.0.6 is published."
       ]
     },
 
@@ -361,14 +361,16 @@
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "25:444", "nodeId": "1516:1973", "name": "Tabs", "role": "tab-navigation" },
       "mapping": { "type": "ONE_TO_MANY", "targets": [
         { "component": "Tab", "role": "tab-list", "relationship": "container" },
-        { "component": "TabItem", "role": "tab", "relationship": "part", "props": "state=Default → <TabItem>; state=Active → selected; state=Focus → none (no focus style in code)" }
+        { "component": "TabItem", "module": "Tab", "role": "tab", "relationship": "part", "props": "state=Default → <TabItem>; state=Active → selected; state=Focus → none (no focus style in code)" }
       ],
         "reason": "Figma Tabs (theme Light|Dark, type Basic, state Default|Focus|Active, text prop Text) composes into Tab + TabItem. Storybook Disclosure/Tabs (disclosure-tabs--states). From docs/design-sync/mismatch/navigation-icons.md §1." },
+      "code": { "package": "@cochlearai/ui", "component": "Tab", "extract": {} },
+      "comparisons": [],
       "storybook": { "id": "disclosure-tabs--states", "states": { "state=Default": "Default", "state=Focus": "Focus (story-only FocusTabItem)", "state=Active": "Active" } },
       "notes": [
         "Figma state=Focus has no code prop or :focus-visible style; TabItem is a non-focusable li (High).",
         "Spec frames on the Tabs page are misnamed InputField_Specs.",
-        "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."
+        "Moved from `pending` 2026-10-20 for @cochlearai/ui 1.0.6: targets checked against the beta build (cochl-dashboard 509a5f10). Merge only after 1.0.6 is published."
       ]
     },
 
@@ -376,16 +378,18 @@
       "figma": { "fileKey": "aUrjRMAnE8ND8o6lAI0VcM", "page": "27:445", "nodeId": "1765:1692", "relatedNodeIds": ["1821:1070"], "name": "Menu", "role": "menu-overlay" },
       "mapping": { "type": "ONE_TO_MANY", "targets": [
         { "component": "Menu", "role": "menu-container", "relationship": "variant", "variant": "type=Basic" },
-        { "component": "NotificationMenu", "role": "notification-menu", "relationship": "variant", "variant": "type=Notification", "props": "state=Default → notifications=[...]; state=Empty → notifications={[]}" },
-        { "component": "UserMenu", "role": "user-menu", "relationship": "variant", "variant": "type=UserMenu" },
-        { "component": "NotificationMenuItem", "role": "menu-item", "relationship": "part", "props": "MenuItem notifOn=true → read=false (unread dot); state=LastItem → showDivider={false}" }
+        { "component": "NotificationMenu", "module": "Menu", "role": "notification-menu", "relationship": "variant", "variant": "type=Notification", "props": "state=Default → notifications=[...]; state=Empty → notifications={[]}" },
+        { "component": "UserMenu", "module": "Menu", "role": "user-menu", "relationship": "variant", "variant": "type=UserMenu" },
+        { "component": "NotificationMenuItem", "module": "Menu", "role": "menu-item", "relationship": "part", "props": "MenuItem notifOn=true → read=false (unread dot); state=LastItem → showDivider={false}" }
       ],
         "reason": "Figma Menu (theme, type Notification|UserMenu|Basic, state Default|Empty, notifOn) + MenuItem (1821:1070) map to Menu, NotificationMenu, UserMenu and NotificationMenuItem. Storybook Overlay/Menu. From docs/design-sync/mismatch/feedback-overlay.md (Menu section)." },
+      "code": { "package": "@cochlearai/ui", "component": "Menu", "extract": {} },
+      "comparisons": [],
       "storybook": { "id": "overlay-menu--basic", "stories": ["overlay-menu--basic", "overlay-menu--notification", "overlay-menu--notification-empty", "overlay-menu--user-menu-story"] },
       "notes": [
         "No Dark story; Figma has no Dark/Basic variant.",
         "UserMenu adds a Logout row not in Figma.",
-        "Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."
+        "Moved from `pending` 2026-10-20 for @cochlearai/ui 1.0.6: targets checked against the beta build (cochl-dashboard 509a5f10). Merge only after 1.0.6 is published."
       ]
     },
 
@@ -398,8 +402,13 @@
         { "component": "ProjectNavi", "role": "project-nav", "relationship": "variant", "variant": "type=ProjectNav", "props": "PageButton (6533:2777) → ProjectNaviItem" }
       ],
         "reason": "Figma Navigation (48 variants: theme × type × size xl..mobile) maps by type. Code is fixed to media.size.lg; no responsive sizes. Storybook Disclosure/Navigation. From docs/design-sync/mismatch/navigation.md." },
+      "code": { "package": "@cochlearai/ui", "component": "GNB", "extract": {} },
+      "comparisons": [],
       "storybook": { "id": "disclosure-navigation--gnb-story" },
-      "notes": ["Not in published @cochlearai/ui@1.0.5 (verified against the Yarn cache 2026-10-13)."]
+      "notes": ["Moved from `pending` 2026-10-20 for @cochlearai/ui 1.0.6: targets checked against the beta build (cochl-dashboard 509a5f10). Merge only after 1.0.6 is published."]
     }
+  },
+  "pending": {
+    "_comment": "Mapped and checked by hand, but the code component is not in the published @cochlearai/ui yet, so `mapping validate` and `sync` (which read only `components`) skip these. Move an entry into `components` after the next @cochlearai/ui publish. Empty since 2026-10-20 (NumberInput, Tabs, Menu, Navigation moved for 1.0.6)."
   }
 }

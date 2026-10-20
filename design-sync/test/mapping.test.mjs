@@ -73,6 +73,24 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
   ok("validateMappings checks targets in each component's code.package");
 }
 
+// A target that lives inside another component's module (Tab/TabItem.d.ts) names it with `module`.
+{
+  const { mkdtempSync, mkdirSync, writeFileSync } = await import("node:fs");
+  const { tmpdir } = await import("node:os");
+  const { join } = await import("node:path");
+  const ui = mkdtempSync(join(tmpdir(), "ds-pkg-"));
+  mkdirSync(join(ui, "dist", "types", "Tab"), { recursive: true });
+  for (const f of ["Tab", "TabItem"]) writeFileSync(join(ui, "dist", "types", "Tab", `${f}.d.ts`), "");
+  const withModule = (module) => ({ components: {
+    T: { figma: { name: "T", role: "t" }, mapping: { type: "ONE_TO_MANY", targets: [{ component: "Tab" }, { component: "TabItem", ...(module && { module }) }] }, code: { component: "Tab" } },
+  }});
+  const refs = (m) => validateMappings(m, ui).issues.filter((i) => i.kind === "invalid-ref");
+  assert.equal(refs(withModule("Tab")).length, 0, "TabItem found in the Tab module");
+  assert.equal(refs(withModule(null)).length, 1, "without module, TabItem is not guessed from another dir");
+  assert.equal(refs(withModule("Menu")).length, 1, "a wrong module is still reported");
+  ok("validateMappings finds a target inside its declared `module`");
+}
+
 // Freshness
 {
   const now = Date.parse("2026-09-22T12:00:00Z");
