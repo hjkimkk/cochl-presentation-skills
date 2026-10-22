@@ -1,0 +1,25 @@
+{
+  "_comment": "Architectural finding. Figma 'Tabs' (6 variants: theme × state Default|Focus|Active, type Basic, text prop Text) maps to MANY code components (Tab + TabItem). state=Focus has no code equivalent. Details in docs/design-sync/mismatch/navigation-icons.md §1.",
+  "component": "Tabs",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "25:444",
+    "name": "Tabs v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1516:1973",
+    "name": "Tabs (component set — see note)"
+  },
+  "capturedVia": "figma-mcp use_figma (Plugin API) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "Tabs",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1516:1973",
+    "capturedAt": "2026-10-20T16:45:00.000Z",
+    "captureMethod": "figma-mcp use_figma (Plugin API) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}
