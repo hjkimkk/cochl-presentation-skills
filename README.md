@@ -22,7 +22,19 @@ Commands are the skill folder names.
 
 The skills ship as one Claude Code plugin, `cochl-design`, from the `cochl` marketplace in this repo.
 
-**New teammate:**
+**Everyone (new teammates and the old copy install):** paste this into the Terminal once:
+
+```bash
+curl -fsSL https://raw.githubusercontent.com/hjkimkk/cochl-presentation-skills/main/scripts/migrate-to-plugin.sh | bash
+```
+
+It adds the `cochl` marketplace, installs `cochl-design` for your user and **turns auto-update on**
+(`extraKnownMarketplaces.cochl.autoUpdate` in `~/.claude/settings.json`), so there is no `/plugin`
+step. If you had the old copy install, it also removes the `cochl-skills-autoupdate` hook and moves
+the copied skills out of `~/.claude/skills/` (backup, not deleted). From a clone:
+`bash scripts/migrate-to-plugin.sh` (add `--dry-run` to see what it would change). It needs `python3`.
+
+<details><summary>Manual install</summary>
 
 ```bash
 claude plugin marketplace add hjkimkk/cochl-presentation-skills
@@ -30,15 +42,7 @@ claude plugin install cochl-design@cochl --scope user
 ```
 
 Then turn on auto-update once: in Claude Code run `/plugin` → Marketplaces → `cochl` → Enable auto-update.
-
-**Already installed the old way** (`.claude/install-skills.sh` + the `cochl-skills-autoupdate` hook)? Run once from a clone:
-
-```bash
-bash scripts/migrate-to-plugin.sh
-```
-
-It removes the old hook, moves the copied skills out of `~/.claude/skills/` (backup, not deleted),
-installs the plugin and turns auto-update on. Add `--dry-run` to see what it would change.
+</details>
 
 Restart Claude Code, then:
 
@@ -59,8 +63,13 @@ Set them up once with `gh auth login` and `gh auth setup-git` (or an SSH key in 
 
 - Version lives in `.claude-plugin/plugin.json` (semver). Teammates only get an update when it changes.
 - Every PR that changes `skills/` or `.claude-plugin/` adds a line under **Unreleased** in [CHANGELOG.md](./CHANGELOG.md) (CI checks it).
-- Every two weeks: move Unreleased under a new version heading, bump `plugin.json`, merge to `main`.
-  The `plugin-release` workflow tags `v<version>` and publishes the GitHub release; auto-update delivers it.
+- **Every Monday** the `weekly-release` workflow checks Unreleased. If anything is waiting, it opens a
+  `Release v<version>` PR (plugin.json bumped: minor when something was added, else patch; entries
+  moved under a dated heading). Review and merge it: `plugin-release` tags `v<version>` and publishes
+  the GitHub release, and teammates get the new version in their next Claude Code session (auto-update
+  runs within ten minutes of their first message; the new version loads on the next launch).
+  So a change merged to `main` reaches everyone within about a week. Run it any time from
+  Actions → weekly-release → Run workflow.
 
 > **Just presenting or testing a deck (not generating a new one)?** You don't need the skill
 > installed at all — the canonical, always-latest deck is the shared **Figma** file. See
