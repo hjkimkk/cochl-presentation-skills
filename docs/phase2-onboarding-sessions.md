@@ -1,6 +1,6 @@
 # Phase 2 onboarding: one town hall for all teams
 
-- **When:** one 50-minute town hall in W8–W11 (Nov 23 – Dec 18, 2026), date to confirm · **Host:** HJ · **Material:** this page, [town hall deck](./phase2-townhall-deck.html) (20 slides, Cochl 101 template; editable copy in Figma Slides: https://www.figma.com/slides/Eq5vJ2aUnxQT9m0ECklavm), [README install](../README.md#install-plugin-v2), [Cochl 101 team guide](./cochl-101-team-guide.md). The 30-minute [team session deck](./phase2-onboarding-deck.html) stays for small follow-ups with one team.
+- **When:** one 50-minute town hall in late November 2026 (date to confirm) · **Host:** HJ · **Material:** this page, [town hall deck](./phase2-townhall-deck.html) (22 slides, Cochl 101 template; editable copy in Figma Slides: https://www.figma.com/slides/Eq5vJ2aUnxQT9m0ECklavm), [README install](../README.md#install-plugin-v2), [Cochl 101 team guide](./cochl-101-team-guide.md). The 30-minute [team session deck](./phase2-onboarding-deck.html) stays for small follow-ups with one team.
 - **Goal:** everyone leaves with the plugin installed, auto-update on, and one real output made with `/cochl-design`.
 
 ## Format (decided 2026-10-20)

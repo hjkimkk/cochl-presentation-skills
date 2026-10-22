@@ -1,7 +1,8 @@
 # Phase 2 feedback form (draft)
 
 Two short forms, built in Google Forms (or any form tool) from the questions below. The link of
-form A goes on deck slide 12 (`Feedback form: [NEEDS INPUT]`) and in the session follow-up message.
+form A goes on [town hall deck](./phase2-townhall-deck.html) slide 21 (`Feedback form: [NEEDS INPUT]`)
+and in the follow-up message after the town hall.
 
 - **Form A, after the town hall** (2 minutes, everyone, at the end of the town hall): did
   setup work, what will you use, what's missing.
@@ -40,12 +41,15 @@ Send to the design team 7 days after each release (the release date is on the
 
 **How to read it:** the metric is met for a release when every design-team answer shows that
 release's version (or a newer one) within 7 days of the release date. Record the count per release
-in the retro, e.g. "v2.1.1 (Oct 20): 4/4 by Oct 27".
+in the retro, in the form "vX.Y.Z (release date): 4/4 by check date".
+
+Checks start with the **first release after the town hall** (late November), when everyone has
+installed the plugin with auto-update on. The October releases are not checked: the forms didn't
+exist yet and most people hadn't installed. Add a row per release from then on.
 
 | Release | Released | Check date (+7 days) | Result |
 |---|---|---|---|
-| v2.1.0 | 2026-10-15 | 2026-10-22 | |
-| v2.1.1 | 2026-10-20 | 2026-10-27 | |
+| first release after the town hall | | | |
 
 ## Message to send with form A (after the town hall)
 
