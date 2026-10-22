@@ -1,8 +1,15 @@
-# Phase 2 feedback form (draft)
+# Phase 2 feedback form
 
-Two short forms, built in Google Forms (or any form tool) from the questions below. The link of
-form A goes on [town hall deck](./phase2-townhall-deck.html) slide 21 (`Feedback form: [NEEDS INPUT]`)
-and in the follow-up message after the town hall.
+Two short forms on one page, live since Oct 22, 2026:
+
+- **Form A, town hall feedback:** https://claude.ai/artifact/7k5KPhmsLDRnWN3ZD46VDg#feedback
+- **Form B, version check:** https://claude.ai/artifact/7k5KPhmsLDRnWN3ZD46VDg#version-check
+
+Each answer is saved under the person's Claude account (one per person; they can update it). Only the
+page owner sees the Results tab. To let people submit, share the page with the organization as
+**Contributor** (Viewers can open it but not send). Form A's link is on
+[town hall deck](./phase2-townhall-deck.html) slide 21 and goes in the follow-up message after the town hall.
+The questions below are what the page asks.
 
 - **Form A, after the town hall** (2 minutes, everyone, at the end of the town hall): did
   setup work, what will you use, what's missing.
@@ -35,9 +42,8 @@ Send to the design team 7 days after each release (the release date is on the
 
 | # | Question | Type | Options / note |
 |---|---|---|---|
-| 1 | Your name | short text, required | so each person counts once |
-| 2 | Which version does `claude plugin list` show for `cochl-design`? | short text, required | e.g. `2.1.1` |
-| 3 | If it isn't the latest, what happened? | single choice | Auto-update off · Didn't restart Claude Code · Update failed · Don't know |
+| 1 | Which version does `claude plugin list` show for `cochl-design`? | short text, required | e.g. `2.1.1`. Each person counts once: answers are tied to their Claude account |
+| 2 | If it isn't the latest, what happened? | single choice | It is the latest · Auto-update is off · Didn't restart Claude Code · The update failed · Don't know |
 
 **How to read it:** the metric is met for a release when every design-team answer shows that
 release's version (or a newer one) within 7 days of the release date. Record the count per release
