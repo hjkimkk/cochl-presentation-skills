@@ -1,0 +1,55 @@
+name: weekly-release
+
+# Every Monday, if CHANGELOG.md has entries under "## Unreleased", open a release PR that bumps
+# plugin.json (minor when something was added, else patch) and moves those entries under a dated
+# version heading. Merging it (after review) runs plugin-release, and teammates with auto-update on
+# get the new version in their next Claude Code session — so a merged change ships within a week.
+# Needs: Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests".
+
+on:
+  schedule:
+    - cron: "0 0 * * 1" # Monday 00:00 UTC = 09:00 KST
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  release-pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: main
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+      - name: Prepare release
+        id: prep
+        run: echo "version=$(node scripts/skills-lint/release.mjs --prepare "$(date -u +%F)")" >> "$GITHUB_OUTPUT"
+      - name: Open release PR
+        if: steps.prep.outputs.version != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          VERSION: ${{ steps.prep.outputs.version }}
+        run: |
+          BRANCH="release/v$VERSION"
+          if gh pr list --head "$BRANCH" --state open --json number --jq 'length' | grep -qv '^0$'; then
+            echo "$BRANCH already has an open PR"; exit 0
+          fi
+          node scripts/skills-lint/release.mjs
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git commit -am "Release v$VERSION"
+          git push --force origin "$BRANCH"
+          {
+            echo "Weekly release: everything under **Unreleased** in CHANGELOG.md ships as **v$VERSION**."
+            echo
+            echo "Merging tags v$VERSION and publishes the GitHub release (plugin-release). Teammates with auto-update on get it in their next Claude Code session."
+            echo
+            echo "## What ships"
+            node scripts/skills-lint/release.mjs --notes "$VERSION"
+          } > body.md
+          gh pr create --base main --head "$BRANCH" --title "Release v$VERSION" --body-file body.md --reviewer hjkimkk,yjlee-blip

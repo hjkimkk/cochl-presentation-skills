@@ -1,6 +1,7 @@
 #!/bin/bash
-# Cochl skills → cochl-design plugin, one-time migration (Phase 2, v2.0.0).
-#   bash scripts/migrate-to-plugin.sh            # migrate
+# Install the cochl-design plugin with auto-update on (new teammates), or migrate from the v1 copy install.
+#   curl -fsSL https://raw.githubusercontent.com/hjkimkk/cochl-presentation-skills/main/scripts/migrate-to-plugin.sh | bash
+#   bash scripts/migrate-to-plugin.sh            # same, from a clone
 #   bash scripts/migrate-to-plugin.sh --dry-run  # show what would change
 # 1. removes the `cochl-skills-autoupdate` SessionStart hook from ~/.claude/settings.json
 # 2. moves the copied Cochl skills out of ~/.claude/skills (to a backup folder, not deleted)
@@ -18,9 +19,12 @@ DRY=0
 for arg in "$@"; do case "$arg" in --dry-run) DRY=1 ;; -h|--help) sed -n '2,9p' "$0"; exit 0 ;; esac; done
 run() { if [ "$DRY" -eq 1 ]; then echo "  [dry-run] $*"; else "$@"; fi; }
 
-SETTINGS="$HOME/.claude/settings.json"
-SKILL_DIR="$HOME/.claude/skills"
-BACKUP="$HOME/.claude/skills.cochl-v1-backup-$(date +%Y%m%d%H%M%S)"
+CONFIG="${CLAUDE_CONFIG_DIR:-$HOME/.claude}"
+SETTINGS="$CONFIG/settings.json"
+SKILL_DIR="$CONFIG/skills"
+BACKUP="$CONFIG/skills.cochl-v1-backup-$(date +%Y%m%d%H%M%S)"
+# The first clone can pass Claude Code's default 120 s limit on a slow connection.
+export CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS="${CLAUDE_CODE_PLUGIN_GIT_TIMEOUT_MS:-300000}"
 
 command -v claude >/dev/null 2>&1 || { echo "✗ 'claude' CLI not found. Install Claude Code first."; exit 1; }
 command -v python3 >/dev/null 2>&1 || { echo "✗ python3 not found (needed to edit ~/.claude/settings.json)."; exit 1; }
