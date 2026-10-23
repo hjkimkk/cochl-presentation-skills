@@ -69,3 +69,14 @@ test('lintDiff flags only added lines in non-exempt files', () => {
   assert.equal(errs.length, 1);
   assert.match(errs[0], /skills\/a\/SKILL\.md:5 .*#fff/);
 });
+
+test('an image over 2 MB under skills/ is an error; a smaller one passes', () => {
+  const root = repo({
+    'skills/a/SKILL.md': fm('a'),
+    'skills/a/previews/big.png': Buffer.alloc(2 * 1024 * 1024 + 1),
+    'skills/a/previews/ok.png': Buffer.alloc(1024),
+  });
+  const { errors } = lintTree(root);
+  assert.equal(errors.length, 1);
+  assert.ok(errors[0].includes('skills/a/previews/big.png') && errors[0].includes('2 MB'));
+});
