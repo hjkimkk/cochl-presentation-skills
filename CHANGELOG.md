@@ -10,6 +10,8 @@ under a version heading.
 
 ## Unreleased
 
+## 2.1.2 — 2026-10-26
+
 ### Changed
 - Deck template previews (`decks/*-previews/pNN`) are now 1920 px JPEGs instead of PNGs up to
   2880 px; the social-kit YouTube example resized to 1920 px. The plugin download drops from
