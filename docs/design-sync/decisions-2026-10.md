@@ -11,6 +11,8 @@ coverage goal (met); they decide what "done" looks like for the handover on Dec 
 | D4 | One format for variant-level mapping | YJ | `/design-system` turns Figma variants into JSX from it |
 | — | Dark mode for 3 illustrations | NS | Left out of #485 (needs design, not code) |
 | — | Module owners = town hall demo presenters | NS, YJ | Contribution guide + town hall agenda |
+| D6 | Button Link (HyperlinkButton) Focus state | NS, YJ | No focus design in Figma or code; the site shows the browser outline |
+| D7 | List Dropdown Focus border in Dark | NS, YJ | Figma and code disagree; the Figma value equals the Dark hover |
 
 ---
 
@@ -118,3 +120,39 @@ From `docs/onboarding.md`; the same people present the town hall demos (late Nov
 | ds-install (`/design-system`) | NS (backup HJ) | Dev, with YJ | |
 | ds-sync + engine + mapping | YJ (engine) · HJ (entries) | Design, with NS | |
 | Release + CI | HJ (backup YJ) | — | |
+
+## D6 — Button Link Focus state (NS, YJ)
+
+Found in the usage/api design QA (Oct 27, [report](https://claude.ai/artifact/RG89b5iJQHqrkuzZeJGCgq) #8).
+The site link "Go view upcoming invoices" is an `<a>`, so keyboard users land on it and see the
+browser's default outline (orange, 1px). Figma `Button` › `type=Link` has Default / Hovered / Disabled
+but no Focus, and the Storybook `HyperlinkButton` is a `<span>` that can't take focus at all.
+Nothing to copy from either side, so the Focus look needs a design call.
+
+| Option | What it looks like | Effort | Answer (NS) |
+|---|---|---|---|
+| A. Same as Hovered | Hover style on `:focus-visible` | Figma variant + 1 CSS rule | |
+| B. Focus ring (recommended) | 2px Blue/60 outline, 2px offset, 2px radius; text unchanged | Figma variant + 1 CSS rule | |
+| C. Keep the browser default | Orange 1px outline (differs per browser) | none | |
+
+Either A or B also needs `HyperlinkButton` to render a focusable element (`<button>` or `<a>`) — YJ to
+confirm it's fine to change in `@cochlearai/ui`.
+
+| Question | Answer (YJ) |
+|---|---|
+| OK to make `HyperlinkButton` focusable (`<button>` / `<a>`)? | |
+
+## D7 — List Dropdown Focus border in Dark (NS, YJ)
+
+| Where | Light Focus | Dark Focus | Dark Hover |
+|---|---|---|---|
+| Figma `Dropdown` › `type=List Dropdown` | #131313 | **#73787A** | #73787A (added Oct 27) |
+| Code `DropdownButton` (`cochl-dashboard#493`) | #131313 (`colors.black`) | **#FFFFFF** (`colors.black` in Dark) | #73787A (`grey[80]`) |
+
+Light already matches. In Dark, the Figma Focus border is the same grey as Hover, so keyboard focus
+would look like a hover.
+
+| Option | Change | Answer (NS) |
+|---|---|---|
+| A. Figma follows code (recommended) | Dark Focus border → #FFFFFF (`black` token); focus stays distinct from hover | |
+| B. Code follows Figma | Dark `:focus-visible` → `grey[80]`; focus and hover look the same | |
