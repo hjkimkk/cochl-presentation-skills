@@ -109,5 +109,7 @@ design-sync/
    `fields` list with node-id provenance).
 2. Add a `components.<Name>` entry to `config/mapping.json`: `code.component` (dist
    dir name — may differ, e.g. Alert→Toast), a `code.extract` recipe, and
-   `comparisons`.
+   `comparisons`. A target that lives inside another component's module (e.g.
+   `TabItem` in `dist/types/Tab/`) sets `"module": "Tab"`; names are never guessed
+   from other dirs.
 3. `node cli.mjs compare <Name>`. No engine/adapter code changes.

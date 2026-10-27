@@ -10,6 +10,10 @@ under a version heading.
 
 ## Unreleased
 
+- design-sync: NumberInput, Tabs, Menu and Navigation move from `pending` to checked, and
+  ComplexButton becomes a Button target, for `@cochlearai/ui` 1.0.6: checked by `sync` 100%
+  (20/20). A target inside another component's module sets `module` (e.g. `TabItem` in `Tab`).
+
 ## 2.1.2 — 2026-10-26
 
 ### Changed

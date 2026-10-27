@@ -1,0 +1,29 @@
+{
+  "_comment": "Architectural finding. Figma 'Navigation' (48 variants: theme × type GNB|LNB|Footer|ProjectNav × size xl|lg|md|sm|xs|mobile) + NavButton (6535:417, 4) + PageButton (6533:2777, 8) map by type to GNB, LNB, FNB and ProjectNavi. Code has no responsive sizes. Details in docs/design-sync/mismatch/navigation.md.",
+  "component": "Navigation",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "1185:1204",
+    "name": "Navigation v1"
+  },
+  "referenceVariant": {
+    "nodeId": "3602:1114",
+    "name": "Navigation (component set — see note)"
+  },
+  "capturedVia": "figma-mcp use_figma (Plugin API) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "Navigation",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "3602:1114",
+    "relatedNodeIds": [
+      "6535:417",
+      "6533:2777"
+    ],
+    "capturedAt": "2026-10-20T16:45:00.000Z",
+    "captureMethod": "figma-mcp use_figma (Plugin API) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

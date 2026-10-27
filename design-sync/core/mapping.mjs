@@ -79,8 +79,10 @@ export function validateMappings(mapping, pkgDir) {
     const pkg = cfg.code?.package || "@cochlearai/ui";
     const dir = dirFor(pkg);
     for (const t of res.targets) {
-      const exists = dir ? existsSync(join(dir, "dist", "types", t.component, `${t.component}.d.ts`)) || existsSync(join(dir, "dist", "esm", t.component)) : true;
-      if (!exists) add(name, "invalid-ref", "error", `Code target "${t.component}" not found in ${pkg}.`);
+      // `module`: the dist dir the target lives in when it isn't its own (Tab/TabItem.d.ts).
+      const mod = t.module || t.component;
+      const exists = dir ? existsSync(join(dir, "dist", "types", mod, `${t.component}.d.ts`)) || existsSync(join(dir, "dist", "esm", t.component)) : true;
+      if (!exists) add(name, "invalid-ref", "error", `Code target "${t.component}"${t.module ? ` (module ${t.module})` : ""} not found in ${pkg}.`);
     }
 
     switch (res.effectiveStatus) {

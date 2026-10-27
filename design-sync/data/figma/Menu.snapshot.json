@@ -1,0 +1,28 @@
+{
+  "_comment": "Architectural finding. Figma 'Menu' (10 variants: theme × type Notification|UserMenu|Basic × state Default|Empty × notifOn) + 'MenuItem' (1821:1070, 8 variants) map to MANY code components (Menu, NotificationMenu, UserMenu, NotificationMenuItem). Details in docs/design-sync/mismatch/feedback-overlay.md (Menu).",
+  "component": "Menu",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "27:445",
+    "name": "Menu v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1765:1692",
+    "name": "Menu (component set — see note)"
+  },
+  "capturedVia": "figma-mcp use_figma (Plugin API) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "Menu",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1765:1692",
+    "relatedNodeIds": [
+      "1821:1070"
+    ],
+    "capturedAt": "2026-10-20T16:45:00.000Z",
+    "captureMethod": "figma-mcp use_figma (Plugin API) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}

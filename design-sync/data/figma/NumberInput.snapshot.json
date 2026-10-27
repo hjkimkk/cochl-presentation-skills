@@ -1,0 +1,25 @@
+{
+  "_comment": "Figma 'Number Input' (12 variants: theme Light|Dark × status Default|Focus|Active|Filled|Error × isDisabled, type Basic, text prop Text) maps 1:1 to NumberInput in @cochlearai/ui. Structure only; no value fields yet.",
+  "component": "NumberInput",
+  "fileKey": "aUrjRMAnE8ND8o6lAI0VcM",
+  "fileName": "Cochl Design System",
+  "page": {
+    "nodeId": "52:721",
+    "name": "Number Input v1"
+  },
+  "referenceVariant": {
+    "nodeId": "1153:404",
+    "name": "Number Input (component set — see note)"
+  },
+  "capturedVia": "figma-mcp use_figma (Plugin API) + code inspection",
+  "fields": [],
+  "meta": {
+    "component": "NumberInput",
+    "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
+    "figmaNodeId": "1153:404",
+    "capturedAt": "2026-10-20T16:45:00.000Z",
+    "captureMethod": "figma-mcp use_figma (Plugin API) + code inspection",
+    "sourceRevision": null,
+    "captureStatus": "architectural-note"
+  }
+}
