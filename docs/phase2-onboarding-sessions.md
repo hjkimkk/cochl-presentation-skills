@@ -1,9 +1,24 @@
-# Phase 2 onboarding: 30-minute team sessions
+# Phase 2 onboarding: one town hall for all teams
 
-- **When:** W8–W11 (Nov 23 – Dec 18, 2026) · **Host:** HJ · **Material:** this page, [session deck](./phase2-onboarding-deck.html) (13 slides, Cochl 101 template), [README install](../README.md#install-plugin-v2), [Cochl 101 team guide](./cochl-101-team-guide.md)
+- **When:** one 50-minute town hall in late November 2026 (date to confirm) · **Host:** HJ · **Material:** this page, [town hall deck](./phase2-townhall-deck.html) (22 slides, Cochl 101 template; editable copy in Figma Slides: https://www.figma.com/slides/Eq5vJ2aUnxQT9m0ECklavm), [README install](../README.md#install-plugin-v2), [Cochl 101 team guide](./cochl-101-team-guide.md). The 30-minute [team session deck](./phase2-onboarding-deck.html) stays for small follow-ups with one team.
 - **Goal:** everyone leaves with the plugin installed, auto-update on, and one real output made with `/cochl-design`.
 
-## Before the session (send 2 days ahead)
+## Format (decided 2026-10-20)
+
+One town hall replaces the four team sessions: same content, every team in one room, with a short
+demo per team. Send the calendar invite two weeks ahead and the prep email below two days ahead.
+
+| | |
+|---|---|
+| Date and time | to confirm |
+| Length | 50 minutes |
+| Demos | Business and Research: HJ · Design: NS, YJ · Dev: YJ, NS (module owners) |
+| Timing | after `@cochlearai/ui` 1.0.6 is published, so the Dev demo runs on the current package |
+
+After the town hall: send form A from [`phase2-feedback-form.md`](./phase2-feedback-form.md) and
+fill the attendance log below.
+
+## Before the town hall (send 2 days ahead)
 
 1. Claude Code installed and signed in.
 2. GitHub access to `hjkimkk/cochl-presentation-skills`, with git credentials that work without a prompt: `gh auth login` then `gh auth setup-git`.
@@ -11,13 +26,13 @@
 
 ### Invite email (copy, fill the brackets, send 2 days ahead)
 
-> **Subject:** 30 min: set up the Cochl design toolkit ([Team], [Date, Time])
+> **Subject:** Town hall, 50 min: set up the Cochl design toolkit ([Date, Time])
 >
-> Hi [Team],
+> Hi all,
 >
-> On [Date] at [Time] ([Room / link]) we'll spend 30 minutes setting up the Cochl design toolkit, one Claude Code plugin for decks, brochures, banners, design reviews, proposals and the design system. You'll leave with it installed, updating itself, and one real output made with `/cochl-design`.
+> On [Date] at [Time] ([Room / link]) we'll spend 50 minutes, all teams together, setting up the Cochl design toolkit, one Claude Code plugin for decks, brochures, banners, design reviews, proposals and the design system. You'll leave with it installed, updating itself, and one real output made with `/cochl-design`.
 >
-> Before the session, please:
+> Before the town hall, please:
 > 1. Install Claude Code and sign in.
 > 2. Check GitHub access to `hjkimkk/cochl-presentation-skills`, and set up git credentials so they work without a prompt: run `gh auth login`, then `gh auth setup-git`.
 > 3. Bring one real request you'd use this week, for example [team example: "a QBR deck with these numbers" / "a research position paper deck" / "a proposal review" / "apply @cochlearai/ui in a page"].
@@ -27,14 +42,15 @@
 > Thanks,
 > HJ
 
-## Common agenda (all teams)
+## Agenda (50 minutes)
 
 | Min | Part | Done when |
 |---|---|---|
 | 0–5 | Why: one install, one command, one brand source, automatic updates | — |
-| 5–12 | Install live. New: `claude plugin marketplace add hjkimkk/cochl-presentation-skills` → `claude plugin install cochl-design@cochl --scope user` → `/plugin` → Marketplaces → cochl → Enable auto-update. Old install: `bash scripts/migrate-to-plugin.sh` | `/cochl-design` shows the menu |
-| 12–25 | Team demo (below), then each person runs their own request | one output per person |
-| 25–30 | Where to get help, how to request a template, feedback form | questions logged |
+| 5–15 | Install live. New: `claude plugin marketplace add hjkimkk/cochl-presentation-skills` → `claude plugin install cochl-design@cochl --scope user` → `/plugin` → Marketplaces → cochl → Enable auto-update. Old install: `bash scripts/migrate-to-plugin.sh` | `/cochl-design` shows the menu |
+| 15–35 | Four team demos (below), about five minutes each | — |
+| 35–45 | Each person runs their own request | one output per person |
+| 45–50 | Where to get help, how to request a template, feedback form ([form A](./phase2-feedback-form.md#form-a-after-the-town-hall)) | questions logged, form A sent |
 
 ## Team demos
 
@@ -53,6 +69,7 @@
 | Old template shows up | v1 copies still in `~/.claude/skills/` → run `bash scripts/migrate-to-plugin.sh` |
 | Install asks for a password or fails | git credentials: `gh auth login && gh auth setup-git` |
 | Bare `/cochl-presentation` runs an old copy | Use `/cochl-design:cochl-presentation`, then run the migration script |
+| Not on the latest version | `/plugin` → Marketplaces → `cochl` → Update, then restart Claude Code |
 
 ## Attendance log
 

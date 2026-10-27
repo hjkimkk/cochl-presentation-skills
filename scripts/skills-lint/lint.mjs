@@ -8,6 +8,8 @@ import { fileURLToPath } from 'node:url';
 import { parseFrontmatter, scanLine, isExempt, findPathRefs, addedLines } from './scan.mjs';
 
 const posix = (p) => p.split(sep).join('/');
+const IMAGE = /\.(png|jpe?g|webp|gif)$/i;
+const MAX_IMAGE_BYTES = 2 * 1024 * 1024;
 
 function walk(dir) {
   if (!existsSync(dir)) return [];
@@ -40,6 +42,12 @@ export function lintTree(root) {
     for (const ref of findPathRefs(readFileSync(file, 'utf8'))) {
       const ok = existsSync(join(dirname(file), ref)) || existsSync(join(skillRoot, ref));
       if (!ok) errors.push(`${rel}: referenced path not found: ${ref}`);
+    }
+  }
+  // Every teammate clones the whole plugin on install; large images make that slow enough to time out.
+  for (const file of walk(skillsDir).filter((f) => IMAGE.test(f))) {
+    if (statSync(file).size > MAX_IMAGE_BYTES) {
+      errors.push(`${posix(relative(root, file))}: image over 2 MB (resize to 1920 px wide or less)`);
     }
   }
   return { errors, warnings };

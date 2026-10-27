@@ -14,6 +14,15 @@ under a version heading.
   ComplexButton becomes a Button target, for `@cochlearai/ui` 1.0.6: checked by `sync` 100%
   (20/20). A target inside another component's module sets `module` (e.g. `TabItem` in `Tab`).
 
+## 2.1.2 — 2026-10-26
+
+### Changed
+- Deck template previews (`decks/*-previews/pNN`) are now 1920 px JPEGs instead of PNGs up to
+  2880 px; the social-kit YouTube example resized to 1920 px. The plugin download drops from
+  about 158 MB to 56 MB. A fresh `claude plugin marketplace add` of the old size took 192 s on
+  Oct 22, past Claude Code's default 120-second clone limit. Page numbers and content are unchanged.
+- Skills lint: an image over 2 MB under `skills/` is an error, so the download stays small.
+
 ## 2.1.1 — 2026-10-19
 
 Patch: brand rules for quotes and repeated fields, and design-sync checks the date picker.

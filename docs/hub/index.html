@@ -80,18 +80,18 @@ footer { padding: 32px 0 48px; border-top: 1px solid var(--border); color: var(-
     <p class="sub">Once per computer. Then restart Claude Code and type <code>/cochl-design</code>.</p>
     <div class="grid">
       <div class="card">
-        <div class="step">New teammate</div>
-        <h3>Install the plugin</h3>
+        <div class="step">Everyone · one command</div>
+        <h3>Install with auto-update on</h3>
+        <p>Paste into the Terminal and press Enter. It adds the <code>cochl</code> marketplace, installs the plugin and turns auto-update on, so new versions arrive by themselves.</p>
+        <pre><code>curl -fsSL https://raw.githubusercontent.com/hjkimkk/cochl-presentation-skills/main/scripts/migrate-to-plugin.sh | bash</code><button class="copy" type="button">Copy</button></pre>
+        <p style="margin-top:12px">Installed the old way before October 2026? The same command also removes the old <code>git pull</code> hook and moves the copied skills to a backup.</p>
+      </div>
+      <div class="card">
+        <div class="step">Prefer to type it yourself</div>
+        <h3>Manual install</h3>
         <pre><code>claude plugin marketplace add hjkimkk/cochl-presentation-skills
 claude plugin install cochl-design@cochl --scope user</code><button class="copy" type="button">Copy</button></pre>
         <p style="margin-top:12px">Then in Claude Code: <code>/plugin</code> → Marketplaces → <code>cochl</code> → Enable auto-update.</p>
-      </div>
-      <div class="card">
-        <div class="step">Installed before October 2026</div>
-        <h3>Migrate once</h3>
-        <p>Removes the old <code>git pull</code> hook and copied skills (kept as a backup), installs the plugin and turns auto-update on.</p>
-        <pre><code>bash scripts/migrate-to-plugin.sh</code><button class="copy" type="button">Copy</button></pre>
-        <p style="margin-top:12px">Run it from your clone of the repo. Add <code>--dry-run</code> to preview.</p>
       </div>
     </div>
   </section>
