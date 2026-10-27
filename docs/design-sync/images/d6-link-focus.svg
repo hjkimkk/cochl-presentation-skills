@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="236" viewBox="0 0 880 236" font-family="'IBM Plex Sans', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <rect width="880" height="236" rx="8" fill="#FFFFFF" stroke="#E5E5E5"/>
+  <text x="24" y="34" font-size="15" font-weight="600" fill="#131313">D6 · Button Link (HyperlinkButton) — Focus</text>
+  <text x="24" y="56" font-size="12" fill="#8C8C8C">Light theme, 14px / 500, Blue/60 #4B68FF. Same scale as the site.</text>
+
+  <!-- column labels -->
+  <g font-size="12" fill="#727273">
+    <text x="24" y="98">Default</text>
+    <text x="234" y="98">Hovered (Figma)</text>
+    <text x="444" y="98">Focus today = C</text>
+    <text x="654" y="98" font-weight="600" fill="#4B68FF">Focus — option B</text>
+  </g>
+
+  <!-- link: "Upgrade plan →" -->
+  <defs>
+    <g id="link">
+      <text x="0" y="14" font-size="14" font-weight="500" fill="#4B68FF">Upgrade plan</text>
+      <path d="M96 8 h11 M102 3 l5 5 l-5 5" stroke="#4B68FF" stroke-width="1.6" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    </g>
+  </defs>
+  <g transform="translate(24,124)"><use href="#link"/></g>
+  <g transform="translate(234,124)"><use href="#link"/></g>
+  <g transform="translate(444,124)">
+    <rect x="-1" y="-1" width="111" height="20" fill="none" stroke="rgb(229,151,0)" stroke-width="1"/>
+    <use href="#link"/>
+  </g>
+  <g transform="translate(654,124)">
+    <rect x="-3" y="-3" width="115" height="24" rx="2" fill="none" stroke="#4B68FF" stroke-width="2"/>
+    <use href="#link"/>
+  </g>
+
+  <!-- notes -->
+  <g font-size="11.5" fill="#8C8C8C">
+    <text x="24" y="182">Figma 3582:2051</text>
+    <text x="234" y="182">Figma 3582:2054 — looks the</text>
+    <text x="234" y="198">same as Default, so option A</text>
+    <text x="234" y="214">would show no visible focus</text>
+    <text x="444" y="182">Browser default outline,</text>
+    <text x="444" y="198">1px orange (Chrome);</text>
+    <text x="444" y="214">differs per browser</text>
+    <text x="654" y="182">outline: 2px solid Blue/60;</text>
+    <text x="654" y="198">outline-offset: 2px;</text>
+    <text x="654" y="214">border-radius: 2px</text>
+  </g>
+  <line x1="214" y1="80" x2="214" y2="220" stroke="#F1F1F2"/>
+  <line x1="424" y1="80" x2="424" y2="220" stroke="#F1F1F2"/>
+  <line x1="634" y1="80" x2="634" y2="220" stroke="#F1F1F2"/>
+</svg>

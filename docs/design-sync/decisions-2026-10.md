@@ -129,9 +129,11 @@ browser's default outline (orange, 1px). Figma `Button` › `type=Link` has Defa
 but no Focus, and the Storybook `HyperlinkButton` is a `<span>` that can't take focus at all.
 Nothing to copy from either side, so the Focus look needs a design call.
 
+![D6: Link Default, Hovered, Focus today (C) and option B focus ring](images/d6-link-focus.svg)
+
 | Option | What it looks like | Effort | Answer (NS) |
 |---|---|---|---|
-| A. Same as Hovered | Hover style on `:focus-visible` | Figma variant + 1 CSS rule | |
+| A. Same as Hovered | Hover style on `:focus-visible` — but Figma Hovered looks the same as Default, so focus would not be visible unless Hovered changes too | Figma variant + 1 CSS rule | |
 | B. Focus ring (recommended) | 2px Blue/60 outline, 2px offset, 2px radius; text unchanged | Figma variant + 1 CSS rule | |
 | C. Keep the browser default | Orange 1px outline (differs per browser) | none | |
 
@@ -151,6 +153,8 @@ confirm it's fine to change in `@cochlearai/ui`.
 
 Light already matches. In Dark, the Figma Focus border is the same grey as Hover, so keyboard focus
 would look like a hover.
+
+![D7: List Dropdown Default, Hover, Focus in Light and Dark; Dark Focus #73787A (Figma) vs #FFFFFF (code)](images/d7-dropdown-dark-focus.svg)
 
 | Option | Change | Answer (NS) |
 |---|---|---|
