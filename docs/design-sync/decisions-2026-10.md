@@ -1,6 +1,7 @@
 # Open decisions for NS and YJ (Phase 2, Oct 26)
 
-Each section has a recommendation and an answer box. Reply in the PR or edit the **Answer** cells;
+Each section has a recommendation and an answer box. Answer in the
+[decision questionnaire](https://claude.ai/artifact/GD31sb6D9zH9rBXxryHSHa) (one card per question, saves on the page);
 HJ records the result in `sync-plan.md` and the Confluence plan. None of these block the ≥ 80%
 coverage goal (met); they decide what "done" looks like for the handover on Dec 18.
 
@@ -10,7 +11,6 @@ coverage goal (met); they decide what "done" looks like for the handover on Dec 
 | D3 | Story-only variants: promote to library components | NS + Dev | Figma variants apps can't use today |
 | D4 | One format for variant-level mapping | YJ | `/design-system` turns Figma variants into JSX from it |
 | — | Dark mode for 3 illustrations | NS | Left out of #485 (needs design, not code) |
-| — | Module owners = town hall demo presenters | NS, YJ | Contribution guide + town hall agenda |
 | D6 | Button Link (HyperlinkButton) Focus state | NS, YJ | No focus design in Figma or code; the site shows the browser outline |
 | D7 | List Dropdown Focus border in Dark | NS, YJ | Figma and code disagree; the Figma value equals the Dark hover |
 
@@ -107,19 +107,6 @@ Preview: [Storybook, Dark](https://6620cbfd45d0553584c1b84f-ypowhqxghg.chromatic
 | A. Keep as is (light on dark is acceptable) | none | |
 | B. Dark variants in Figma; code switches by theme | design + small code change | |
 | C. Map the greys to theme tokens (like the icons in #485) | code only; may look flat | |
-
-## Module owners = town hall presenters (NS, YJ)
-
-From `docs/onboarding.md`; the same people present the town hall demos (late November, date open).
-
-| Module | Owner (reviews PRs) | Town hall demo | Confirm |
-|---|---|---|---|
-| Router + brand core | HJ (backup NS) | — | |
-| present (decks, brochure, banners, press kit) | HJ | Business, Research | |
-| review / proposal | HJ | Design | |
-| ds-install (`/design-system`) | NS (backup HJ) | Dev, with YJ | |
-| ds-sync + engine + mapping | YJ (engine) · HJ (entries) | Design, with NS | |
-| Release + CI | HJ (backup YJ) | — | |
 
 ## D6 — Button Link Focus state (NS, YJ)
 
