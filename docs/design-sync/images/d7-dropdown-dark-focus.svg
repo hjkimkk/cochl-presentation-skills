@@ -1,0 +1,57 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="880" height="330" viewBox="0 0 880 330" font-family="'IBM Plex Sans', -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif">
+  <defs>
+    <!-- List Dropdown trigger, 121x27, radius 4, caption 1 text -->
+    <g id="ddLight">
+      <text x="16" y="18" font-size="12" fill="#131313">2026-10</text>
+      <path d="M100 11.5 l3 3 l3 -3 z" fill="#131313"/>
+    </g>
+    <g id="ddDark">
+      <text x="16" y="18" font-size="12" fill="#FFFFFF">2026-10</text>
+      <path d="M100 11.5 l3 3 l3 -3 z" fill="#FFFFFF"/>
+    </g>
+  </defs>
+  <rect width="880" height="330" rx="8" fill="#FFFFFF" stroke="#E5E5E5"/>
+  <text x="24" y="34" font-size="15" font-weight="600" fill="#131313">D7 · List Dropdown — Focus border in Dark</text>
+  <text x="24" y="56" font-size="12" fill="#8C8C8C">Trigger 121×27, 1px border inside. Columns: Default · Hover · Focus.</text>
+
+  <!-- Light row (already matches) -->
+  <text x="24" y="98" font-size="12" font-weight="600" fill="#131313">Light</text>
+  <text x="24" y="114" font-size="11.5" fill="#8C8C8C">Figma = code</text>
+  <g transform="translate(150,82)">
+    <rect x="0.5" y="0.5" width="120" height="26" rx="4" fill="#FFFFFF" stroke="#E5E5E5"/><use href="#ddLight"/>
+    <text x="0" y="46" font-size="11.5" fill="#8C8C8C">Default #E5E5E5</text>
+  </g>
+  <g transform="translate(330,82)">
+    <rect x="0.5" y="0.5" width="120" height="26" rx="4" fill="#FFFFFF" stroke="#727273"/><use href="#ddLight"/>
+    <text x="0" y="46" font-size="11.5" fill="#8C8C8C">Hover #727273</text>
+  </g>
+  <g transform="translate(510,82)">
+    <rect x="0.5" y="0.5" width="120" height="26" rx="4" fill="#FFFFFF" stroke="#131313"/><use href="#ddLight"/>
+    <text x="0" y="46" font-size="11.5" fill="#8C8C8C">Focus #131313</text>
+  </g>
+
+  <!-- Dark panel -->
+  <rect x="12" y="150" width="856" height="168" rx="6" fill="#1C1D1E"/>
+  <text x="24" y="186" font-size="12" font-weight="600" fill="#FFFFFF">Dark</text>
+  <text x="24" y="202" font-size="11.5" fill="#73787A">Figma today</text>
+  <g transform="translate(150,170)">
+    <rect x="0.5" y="0.5" width="120" height="26" rx="4" fill="#1C1D1E" stroke="#303233"/><use href="#ddDark"/>
+    <text x="0" y="46" font-size="11.5" fill="#73787A">Default #303233</text>
+  </g>
+  <g transform="translate(330,170)">
+    <rect x="0.5" y="0.5" width="120" height="26" rx="4" fill="#1C1D1E" stroke="#73787A"/><use href="#ddDark"/>
+    <text x="0" y="46" font-size="11.5" fill="#73787A">Hover #73787A</text>
+  </g>
+  <g transform="translate(510,170)">
+    <rect x="0.5" y="0.5" width="120" height="26" rx="4" fill="#1C1D1E" stroke="#73787A"/><use href="#ddDark"/>
+    <text x="0" y="46" font-size="11.5" fill="#73787A">Focus #73787A</text>
+    <text x="0" y="62" font-size="11.5" fill="#E5974F">= same as Hover (option B)</text>
+  </g>
+  <g transform="translate(690,170)">
+    <rect x="0.5" y="0.5" width="120" height="26" rx="4" fill="#1C1D1E" stroke="#FFFFFF"/><use href="#ddDark"/>
+    <text x="0" y="46" font-size="11.5" font-weight="600" fill="#96A7FF">Focus #FFFFFF</text>
+    <text x="0" y="62" font-size="11.5" fill="#96A7FF">code · option A</text>
+  </g>
+  <line x1="672" y1="166" x2="672" y2="300" stroke="#303233"/>
+  <text x="24" y="296" font-size="11.5" fill="#73787A">Option A: Figma Dark Focus → #FFFFFF (black token), focus stays distinct from hover. Option B: code → #73787A, focus looks like hover.</text>
+</svg>
