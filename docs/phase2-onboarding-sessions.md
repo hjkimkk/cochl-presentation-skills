@@ -47,7 +47,7 @@ fill the attendance log below.
 | Min | Part | Done when |
 |---|---|---|
 | 0–5 | Why: one install, one command, one brand source, automatic updates | — |
-| 5–15 | Install live. New: `claude plugin marketplace add hjkimkk/cochl-presentation-skills` → `claude plugin install cochl-design@cochl --scope user` → `/plugin` → Marketplaces → cochl → Enable auto-update. Old install: `bash scripts/migrate-to-plugin.sh` | `/cochl-design` shows the menu |
+| 5–15 | Install live, one command for new and old installs alike: `curl -fsSL https://raw.githubusercontent.com/hjkimkk/cochl-presentation-skills/main/scripts/migrate-to-plugin.sh \| bash` (adds the marketplace, installs the plugin, turns auto-update on; rehearsed Oct 27 in an empty config: 4 s, v2.1.2 enabled). Restart Claude Code | `/cochl-design` shows the menu |
 | 15–35 | Four team demos (below), about five minutes each | — |
 | 35–45 | Each person runs their own request | one output per person |
 | 45–50 | Where to get help, how to request a template, feedback form ([form A](./phase2-feedback-form.md#form-a-after-the-town-hall)) | questions logged, form A sent |
