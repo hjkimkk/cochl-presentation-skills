@@ -12,6 +12,9 @@ export const MAPPING_TYPE = Object.freeze({
   ONE_TO_ONE: "ONE_TO_ONE", ONE_TO_MANY: "ONE_TO_MANY", UNMATCHED: "UNMATCHED", AMBIGUOUS: "AMBIGUOUS",
 });
 
+// Allowed `confidence` values on a variant-level propMap entry (D4).
+export const PROPMAP_CONFIDENCE = Object.freeze(new Set(["verified", "pending"]));
+
 /**
  * Resolve one component's mapping. Names are NOT trusted: a declared ONE_TO_ONE
  * whose figma role != code target role is downgraded to AMBIGUOUS.
@@ -102,6 +105,29 @@ export function validateMappings(mapping, pkgDir) {
         break;
       }
     }
+
+    // Variant-level propMap (D4): validate it when present; otherwise flag
+    // multi-target components that still lack one (per-variant routing needs it).
+    const propMap = cfg.mapping?.propMap;
+    if (propMap !== undefined) {
+      if (!Array.isArray(propMap)) {
+        add(name, "propmap-malformed", "error", "`mapping.propMap` must be an array.");
+      } else {
+        propMap.forEach((e, idx) => {
+          const at = `propMap[${idx}]`;
+          for (const k of ["figma", "code", "evidence"]) {
+            if (typeof e?.[k] !== "string" || !e[k].trim())
+              add(name, "propmap-malformed", "error", `${at} is missing a non-empty "${k}".`);
+          }
+          if (!PROPMAP_CONFIDENCE.has(e?.confidence))
+            add(name, "propmap-malformed", "error", `${at} has invalid confidence "${e?.confidence ?? ""}" (expected ${[...PROPMAP_CONFIDENCE].join(" | ")}).`);
+          else if (e.confidence === "pending")
+            add(name, "propmap-pending", "info", `${at} (${e.figma} → ${e.code}) is pending verification.`);
+        });
+      }
+    } else if (res.targets.length > 1) {
+      add(name, "propmap-missing", "warning", `${res.targets.length} variant targets but no \`mapping.propMap\` (per-variant routing — D4 — needs one).`);
+    }
   }
 
   for (const [code, figmas] of oneToOneTargetUsage) {
@@ -110,7 +136,7 @@ export function validateMappings(mapping, pkgDir) {
 
   const byKind = {};
   for (const i of issues) byKind[i.kind] = (byKind[i.kind] || 0) + 1;
-  const blockingKinds = new Set(["unresolved", "ambiguous", "same-name-collision", "invalid-ref", "duplicate"]);
+  const blockingKinds = new Set(["unresolved", "ambiguous", "same-name-collision", "invalid-ref", "duplicate", "propmap-malformed"]);
   const hasBlocking = issues.some((i) => blockingKinds.has(i.kind) && i.severity === "error");
 
   return { issues, byKind, hasBlocking };
