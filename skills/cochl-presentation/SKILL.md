@@ -11,6 +11,7 @@ This skill builds Cochl-branded collateral — decks, documents, brochures, and 
 - **[`references/deck-engine.md`](references/deck-engine.md)** — the shared HTML→PPTX / page-nav / output / QA machinery for decks. Every deck template inherits it.
 - **[`references/registry.md`](references/registry.md)** — the index of every template (ready ✅ and planned 🟡), tagged by team/use-case, each pointing to its spec.
 - **`references/<type>/`** — specs grouped by artifact type: `decks/`, `docs/`, `brochure/`, `social-kit/`, `press-kit/`.
+- **[`references/claude-code-architecture.md`](references/claude-code-architecture.md)** — the Claude Code architecture page delivered with every build, and its generator.
 
 **Teams are tags in the registry, not separate skills.** The same template (e.g. an onboarding or review deck) serves many teams; route by *what the artifact is*, then filter by team/use-case.
 
@@ -51,4 +52,9 @@ This applies to **ALL slide types**, with no exceptions — Traction, Financials
 Before finalizing a deck, grep the generated HTML for hardcoded numerals / company names with no matching user input and flag each one.
 
 ## Output
-Build the primary artifact first, then ask which format(s) to save (decks: **PPTX / HTML / both**; SVG artifacts: deliver `.svg` + rendered `.png`). Details and the exact export recipe are in [`deck-engine.md`](references/deck-engine.md).
+The final result of every deck build is **three files**, same basename and directory:
+1. **PPTX** — `{slug}.pptx`
+2. **HTML** — `{slug}.html`
+3. **Claude Code architecture** — `{slug}_claude-code-architecture.html`: one page showing how this build ran in Claude Code (router → skill → registry row → spec + brand → tools → outputs, install layer, QA run). Built with the generator in [`claude-code-architecture.md`](references/claude-code-architecture.md).
+
+Build the deck HTML first, export the PPTX, then generate the architecture page last so it can list both. Deliver all three unless the user asks for fewer. SVG artifacts (brochure, social, press kit) deliver `.svg` + rendered `.png`, plus the architecture page. The export recipe is in [`deck-engine.md`](references/deck-engine.md).

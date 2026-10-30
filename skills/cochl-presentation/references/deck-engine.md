@@ -33,13 +33,13 @@ for p in sorted(glob.glob('build/png/s*.png')):
     s=prs.slides.add_slide(blank); s.shapes.add_picture(p,0,0,width=prs.slide_width,height=prs.slide_height)
 prs.save('{slug}_deck.pptx')
 ```
-3. Delete intermediate PNGs; keep `.html` + `.pptx` (same basename/dir).
+3. Delete intermediate PNGs; keep `.html` + `.pptx` (same basename/dir) for the architecture page to list.
 
 ## Output flow (all deliverables)
-Build the primary artifact first (HTML for decks; SVG for brochure/social), **then ask** which format(s) to save:
-> "How should I save it — PPTX, HTML, or both?" → **Both** (recommended) · **PPTX only** · **HTML only**
+Build the primary artifact first (HTML for decks; SVG for brochure/social), then export. The final result is three files with one basename in one directory:
+> `{slug}.pptx` · `{slug}.html` · `{slug}_claude-code-architecture.html`
 
-Both files share basename + directory. Report the path(s) produced. (Editable-SVG artifacts deliver the `.svg` + a rendered `.png` preview.)
+Generate the architecture page last, after the PPTX and HTML exist, with [`claude-code-architecture.md`](claude-code-architecture.md). Deliver all three unless the user asks for fewer; report every path produced. (Editable-SVG artifacts deliver the `.svg` + a rendered `.png` preview, plus the architecture page.)
 
 
 ## Deck QA checklist
@@ -54,6 +54,7 @@ Brand items (theme tokens, token names, gradient/glow, fonts, logo, company fact
 - [ ] Each heading has exactly one `grad-text` key phrase
 - [ ] Card body ≤2 sentences; break slides at major transitions
 - [ ] Self-contained (assets inline / no broken refs)
+- [ ] Claude Code architecture page delivered next to the PPTX and HTML, and passes its QA list ([`claude-code-architecture.md`](claude-code-architecture.md))
 
 **Post-generation self-checks** (run right after emitting the deck, before saving):
 - [ ] **Deck-type check** — if the content carries partnership keywords (MOU, co-development, OEM, SDK integration, joint go-to-market) but was built on the investor template, flag the routing (should be B2B — see SKILL.md Routing step 2).

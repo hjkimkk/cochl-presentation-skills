@@ -10,6 +10,10 @@ under a version heading.
 
 ## Unreleased
 
+- cochl-presentation: every build now delivers three files — PPTX, HTML and a **Claude Code
+  architecture** page (`{slug}_claude-code-architecture.html`) that shows how the deck was built in
+  Claude Code: router → skill → registry row → spec + brand → tools → outputs, install layer and QA run.
+  Generator and spec in `references/claude-code-architecture*`, with an example.
 - design-sync: NumberInput, Tabs, Menu and Navigation move from `pending` to checked, and
   ComplexButton becomes a Button target, for `@cochlearai/ui` 1.0.6: checked by `sync` 100%
   (20/20). A target inside another component's module sets `module` (e.g. `TabItem` in `Tab`).

@@ -1,0 +1,34 @@
+{
+  "deckTitle": "Cochl.Sense Investor Deck",
+  "slug": "cochl-investor-deck",
+  "date": "2026-10-28",
+  "request": "Investor deck for Cochl.Sense (seed / Series A)",
+  "entry": "/cochl-design",
+  "route": {
+    "row": "Investor / fundraising pitch",
+    "spec": "references/decks/investor-template.md",
+    "theme": "plex"
+  },
+  "reads": [
+    "cochl-design/core/brand-core.md",
+    "cochl-design/core/themes/plex.md",
+    "references/deck-engine.md"
+  ],
+  "tools": [
+    { "name": "Read", "use": "router, skill, registry, spec, brand core" },
+    { "name": "Write", "use": "deck HTML, 11 slides" },
+    { "name": "Bash", "use": "headless Chrome → 1920×1080 PNG per slide" },
+    { "name": "Bash", "use": "python-pptx → PPTX" },
+    { "name": "Bash", "use": "gen-architecture.mjs → this page" }
+  ],
+  "outputs": {
+    "pptx": "cochl-investor-deck.pptx",
+    "html": "cochl-investor-deck.html",
+    "architecture": "cochl-investor-deck_claude-code-architecture.html"
+  },
+  "qa": {
+    "slides": 11,
+    "needsInput": 32,
+    "checklists": ["core/qa-checklist.md", "deck-engine.md → Deck QA", "SKILL.md → facts grep"]
+  }
+}
