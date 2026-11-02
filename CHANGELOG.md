@@ -10,6 +10,8 @@ under a version heading.
 
 ## Unreleased
 
+## 2.1.3 — 2026-11-02
+
 - cochl-presentation: every build now delivers three files — PPTX, HTML and a **Claude Code
   architecture** page (`{slug}_claude-code-architecture.html`) that shows how the deck was built in
   Claude Code: router → skill → registry row → spec + brand → tools → outputs, install layer and QA run.
