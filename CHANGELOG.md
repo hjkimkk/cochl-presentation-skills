@@ -10,6 +10,11 @@ under a version heading.
 
 ## Unreleased
 
+- design-sync: `mapping validate` checks the variant-level `mapping.propMap` (D4, decided Oct 29):
+  an entry without `figma`, `code` or `evidence`, or with a `confidence` other than `verified` |
+  `pending`, is a blocking error (`propmap-malformed`); a `pending` entry is reported as info; a
+  component with more than one code target and no `propMap` is a warning (`propmap-missing`).
+
 ## 2.1.3 — 2026-11-02
 
 - cochl-presentation: every build now delivers three files — PPTX, HTML and a **Claude Code
@@ -19,10 +24,6 @@ under a version heading.
 - design-sync: NumberInput, Tabs, Menu and Navigation move from `pending` to checked, and
   ComplexButton becomes a Button target, for `@cochlearai/ui` 1.0.6: checked by `sync` 100%
   (20/20). A target inside another component's module sets `module` (e.g. `TabItem` in `Tab`).
-- design-sync: `mapping validate` checks the variant-level `mapping.propMap` (D4, decided Oct 29):
-  an entry without `figma`, `code` or `evidence`, or with a `confidence` other than `verified` |
-  `pending`, is a blocking error (`propmap-malformed`); a `pending` entry is reported as info; a
-  component with more than one code target and no `propMap` is a warning (`propmap-missing`).
 
 ## 2.1.2 — 2026-10-26
 
