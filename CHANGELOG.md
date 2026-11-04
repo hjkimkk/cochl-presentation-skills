@@ -10,6 +10,10 @@ under a version heading.
 
 ## Unreleased
 
+- design-sync: Figma snapshot check re-run (Nov 4): the 7 captured snapshots (Alert, Button,
+  Checkbox, Chip, Input, Radio, Tooltip) are unchanged in Figma and now store a fingerprint, so the
+  weekly check can report CHANGED. The 13 hand-verified notes still need a manual re-check.
+
 ## 2.1.3 — 2026-11-02
 
 - cochl-presentation: every build now delivers three files — PPTX, HTML and a **Claude Code
