@@ -82,14 +82,14 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
     assert.equal(hasBlocking, false, "missing propMap is a warning");
   }
 
-  // real config: Button propMap is valid, a pending entry is surfaced, some are missing, still non-blocking.
+  // real config: every multi-target component has a valid propMap (D4 migration), pending entries are surfaced, still non-blocking.
   {
     const { readFileSync } = await import("node:fs");
     const real = JSON.parse(readFileSync(new URL("../config/mapping.json", import.meta.url), "utf8"));
     const { byKind, hasBlocking } = validateMappings(real, null);
     assert.equal(byKind["propmap-malformed"], undefined, "no malformed propMap in config");
     assert.ok(byKind["propmap-pending"] >= 1, "config surfaces a pending propMap entry");
-    assert.ok(byKind["propmap-missing"] >= 1, "config flags multi-target components lacking propMap");
+    assert.equal(byKind["propmap-missing"], undefined, "every multi-target component has a propMap");
     assert.equal(hasBlocking, false, "propMap validation keeps config non-blocking");
   }
 
