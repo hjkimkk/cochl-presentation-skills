@@ -23,6 +23,11 @@
     "capturedAt": "2026-10-20T16:45:00.000Z",
     "captureMethod": "figma-mcp use_figma (Plugin API) + code inspection",
     "sourceRevision": null,
-    "captureStatus": "architectural-note"
+    "captureStatus": "architectural-note",
+    "lastVerified": {
+      "at": "2026-11-05T00:00:00.000Z",
+      "via": "figma-mcp use_figma (Plugin API)",
+      "result": "structure re-checked against current nodes; unchanged"
+    }
   }
 }

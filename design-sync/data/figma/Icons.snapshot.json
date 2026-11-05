@@ -65,6 +65,11 @@
     "capturedAt": "2026-10-13T17:48:02.174Z",
     "captureMethod": "figma-mcp get_metadata",
     "sourceRevision": null,
-    "captureStatus": "verified"
+    "captureStatus": "verified",
+    "lastVerified": {
+      "at": "2026-11-05T00:00:00.000Z",
+      "via": "figma-mcp use_figma (Plugin API)",
+      "result": "structure re-checked against current nodes; unchanged"
+    }
   }
 }
