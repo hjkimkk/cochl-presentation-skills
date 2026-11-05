@@ -12,8 +12,9 @@ set -euo pipefail
 REPO="hjkimkk/cochl-presentation-skills"
 MARKETPLACE="cochl"
 PLUGIN="cochl-design"
-# Every skill folder this repo ever installed by copy (v1 + v2 names).
-OLD_SKILLS="cochl-design cochl-presentation design-review design-sync design-system pitch-deck proposal-doc"
+# Every skill folder this repo ever installed by copy (v1 + v2 names, including the early
+# cochl-pitch-deck / cochl-brochure and the install-cochl-design-system copy of design-system).
+OLD_SKILLS="cochl-design cochl-presentation design-review design-sync design-system pitch-deck proposal-doc cochl-pitch-deck cochl-brochure install-cochl-design-system"
 
 DRY=0
 for arg in "$@"; do case "$arg" in --dry-run) DRY=1 ;; -h|--help) sed -n '2,9p' "$0"; exit 0 ;; esac; done
@@ -68,9 +69,11 @@ moved=0
 for n in $OLD_SKILLS; do
   d="$SKILL_DIR/$n"
   [ -f "$d/SKILL.md" ] || continue
-  # Only move a copy whose SKILL.md name matches ours (never someone else's skill).
+  # Only move a copy whose SKILL.md name matches ours (never someone else's skill). An old copy
+  # with no `name:` line counts when its first heading is a Cochl one ("# Cochl Design System — …").
   nm="$(grep -m1 '^name:' "$d/SKILL.md" | sed 's/name: *//' || true)"
-  case " $OLD_SKILLS pitch-deck-skill proposal-doc-template " in *" $nm "*) ;; *) echo "  skip $n (name: $nm, not a Cochl copy)"; continue ;; esac
+  if [ -z "$nm" ] && grep -m1 '^# ' "$d/SKILL.md" | grep -q '^# Cochl'; then nm="$n"; fi
+  case " $OLD_SKILLS pitch-deck-skill proposal-doc-template " in *" $nm "*) ;; *) echo "  skip $n (name: ${nm:-none}, not a Cochl copy)"; continue ;; esac
   run mkdir -p "$BACKUP"; run mv "$d" "$BACKUP/$n"; moved=$((moved+1))
   echo "  moved $n"
 done
