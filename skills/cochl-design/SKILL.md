@@ -12,7 +12,7 @@ You do not build anything here. Pick the skill, load its SKILL.md, and follow it
 | The request is about… | Load | Theme |
 |---|---|---|
 | deck, pitch, presentation, brochure, banner, press kit, document | `../cochl-presentation/SKILL.md` | `plex` |
-| …PT template, `.pptx` template, `Cochl_PT_template.pptx`, AcousticShield deck | `../cochl-presentation/SKILL.md` → `references/decks/pt-template/` | `pt-template` |
+| …PT template, `.pptx` template, `Cochl_PT_template.pptx` (asked for by look, not by topic) | `../cochl-presentation/SKILL.md` → `references/decks/pt-template/` | `pt-template` |
 | design review — Proposal, or Direction Alignment & Feedback | `../design-review/SKILL.md` | `plex` |
 | design proposal document (HTML → PDF) | `../proposal-doc/SKILL.md` | `plex` |
 | install/apply `@cochlearai/ui`, build React UI | `../design-system/SKILL.md` | `@cochlearai/ui` tokens |

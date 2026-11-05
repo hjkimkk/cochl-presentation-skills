@@ -17,7 +17,7 @@ Every artifact inherits **[`brand-core.md`](../../cochl-design/core/brand-core.m
 | Template | Teams / use | Spec | Status |
 |---|---|---|---|
 | Investor / fundraising pitch | Business — investors, VCs, a round | [`decks/investor-template.md`](decks/investor-template.md) — 15 layouts (Mono UPPERCASE headings) | ✅ |
-| B2B partnership / sales proposal | Business — partners, enterprise buyers | [`decks/b2b-sales-proposal-template.md`](decks/b2b-sales-proposal-template.md) — 22 layouts (mint accent) | ✅ |
+| B2B partnership / sales proposal | Business — partners, enterprise buyers | [`decks/b2b-sales-proposal-template.md`](decks/b2b-sales-proposal-template.md) — 23 layouts (mint accent) | ✅ |
 | Corporate strategy / product roadmap | Business, leadership — pillars, OKRs, roadmap | [`decks/corporate-strategy-roadmap-template.md`](decks/corporate-strategy-roadmap-template.md) — 15 layouts | ✅ |
 | Quarterly business review (QBR) / board update | Business, board — quarter review + ask | [`decks/qbr-board-update-template.md`](decks/qbr-board-update-template.md) — 15 layouts | ✅ |
 | Market & competitive landscape | Business — sizing, share, positioning | [`decks/market-competitive-template.md`](decks/market-competitive-template.md) — 13 layouts | ✅ |

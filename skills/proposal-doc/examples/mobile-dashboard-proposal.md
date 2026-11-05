@@ -22,9 +22,8 @@ June 2, 2026
 
 ---
 **HJ Kim** &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cochl.ai
-Product Design &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; San Francisco (HQ)
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 1 Brady St. #A-120, San Francisco, CA 94103, USA
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hello@cochl.ai
+Product Design &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; San Francisco, CA, USA
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; contact@cochl.ai · www.cochl.ai
 
 ---
 
@@ -61,7 +60,7 @@ Discovery     UX Design      UI Design                  Handoff
 ```
 
 ---
-**HJ Kim** · Product Design · Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+**HJ Kim** · Product Design · Cochl.ai · San Francisco, CA, USA · contact@cochl.ai · www.cochl.ai
 
 ---
 
@@ -105,7 +104,7 @@ Discovery     UX Design      UI Design                  Handoff
   - Final Figma file with organized layers and component library
 
 ---
-**HJ Kim** · Product Design · Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+**HJ Kim** · Product Design · Cochl.ai · San Francisco, CA, USA · contact@cochl.ai · www.cochl.ai
 
 ---
 
@@ -129,7 +128,7 @@ The project will follow a milestone-based payment schedule. To initiate the proj
 **Milestone 2 Payment: due upon completion of UI design and handoff package, before delivery of final Figma files and design system updates.
 
 ---
-**HJ Kim** · Product Design · Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+**HJ Kim** · Product Design · Cochl.ai · San Francisco, CA, USA · contact@cochl.ai · www.cochl.ai
 
 ---
 
@@ -160,7 +159,7 @@ All design decisions related to user data display, notification content, and dat
 This agreement will be governed by and construed in accordance with the laws of `<country>`.
 
 ---
-**HJ Kim** · Product Design · Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+**HJ Kim** · Product Design · Cochl.ai · San Francisco, CA, USA · contact@cochl.ai · www.cochl.ai
 
 ---
 
@@ -177,7 +176,6 @@ Thank you for your inquiry and the interest you have shown. I've reviewed the pr
 Thank you!
 
 **HJ Kim**
-(xxx) xxx-xxxx
 
 ---
 
@@ -192,4 +190,4 @@ Please sign below to approve this proposal and begin the project.
 **● cochl.**
 
 ---
-**HJ Kim** · Product Design · Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+**HJ Kim** · Product Design · Cochl.ai · San Francisco, CA, USA · contact@cochl.ai · www.cochl.ai

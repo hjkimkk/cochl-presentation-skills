@@ -9,11 +9,11 @@ Example: [`claude-code-architecture/examples/cochl-investor-deck_claude-code-arc
 |---|---|
 | Header | Deck title, slug, build date, plugin name@marketplace and version (read from `.claude-plugin/plugin.json`) |
 | Flow (01–05) | Request (entry command + one-line ask) → Router (`cochl-design`, or "skipped — direct call") → Skill (`cochl-presentation` → registry row) → Spec + brand (spec path, theme, files read) → Build (tools used) |
-| Outputs | PPTX, HTML, Claude Code architecture — file names; the architecture card is outlined in `--accent` |
+| Outputs | PPTX, HTML, Claude Code architecture — file names; the architecture card is outlined in `--accent`. The PPTX line states the export method from `route.theme` (plex: raster PNG per slide; pt-template: editable text, 10×5.625 in — see `deck-engine.md` → HTML → PPTX) |
 | Install layer | marketplace → plugin → `skills/*/SKILL.md` → command |
 | QA run | slide count, `[NEEDS INPUT]` markers left in the deck, checklists run |
 
-The layout is fixed — do not add or reorder areas. Brand rules are inherited from [`brand-core.md`](../../cochl-design/core/brand-core.md): plex theme, one glow, one `grad-text` phrase in the heading, white logo bottom-left at 0.70 in the footer with the deck title bottom-right.
+The layout is fixed — do not add or reorder areas. Overflow guard: each flow stage shows at most 5 rows (files read are listed by file name, full path in the tooltip); a longer list shows the first 4 and "+N more", and the flow row is capped at 480px, so the page fits 1920×1080 whatever the build read. Brand rules are inherited from [`brand-core.md`](../../cochl-design/core/brand-core.md): plex theme, one glow, one `grad-text` phrase in the heading, white logo bottom-left at 0.70 in the footer with the deck title bottom-right.
 
 ## How to build it
 1. After the deck HTML (and PPTX) exist, write `{slug}.build.json` next to them with what actually happened this session:
@@ -33,7 +33,7 @@ The layout is fixed — do not add or reorder areas. Brand rules are inherited f
 ```bash
 node <skill>/references/claude-code-architecture/gen-architecture.mjs {slug}.build.json {slug}_claude-code-architecture.html
 ```
-3. Delete `{slug}.build.json` unless the user asks to keep it. Optionally add a PNG of the page as the last PPTX slide with the deck-engine screenshot step.
+3. Delete `{slug}.build.json` unless the user asks to keep it. Optionally (plex decks only) add a PNG of the page as the last PPTX slide with the deck-engine screenshot step; pt-template PPTX stays editable text, so skip it there.
 
 ## Facts
 Record only what happened in this session: real file paths, the tools actually called, the real slide and `[NEEDS INPUT]` counts (grep the deck). A field left empty renders as `[NEEDS INPUT]`; never fill one with a guess.
