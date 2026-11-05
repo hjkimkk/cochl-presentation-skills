@@ -57,14 +57,12 @@ Each section is a **standalone page** — full page break before each. Never mer
 ### Persistent footer (every page)
 ```
 ────────────────────────────────────────────────────
-[Name]                          Cochl.ai
-[Role: Product Design]          San Francisco (HQ)
-                                1 Brady St. #A-120, San Francisco, CA 94103, USA
-                                hello@cochl.ai
+<presenter name>                Cochl.ai · San Francisco, CA, USA
+<presenter role> (optional)     contact@cochl.ai · www.cochl.ai
 ```
 - Thin horizontal rule above footer
-- Left column: presenter name + role
-- Right column: company + location + address + email
+- Left column: presenter name + optional role. The presenter can be a person ("HJ Kim" / "Product Design") or a team ("Cochl BD Team", no role line). Never default the role to "Product Design" — use what the user gave, or drop the line.
+- Right column: company facts from `../cochl-design/core/brand-core.md` §3b, verbatim (contact@cochl.ai, www.cochl.ai, San Francisco, CA, USA). Do not add a street address or other email — they are not confirmed facts.
 
 ### Logo placement
 - **Cover only**: top-left corner (cochl. logotype with dot)
@@ -78,6 +76,8 @@ Extracted from the PDFs:
 
 Font roles (values in `../cochl-design/core/themes/plex.md`): body = `--font-doc`; headings = `--font-sans`; monospace headings = `--font-mono`.
 
+**Korean (and other Hangul) documents:** `--font-doc` has no Hangul glyphs, and brand-core has no Korean font role yet. Until one exists, do not add a font name to the CSS; set `<html lang="ko">` so the theme's trailing `sans-serif` resolves to the OS Korean face (Apple SD Gothic Neo on macOS, Malgun Gothic on Windows, Noto Sans CJK KR on Linux/Android). Latin text keeps `--font-doc`. Check the PDF before delivering — Hangul must not render as boxes. For a mixed document, put `lang="ko"` on the Korean blocks only.
+
 | Role | Size | Weight | Notes |
 |---|---|---|---|
 | Page title (H1) | ~48–56px | Extra Bold / Black | One per page, top of content |
@@ -89,11 +89,13 @@ Font roles (values in `../cochl-design/core/themes/plex.md`): body = `--font-doc
 **Mixed typography rule (Terms page only):** Some H2 headings use default sans-serif weight; the GDPR Compliance and Governing Law subsections render their headings in a monospace/code font — this signals technical/legal content requiring exact language.
 
 ### Variable/placeholder style
-All fill-in variables use `<angle-bracket>` notation and render in **blue hyperlink color**:
+All fill-in variables use `<angle-bracket>` notation and render in **blue hyperlink color** (`.var`, `--doc-link`):
 - `<client's name>`
 - `<designer's name>`
 - `<country>`
 - `<project name>`
+
+**Which marker — one rule:** a template slot the author fills in (a name, role, country, amount, signature line) is `<span class="var">&lt;slot&gt;</span>`; a fact or figure the document states as true but the user has not confirmed (a date, price, count, deal value, client claim) is `<span class="needs-input">[NEEDS INPUT]</span>` (`brand-core.md` §1b, `qa-checklist.md` → NEEDS INPUT). Never mix the two on one value.
 
 ---
 
@@ -155,7 +157,7 @@ All fill-in variables use `<angle-bracket>` notation and render in **blue hyperl
 **Scope writing pattern:**
 - Bullet item = phase name (bolded in context)
 - Each bullet followed by 1–3 sentences explaining what happens, who does it, and what the deliverable is
-- Written in first person: "I will work on...", "I will update regularly..."
+- Voice follows the presenter (see Writing Style Guide → Voice): "I will..." for a solo designer, "we will..." for a team or BD proposal
 - Uses semicolons to end bullet descriptions (not periods) — consistent with source
 
 **Timeline format:**
@@ -164,13 +166,13 @@ Estimated completion time of [X–Y weeks/months].
 
 [Date]    [Date]    [Date]    [Date]
   │          │         │         │
-[Phase]   [Phase]  [Phase]  [Handover]
+[Phase]   [Phase]  [Phase]  [End point]
 [duration] [duration] [duration]
 ```
 
 - Dates above the flow (e.g. "13.Feb", "16.Feb")
 - Phase boxes below with name + duration
-- Final node always: "Handover"
+- Final node = the end point of the engagement, no duration. Source default: "Handover". Use the term that fits the work ("Launch", "Go-live", "Contract signed", "Decision"); if the end date is unconfirmed, the date is `[NEEDS INPUT]`, not invented
 - Duration shown under phase name (e.g. "3-4 days", "10 weeks")
 
 ---
@@ -234,8 +236,10 @@ Estimated completion time of [X–Y weeks/months].
 **Milestone 2 Payment: [condition — when due]
 ```
 
-**Intro paragraph pattern:**
+**Intro paragraph pattern** (source default, freelance-style):
 > "The project will follow a milestone-based payment schedule. To initiate the project, a [X]% non-refundable deposit of the total project cost is required."
+
+For a team / BD / commercial proposal, describe the client's actual terms instead (e.g. "Invoiced on signature, then per milestone, net 30"). If no terms or amounts were supplied, say so and mark each figure `[NEEDS INPUT]` — never invent a deposit.
 
 **Table rules:**
 - 3 columns: Item | Week | Total, USD
@@ -245,10 +249,12 @@ Estimated completion time of [X–Y weeks/months].
 - Total row: bold label, bold amount, right-aligned
 - Footnotes below table using * ** notation
 
-**Standard structure:**
+**Source default structure** (solo design engagement — use only when it matches the deal):
 - Initial Deposit = 30% (non-refundable)
 - Milestone 1 = due upon final design delivery
 - Milestone 2 = due upon completion of development and before final file delivery
+
+Otherwise keep the same 3-column table and rename the rows to the real schedule (e.g. "On signature", "Phase 1", "Annual licence"); drop the deposit row if there is none.
 
 ---
 
@@ -311,7 +317,7 @@ Thank you!
 
 ────────────────────────────────────────────────────
 
-Please sign below to approve this proposal and begin the project.
+Please sign below to approve this proposal and <sign-off action>.
 
 ┌─────────────────────────┐  ┌─────────────────────────┐
 │ Date                    │  │ Signature               │
@@ -322,12 +328,13 @@ Please sign below to approve this proposal and begin the project.
 [footer]
 ```
 
-**Letter body pattern:**
+**Letter body pattern** (solo voice; for a team use "we" / "our team" throughout):
 > "Thank you for your inquiry and the interest you have shown. I've reviewed the project brief and can confirm that I'll be able to deliver the work within the specified time frame and budget. Please don't hesitate to contact me if you have any further questions."
 
 **Signature block:**
 - Horizontal rule separates letter from signature block
-- "Please sign below to approve this proposal and begin the project." — exact phrase
+- "Please sign below to approve this proposal and `<sign-off action>`." — fixed phrase with one slot. Source default: "begin the project"; use what fits ("proceed with the engagement", "confirm the partnership")
+- Phone line under the presenter name is optional — omit it rather than print `(xxx) xxx-xxxx` in a delivered document
 - Two boxes side by side: Date | Signature
 - Logo appears between signature block and footer (Final Summary page only)
 
@@ -336,7 +343,7 @@ Please sign below to approve this proposal and begin the project.
 ## Writing Style Guide
 
 ### Voice
-- First person singular: "I will", "I'll", "I've"
+- Matches the presenter: first person singular ("I will", "I'll", "I've") for a solo designer — the source default; first person plural ("we will", "our team") for a team or BD proposal. Pick one and keep it on every page, Terms included (`<designer's name>` becomes the team or company name)
 - Addressed directly to client: "you", "your"
 - Confident and reassuring, not formal-legalistic
 
@@ -365,6 +372,8 @@ All placeholder variables use `<angle-bracket>` notation:
 | `<designer's name>` | Terms (IPR, GDPR, Third-Party) |
 | `<country>` | Governing Law |
 | `<project name>` | Cover, Overview (when project name is contextual) |
+| `<presenter role>` | Footer left column — optional, omit for a team |
+| `<sign-off action>` | Final Summary signature prompt (default "begin the project") |
 
 When generating a real proposal, substitute all variables before output.
 When generating a template, render variables in **blue** or a distinct color.
@@ -376,11 +385,11 @@ When generating a template, render variables in **blue** or a distinct color.
 When invoked, follow this sequence:
 
 1. **Read source** — parse `.md` input file or user-provided arguments (project, client, presenter, date, scope, budget)
-2. **Calculate payments** — 30% deposit, remainder split across milestones
+2. **Calculate payments** — from the user's terms; the 30%-deposit split is the solo-designer default only (see Payments). No terms supplied → amounts `[NEEDS INPUT]`
 3. **Derive timeline** — build phase dates/durations from scope items
 4. **Generate HTML** — produce a single self-contained `.html` file using the HTML Design System below
-5. **Embed SVG logo** inline from `assets/logo_cochl_top.svg`
-6. **Mark unfilled variables** as `<span class="var">&lt;variable&gt;</span>` (renders blue)
+5. **Embed SVG logo** inline from `assets/logo_cochl_top.svg`, with the gradient stops on the logo tokens (see Logo)
+6. **Mark unfilled variables** as `<span class="var">&lt;variable&gt;</span>` (renders blue) and unconfirmed facts as `[NEEDS INPUT]` (see Variable/placeholder style)
 7. **Save** to `{project-slug}-proposal.html` in same directory as source, or to `output` path
 8. **Open** in browser after writing
 
@@ -414,13 +423,13 @@ body {
 /* ─── Page ───────────────────────────────────────────── */
 .page {
   width: 210mm;
-  min-height: 297mm;
+  height: 297mm;               /* fixed A4 — one .page = one printed sheet; content must fit */
   background: var(--light-bg);
   margin: 32px auto;
   padding: 52px 56px 36px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 24px var(--light-border);
 }
 .page-body { flex: 1; }
 
@@ -431,12 +440,13 @@ h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin-top: 36p
 h2.mono { font-family: var(--font-mono); font-size: 18px; font-weight: 500; margin-top: 32px; }
 p { margin-bottom: 10px; }
 
-/* ─── Variable placeholders ──────────────────────────── */
-.var { color: var(--doc-link); }
+/* ─── Placeholders (see Variable/placeholder style) ──── */
+.var { color: var(--doc-link); }                      /* unfilled template slot */
+.needs-input{ color:var(--accent); border-bottom:1px dashed var(--accent); font-style:italic; } /* unconfirmed fact — brand-core §1b, verbatim */
 
 /* ─── Cover ──────────────────────────────────────────── */
 .cover { justify-content: space-between; }
-.cover-logo { display: block; }
+.cover-logo { display: block; color: var(--ink); }  /* wordmark uses fill="currentColor" */
 .cover-center {
   flex: 1; display: flex; flex-direction: column;
   align-items: center; justify-content: center;
@@ -476,8 +486,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
   height: 1px; background: var(--doc-line);
 }
 .tl-node { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
-.tl-node:last-child { flex: 0 0 80px; }
-.tl-date { font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; }
+.tl-node:last-child { flex: 0 0 auto; min-width: 80px; }  /* sized to its content so [NEEDS INPUT] never wraps */
+.tl-date { font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; white-space: nowrap; }  /* one line → every tick stays on the rule */
 .tl-tick { width: 1px; height: 12px; background: var(--doc-tick); margin-bottom: 8px; }
 .tl-name { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
 .tl-dur { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
@@ -498,7 +508,7 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
 .sig-box { flex: 1; border: 1.5px solid var(--doc-box-border); padding: 16px 16px 40px; font-size: 13px; color: var(--ink-muted); font-weight: 500; }
 
 /* ─── Final summary logo ─────────────────────────────── */
-.summary-logo { display: flex; justify-content: center; margin-top: 48px; margin-bottom: 8px; }
+.summary-logo { display: flex; justify-content: center; margin-top: 48px; margin-bottom: 8px; color: var(--ink); }
 
 /* ─── Letter ─────────────────────────────────────────── */
 .letter-body p { margin-bottom: 16px; }
@@ -506,10 +516,12 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
 .letter-rule { height: 1px; background: var(--doc-rule); margin: 32px 0; }
 
 /* ─── Print ──────────────────────────────────────────── */
+@page { size: A4; margin: 0; }   /* the .page padding is the margin; overrides the browser default */
 @media print {
-  html { background: white; }
-  .page { margin: 0; box-shadow: none; page-break-after: always; width: 100%; }
-  .page:last-child { page-break-after: auto; }
+  html, body { background: var(--light-bg); }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { margin: 0; box-shadow: none; width: 210mm; height: 296.8mm; /* a hair under A4: 297mm rounds up and adds a blank 7th sheet */ overflow: hidden; break-after: page; page-break-after: always; }
+  .page:last-child { break-after: auto; page-break-after: auto; }
 }
 ```
 
@@ -527,6 +539,10 @@ Source file: `assets/logo_cochl_top.svg`
 
 Always embed inline (not via `<img src>`). Use unique `linearGradient` IDs per instance to avoid SVG defs conflicts.
 
+When inlining, point the colours at the theme tokens so the logo can never drift from brand-core:
+- the three gradient stops → `style="stop-color:var(--logo-g1)"`, `var(--logo-g2)`, `var(--logo-g3)` (replace the `stop-color` hex attributes)
+- the wordmark path → `fill="currentColor"` (`.cover-logo` / `.summary-logo` set `color: var(--ink)`)
+
 **Cover** — `width="100" height="22"`, gradient ID: `paint0_cover`
 **Final Summary** — `width="85" height="18"`, centered via `.summary-logo`, gradient ID: `paint0_summary`
 
@@ -543,11 +559,12 @@ Every page uses this wrapper:
   </div>
   <div class="footer">
     <div class="footer-left">
-      <strong>[Presenter Name]</strong>
-      Product Design
+      <strong>[Presenter name or team]</strong>
+      [Presenter role — optional; delete this line if none was given]
     </div>
     <div class="footer-right">
-      Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+      Cochl.ai · San Francisco, CA, USA<br>
+      contact@cochl.ai · www.cochl.ai
     </div>
   </div>
 </div>
@@ -557,7 +574,7 @@ Every page uses this wrapper:
 ```html
 <div class="page cover">
   <div class="cover-logo">
-    [INLINE SVG — logo_cochl_top.svg, width="100" height="22", id=paint0_cover]
+    [INLINE SVG — logo_cochl_top.svg, width="100" height="22", id=paint0_cover, stops on --logo-g1..3]
   </div>
   <div class="cover-center">
     <div class="cover-date">[Date]</div>
@@ -589,11 +606,11 @@ Every page uses this wrapper:
         <div class="tl-name">[Phase Name]</div>
         <div class="tl-dur">[X weeks]</div>
       </div>
-      <!-- repeat nodes; last node has no .tl-dur, name = "Handover" -->
+      <!-- repeat nodes; last node has no .tl-dur, name = the end point (default "Handover") -->
       <div class="tl-node">
         <div class="tl-date">[DD.Mon]</div>
         <div class="tl-tick"></div>
-        <div class="tl-name">Handover</div>
+        <div class="tl-name">[End point — e.g. Handover]</div>
       </div>
     </div>
   </div>
@@ -635,7 +652,8 @@ Every page uses this wrapper:
 <div class="page">
   <div class="page-body">
     <h1>Payments</h1>
-    <p style="margin-top:28px;">The project will follow a milestone-based payment schedule. To initiate the project, a 30% non-refundable deposit of the total project cost is required.</p>
+    <!-- solo-designer default below; for a team/BD proposal write the client's actual terms (see Payments) -->
+    <p style="margin-top:28px;">The project will follow a milestone-based payment schedule. To initiate the project, a <span class="var">&lt;deposit %&gt;</span> non-refundable deposit of the total project cost is required.</p>
     <table class="pay-table">
       <thead>
         <tr><th>Item</th><th>Week</th><th>Total, USD</th></tr>
@@ -686,21 +704,22 @@ Every page uses this wrapper:
     <h1>Final Summary</h1>
     <div class="letter-body" style="margin-top:28px;">
       <p>Dear <span class="var">&lt;client's name&gt;</span>,</p>
+      <!-- solo voice shown; use "we" / "our team" for a team or BD proposal -->
       <p>Thank you for your inquiry and the interest you have shown. I've reviewed the project brief and can confirm that I'll be able to deliver the work within the specified time frame and budget. Please don't hesitate to contact me if you have any further questions.</p>
       <p>Thank you!</p>
     </div>
     <div class="letter-sig">
-      <strong>[Presenter Name]</strong><br>
-      (xxx) xxx-xxxx
+      <strong>[Presenter name or team]</strong><br>
+      [Phone — optional; delete this line if none was given]
     </div>
     <div class="letter-rule"></div>
-    <p class="sig-prompt">Please sign below to approve this proposal and begin the project.</p>
+    <p class="sig-prompt">Please sign below to approve this proposal and [sign-off action — default "begin the project"].</p>
     <div class="sig-boxes">
       <div class="sig-box">Date</div>
       <div class="sig-box">Signature</div>
     </div>
     <div class="summary-logo">
-      [INLINE SVG — logo_cochl_top.svg, width="85" height="18", id=paint0_summary]
+      [INLINE SVG — logo_cochl_top.svg, width="85" height="18", id=paint0_summary, stops on --logo-g1..3]
     </div>
   </div>
   [footer]
@@ -715,13 +734,16 @@ Every page uses this wrapper:
 - [ ] Cover uses `.cover` class; has `.cover-center` with date + H1 + H1.sub
 - [ ] SVG logo embedded inline on Cover (id=paint0_cover) and Final Summary (id=paint0_summary)
 - [ ] Scope list uses `ul.scope`; phase names in `<strong>`; descriptions end with semicolons
-- [ ] Timeline has `.timeline` wrapper with `.tl-node` per phase; final node labeled "Handover"
+- [ ] Timeline has `.timeline` wrapper with `.tl-node` per phase; final node is the end point (no duration); all ticks sit on one line
 - [ ] Payment table uses `.pay-table` with `<thead>`, `<tbody>`, `<tfoot>` structure
-- [ ] Initial deposit = 30%; footnotes use `.pay-note`
+- [ ] Payment terms come from the user (30% deposit only for a solo design engagement); unknown amounts are `[NEEDS INPUT]`; footnotes use `.pay-note`
 - [ ] Terms: first 3 H2 use default style; GDPR + Governing Law use `h2.mono`
-- [ ] All unfilled variables use `<span class="var">&lt;name&gt;</span>`
+- [ ] All unfilled variables use `<span class="var">&lt;name&gt;</span>`; unconfirmed facts/figures use `.needs-input` `[NEEDS INPUT]` — never the other way round
 - [ ] Final Summary has `.letter-body`, `.letter-sig`, `.letter-rule`, `.sig-boxes`, `.summary-logo`
-- [ ] Footer identical on all 6 pages
+- [ ] Footer identical on all 6 pages; company facts match `brand-core.md` §3b (contact@cochl.ai, San Francisco, CA, USA); role line is the user's or omitted
+- [ ] One voice (I / we) throughout; no `(xxx) xxx-xxxx` or other leftover sample text
+- [ ] Logo gradient stops use `var(--logo-g1..3)` — no hex in the SVG
+- [ ] Korean content: `lang="ko"` set and Hangul renders in the PDF (see Typography)
 - [ ] Google Fonts `<link>` from themes/plex.md is present in `<head>`
-- [ ] `@media print` rules present (page-break-after: always per .page)
+- [ ] `@page { size: A4; margin: 0 }` and `@media print` rules present; `.page` is a fixed 297mm with `break-after: page`; Cmd+P → exactly 6 pages. No section may overflow its page — print clips the overflow (footer included), so tighten the copy rather than letting it run on
 - [ ] File is self-contained — no external asset refs except Google Fonts CDN

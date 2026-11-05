@@ -40,8 +40,19 @@ function pluginInfo(b) {
   };
 }
 
+// Overflow guard: a stage shows at most MAX_DETAILS rows; longer lists keep the first
+// MAX_DETAILS - 1 and end with "+N more", so 7–8 files read never push the flow into the footer.
+// The flow row is also height-capped in CSS (.flow / .stage overflow) as a last resort.
+export const MAX_DETAILS = 5;
+export function capList(items, max = MAX_DETAILS) {
+  if (items.length <= max) return items;
+  const shown = items.slice(0, max - 1);
+  return [...shown, `<span class="muted">+${items.length - shown.length} more</span>`];
+}
 const list = (items) => items.length
-  ? `<ul>${items.map((i) => `<li>${i}</li>`).join('')}</ul>` : '';
+  ? `<ul>${capList(items).map((i) => `<li>${i}</li>`).join('')}</ul>` : '';
+// A file read is listed by name; the full path stays in the tooltip.
+const fileName = (p) => `<code title="${esc(p)}">${esc(String(p).split('/').pop())}</code>`;
 
 function stage(n, label, value, details = []) {
   return `<div class="stage"><div class="idx">${String(n).padStart(2, '0')} · ${esc(label)}</div>`
@@ -50,8 +61,16 @@ function stage(n, label, value, details = []) {
 
 const ARROW = '<svg class="arrow" viewBox="0 0 32 16" aria-hidden="true"><path d="M0 8h28M22 2l6 6-6 6" fill="none" stroke="currentColor" stroke-width="1.6"/></svg>';
 
-const OUTPUT_KINDS = [
-  ['pptx', 'PPTX', '1920×1080 PNG per slide on 16:9 (deck-engine)'],
+// PPTX method follows deck-engine.md → HTML → PPTX: plex decks are rasterized,
+// pt-template decks are built with editable text on 10×5.625 in slides.
+export function pptxMethod(theme) {
+  if (theme === 'pt-template') return 'Editable text boxes, 10×5.625 in slides (pt-template build, not rasterized)';
+  if (theme === 'plex') return '1920×1080 PNG per slide on 13.333×7.5 in (deck-engine raster)';
+  return 'Export method per deck-engine.md → HTML → PPTX';
+}
+
+const OUTPUT_KINDS = (theme) => [
+  ['pptx', 'PPTX', pptxMethod(theme)],
   ['html', 'HTML', 'Self-contained interactive deck, page-nav'],
   ['architecture', 'Claude Code architecture', 'This page — how the build ran'],
 ];
@@ -70,12 +89,12 @@ export function render(b) {
     stage(3, 'Skill', '<code>cochl-presentation</code>',
       ['<code>SKILL.md</code> → routing procedure', `<code>${path('references/registry.md')}</code> → ${val(route.row)}`]),
     stage(4, 'Spec + brand', route.spec ? `<code>${path(route.spec)}</code>` : val(),
-      [`Theme <code>${val(route.theme)}</code>`, ...(b.reads ?? []).map((r) => `<code>${path(r)}</code>`)]),
+      [`Theme <code>${val(route.theme)}</code>`, ...(b.reads ?? []).map(fileName)]),
     stage(5, 'Build', `${(b.tools ?? []).length} tool${(b.tools ?? []).length === 1 ? '' : 's'}`,
       (b.tools ?? []).map((t) => `<b>${esc(t.name)}</b> ${esc(t.use)}`)),
   ];
 
-  const outputs = OUTPUT_KINDS.map(([key, label, desc]) => {
+  const outputs = OUTPUT_KINDS(route.theme).map(([key, label, desc]) => {
     const o = b.outputs?.[key];
     const file = typeof o === 'string' ? o : o?.path;
     const note = typeof o === 'object' ? o?.note : undefined;
@@ -101,18 +120,21 @@ h1{font-size:68px;font-weight:600;line-height:1.1;margin:18px 0 14px}
 .sub{font-size:24px;color:var(--text-soft)}
 .sub code{color:var(--text)}
 code{font-family:var(--font-mono);font-size:.92em}
-.flow{display:grid;grid-template-columns:repeat(5,1fr) 32px 360px;column-gap:32px;align-items:stretch;margin-top:44px}
-.flow>.stage{position:relative}
+.flow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr)) 32px 360px;grid-template-rows:minmax(0,480px);column-gap:32px;align-items:stretch;margin-top:44px}
+.flow>.stage{position:relative;min-height:0}
+.stage{overflow:hidden}
 .flow>.stage+.stage::before{content:"";position:absolute;left:-32px;top:50%;width:32px;height:1px;background:var(--muted)}
 .stage,.out,.band{background:var(--panel);border:1px solid var(--border);border-radius:14px;padding:24px 22px}
 .stage .value,.out .value{font-size:24px;font-weight:600;margin:12px 0 12px}
-.stage ul{list-style:none;font-size:17px;line-height:1.45;color:var(--text-soft)}
+.stage .value code{font-size:18px}
+.stage ul{list-style:none;font-size:16px;line-height:1.4;color:var(--text-soft)}
+.stage li{overflow-wrap:anywhere}
 .stage li+li{margin-top:6px}
 .stage li code{color:var(--text-soft)}
 .stage b{color:var(--text);font-weight:600}
 .muted{color:var(--muted);font-weight:400}
 .arrow{width:32px;height:16px;color:var(--muted);align-self:center}
-.outs{display:flex;flex-direction:column;gap:16px;justify-content:space-between}
+.outs{display:flex;flex-direction:column;gap:16px;justify-content:space-between;min-height:0}
 .out{padding:20px 22px;flex:1}
 .out .value{font-size:18px;margin:10px 0 8px}
 .out .desc{font-size:15px;color:var(--muted)}

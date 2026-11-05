@@ -4,19 +4,98 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Design Proposal — Mobile Dashboard for Manager Users</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<!-- Theme: plex (../../cochl-design/core/themes/plex.md) -->
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500&family=Public+Sans:wght@400;500&family=Lora:ital,wght@0,400;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap" rel="stylesheet">
 <style>
+:root {
+  /* Surfaces (dark) */
+  --bg: #0b0b12;              /* page / slide background (near-black) */
+  --bg-pure: #000000;         /* full-bleed cover/CTA base; pure-black data slides; design-review dark slides */
+  --panel: #14141c;           /* cards, table surfaces, drop-zones */
+  --panel-2: #1b1b26;         /* raised / hover surface */
+  --panel-3: #1c1c24;         /* b2b-sales dark rounded cards */
+  --bg-near: #16161c;         /* b2b-sales near-black charcoal (cover & glow slides) */
+  --neutral-bar: #2b2b38;     /* market-competitive neutral bars */
+  --brochure-neutral: #141414; /* brochure V1 Visual neutral accent */
+  --border: rgba(255,255,255,0.08);
+  --muted-on-dark: rgba(255,255,255,0.40); /* design-review muted text on dark slides */
 
-/* ─── Reset ──────────────────────────────────────────── */
+  /* Surfaces (light) */
+  --light-bg: #ffffff;        /* light slide / page background */
+  --light-gray: #f1f1f2;      /* design-review section-divider, goal-card and persona bg */
+  --light-card: #e6e6e6;      /* design-review cards on --light-gray slides */
+  --light-panel: #f6f7f9;     /* light-palette soft panels (101 lecture) */
+  --light-panel-indigo: #eef2ff; /* light print panels (press kit, usability, research findings) */
+  --light-panel-tint: #f4f7ff;   /* light print panels, lighter tint */
+  --light-rule: #e6e8ee;      /* light-palette rule lines */
+  --light-rule-2: #d4d7de;    /* editorial rule-line card top rule */
+  --img-placeholder: #ececec; /* light image-placeholder fill */
+  --doc-canvas: #e8e8e8;      /* proposal-doc screen wrapper; design-review phone placeholder fill */
+  --avatar-fill: #d8d8d8;     /* design-review avatar circle */
+  --doc-rule: #d0d0d0;        /* proposal-doc footer / letter rule */
+  --doc-line: #cccccc;        /* proposal-doc timeline + table lines */
+  --doc-box-border: #aaaaaa;  /* proposal-doc signature box border */
+  --doc-tick: #888888;        /* proposal-doc timeline tick */
+  --light-border: rgba(0,0,0,0.10);  /* borders on light slides */
+  --muted-on-light: rgba(0,0,0,0.40); /* muted text on light slides */
+
+  /* Ink */
+  --text: #ffffff;            /* text on dark */
+  --text-soft: #c9c9d4;       /* body on dark */
+  --muted: #9aa1ac;           /* captions, labels */
+  --muted-2: #9a9aa6;         /* corporate-strategy / b2b-sales muted body + labels */
+  --muted-3: #8a8a99;         /* investor grey body on light-heading slides */
+  --muted-light: #8a8e97;     /* small grey index numbers on light slides */
+  --placeholder: #565b6b;     /* template placeholder text (blank templates only) */
+  --ink: #111111;             /* headings / strong text on light; design-review viewer letterbox */
+  --ink-body: #1a1a1a;        /* proposal-doc body text; phone-mockup frame */
+  --ink-soft: #444444;        /* proposal-doc footer + notes */
+  --ink-muted: #555555;       /* proposal-doc dates, bullets, signature labels */
+  --ink-faint: #777777;       /* proposal-doc timeline durations */
+  --ink-navy: #0f1b3d;        /* light print ink (press kit, usability report) */
+  --doc-link: #1155cc;        /* proposal-doc fill-in variables (blue hyperlink color) */
+
+  /* Accents */
+  --accent: #4b68ff;          /* primary accent (indigo) — subtitles, glows, links, accent underline */
+  --accent-purple: #832bfb;   /* secondary accent (purple) — gradient + glow partner */
+  --mint: #a6f0ce;            /* tertiary accent (B2B / strategy secondary) */
+  --brochure-green: #0fa068;  /* brochure V3 Editorial accent */
+  --pos: #b7e4a0;             /* investor offering ✓ (soft green) */
+  --neg: #eb5b6b;             /* investor competitor ✕ / strategy risk dot (pink-red) */
+  --grad-brand: linear-gradient(135deg, var(--accent-purple), var(--accent));
+  --glow: radial-gradient(closest-side, rgba(75,104,255,0.55) 0%, rgba(131,43,251,0.22) 50%, rgba(75,104,255,0) 100%);
+
+  /* Logo gradient (do not recolor) */
+  --logo-g1: #9827ff;
+  --logo-g2: #4b7eff;
+  --logo-g3: #00d7ff;
+
+  /* Signals (use sparingly) */
+  --danger: #eb5757;
+  --success: #10b981;
+  --warning: #f59e0b;
+
+  /* Font roles */
+  --font-sans: 'IBM Plex Sans', 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+  --font-body: 'Roboto', sans-serif;      /* design-review body */
+  --font-ui: 'Public Sans', sans-serif;   /* design-review header bar */
+  --font-serif: 'IBM Plex Serif', Georgia, serif; /* editorial card/column titles (research + 101 decks) */
+  --font-quote: 'Lora', serif;            /* design-review quote slides */
+  --font-doc: 'Inter', sans-serif;        /* proposal-doc body */
+  --font-link: 'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;0,600;1,400&family=Roboto:wght@300;400;500&family=Public+Sans:wght@400;500&family=Lora:ital,wght@0,400;1,400&family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;0,900;1,400&display=swap'; /* reference only — load it with the <link> below */
+}
+
+/* ─── Reset ─────────────────────────────────────────── */
 *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 
 /* ─── Screen wrapper ─────────────────────────────────── */
-html { background: #e8e8e8; }
+html { background: var(--doc-canvas); }
 body {
-  font-family: 'Inter', sans-serif;
+  font-family: var(--font-doc);
   font-size: 15px;
   font-weight: 400;
-  color: #1a1a1a;
+  color: var(--ink-body);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
 }
@@ -24,293 +103,106 @@ body {
 /* ─── Page ───────────────────────────────────────────── */
 .page {
   width: 210mm;
-  min-height: 297mm;
-  background: #fff;
+  height: 297mm;               /* fixed A4 — one .page = one printed sheet; content must fit */
+  background: var(--light-bg);
   margin: 32px auto;
   padding: 52px 56px 36px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 24px rgba(0,0,0,0.10);
-  position: relative;
+  box-shadow: 0 2px 24px var(--light-border);
 }
 .page-body { flex: 1; }
 
 /* ─── Typography ─────────────────────────────────────── */
-h1 {
-  font-size: 52px;
-  font-weight: 900;
-  letter-spacing: -0.025em;
-  line-height: 1.05;
-  margin-bottom: 0;
-  color: #111;
-}
-h1.sub {
-  font-size: 28px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-top: 10px;
-  color: #111;
-}
-h2 {
-  font-size: 21px;
-  font-weight: 700;
-  letter-spacing: -0.01em;
-  margin-top: 36px;
-  margin-bottom: 12px;
-  color: #111;
-}
-h2.mono {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 18px;
-  font-weight: 500;
-  margin-top: 32px;
-  color: #111;
-}
-p {
-  margin-bottom: 10px;
-  color: #1a1a1a;
-}
+h1 { font-size: 52px; font-weight: 900; letter-spacing: -0.025em; line-height: 1.05; color: var(--ink); }
+h1.sub { font-size: 28px; font-weight: 700; letter-spacing: -0.01em; margin-top: 10px; }
+h2 { font-size: 21px; font-weight: 700; letter-spacing: -0.01em; margin-top: 36px; margin-bottom: 12px; color: var(--ink); }
+h2.mono { font-family: var(--font-mono); font-size: 18px; font-weight: 500; margin-top: 32px; }
+p { margin-bottom: 10px; }
 
-/* ─── Variable placeholders ──────────────────────────── */
-.var {
-  color: #1155cc;
-  font-style: normal;
-}
+/* ─── Placeholders (see Variable/placeholder style) ──── */
+.var { color: var(--doc-link); }                      /* unfilled template slot */
+.needs-input{ color:var(--accent); border-bottom:1px dashed var(--accent); font-style:italic; } /* unconfirmed fact — brand-core §1b, verbatim */
 
-/* ─── Cover layout ───────────────────────────────────── */
+/* ─── Cover ──────────────────────────────────────────── */
 .cover { justify-content: space-between; }
-.cover-logo { display: block; }
+.cover-logo { display: block; color: var(--ink); }  /* wordmark uses fill="currentColor" */
 .cover-center {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  padding: 60px 0 80px;
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center; padding: 60px 0 80px;
 }
-.cover-date {
-  font-size: 14px;
-  font-weight: 400;
-  color: #555;
-  margin-bottom: 24px;
-  letter-spacing: 0.01em;
-}
+.cover-date { font-size: 14px; font-weight: 400; color: var(--ink-muted); margin-bottom: 24px; }
 
 /* ─── Footer ─────────────────────────────────────────── */
 .footer {
-  margin-top: 48px;
-  padding-top: 10px;
-  border-top: 1px solid #d0d0d0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  font-size: 10.5px;
-  color: #444;
-  line-height: 1.55;
+  margin-top: 48px; padding-top: 10px;
+  border-top: 1px solid var(--doc-rule);
+  display: flex; justify-content: space-between; align-items: flex-start;
+  font-size: 10.5px; color: var(--ink-soft); line-height: 1.55;
 }
-.footer-left strong {
-  font-weight: 600;
-  color: #111;
-  display: block;
-}
-.footer-right {
-  text-align: right;
-}
-
-/* ─── Section divider ────────────────────────────────── */
-.section-rule {
-  height: 1px;
-  background: #111;
-  margin-bottom: 32px;
-}
+.footer-left strong { font-weight: 600; color: var(--ink); display: block; }
+.footer-right { text-align: right; }
 
 /* ─── Bullet lists ───────────────────────────────────── */
-ul {
-  list-style: none;
-  padding-left: 0;
-  margin-top: 4px;
-  margin-bottom: 4px;
-}
-ul li {
-  position: relative;
-  padding-left: 20px;
-  margin-bottom: 8px;
-  color: #1a1a1a;
-}
-ul li::before {
-  content: '·';
-  position: absolute;
-  left: 6px;
-  color: #555;
-  font-size: 16px;
-  line-height: 1.5;
-}
-/* Scope phase names */
-ul.scope > li { margin-bottom: 18px; }
-ul.scope > li > strong {
-  display: block;
-  font-weight: 600;
-  margin-bottom: 2px;
-  color: #111;
-}
-ul.scope > li { padding-left: 0; }
+ul { list-style: none; padding-left: 0; margin: 4px 0; }
+ul li { position: relative; padding-left: 20px; margin-bottom: 8px; }
+ul li::before { content: '·'; position: absolute; left: 6px; color: var(--ink-muted); font-size: 16px; line-height: 1.5; }
+ul.scope > li { margin-bottom: 18px; padding-left: 0; }
 ul.scope > li::before { display: none; }
-ul.scope > li > strong::before {
-  content: '· ';
-  color: #555;
-}
-
-/* Nested lists */
-ul ul {
-  margin-top: 6px;
-  margin-left: 16px;
-}
+ul.scope > li > strong { display: block; font-weight: 600; margin-bottom: 2px; color: var(--ink); }
+ul.scope > li > strong::before { content: '· '; color: var(--ink-muted); }
+ul ul { margin-top: 6px; margin-left: 16px; }
 ul ul li::before { content: '○'; font-size: 9px; top: 4px; left: 4px; }
 ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
 
 /* ─── Timeline ───────────────────────────────────────── */
 .timeline {
-  margin-top: 20px;
-  margin-bottom: 8px;
-  display: flex;
-  align-items: flex-start;
-  position: relative;
-  padding-top: 24px;
+  margin-top: 20px; display: flex; align-items: flex-start;
+  position: relative; padding-top: 24px;
 }
 .timeline::before {
-  content: '';
-  position: absolute;
-  top: 46px;
-  left: 0; right: 0;
-  height: 1px;
-  background: #ccc;
+  content: ''; position: absolute; top: 46px; left: 0; right: 0;
+  height: 1px; background: var(--doc-line);
 }
-.tl-node {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  position: relative;
-}
-.tl-node:last-child { flex: 0 0 80px; }
-.tl-date {
-  font-size: 11px;
-  color: #555;
-  margin-bottom: 10px;
-  letter-spacing: 0.01em;
-}
-.tl-tick {
-  width: 1px;
-  height: 12px;
-  background: #888;
-  margin-bottom: 8px;
-}
-.tl-name {
-  font-size: 13px;
-  font-weight: 600;
-  color: #111;
-  line-height: 1.3;
-}
-.tl-dur {
-  font-size: 11px;
-  color: #777;
-  margin-top: 3px;
-}
+.tl-node { flex: 1; display: flex; flex-direction: column; align-items: flex-start; }
+.tl-node:last-child { flex: 0 0 auto; min-width: 80px; }  /* sized to its content so [NEEDS INPUT] never wraps */
+.tl-date { font-size: 11px; color: var(--ink-muted); margin-bottom: 10px; white-space: nowrap; }  /* one line → every tick stays on the rule */
+.tl-tick { width: 1px; height: 12px; background: var(--doc-tick); margin-bottom: 8px; }
+.tl-name { font-size: 13px; font-weight: 600; color: var(--ink); line-height: 1.3; }
+.tl-dur { font-size: 11px; color: var(--ink-faint); margin-top: 3px; }
 
 /* ─── Payment table ──────────────────────────────────── */
-.pay-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 20px;
-  margin-bottom: 12px;
-  font-size: 14px;
-}
-.pay-table thead tr th {
-  font-weight: 700;
-  padding: 10px 8px;
-  text-align: left;
-  border-top: 1.5px solid #111;
-  border-bottom: 1px solid #ccc;
-  color: #111;
-}
+.pay-table { width: 100%; border-collapse: collapse; margin-top: 20px; margin-bottom: 12px; font-size: 14px; }
+.pay-table thead tr th { font-weight: 700; padding: 10px 8px; text-align: left; border-top: 1.5px solid var(--ink); border-bottom: 1px solid var(--doc-line); }
 .pay-table thead tr th:last-child { text-align: right; }
-.pay-table tbody tr td {
-  padding: 10px 8px;
-  color: #1a1a1a;
-  border-bottom: none;
-}
+.pay-table tbody tr td { padding: 10px 8px; }
 .pay-table tbody tr td:last-child { text-align: right; }
-.pay-table tfoot tr td {
-  padding: 10px 8px;
-  font-weight: 700;
-  border-top: 1px solid #ccc;
-  border-bottom: 1.5px solid #111;
-}
-.pay-table tfoot tr td:last-child {
-  text-align: right;
-  font-weight: 900;
-  font-size: 15px;
-}
-.pay-note {
-  font-size: 12.5px;
-  color: #444;
-  margin-top: 8px;
-  line-height: 1.5;
-}
+.pay-table tfoot tr td { padding: 10px 8px; font-weight: 700; border-top: 1px solid var(--doc-line); border-bottom: 1.5px solid var(--ink); }
+.pay-table tfoot tr td:last-child { text-align: right; font-weight: 900; font-size: 15px; }
+.pay-note { font-size: 12.5px; color: var(--ink-soft); margin-top: 8px; line-height: 1.5; }
 
-/* ─── Signature block ────────────────────────────────── */
-.sig-prompt {
-  font-size: 14px;
-  color: #1a1a1a;
-  margin-bottom: 20px;
-}
-.sig-boxes {
-  display: flex;
-  gap: 20px;
-}
-.sig-box {
-  flex: 1;
-  border: 1.5px solid #aaa;
-  padding: 16px 16px 40px;
-  font-size: 13px;
-  color: #555;
-  font-weight: 500;
-}
+/* ─── Signature ──────────────────────────────────────── */
+.sig-prompt { font-size: 14px; margin-bottom: 20px; }
+.sig-boxes { display: flex; gap: 20px; }
+.sig-box { flex: 1; border: 1.5px solid var(--doc-box-border); padding: 16px 16px 40px; font-size: 13px; color: var(--ink-muted); font-weight: 500; }
 
 /* ─── Final summary logo ─────────────────────────────── */
-.summary-logo {
-  display: flex;
-  justify-content: center;
-  margin-top: 48px;
-  margin-bottom: 8px;
-}
+.summary-logo { display: flex; justify-content: center; margin-top: 48px; margin-bottom: 8px; color: var(--ink); }
 
-/* ─── Letter format ──────────────────────────────────── */
+/* ─── Letter ─────────────────────────────────────────── */
 .letter-body p { margin-bottom: 16px; }
-.letter-sig {
-  margin-top: 24px;
-  line-height: 1.8;
-}
-.letter-sig strong { font-weight: 700; }
-.letter-rule {
-  height: 1px;
-  background: #d0d0d0;
-  margin: 32px 0;
-}
+.letter-sig { margin-top: 24px; line-height: 1.8; }
+.letter-rule { height: 1px; background: var(--doc-rule); margin: 32px 0; }
 
 /* ─── Print ──────────────────────────────────────────── */
+@page { size: A4; margin: 0; }   /* the .page padding is the margin; overrides the browser default */
 @media print {
-  html { background: white; }
-  .page {
-    margin: 0;
-    box-shadow: none;
-    page-break-after: always;
-    width: 100%;
-  }
-  .page:last-child { page-break-after: auto; }
+  html, body { background: var(--light-bg); }
+  body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .page { margin: 0; box-shadow: none; width: 210mm; height: 296.8mm; /* a hair under A4: 297mm rounds up and adds a blank 7th sheet */ overflow: hidden; break-after: page; page-break-after: always; }
+  .page:last-child { break-after: auto; page-break-after: auto; }
 }
-
 </style>
 </head>
 <body>
@@ -322,8 +214,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
   <div class="cover-logo">
     <svg width="100" height="22" viewBox="0 0 71 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M12.5387 9.09976C12.5395 10.2646 12.1922 11.4037 11.5408 12.3731C10.8893 13.3425 9.96283 14.0988 8.87826 14.5466C7.79369 14.9944 6.59964 15.1136 5.4468 14.8892C4.29396 14.6648 3.23399 14.1068 2.40068 13.2857C1.56737 12.4645 0.998055 11.417 0.76459 10.2754C0.531125 9.13371 0.643971 7.94907 1.08889 6.87094C1.5338 5.79281 2.29085 4.86951 3.26448 4.21759C4.23812 3.56566 5.3847 3.21431 6.55953 3.20788C7.34403 3.19924 8.12243 3.34547 8.84937 3.63804C9.57632 3.93062 10.2373 4.36371 10.7938 4.91206C11.3502 5.46041 11.7911 6.11308 12.0907 6.83203C12.3902 7.55099 12.5425 8.32187 12.5387 9.09976Z" fill="url(#paint0_cover)"/>
-<path d="M60.8324 4.39959C60.2083 4.00767 59.4838 3.80163 58.7451 3.80593C57.9958 3.78805 57.2553 3.96915 56.6003 4.33046C55.8779 4.73494 55.2525 5.28983 54.7672 5.95693V0.0203321H53.3811V7.60373C51.8473 9.44164 49.5631 12.17 49.4196 12.2758C48.9878 12.7118 48.4709 13.0561 47.9005 13.2875C47.3301 13.5189 46.7181 13.6326 46.1019 13.6217C45.2989 13.6497 44.505 13.4448 43.8177 13.0321C43.1317 12.687 42.5618 12.1515 42.1773 11.491C41.8003 10.8405 41.5944 10.1064 41.5786 9.35625C41.5623 8.79058 41.6689 8.22807 41.8911 7.70682C42.1132 7.18556 42.4458 6.71775 42.8663 6.33509C43.29 5.9228 43.795 5.60166 44.3496 5.39177C44.9042 5.18187 45.4966 5.08773 46.0896 5.11524C46.8278 5.08727 47.5617 5.23949 48.2267 5.55854C48.8917 5.87759 49.4675 6.35369 49.9035 6.94501L51.0025 6.27816C50.6971 5.77548 50.2993 5.33411 49.8297 4.97699C49.315 4.63387 48.7564 4.36038 48.1688 4.16376C47.5228 3.94302 46.8423 3.83836 46.1593 3.85472C45.1017 3.83213 44.0548 4.06962 43.1123 4.54597C42.2247 5.03067 41.483 5.74079 40.9634 6.60346C40.4736 7.46395 40.2112 8.43328 40.2007 9.42131C40.1955 10.1519 40.3404 10.8759 40.6267 11.5491C40.9129 12.2223 41.3345 12.8306 41.8657 13.337C42.4112 13.8713 43.0601 14.2908 43.7733 14.5703C44.4864 14.8498 45.2492 14.9836 46.0158 14.9635C47.0308 14.9703 48.032 14.7302 48.9316 14.2641C49.4619 13.989 49.9505 13.6413 50.3833 13.2313C50.5145 13.1174 52.1098 11.1616 53.3729 9.60428V14.9635H54.7262L54.7508 10.7631C54.7327 9.80351 54.7875 8.84389 54.9148 7.89243C55.1414 7.1181 55.5902 6.42583 56.2066 5.9C56.827 5.38201 57.6101 5.09446 58.4211 5.08677C59.0493 5.03645 59.6739 5.21963 60.1734 5.60067C60.6729 5.98171 61.0116 6.53337 61.1236 7.14832C61.2302 7.95708 61.2768 8.7725 61.263 9.58802L61.2343 14.9838H62.5712V9.25459C62.5712 7.75824 62.4933 6.73357 62.1611 6.07485C61.9053 5.39269 61.4407 4.80692 60.8324 4.39959ZM33.4505 3.80593C32.6853 3.79139 31.9259 3.94038 31.2239 4.24278C30.522 4.54519 29.8939 4.99391 29.3824 5.55845C29.1559 5.80133 28.9502 6.06247 28.7673 6.33915C27.537 7.94122 24.2563 12.1212 24.084 12.2554C23.6633 12.6958 23.1537 13.0434 22.5884 13.2753C22.0231 13.5072 21.4148 13.6183 20.8033 13.6013C19.9951 13.6292 19.196 13.4244 18.5027 13.0117C17.8317 12.6562 17.2737 12.1226 16.891 11.4707C16.5054 10.8224 16.291 10.0882 16.2677 9.33592C16.2585 8.76858 16.3711 8.2058 16.5981 7.68492C16.825 7.16405 17.1611 6.69699 17.5841 6.31476C18.0071 5.90278 18.5114 5.58181 19.0654 5.37192C19.6193 5.16202 20.2109 5.06772 20.8033 5.09491C21.5447 5.0689 22.2814 5.22184 22.95 5.54057C23.6187 5.8593 24.1992 6.33428 24.6418 6.92468L25.708 6.25783C25.4149 5.75491 25.0264 5.31305 24.5638 4.95666C24.0411 4.6098 23.4725 4.33614 22.8743 4.14342C22.2287 3.92676 21.5503 3.82222 20.8689 3.83439C19.8114 3.81281 18.7648 4.05025 17.8219 4.52564C16.9366 5.01203 16.1966 5.72183 15.6771 6.58312C15.1824 7.44244 14.9144 8.41165 14.8979 9.40097C14.927 10.8879 15.5461 12.3036 16.6208 13.341C17.6955 14.3785 19.1393 14.9541 20.6392 14.9432C21.6868 14.9488 22.721 14.7092 23.6575 14.2438C24.1834 13.9674 24.6678 13.6198 25.097 13.211C25.1995 13.1053 26.6635 11.2633 27.9676 9.62461C28.0403 11.0335 28.6459 12.3634 29.6637 13.3491C30.6814 14.3349 32.0365 14.9041 33.4587 14.9432C34.2148 14.9448 34.9629 14.7898 35.655 14.488C36.3471 14.1862 36.9679 13.7443 37.4777 13.1906C38.4463 12.1591 38.9906 10.8055 39.0035 9.3961C39.0164 7.98671 38.4969 6.62355 37.5474 5.57472C37.0342 5.00354 36.4022 4.54959 35.6949 4.24421C34.9876 3.93883 34.2218 3.78929 33.4505 3.80593ZM37.0307 11.4829C36.6811 12.1229 36.1529 12.6495 35.5092 12.9995C34.888 13.39 34.1676 13.5973 33.4321 13.5973C32.6966 13.5973 31.9762 13.39 31.355 12.9995C30.7273 12.6288 30.2041 12.1072 29.8335 11.4829C29.4949 10.8237 29.3139 10.096 29.3045 9.35625C29.2946 8.79597 29.3984 8.23944 29.6097 7.71973C29.8211 7.20003 30.1357 6.72776 30.5348 6.33102C30.9162 5.94777 31.37 5.64278 31.8703 5.43348C32.3706 5.22417 32.9076 5.11465 33.4505 5.11117C33.9937 5.10997 34.5314 5.21739 35.0317 5.42698C35.532 5.63658 35.9845 5.94405 36.3622 6.33102C36.764 6.72579 37.0804 7.1977 37.2919 7.71787C37.5034 8.23804 37.6057 8.79553 37.5925 9.35625C37.608 10.1031 37.4135 10.8395 37.0307 11.4829ZM64.5069 14.9147H65.8889V0H64.4946L64.5069 14.9147ZM70.4983 12.4994C70.3765 12.3561 70.2236 12.2418 70.0511 12.1651C69.8785 12.0883 69.6908 12.0511 69.5018 12.0562C69.3114 12.0576 69.1233 12.0976 68.9491 12.1738C68.7749 12.2501 68.6182 12.3609 68.4889 12.4994C68.2467 12.7915 68.1147 13.1581 68.1157 13.5363C68.1421 13.877 68.2723 14.2017 68.4889 14.4674C68.6169 14.6079 68.7732 14.7202 68.9477 14.7972C69.1221 14.8743 69.3108 14.9143 69.5018 14.9147C69.6914 14.9214 69.8801 14.8845 70.053 14.8069C70.2258 14.7293 70.3783 14.6131 70.4983 14.4674C70.6401 14.3449 70.7538 14.1937 70.8317 14.0239C70.9096 13.8542 70.9499 13.6699 70.9499 13.4834C70.9499 13.2969 70.9096 13.1126 70.8317 12.9429C70.7538 12.7731 70.6401 12.6219 70.4983 12.4994Z" fill="black"/>
-<defs><linearGradient id="paint0_cover" x1="0.645997" y1="9.05096" x2="12.5346" y2="9.05096" gradientUnits="userSpaceOnUse"><stop stop-color="#9327FF"/><stop offset="0.5" stop-color="#4B7EFF"/><stop offset="1" stop-color="#00D7FF"/></linearGradient></defs>
+<path d="M60.8324 4.39959C60.2083 4.00767 59.4838 3.80163 58.7451 3.80593C57.9958 3.78805 57.2553 3.96915 56.6003 4.33046C55.8779 4.73494 55.2525 5.28983 54.7672 5.95693V0.0203321H53.3811V7.60373C51.8473 9.44164 49.5631 12.17 49.4196 12.2758C48.9878 12.7118 48.4709 13.0561 47.9005 13.2875C47.3301 13.5189 46.7181 13.6326 46.1019 13.6217C45.2989 13.6497 44.505 13.4448 43.8177 13.0321C43.1317 12.687 42.5618 12.1515 42.1773 11.491C41.8003 10.8405 41.5944 10.1064 41.5786 9.35625C41.5623 8.79058 41.6689 8.22807 41.8911 7.70682C42.1132 7.18556 42.4458 6.71775 42.8663 6.33509C43.29 5.9228 43.795 5.60166 44.3496 5.39177C44.9042 5.18187 45.4966 5.08773 46.0896 5.11524C46.8278 5.08727 47.5617 5.23949 48.2267 5.55854C48.8917 5.87759 49.4675 6.35369 49.9035 6.94501L51.0025 6.27816C50.6971 5.77548 50.2993 5.33411 49.8297 4.97699C49.315 4.63387 48.7564 4.36038 48.1688 4.16376C47.5228 3.94302 46.8423 3.83836 46.1593 3.85472C45.1017 3.83213 44.0548 4.06962 43.1123 4.54597C42.2247 5.03067 41.483 5.74079 40.9634 6.60346C40.4736 7.46395 40.2112 8.43328 40.2007 9.42131C40.1955 10.1519 40.3404 10.8759 40.6267 11.5491C40.9129 12.2223 41.3345 12.8306 41.8657 13.337C42.4112 13.8713 43.0601 14.2908 43.7733 14.5703C44.4864 14.8498 45.2492 14.9836 46.0158 14.9635C47.0308 14.9703 48.032 14.7302 48.9316 14.2641C49.4619 13.989 49.9505 13.6413 50.3833 13.2313C50.5145 13.1174 52.1098 11.1616 53.3729 9.60428V14.9635H54.7262L54.7508 10.7631C54.7327 9.80351 54.7875 8.84389 54.9148 7.89243C55.1414 7.1181 55.5902 6.42583 56.2066 5.9C56.827 5.38201 57.6101 5.09446 58.4211 5.08677C59.0493 5.03645 59.6739 5.21963 60.1734 5.60067C60.6729 5.98171 61.0116 6.53337 61.1236 7.14832C61.2302 7.95708 61.2768 8.7725 61.263 9.58802L61.2343 14.9838H62.5712V9.25459C62.5712 7.75824 62.4933 6.73357 62.1611 6.07485C61.9053 5.39269 61.4407 4.80692 60.8324 4.39959ZM33.4505 3.80593C32.6853 3.79139 31.9259 3.94038 31.2239 4.24278C30.522 4.54519 29.8939 4.99391 29.3824 5.55845C29.1559 5.80133 28.9502 6.06247 28.7673 6.33915C27.537 7.94122 24.2563 12.1212 24.084 12.2554C23.6633 12.6958 23.1537 13.0434 22.5884 13.2753C22.0231 13.5072 21.4148 13.6183 20.8033 13.6013C19.9951 13.6292 19.196 13.4244 18.5027 13.0117C17.8317 12.6562 17.2737 12.1226 16.891 11.4707C16.5054 10.8224 16.291 10.0882 16.2677 9.33592C16.2585 8.76858 16.3711 8.2058 16.5981 7.68492C16.825 7.16405 17.1611 6.69699 17.5841 6.31476C18.0071 5.90278 18.5114 5.58181 19.0654 5.37192C19.6193 5.16202 20.2109 5.06772 20.8033 5.09491C21.5447 5.0689 22.2814 5.22184 22.95 5.54057C23.6187 5.8593 24.1992 6.33428 24.6418 6.92468L25.708 6.25783C25.4149 5.75491 25.0264 5.31305 24.5638 4.95666C24.0411 4.6098 23.4725 4.33614 22.8743 4.14342C22.2287 3.92676 21.5503 3.82222 20.8689 3.83439C19.8114 3.81281 18.7648 4.05025 17.8219 4.52564C16.9366 5.01203 16.1966 5.72183 15.6771 6.58312C15.1824 7.44244 14.9144 8.41165 14.8979 9.40097C14.927 10.8879 15.5461 12.3036 16.6208 13.341C17.6955 14.3785 19.1393 14.9541 20.6392 14.9432C21.6868 14.9488 22.721 14.7092 23.6575 14.2438C24.1834 13.9674 24.6678 13.6198 25.097 13.211C25.1995 13.1053 26.6635 11.2633 27.9676 9.62461C28.0403 11.0335 28.6459 12.3634 29.6637 13.3491C30.6814 14.3349 32.0365 14.9041 33.4587 14.9432C34.2148 14.9448 34.9629 14.7898 35.655 14.488C36.3471 14.1862 36.9679 13.7443 37.4777 13.1906C38.4463 12.1591 38.9906 10.8055 39.0035 9.3961C39.0164 7.98671 38.4969 6.62355 37.5474 5.57472C37.0342 5.00354 36.4022 4.54959 35.6949 4.24421C34.9876 3.93883 34.2218 3.78929 33.4505 3.80593ZM37.0307 11.4829C36.6811 12.1229 36.1529 12.6495 35.5092 12.9995C34.888 13.39 34.1676 13.5973 33.4321 13.5973C32.6966 13.5973 31.9762 13.39 31.355 12.9995C30.7273 12.6288 30.2041 12.1072 29.8335 11.4829C29.4949 10.8237 29.3139 10.096 29.3045 9.35625C29.2946 8.79597 29.3984 8.23944 29.6097 7.71973C29.8211 7.20003 30.1357 6.72776 30.5348 6.33102C30.9162 5.94777 31.37 5.64278 31.8703 5.43348C32.3706 5.22417 32.9076 5.11465 33.4505 5.11117C33.9937 5.10997 34.5314 5.21739 35.0317 5.42698C35.532 5.63658 35.9845 5.94405 36.3622 6.33102C36.764 6.72579 37.0804 7.1977 37.2919 7.71787C37.5034 8.23804 37.6057 8.79553 37.5925 9.35625C37.608 10.1031 37.4135 10.8395 37.0307 11.4829ZM64.5069 14.9147H65.8889V0H64.4946L64.5069 14.9147ZM70.4983 12.4994C70.3765 12.3561 70.2236 12.2418 70.0511 12.1651C69.8785 12.0883 69.6908 12.0511 69.5018 12.0562C69.3114 12.0576 69.1233 12.0976 68.9491 12.1738C68.7749 12.2501 68.6182 12.3609 68.4889 12.4994C68.2467 12.7915 68.1147 13.1581 68.1157 13.5363C68.1421 13.877 68.2723 14.2017 68.4889 14.4674C68.6169 14.6079 68.7732 14.7202 68.9477 14.7972C69.1221 14.8743 69.3108 14.9143 69.5018 14.9147C69.6914 14.9214 69.8801 14.8845 70.053 14.8069C70.2258 14.7293 70.3783 14.6131 70.4983 14.4674C70.6401 14.3449 70.7538 14.1937 70.8317 14.0239C70.9096 13.8542 70.9499 13.6699 70.9499 13.4834C70.9499 13.2969 70.9096 13.1126 70.8317 12.9429C70.7538 12.7731 70.6401 12.6219 70.4983 12.4994Z" fill="currentColor"/>
+<defs><linearGradient id="paint0_cover" x1="0.645997" y1="9.05096" x2="12.5346" y2="9.05096" gradientUnits="userSpaceOnUse"><stop style="stop-color:var(--logo-g1)"/><stop offset="0.5" style="stop-color:var(--logo-g2)"/><stop offset="1" style="stop-color:var(--logo-g3)"/></linearGradient></defs>
     </svg>
   </div>
 
@@ -339,10 +231,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
       Product Design
     </div>
     <div class="footer-right">
-      Cochl.ai<br>
-      San Francisco (HQ)<br>
-      1 Brady St. #A-120, San Francisco, CA 94103, USA<br>
-      hello@cochl.ai
+      Cochl.ai · San Francisco, CA, USA<br>
+      contact@cochl.ai · www.cochl.ai
     </div>
   </div>
 </div>
@@ -411,7 +301,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
       Product Design
     </div>
     <div class="footer-right">
-      Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+      Cochl.ai · San Francisco, CA, USA<br>
+      contact@cochl.ai · www.cochl.ai
     </div>
   </div>
 </div>
@@ -431,19 +322,16 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
           <li>Manager user interviews — 3–5 sessions, synthesized into key insight themes</li>
           <li>Functional requirements document — data views and actions for mobile vs. web dashboard:
             <ul>
-              <li>Monitor: Project info, SDK Device status, Detected data, Usage, Insights</li>
-              <li>Act: Copy project key / session UUID, share data directly with team members</li>
-              <li>Receive: Push notifications for custom alerts and major events</li>
-              <li>Extend: SDK device location tagging (floor, building, placement)</li>
+              <li>Monitor and act: project info, SDK device status, detected data, usage, insights; copy keys, share data with team members</li>
+              <li>Receive and extend: push notifications for custom alerts; SDK device location tagging</li>
             </ul>
           </li>
           <li>User journey map — 5-stage flow (Project create → Access → Monitor → Detect &amp; Share → Respond)</li>
-          <li>Information architecture for all mobile screens</li>
-          <li>Low-fidelity wireframes for all primary screens (mobile-optimized)</li>
+          <li>Information architecture and low-fidelity wireframes for all primary mobile screens</li>
         </ul>
       </li>
       <li>UX Alignment Session<br>
-        <span style="font-size:13.5px;color:#444;">A structured review of the wireframes will be held with the PM and engineering lead to confirm scope, prioritize features for the initial release, and align on the data sharing model before high-fidelity design begins;</span>
+        <span style="font-size:13.5px;color:var(--ink-soft);">A structured review of the wireframes will be held with the PM and engineering lead to confirm scope, prioritize features for the initial release, and align on the data sharing model before high-fidelity design begins;</span>
       </li>
     </ul>
 
@@ -453,12 +341,10 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
         <ul>
           <li>High-fidelity Figma screens — all states (default, loading, empty, error):
             <ul>
-              <li>Home / summary view with key metrics</li>
-              <li>Project list + project detail</li>
+              <li>Home / summary view, project list + project detail</li>
               <li>SDK device monitoring (Essentials + location)</li>
               <li>Detected data and analytics / insights view</li>
-              <li>Custom notification settings</li>
-              <li>Data sharing flow (share directly to team members)</li>
+              <li>Custom notification settings and data sharing flow</li>
             </ul>
           </li>
           <li>Design system update — new mobile components documented</li>
@@ -466,9 +352,7 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
       </li>
       <li>Deliverables 2:
         <ul>
-          <li>Annotated interaction specs for engineering</li>
-          <li>Handoff walkthrough session with engineering team</li>
-          <li>Final Figma file with organized layers and component library</li>
+          <li>Annotated interaction specs, handoff walkthrough with engineering, and the final Figma file with component library</li>
         </ul>
       </li>
     </ul>
@@ -480,7 +364,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
       Product Design
     </div>
     <div class="footer-right">
-      Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+      Cochl.ai · San Francisco, CA, USA<br>
+      contact@cochl.ai · www.cochl.ai
     </div>
   </div>
 </div>
@@ -538,7 +423,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
       Product Design
     </div>
     <div class="footer-right">
-      Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+      Cochl.ai · San Francisco, CA, USA<br>
+      contact@cochl.ai · www.cochl.ai
     </div>
   </div>
 </div>
@@ -573,7 +459,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
       Product Design
     </div>
     <div class="footer-right">
-      Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+      Cochl.ai · San Francisco, CA, USA<br>
+      contact@cochl.ai · www.cochl.ai
     </div>
   </div>
 </div>
@@ -593,8 +480,7 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
     </div>
 
     <div class="letter-sig">
-      <strong>HJ Kim</strong><br>
-      (xxx) xxx-xxxx
+      <strong>HJ Kim</strong>
     </div>
 
     <div class="letter-rule"></div>
@@ -608,8 +494,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
     <div class="summary-logo">
       <svg width="85" height="18" viewBox="0 0 71 15" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M12.5387 9.09976C12.5395 10.2646 12.1922 11.4037 11.5408 12.3731C10.8893 13.3425 9.96283 14.0988 8.87826 14.5466C7.79369 14.9944 6.59964 15.1136 5.4468 14.8892C4.29396 14.6648 3.23399 14.1068 2.40068 13.2857C1.56737 12.4645 0.998055 11.417 0.76459 10.2754C0.531125 9.13371 0.643971 7.94907 1.08889 6.87094C1.5338 5.79281 2.29085 4.86951 3.26448 4.21759C4.23812 3.56566 5.3847 3.21431 6.55953 3.20788C7.34403 3.19924 8.12243 3.34547 8.84937 3.63804C9.57632 3.93062 10.2373 4.36371 10.7938 4.91206C11.3502 5.46041 11.7911 6.11308 12.0907 6.83203C12.3902 7.55099 12.5425 8.32187 12.5387 9.09976Z" fill="url(#paint0_summary)"/>
-<path d="M60.8324 4.39959C60.2083 4.00767 59.4838 3.80163 58.7451 3.80593C57.9958 3.78805 57.2553 3.96915 56.6003 4.33046C55.8779 4.73494 55.2525 5.28983 54.7672 5.95693V0.0203321H53.3811V7.60373C51.8473 9.44164 49.5631 12.17 49.4196 12.2758C48.9878 12.7118 48.4709 13.0561 47.9005 13.2875C47.3301 13.5189 46.7181 13.6326 46.1019 13.6217C45.2989 13.6497 44.505 13.4448 43.8177 13.0321C43.1317 12.687 42.5618 12.1515 42.1773 11.491C41.8003 10.8405 41.5944 10.1064 41.5786 9.35625C41.5623 8.79058 41.6689 8.22807 41.8911 7.70682C42.1132 7.18556 42.4458 6.71775 42.8663 6.33509C43.29 5.9228 43.795 5.60166 44.3496 5.39177C44.9042 5.18187 45.4966 5.08773 46.0896 5.11524C46.8278 5.08727 47.5617 5.23949 48.2267 5.55854C48.8917 5.87759 49.4675 6.35369 49.9035 6.94501L51.0025 6.27816C50.6971 5.77548 50.2993 5.33411 49.8297 4.97699C49.315 4.63387 48.7564 4.36038 48.1688 4.16376C47.5228 3.94302 46.8423 3.83836 46.1593 3.85472C45.1017 3.83213 44.0548 4.06962 43.1123 4.54597C42.2247 5.03067 41.483 5.74079 40.9634 6.60346C40.4736 7.46395 40.2112 8.43328 40.2007 9.42131C40.1955 10.1519 40.3404 10.8759 40.6267 11.5491C40.9129 12.2223 41.3345 12.8306 41.8657 13.337C42.4112 13.8713 43.0601 14.2908 43.7733 14.5703C44.4864 14.8498 45.2492 14.9836 46.0158 14.9635C47.0308 14.9703 48.032 14.7302 48.9316 14.2641C49.4619 13.989 49.9505 13.6413 50.3833 13.2313C50.5145 13.1174 52.1098 11.1616 53.3729 9.60428V14.9635H54.7262L54.7508 10.7631C54.7327 9.80351 54.7875 8.84389 54.9148 7.89243C55.1414 7.1181 55.5902 6.42583 56.2066 5.9C56.827 5.38201 57.6101 5.09446 58.4211 5.08677C59.0493 5.03645 59.6739 5.21963 60.1734 5.60067C60.6729 5.98171 61.0116 6.53337 61.1236 7.14832C61.2302 7.95708 61.2768 8.7725 61.263 9.58802L61.2343 14.9838H62.5712V9.25459C62.5712 7.75824 62.4933 6.73357 62.1611 6.07485C61.9053 5.39269 61.4407 4.80692 60.8324 4.39959ZM33.4505 3.80593C32.6853 3.79139 31.9259 3.94038 31.2239 4.24278C30.522 4.54519 29.8939 4.99391 29.3824 5.55845C29.1559 5.80133 28.9502 6.06247 28.7673 6.33915C27.537 7.94122 24.2563 12.1212 24.084 12.2554C23.6633 12.6958 23.1537 13.0434 22.5884 13.2753C22.0231 13.5072 21.4148 13.6183 20.8033 13.6013C19.9951 13.6292 19.196 13.4244 18.5027 13.0117C17.8317 12.6562 17.2737 12.1226 16.891 11.4707C16.5054 10.8224 16.291 10.0882 16.2677 9.33592C16.2585 8.76858 16.3711 8.2058 16.5981 7.68492C16.825 7.16405 17.1611 6.69699 17.5841 6.31476C18.0071 5.90278 18.5114 5.58181 19.0654 5.37192C19.6193 5.16202 20.2109 5.06772 20.8033 5.09491C21.5447 5.0689 22.2814 5.22184 22.95 5.54057C23.6187 5.8593 24.1992 6.33428 24.6418 6.92468L25.708 6.25783C25.4149 5.75491 25.0264 5.31305 24.5638 4.95666C24.0411 4.6098 23.4725 4.33614 22.8743 4.14342C22.2287 3.92676 21.5503 3.82222 20.8689 3.83439C19.8114 3.81281 18.7648 4.05025 17.8219 4.52564C16.9366 5.01203 16.1966 5.72183 15.6771 6.58312C15.1824 7.44244 14.9144 8.41165 14.8979 9.40097C14.927 10.8879 15.5461 12.3036 16.6208 13.341C17.6955 14.3785 19.1393 14.9541 20.6392 14.9432C21.6868 14.9488 22.721 14.7092 23.6575 14.2438C24.1834 13.9674 24.6678 13.6198 25.097 13.211C25.1995 13.1053 26.6635 11.2633 27.9676 9.62461C28.0403 11.0335 28.6459 12.3634 29.6637 13.3491C30.6814 14.3349 32.0365 14.9041 33.4587 14.9432C34.2148 14.9448 34.9629 14.7898 35.655 14.488C36.3471 14.1862 36.9679 13.7443 37.4777 13.1906C38.4463 12.1591 38.9906 10.8055 39.0035 9.3961C39.0164 7.98671 38.4969 6.62355 37.5474 5.57472C37.0342 5.00354 36.4022 4.54959 35.6949 4.24421C34.9876 3.93883 34.2218 3.78929 33.4505 3.80593ZM37.0307 11.4829C36.6811 12.1229 36.1529 12.6495 35.5092 12.9995C34.888 13.39 34.1676 13.5973 33.4321 13.5973C32.6966 13.5973 31.9762 13.39 31.355 12.9995C30.7273 12.6288 30.2041 12.1072 29.8335 11.4829C29.4949 10.8237 29.3139 10.096 29.3045 9.35625C29.2946 8.79597 29.3984 8.23944 29.6097 7.71973C29.8211 7.20003 30.1357 6.72776 30.5348 6.33102C30.9162 5.94777 31.37 5.64278 31.8703 5.43348C32.3706 5.22417 32.9076 5.11465 33.4505 5.11117C33.9937 5.10997 34.5314 5.21739 35.0317 5.42698C35.532 5.63658 35.9845 5.94405 36.3622 6.33102C36.764 6.72579 37.0804 7.1977 37.2919 7.71787C37.5034 8.23804 37.6057 8.79553 37.5925 9.35625C37.608 10.1031 37.4135 10.8395 37.0307 11.4829ZM64.5069 14.9147H65.8889V0H64.4946L64.5069 14.9147ZM70.4983 12.4994C70.3765 12.3561 70.2236 12.2418 70.0511 12.1651C69.8785 12.0883 69.6908 12.0511 69.5018 12.0562C69.3114 12.0576 69.1233 12.0976 68.9491 12.1738C68.7749 12.2501 68.6182 12.3609 68.4889 12.4994C68.2467 12.7915 68.1147 13.1581 68.1157 13.5363C68.1421 13.877 68.2723 14.2017 68.4889 14.4674C68.6169 14.6079 68.7732 14.7202 68.9477 14.7972C69.1221 14.8743 69.3108 14.9143 69.5018 14.9147C69.6914 14.9214 69.8801 14.8845 70.053 14.8069C70.2258 14.7293 70.3783 14.6131 70.4983 14.4674C70.6401 14.3449 70.7538 14.1937 70.8317 14.0239C70.9096 13.8542 70.9499 13.6699 70.9499 13.4834C70.9499 13.2969 70.9096 13.1126 70.8317 12.9429C70.7538 12.7731 70.6401 12.6219 70.4983 12.4994Z" fill="black"/>
-<defs><linearGradient id="paint0_summary" x1="0.645997" y1="9.05096" x2="12.5346" y2="9.05096" gradientUnits="userSpaceOnUse"><stop stop-color="#9327FF"/><stop offset="0.5" stop-color="#4B7EFF"/><stop offset="1" stop-color="#00D7FF"/></linearGradient></defs>
+<path d="M60.8324 4.39959C60.2083 4.00767 59.4838 3.80163 58.7451 3.80593C57.9958 3.78805 57.2553 3.96915 56.6003 4.33046C55.8779 4.73494 55.2525 5.28983 54.7672 5.95693V0.0203321H53.3811V7.60373C51.8473 9.44164 49.5631 12.17 49.4196 12.2758C48.9878 12.7118 48.4709 13.0561 47.9005 13.2875C47.3301 13.5189 46.7181 13.6326 46.1019 13.6217C45.2989 13.6497 44.505 13.4448 43.8177 13.0321C43.1317 12.687 42.5618 12.1515 42.1773 11.491C41.8003 10.8405 41.5944 10.1064 41.5786 9.35625C41.5623 8.79058 41.6689 8.22807 41.8911 7.70682C42.1132 7.18556 42.4458 6.71775 42.8663 6.33509C43.29 5.9228 43.795 5.60166 44.3496 5.39177C44.9042 5.18187 45.4966 5.08773 46.0896 5.11524C46.8278 5.08727 47.5617 5.23949 48.2267 5.55854C48.8917 5.87759 49.4675 6.35369 49.9035 6.94501L51.0025 6.27816C50.6971 5.77548 50.2993 5.33411 49.8297 4.97699C49.315 4.63387 48.7564 4.36038 48.1688 4.16376C47.5228 3.94302 46.8423 3.83836 46.1593 3.85472C45.1017 3.83213 44.0548 4.06962 43.1123 4.54597C42.2247 5.03067 41.483 5.74079 40.9634 6.60346C40.4736 7.46395 40.2112 8.43328 40.2007 9.42131C40.1955 10.1519 40.3404 10.8759 40.6267 11.5491C40.9129 12.2223 41.3345 12.8306 41.8657 13.337C42.4112 13.8713 43.0601 14.2908 43.7733 14.5703C44.4864 14.8498 45.2492 14.9836 46.0158 14.9635C47.0308 14.9703 48.032 14.7302 48.9316 14.2641C49.4619 13.989 49.9505 13.6413 50.3833 13.2313C50.5145 13.1174 52.1098 11.1616 53.3729 9.60428V14.9635H54.7262L54.7508 10.7631C54.7327 9.80351 54.7875 8.84389 54.9148 7.89243C55.1414 7.1181 55.5902 6.42583 56.2066 5.9C56.827 5.38201 57.6101 5.09446 58.4211 5.08677C59.0493 5.03645 59.6739 5.21963 60.1734 5.60067C60.6729 5.98171 61.0116 6.53337 61.1236 7.14832C61.2302 7.95708 61.2768 8.7725 61.263 9.58802L61.2343 14.9838H62.5712V9.25459C62.5712 7.75824 62.4933 6.73357 62.1611 6.07485C61.9053 5.39269 61.4407 4.80692 60.8324 4.39959ZM33.4505 3.80593C32.6853 3.79139 31.9259 3.94038 31.2239 4.24278C30.522 4.54519 29.8939 4.99391 29.3824 5.55845C29.1559 5.80133 28.9502 6.06247 28.7673 6.33915C27.537 7.94122 24.2563 12.1212 24.084 12.2554C23.6633 12.6958 23.1537 13.0434 22.5884 13.2753C22.0231 13.5072 21.4148 13.6183 20.8033 13.6013C19.9951 13.6292 19.196 13.4244 18.5027 13.0117C17.8317 12.6562 17.2737 12.1226 16.891 11.4707C16.5054 10.8224 16.291 10.0882 16.2677 9.33592C16.2585 8.76858 16.3711 8.2058 16.5981 7.68492C16.825 7.16405 17.1611 6.69699 17.5841 6.31476C18.0071 5.90278 18.5114 5.58181 19.0654 5.37192C19.6193 5.16202 20.2109 5.06772 20.8033 5.09491C21.5447 5.0689 22.2814 5.22184 22.95 5.54057C23.6187 5.8593 24.1992 6.33428 24.6418 6.92468L25.708 6.25783C25.4149 5.75491 25.0264 5.31305 24.5638 4.95666C24.0411 4.6098 23.4725 4.33614 22.8743 4.14342C22.2287 3.92676 21.5503 3.82222 20.8689 3.83439C19.8114 3.81281 18.7648 4.05025 17.8219 4.52564C16.9366 5.01203 16.1966 5.72183 15.6771 6.58312C15.1824 7.44244 14.9144 8.41165 14.8979 9.40097C14.927 10.8879 15.5461 12.3036 16.6208 13.341C17.6955 14.3785 19.1393 14.9541 20.6392 14.9432C21.6868 14.9488 22.721 14.7092 23.6575 14.2438C24.1834 13.9674 24.6678 13.6198 25.097 13.211C25.1995 13.1053 26.6635 11.2633 27.9676 9.62461C28.0403 11.0335 28.6459 12.3634 29.6637 13.3491C30.6814 14.3349 32.0365 14.9041 33.4587 14.9432C34.2148 14.9448 34.9629 14.7898 35.655 14.488C36.3471 14.1862 36.9679 13.7443 37.4777 13.1906C38.4463 12.1591 38.9906 10.8055 39.0035 9.3961C39.0164 7.98671 38.4969 6.62355 37.5474 5.57472C37.0342 5.00354 36.4022 4.54959 35.6949 4.24421C34.9876 3.93883 34.2218 3.78929 33.4505 3.80593ZM37.0307 11.4829C36.6811 12.1229 36.1529 12.6495 35.5092 12.9995C34.888 13.39 34.1676 13.5973 33.4321 13.5973C32.6966 13.5973 31.9762 13.39 31.355 12.9995C30.7273 12.6288 30.2041 12.1072 29.8335 11.4829C29.4949 10.8237 29.3139 10.096 29.3045 9.35625C29.2946 8.79597 29.3984 8.23944 29.6097 7.71973C29.8211 7.20003 30.1357 6.72776 30.5348 6.33102C30.9162 5.94777 31.37 5.64278 31.8703 5.43348C32.3706 5.22417 32.9076 5.11465 33.4505 5.11117C33.9937 5.10997 34.5314 5.21739 35.0317 5.42698C35.532 5.63658 35.9845 5.94405 36.3622 6.33102C36.764 6.72579 37.0804 7.1977 37.2919 7.71787C37.5034 8.23804 37.6057 8.79553 37.5925 9.35625C37.608 10.1031 37.4135 10.8395 37.0307 11.4829ZM64.5069 14.9147H65.8889V0H64.4946L64.5069 14.9147ZM70.4983 12.4994C70.3765 12.3561 70.2236 12.2418 70.0511 12.1651C69.8785 12.0883 69.6908 12.0511 69.5018 12.0562C69.3114 12.0576 69.1233 12.0976 68.9491 12.1738C68.7749 12.2501 68.6182 12.3609 68.4889 12.4994C68.2467 12.7915 68.1147 13.1581 68.1157 13.5363C68.1421 13.877 68.2723 14.2017 68.4889 14.4674C68.6169 14.6079 68.7732 14.7202 68.9477 14.7972C69.1221 14.8743 69.3108 14.9143 69.5018 14.9147C69.6914 14.9214 69.8801 14.8845 70.053 14.8069C70.2258 14.7293 70.3783 14.6131 70.4983 14.4674C70.6401 14.3449 70.7538 14.1937 70.8317 14.0239C70.9096 13.8542 70.9499 13.6699 70.9499 13.4834C70.9499 13.2969 70.9096 13.1126 70.8317 12.9429C70.7538 12.7731 70.6401 12.6219 70.4983 12.4994Z" fill="currentColor"/>
+<defs><linearGradient id="paint0_summary" x1="0.645997" y1="9.05096" x2="12.5346" y2="9.05096" gradientUnits="userSpaceOnUse"><stop style="stop-color:var(--logo-g1)"/><stop offset="0.5" style="stop-color:var(--logo-g2)"/><stop offset="1" style="stop-color:var(--logo-g3)"/></linearGradient></defs>
       </svg>
     </div>
   </div>
@@ -620,7 +506,8 @@ ul ul ul li::before { content: '▪'; font-size: 8px; top: 5px; left: 3px; }
       Product Design
     </div>
     <div class="footer-right">
-      Cochl.ai · San Francisco (HQ) · 1 Brady St. #A-120, San Francisco, CA 94103, USA · hello@cochl.ai
+      Cochl.ai · San Francisco, CA, USA<br>
+      contact@cochl.ai · www.cochl.ai
     </div>
   </div>
 </div>

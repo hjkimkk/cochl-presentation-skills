@@ -21,7 +21,17 @@ JS: `goTo(n)` scrolls `#slide-n` into view, updates `#pn-counter`, dims prev/nex
 ## Motion (CSS only)
 `@keyframes fadeUp` on `.slide-inner` children with staggered `animation-delay` (0.1s steps); one-shot stat shimmer on load. No looping animation.
 
-## HTML → PPTX (pixel-faithful)
+## HTML → PPTX
+**Which method — decided by the theme, not by preference:**
+
+| Theme | PPTX method | Slide size |
+|---|---|---|
+| `plex` (every template except pt-template) | Pixel-faithful raster: one full-bleed 1920×1080 PNG per slide (below) | 13.333×7.5 in |
+| `pt-template` | **Editable text** — real text boxes and shapes, never rasterized, background from the template master | **10×5.625 in** |
+
+**pt-template decks never use the raster recipe below.** Build them with the editable-text recipe in [`decks/pt-template/pt-template.md`](decks/pt-template/pt-template.md) → Part 7, STEP 7, FORMAT 2 (python-pptx, `prs.slide_width=Inches(10)`, `prs.slide_height=Inches(5.625)`).
+
+### plex: pixel-faithful raster
 Each slide becomes a full-bleed **1920×1080 PNG** placed on a 16:9 slide (glows/gradients/mono survive; primitive shape APIs do not).
 1. Emit each `<section>` as a standalone 1920×1080 page (same CSS + `html,body{width:1920px;height:1080px;overflow:hidden}`), screenshot with `chrome --headless=new --screenshot=sNN.png --window-size=1920,1080 --force-device-scale-factor=1 --hide-scrollbars --virtual-time-budget=3500 file://…/slide-N.html`. (Combined-deck JS scroll is unreliable headless; standalone pages are not.)
 2. python-pptx (`pip install --user python-pptx`):
@@ -31,9 +41,9 @@ prs=Presentation(); prs.slide_width=Inches(13.333); prs.slide_height=Inches(7.5)
 blank=prs.slide_layouts[6]
 for p in sorted(glob.glob('build/png/s*.png')):
     s=prs.slides.add_slide(blank); s.shapes.add_picture(p,0,0,width=prs.slide_width,height=prs.slide_height)
-prs.save('{slug}_deck.pptx')
+prs.save('{slug}.pptx')
 ```
-3. Delete intermediate PNGs; keep `.html` + `.pptx` (same basename/dir) for the architecture page to list.
+3. Delete intermediate PNGs; keep `{slug}.html` + `{slug}.pptx` (same basename/dir) for the architecture page to list.
 
 ## Output flow (all deliverables)
 Build the primary artifact first (HTML for decks; SVG for brochure/social), then export. The final result is three files with one basename in one directory:
@@ -46,11 +56,13 @@ Generate the architecture page last, after the PPTX and HTML exist, with [`claud
 
 Brand items (theme tokens, token names, gradient/glow, fonts, logo, company facts, every NEEDS INPUT check, closing copy, headlines) are run from [`../../cochl-design/core/qa-checklist.md`](../../cochl-design/core/qa-checklist.md). The items below are the layout/structure checks specific to decks.
 
-- [ ] Backgrounds `--bg` (cover/CTA may be full-bleed `--bg-pure` + glow); cards `--panel`
+- [ ] Backgrounds and cards per theme — plex: `--bg` (cover/CTA may be full-bleed `--bg-pure` + glow), cards `--panel`; pt-template: content slides `--col-light-bg`, cover/section-break/CTA on the dark master picture, cards per `decks/pt-template/pt-template.md` → Part 5
 - [ ] ≤1 glow per slide
 - [ ] Cover has white logo bottom-left, opacity 0.70
 - [ ] Bottom page-nav present, no top nav; keyboard arrows work
-- [ ] Every non-cover, non-statement slide has the footer chrome (logo bottom-left + deck title bottom-right). Grep the output for the footer class and confirm its count equals (slide count − cover − statement slides).
+- [ ] Footer chrome on every non-cover, non-statement slide. Grep the output for the footer class and confirm its count equals (slide count − cover − statement/break slides).
+  - plex: white logo bottom-left at 0.70 + deck title bottom-right, on the dark `--bg` surface.
+  - pt-template: light content slides carry the colour logo bottom-left (`assets/cochl-logo-color.png`, class `.footer-logo-color`) with the page number `.pnum` to its right in `--col-text-sub`; dark slides (section-break, CTA) carry the white logo bottom-left at 0.70. See `decks/pt-template/pt-base.css`.
 - [ ] Each heading has exactly one `grad-text` key phrase
 - [ ] Card body ≤2 sentences; break slides at major transitions
 - [ ] Self-contained (assets inline / no broken refs)
@@ -59,7 +71,7 @@ Brand items (theme tokens, token names, gradient/glow, fonts, logo, company fact
 **Post-generation self-checks** (run right after emitting the deck, before saving):
 - [ ] **Deck-type check** — if the content carries partnership keywords (MOU, co-development, OEM, SDK integration, joint go-to-market) but was built on the investor template, flag the routing (should be B2B — see SKILL.md Routing step 2).
 - [ ] **Layout-pool check** — every layout id used is one the chosen spec defines; flag any ad-hoc / unregistered layout (see SKILL.md Routing step 5).
-- [ ] **Image/icon-placeholder check** — scan **every** image/icon placeholder container in the document (e.g. `.p-right`, `.img-placeholder`, and image cards using the `--card-img` / `--img` fill); flag any container that is empty and carries no label or caption, and either report it explicitly or fill it — so no unlabeled blank image/icon slot ships. (Companion to the text NEEDS-INPUT grep above.)
+- [ ] **Image/icon-placeholder check** — scan **every** image/icon placeholder container in the document (e.g. `.p-right`, `.img-placeholder`, and image cards using the `--img-placeholder` fill, or the investor spec's `--card-img` alias of it); flag any container that is empty and carries no label or caption, and either report it explicitly or fill it — so no unlabeled blank image/icon slot ships. (Companion to the text NEEDS-INPUT grep above.)
 - [ ] **Adjacent-figure check** — walk the deck in order and compare each slide's figures (`%`, `ms`, counts, `$`) against the previous 1–2 slides; flag any figure restated verbatim on adjacent slides and rewrite all but the first occurrence. (Guards the SecureBuild 6–7 case — the same 96.2% precision, 41% false-alarm reduction, and 120ms latency repeated across two neighbouring slides.)
 - [ ] **Figure-consistency check** — when the same target/goal figure is presented on more than one slide (e.g. an annual target restated as a bridge/waterfall endpoint), diff its numeric value across every occurrence; flag any mismatch as a contradiction unless the restated value is within **±1%** of the first occurrence, in which case it may be labeled "rounded" — anything beyond that band may not use that label and must be reconciled. (Guards the D3 case: slide 9's $6.8M annual target vs. slide 10's $6.1M bridge endpoint, mislabeled as rounding.)
 - [ ] **Cross-build figure-reuse check** — when generating a financial/quarterly-target chart for a new deck build (a new fiscal year, a new quarter, a fresh iteration of the same deck type), compare its numeric series against the equivalent chart from this session's other builds of the same deck type; flag any series where most values match a prior build's values verbatim or within a trivial rounding difference — recycling old illustrative/placeholder figures into a new period's chart is a fabrication risk even when captioned "illustrative," not acceptable reuse (see SKILL.md Facts & fabrication → Cross-build / cross-fiscal-year figure reuse). (Guards the QBR case: Q2's 2026 build-plan quarterly financial targets and Q4's FY2027 financial-plan quarterly targets matched in 3 of 4 quarters exactly, with the fourth differing by only $0.1M.)

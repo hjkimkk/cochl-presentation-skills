@@ -27,7 +27,7 @@ args:
   - name: screenshots
     description: "Comma-separated file paths to embed as phone mockups"
   - name: output
-    description: "Output path (default: ~/Desktop/design-review-{project-slug}.html)"
+    description: "Output path chosen by the user (default: ./design-review-{project-slug}.html in the current working directory)"
 ---
 
 # Design Review Template Skill
@@ -114,21 +114,25 @@ Borders use `--light-border`; muted text uses `--muted-on-dark` / `--muted-on-li
   position: absolute; top: 0; left: 0; right: 0;
   padding: 10px 45px;
   display: flex; justify-content: space-between; align-items: center;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
+  border-bottom: 1px solid var(--light-border);
   z-index: 100; height: 38px;
 }
 .hdr span {
   font-size: 13px; font-weight: 400;
   font-family: var(--font-ui);
   text-transform: uppercase; letter-spacing: 0.08em;
-  color: rgba(0,0,0,0.4);
+  color: var(--muted-on-light);
 }
 /* Dark variant */
-.hdr.dark { border-bottom-color: rgba(255,255,255,0.1); }
-.hdr.dark span { color: rgba(255,255,255,0.4); }
+.hdr.dark { border-bottom-color: var(--border); }
+.hdr.dark span { color: var(--muted-on-dark); }
 ```
 
 Content area starts at `top: 38px`.
+
+### Footer logo (present on ALL slides, cover included)
+
+Every slide ends with `{logo_foot(dark)}` — the logo bottom-left at opacity 0.70 (`.logo-foot` in the HTML Shell), per `../cochl-design/core/qa-checklist.md` → Logo. Use `dark=True` (white logo) on `--bg-pure` slides and `dark=False` (standard color logo) on light slides. Never a text `cochl.` placeholder.
 
 ---
 
@@ -152,16 +156,19 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--fo
 .dw{width:1440px;height:810px;position:relative;transform-origin:center center;overflow:hidden;}
 .slide{position:absolute;inset:0;opacity:0;pointer-events:none;transition:opacity .22s ease;}
 .slide.active{opacity:1;pointer-events:all;}
-/* nav dots */
+/* nav dots — mid-grey + indigo read on both light and dark slides */
 .nd{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;gap:6px;z-index:9999;}
-.nd button{width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .2s;border:none;outline:none;padding:0;}
-.nd button.on{background:rgba(255,255,255,.88);transform:scale(1.45);}
+.nd button{width:6px;height:6px;border-radius:50%;background:var(--muted);cursor:pointer;transition:all .2s;border:none;outline:none;padding:0;}
+.nd button.on{background:var(--accent);transform:scale(1.45);}
 /* counter */
-.ct{position:fixed;bottom:14px;right:28px;font-size:10px;color:rgba(255,255,255,.22);z-index:9999;letter-spacing:.12em;font-family:var(--font-ui);}
+.ct{position:fixed;bottom:14px;right:28px;font-size:10px;color:var(--muted);z-index:9999;letter-spacing:.12em;font-family:var(--font-ui);}
 /* arrow buttons */
-.arr{position:fixed;top:50%;transform:translateY(-50%);z-index:9999;background:rgba(255,255,255,.07);border:none;cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
-.arr:hover{background:rgba(255,255,255,.16);}
-.arr svg{width:14px;height:14px;stroke:rgba(255,255,255,.55);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.arr{position:fixed;top:50%;transform:translateY(-50%);z-index:9999;background:transparent;border:1px solid var(--muted);cursor:pointer;width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+.arr:hover{background:var(--accent);border-color:var(--accent);}
+.arr svg{width:14px;height:14px;stroke:var(--muted);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round;}
+.arr:hover svg{stroke:var(--text);}
+/* footer chrome logo — every slide, bottom-left, opacity 0.70 (core qa-checklist → Logo) */
+.logo-foot{position:absolute;left:45px;bottom:14px;height:18px;width:auto;opacity:0.70;z-index:100;}
 #ap{left:16px;}#an{right:16px;}
 </style>
 </head>
@@ -174,6 +181,7 @@ body{display:flex;align-items:center;justify-content:center;font-family:var(--fo
 <button class="arr" id="ap"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg></button>
 <button class="arr" id="an"><svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg></button>
 <script>
+// Navigation only. Do not add theme-switching logic here.
 const ss=document.querySelectorAll('.slide'),nd=document.getElementById('nd'),ct=document.getElementById('ct');
 let c=0;
 ss.forEach((_,i)=>{const b=document.createElement('button');b.className=i===0?'on':'';b.onclick=e=>{e.stopPropagation();go(i);};nd.appendChild(b);});
@@ -225,22 +233,23 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 
 - Background: `--bg-pure`, NO persistent header
 - "DESIGN REVIEW" centered at y≈150px, 96px `--font-sans` 300, white
-- Thin horizontal rules (1px, `rgba(255,255,255,0.15)`) at y≈550, 570, 610, 635
+- Thin horizontal rules (1px, `--border`) above, between and below the metadata rows
 - Between rules: metadata rows in 21px `--font-sans` 300, white, centered
   - Row 1: `PHASE : XX  |  ROUND : XX`
   - Row 2: `DESIGN REVIEW  |  COMPANY / TEAM NAME  |  PERSON ONE, PERSON TWO  |  TODAY'S DATE`
-- Logo top-center if available
+- Logo: white logo bottom-left, opacity 0.70 (`logo_foot(dark=True)`), per `../cochl-design/core/qa-checklist.md` → Logo. Not top-center.
 
 ```html
 <div class="slide" style="background:var(--bg-pure);display:flex;flex-direction:column;align-items:center;justify-content:flex-start;">
   <h1 style="font-size:96px;font-weight:300;font-family:var(--font-sans);color:var(--text);letter-spacing:0.04em;text-transform:uppercase;margin-top:140px;">DESIGN REVIEW</h1>
-  <div style="position:absolute;bottom:0;left:0;right:0;">
-    <div style="height:1px;background:rgba(255,255,255,0.15);margin-bottom:20px;"></div>
+  <div style="position:absolute;bottom:48px;left:0;right:0;">
+    <div style="height:1px;background:var(--border);margin-bottom:20px;"></div>
     <p style="text-align:center;font-size:21px;font-weight:300;font-family:var(--font-sans);color:var(--text);letter-spacing:0.06em;">PHASE : {phase} &nbsp;|&nbsp; ROUND : {round}</p>
-    <div style="height:1px;background:rgba(255,255,255,0.15);margin:20px 0;"></div>
+    <div style="height:1px;background:var(--border);margin:20px 0;"></div>
     <p style="text-align:center;font-size:21px;font-weight:300;font-family:var(--font-sans);color:var(--text);letter-spacing:0.04em;">{team} &nbsp;|&nbsp; {presenters} &nbsp;|&nbsp; {date}</p>
-    <div style="height:1px;background:rgba(255,255,255,0.15);margin-top:20px;margin-bottom:30px;"></div>
+    <div style="height:1px;background:var(--border);margin-top:20px;"></div>
   </div>
+  {logo_foot(dark=True)}
 </div>
 ```
 
@@ -279,23 +288,24 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Background: `--bg-pure`, NO persistent header
 - Left 50%: project branding (label, name, round)
 - Right 50%: phone mockup(s) centered
-- Bottom strip: 3 metadata items (`--font-ui` 13px, `rgba(255,255,255,0.3)`)
+- Bottom strip: 3 metadata items (`--font-ui` 13px, `--muted-on-dark`), left padding clears the footer logo
 
 ```html
 <div class="slide" style="background:var(--bg-pure);display:flex;">
   <div style="width:50%;padding:80px 60px;display:flex;flex-direction:column;justify-content:center;">
-    <p style="font-size:16px;font-family:var(--font-sans);color:rgba(255,255,255,0.35);text-transform:uppercase;letter-spacing:0.1em;">Cochl · {product line}</p>
+    <p style="font-size:16px;font-family:var(--font-sans);color:var(--muted-on-dark);text-transform:uppercase;letter-spacing:0.1em;">Cochl · {product line}</p>
     <h2 style="font-size:64px;font-weight:300;font-family:var(--font-sans);color:var(--text);text-transform:uppercase;line-height:1.0;margin-top:28px;">{PROJECT NAME}</h2>
-    <p style="font-size:18px;font-weight:300;font-family:var(--font-sans);color:rgba(255,255,255,0.35);text-transform:uppercase;margin-top:28px;">ROUND {round}</p>
+    <p style="font-size:18px;font-weight:300;font-family:var(--font-sans);color:var(--muted-on-dark);text-transform:uppercase;margin-top:28px;">ROUND {round}</p>
   </div>
   <div style="width:50%;display:flex;align-items:center;justify-content:center;">
     <!-- phone() helper output here -->
   </div>
-  <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid rgba(255,255,255,0.08);padding:14px 60px;display:flex;justify-content:space-between;">
-    <span style="font-size:13px;font-family:var(--font-ui);color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">PHASE : {phase}</span>
-    <span style="font-size:13px;font-family:var(--font-ui);color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">{team}</span>
-    <span style="font-size:13px;font-family:var(--font-ui);color:rgba(255,255,255,0.3);text-transform:uppercase;letter-spacing:0.08em;">{date}</span>
+  <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid var(--border);padding:14px 60px 14px 120px;display:flex;justify-content:space-between;">
+    <span style="font-size:13px;font-family:var(--font-ui);color:var(--muted-on-dark);text-transform:uppercase;letter-spacing:0.08em;">PHASE : {phase}</span>
+    <span style="font-size:13px;font-family:var(--font-ui);color:var(--muted-on-dark);text-transform:uppercase;letter-spacing:0.08em;">{team}</span>
+    <span style="font-size:13px;font-family:var(--font-ui);color:var(--muted-on-dark);text-transform:uppercase;letter-spacing:0.08em;">{date}</span>
   </div>
+  {logo_foot(dark=True)}
 </div>
 ```
 
@@ -366,11 +376,11 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
   <div style="padding-top:38px;">
     <div style="text-align:center;padding:48px 80px 0;">
       <h2 style="font-size:40px;font-weight:400;font-family:var(--font-sans);text-transform:uppercase;color:var(--bg-pure);">THREE THINGS TO KNOW</h2>
-      <div style="height:1px;background:rgba(0,0,0,0.12);margin-top:18px;"></div>
+      <div style="height:1px;background:var(--light-border);margin-top:18px;"></div>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0;padding:0 80px;margin-top:48px;">
       <!-- repeat for 01, 02, 03 -->
-      <div style="padding:0 48px;border-right:1px solid rgba(0,0,0,0.08);">
+      <div style="padding:0 48px;border-right:1px solid var(--light-border);">
         <p style="font-size:40px;font-weight:400;font-family:var(--font-body);color:var(--bg-pure);margin-bottom:20px;">01</p>
         <p style="font-size:20px;font-weight:400;font-family:var(--font-body);color:var(--bg-pure);line-height:1.6;">{description}</p>
       </div>
@@ -480,7 +490,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 **Timeline colors — brand tokens only:**
 - Base line and past-stage dots: black `--bg-pure`
 - Current-position dot / active highlight: `--accent` (Cochl indigo)
-- Muted labels: `rgba(0,0,0,0.4)`–`rgba(0,0,0,0.55)`
+- Muted labels: `--muted-on-light`
 
 > ⚠️ **Never** color the timeline line or dots with off-brand saturated dark blues — they render nearly black on screen and break the brand palette. The source PPTX Design Process slides (Proposal 21–22, Direction 26–27) contain those values; when porting them, **override** every timeline blue to `--accent` or `--bg-pure`. This rule applies to every generated deck.
 
@@ -493,7 +503,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Background: `--light-gray`
 - Persistent header + "FEEDBACK NEEDED" section header + 1px divider
 - 4 category boxes in a row: CRAFT | STRUCTURE | EXPLORE | IMPLEMENT
-  - Each: 13px `--font-ui` uppercase, centered, border 1px solid rgba(0,0,0,0.1)
+  - Each: 13px `--font-ui` uppercase, centered, border 1px solid `--light-border`
   - Active category highlighted with black text and bold border
 
 ---
@@ -506,7 +516,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Persistent header, NO section title block
 - Split layout: left 42% | right 58%
   - Left: "FEEDBACK\nNEEDED" — 64px `--font-sans` 300, uppercase, vertically centered
-  - Vertical rule: 1px `rgba(0,0,0,0.1)` between halves
+  - Vertical rule: 1px `--light-border` between halves
   - Right: 3 bullet questions, 21px `--font-body` 300, lh 1.55
     - Bullet: 6×6px black circle, flex-shrink 0, margin-top 6px
     - Question text: left-aligned
@@ -518,7 +528,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
     <div style="width:42%;display:flex;align-items:center;justify-content:center;padding:60px;">
       <h2 style="font-size:64px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;line-height:1.1;color:var(--bg-pure);">FEEDBACK<br>NEEDED</h2>
     </div>
-    <div style="width:1px;background:rgba(0,0,0,0.1);align-self:stretch;margin:40px 0;"></div>
+    <div style="width:1px;background:var(--light-border);align-self:stretch;margin:40px 0;"></div>
     <div style="width:58%;padding:60px 70px;display:flex;flex-direction:column;justify-content:center;gap:32px;">
       <!-- repeat for each question -->
       <div style="display:flex;gap:18px;align-items:flex-start;">
@@ -567,10 +577,10 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Left 42%:
   - Direction title: "DIRECTION 1" — 46px `--font-sans` 300, uppercase, margin-bottom 28px
   - Direction name: 15px `--font-sans` 500
-  - Description: 16px `--font-body` 300, lh 1.72, `rgba(0,0,0,0.55)`
+  - Description: 16px `--font-body` 300, lh 1.72, `--ink-muted`
 - Right 58%: phone mockup(s) — single (276×556) or two side-by-side (216×436 each)
 - Bottom keyword bar (absolute, bottom:0):
-  - `border-top:1px solid rgba(0,0,0,0.1)`
+  - `border-top:1px solid var(--light-border)`
   - 13px `--font-ui` uppercase, text-align center
   - Format: `Keywords: Word 01, Word 02, Word 03`
 
@@ -581,14 +591,14 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
     <div style="width:42%;padding:60px 60px 80px;display:flex;flex-direction:column;justify-content:center;">
       <h2 style="font-size:46px;font-weight:300;font-family:var(--font-sans);text-transform:uppercase;color:var(--bg-pure);margin-bottom:28px;">DIRECTION {n}</h2>
       <p style="font-size:15px;font-weight:500;font-family:var(--font-sans);color:var(--bg-pure);margin-bottom:14px;">{direction name}</p>
-      <p style="font-size:16px;font-weight:300;font-family:var(--font-body);color:rgba(0,0,0,0.55);line-height:1.72;">{description}</p>
+      <p style="font-size:16px;font-weight:300;font-family:var(--font-body);color:var(--ink-muted);line-height:1.72;">{description}</p>
     </div>
     <div style="width:58%;display:flex;align-items:center;justify-content:center;gap:24px;">
       <!-- phone() output -->
     </div>
   </div>
-  <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid rgba(0,0,0,0.1);padding:10px 60px;text-align:center;">
-    <span style="font-size:13px;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:0.08em;color:rgba(0,0,0,0.4);">Keywords: {word1}, {word2}, {word3}</span>
+  <div style="position:absolute;bottom:0;left:0;right:0;border-top:1px solid var(--light-border);padding:10px 60px;text-align:center;">
+    <span style="font-size:13px;font-family:var(--font-ui);text-transform:uppercase;letter-spacing:0.08em;color:var(--muted-on-light);">Keywords: {word1}, {word2}, {word3}</span>
   </div>
 </div>
 ```
@@ -603,7 +613,7 @@ Cards are allowed on: Goal slides (3 measurable goals), Direction slides (2–3 
 - Persistent header + "BEFORE/AFTER WORKFLOW" — 40px **`--font-mono`** 400 + 1px divider
 - Column headers: BEFORE | NOW | AFTER — 13px `--font-ui` uppercase
 - 3 rows × 3 columns grid
-  - Step number: 40px `--font-body`, `rgba(0,0,0,0.2)`, margin-right 16px
+  - Step number: 40px `--font-body`, `--light-rule-2`, margin-right 16px
   - Step text: 16px `--font-body` 300, 2 lines
 
 ---
@@ -736,7 +746,7 @@ def encode_image(path: str) -> str:
     with open(path, 'rb') as f:
         data = base64.b64encode(f.read()).decode()
     ext = path.rsplit('.', 1)[-1].lower()
-    mime = {'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','gif':'image/gif','webp':'image/webp'}.get(ext, 'image/png')
+    mime = {'png':'image/png','jpg':'image/jpeg','jpeg':'image/jpeg','gif':'image/gif','webp':'image/webp','svg':'image/svg+xml'}.get(ext, 'image/png')
     return f"data:{mime};base64,{data}"
 
 def phone(src: str, w: int = 240, h: int = 480, pos: str = 'top') -> str:
@@ -747,7 +757,7 @@ def phone(src: str, w: int = 240, h: int = 480, pos: str = 'top') -> str:
     nt = max(8, int(h * 0.02))
     return (
         f'<div style="width:{w}px;height:{h}px;border-radius:{r}px;border:2.5px solid var(--ink-body);'
-        f'position:relative;overflow:hidden;box-shadow:0 4px 40px rgba(0,0,0,0.18);background:var(--light-bg);flex-shrink:0;">'
+        f'position:relative;overflow:hidden;box-shadow:0 4px 40px var(--light-border);background:var(--light-bg);flex-shrink:0;">'
         f'<div style="position:absolute;top:{nt}px;left:50%;transform:translateX(-50%);'
         f'width:{nw}px;height:{nh}px;background:var(--ink);border-radius:{nh}px;z-index:10;"></div>'
         f'<img src="{src}" style="position:absolute;inset:0;width:100%;height:100%;'
@@ -755,10 +765,18 @@ def phone(src: str, w: int = 240, h: int = 480, pos: str = 'top') -> str:
         f'</div>'
     )
 
+# Paths are relative to this skill's folder.
+LOGO_WHITE = encode_image('../cochl-presentation/references/assets/cochl-logo-white.png')
+LOGO_COLOR = encode_image('../cochl-presentation/references/brochure/assets/logo_basic.svg')
+
+def logo_foot(dark: bool = True) -> str:
+    """Footer-chrome logo: bottom-left, opacity 0.70 (.logo-foot). White on dark slides, color on light."""
+    return f'<img class="logo-foot" src="{LOGO_WHITE if dark else LOGO_COLOR}" alt="Cochl">'
+
 def hdr(project: str = "PROJECT / FEATURE NAME", date: str = "TODAY'S DATE", dark: bool = False) -> str:
     """Render the persistent top header bar."""
-    fg = "rgba(255,255,255,0.4)" if dark else "rgba(0,0,0,0.4)"
-    br = "rgba(255,255,255,0.1)" if dark else "rgba(0,0,0,0.1)"
+    fg = "var(--muted-on-dark)" if dark else "var(--muted-on-light)"
+    br = "var(--border)" if dark else "var(--light-border)"
     return (
         f'<div style="position:absolute;top:0;left:0;right:0;padding:10px 45px;display:flex;'
         f'justify-content:space-between;align-items:center;border-bottom:1px solid {br};z-index:100;">'
@@ -772,7 +790,7 @@ def hdr(project: str = "PROJECT / FEATURE NAME", date: str = "TODAY'S DATE", dar
 def stitle(text: str, dark: bool = False) -> str:
     """Render a section title block (used at top of content slides)."""
     fg = "var(--text)" if dark else "var(--bg-pure)"
-    br = "rgba(255,255,255,0.12)" if dark else "rgba(0,0,0,0.12)"
+    br = "var(--border)" if dark else "var(--light-border)"
     return (
         f'<div style="text-align:center;padding:48px 80px 0;">'
         f'<h2 style="font-size:40px;font-weight:400;font-family:var(--font-sans);'
@@ -871,15 +889,26 @@ If no screenshots are provided: render phone frame outlines with placeholder fil
 
 ## Construction Process
 
-1. Determine `type` (proposal or direction)
-2. Collect user inputs: project, phase, round, team, presenters, date, screenshots
-3. Encode each screenshot with `encode_image()`
-4. Select the appropriate slide flow from Template Flow Rules
-5. Build each slide using its archetype HTML template + helper functions
-6. Inject slides into HTML Shell
-7. Write output to `~/Desktop/design-review-{kebab-slug}.html`
-8. Open in browser
-9. Report: file path, size in KB, slide count
+1. Determine `type` (see **Choosing the template** below)
+2. Collect user inputs: project, phase, round, team, presenters, date, screenshots, output path
+3. Collect team content (see **Team inputs** below) — ask once, or mark `[NEEDS INPUT]`
+4. Encode each screenshot with `encode_image()`
+5. Select the appropriate slide flow from Template Flow Rules
+6. Build each slide using its archetype HTML template + helper functions
+7. Inject slides into HTML Shell
+8. Write output to the user's chosen path; default `./design-review-{kebab-slug}.html` in the current working directory (never assume `~/Desktop` — it may not exist or be writable in a sandboxed session)
+9. QA: run the checklist below; for `type=direction` also run `python3 audit_direction_deck.py <output.html>` from this skill's folder and fix every `[FAIL]` before delivering
+10. Report: file path, size in KB, slide count, the audit result, and every `[NEEDS INPUT]` slot still open. Do not open the file yourself; suggest the user run `open <path>` (macOS) to view it.
+
+### Choosing the template
+
+- **Proposal** (`type=proposal`) — pitching a new design or solution for approval: the work has not started or is a new idea that needs a go/no-go.
+- **Direction Alignment & Feedback** (`type=direction`) — aligning on, or getting feedback on, work in progress or a live product.
+- If the request does not make this clear, ask the user one question ("Is this pitching a new design for approval, or getting feedback on work in progress / a live product?") before building.
+
+### Team inputs
+
+Several required slides need content only the team has: Three Things To Know, Project Goals, Market Research, User Insights, User Personas, Design Process (dates/current stage), Feedback Needed — Questions, Findings & Recommendations, and Key Metrics / Value-Effort (Proposal). Before building, ask the user for these in **one** question (a short list they can answer in one reply). If they skip it or don't have the content, build anyway: keep every required slide, put `[NEEDS INPUT]` (class `needs-input`) in each slot without real input, never invent research, quotes, metrics or competitor names, and list every open slot in the final summary.
 
 ---
 
@@ -905,4 +934,9 @@ If no screenshots are provided: render phone frame outlines with placeholder fil
 - [ ] Arrow button navigation functional (left/right sides)
 - [ ] Keyboard ArrowLeft / ArrowRight / Space working
 - [ ] Viewport scaling (transform:scale) works on load and resize
-- [ ] Output file: `design-review-{slug}.html` on Desktop
+- [ ] Output file written to the user's chosen path (default: current working directory)
+- [ ] Footer logo bottom-left at opacity 0.70 on every slide, cover included (white on dark, color on light)
+- [ ] No literal hex / `rgba()` anywhere outside the pasted `:root` block — every colour is a `var(--token)`
+- [ ] Nav dots, counter and arrows visible on both light and dark slides
+- [ ] Every slot without team input shows `[NEEDS INPUT]` and is listed in the summary
+- [ ] `type=direction`: `python3 audit_direction_deck.py <output.html>` prints `RESULT: ALL PASS`

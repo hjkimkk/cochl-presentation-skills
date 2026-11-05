@@ -43,7 +43,7 @@ CTA:
 [meta-row: flex, 4 items max, gap 36px]
   └── each item: [label 9pt uppercase var(--pt-muted)] + [value 12pt semibold var(--col-text-light)]
 ```
-**CTA:** Same master background. Outcome cards use `rgba(255,255,255,0.10)` + `backdrop-filter: blur(12px)`. Subtitle color: `--col-text-lavender`.
+**CTA:** Same master background. Outcome cards use `color-mix(in srgb,var(--col-text-light) 10%,transparent)` + `backdrop-filter: blur(12px)`. Subtitle color: `--col-text-lavender`.
 
 **Content rule:** Cover title max 6 words. CTA title centered. Meta row max 4 items.
 
@@ -117,7 +117,7 @@ CTA:
 [.table-wrap > table.data-table]
   └── thead: [th: 11px uppercase, muted, bottom border]
   └── tbody: [td first-col: semibold, ai-purple] [td last-col: success green]
-  └── even rows: rgba(255,255,255,0.02) tint
+  └── rows split by 1px var(--c-lavender) rules — no zebra tint
 [.table-footnote: blue left-border, 13px muted]
 ```
 **Content rule:** Max 8 rows. Max 4 columns. First column is the category name (purple). Last column is the outcome/result (green). Middle columns are neutral (muted).
@@ -245,14 +245,14 @@ These four layouts exist to give the audience breathing room, reset attention, a
 **Structure:**
 ```
 [var(--pt-navy-bg) background]
-[optional: radial glow behind text: rgba(107,78,255,0.06) — no glassmorphism]
+[optional: radial glow behind text: color-mix(in srgb,var(--pt-violet) 6%,transparent) — no glassmorphism]
 [centered column, vertically centered:]
-  [decorative " glyph: 120px, rgba(255,255,255,0.06), positioned top-left]
-  [.quote-text: 32–40px italic, white, centered, max 20 words]
-  [.quote-attr: 15px, muted (var(--pt-muted)), centered — format: "— Name, Title"]
+  [decorative " glyph: 120px, color-mix(in srgb,var(--col-text-light) 6%,transparent), positioned top-left]
+  [.qtext: 32–40px italic, white, centered, max 20 words]
+  [.qattr: 15px, muted (var(--pt-muted)), centered — format: "— Name, Title"]
   [optional: 60px accent line, grad-main, centered, below attribution]
 ```
-**HTML class names:** `.quote-break-slide`, `.quote-text`, `.quote-attr`, `.quote-deco`  
+**HTML class names:** `.quote-break-slide`, `.qtext`, `.qattr`, `.qdeco` (as in TEMPLATE 14 and `pt-base.css`)  
 **Content rules:**
 - No section heading, no cards, no grid, no icons
 - Quote: ≤ 20 words. If longer, cut — do not abbreviate
@@ -290,7 +290,7 @@ These four layouts exist to give the audience breathing room, reset attention, a
 **Structure:**
 ```
 [full-bleed image: object-fit cover, width 100%, height 100%]
-[overlay: linear-gradient(to top, rgba(6,16,30,0.88) 0%, rgba(6,16,30,0.1) 55%, transparent 100%)]
+[overlay: linear-gradient(to top, color-mix(in srgb,var(--pt-navy-bg) 88%,transparent) 0%, color-mix(in srgb,var(--pt-navy-bg) 10%,transparent) 55%, transparent 100%)]
 [bottom-left text zone — bottom 20% of slide:]
   [.fi-caption: 11px uppercase, letter-spacing 0.12em, muted]
   [.fi-headline: 24px, white, bold, max 8 words — optional]
@@ -310,15 +310,15 @@ These four layouts exist to give the audience breathing room, reset attention, a
 **Purpose:** Signals a topic shift, resets audience attention before a new chapter  
 **Structure:**
 ```
-[var(--pt-navy-bg) background]
-[optional: subtle radial glow at center — rgba(107,78,255,0.08)]
+[master dark PICTURE background, same as cover (theme background system)]
+[optional: subtle radial glow at center — color-mix(in srgb,var(--pt-violet) 8%,transparent)]
 [centered column, vertically centered:]
-  [.sb-number: 80–100px, bold, rgba(255,255,255,0.05) — large decorative chapter number]
+  [.sb-num: 80–100px, bold, color-mix(in srgb,var(--col-text-light) 5%,transparent) — large decorative chapter number]
   [.sb-title: 40–48px, bold, white, max 4 words — 1 key word in grad-text]
   [optional: 60px accent line, centered, grad-main]
   [optional: .sb-sub: 16px, muted, 1 sentence max — brief framing of what follows]
 ```
-**HTML class names:** `.section-break-slide`, `.sb-number`, `.sb-title`, `.sb-sub`  
+**HTML class names:** `.section-break-slide`, `.sb-num`, `.sb-title`, `.sb-sub` (as in TEMPLATE 17 and `pt-base.css`)  
 **Content rules:**
 - No cards, no data, no bullets, no icons
 - The large chapter number is decorative (extremely low opacity) — the title is the primary read
@@ -732,6 +732,8 @@ import base64, zipfile
 with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
     BG_B64 = base64.b64encode(z.read('ppt/media/image12.png')).decode()
     LOGO_B64 = base64.b64encode(z.read('ppt/media/image2.png')).decode()
+# Colour logo for the footer of light (white) slides:
+LOGO_COLOR_B64 = base64.b64encode(open('../../assets/cochl-logo-color.png', 'rb').read()).decode()
 ```
 
 ```html
@@ -784,8 +786,8 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
     </div>
   </div>
   <div class="callout">
-    <div style="font-size:13px;color:var(--col-text-light);margin-bottom:4px;">콜아웃 핵심 메시지 — 1~2문장으로 가장 어려운 케이스를 설명.</div>
-    <div style="font-size:12px;font-weight:700;color:var(--pt-indigo);">→ 모델의 진짜 실력이 시험되는 구간</div>
+    <div class="callout-msg">콜아웃 핵심 메시지 — 1~2문장으로 가장 어려운 케이스를 설명.</div>
+    <div class="callout-stat">→ 모델의 진짜 실력이 시험되는 구간</div>
   </div>
 </section>
 ```
@@ -805,7 +807,7 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
     <div class="kpi-card"><div class="kpi-value">3분</div><div class="kpi-label">엣지 디바이스 설치 시간</div></div>
     <div class="kpi-card"><div class="kpi-value">$8B</div><div class="kpi-label">미 연방 AI 보안 예산</div><div class="kpi-sub">FY2026</div></div>
   </div>
-  <div class="quote-block">"인용구 — 최대 20단어, 이탤릭체." <span style="font-style:normal;font-size:13px;color:var(--col-muted);">— 이름, 직책</span></div>
+  <div class="quote-block">"인용구 — 최대 20단어, 이탤릭체." <span class="quote-attr">— 이름, 직책</span></div>
 </section>
 ```
 
@@ -893,9 +895,9 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
         <tr><th>프로토콜</th><th>대상 드론</th><th>난이도</th><th>비고</th></tr>
       </thead>
       <tbody>
-        <tr><td class="ai-td">OcuSync 3.0</td><td>Mavic 3 / Mini 3 Pro</td><td class="warn-td">높음</td><td style="color:var(--col-muted)">4×4 vs 2×2 안테나 차이</td></tr>
-        <tr><td class="ai-td">OcuSync 2.0</td><td>Mavic 2 / Air 2</td><td class="check">보통</td><td style="color:var(--col-muted)">2.4/5.8GHz 듀얼밴드</td></tr>
-        <tr><td class="ai-td">LightBridge 2</td><td>Inspire 2 / Phantom 4</td><td class="check">낮음</td><td style="color:var(--col-muted)">고정 OFDM</td></tr>
+        <tr><td class="ai-td">OcuSync 3.0</td><td>Mavic 3 / Mini 3 Pro</td><td class="warn-td">높음</td><td class="muted-td">4×4 vs 2×2 안테나 차이</td></tr>
+        <tr><td class="ai-td">OcuSync 2.0</td><td>Mavic 2 / Air 2</td><td class="check">보통</td><td class="muted-td">2.4/5.8GHz 듀얼밴드</td></tr>
+        <tr><td class="ai-td">LightBridge 2</td><td>Inspire 2 / Phantom 4</td><td class="check">낮음</td><td class="muted-td">고정 OFDM</td></tr>
       </tbody>
     </table>
   </div>
@@ -907,7 +909,7 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
 
 ### TEMPLATE 07 — kpi-grid-4x2 (Performance)
 ```html
-<section id="slide-N" class="kpi-wrap">
+<section id="slide-N" class="kpi-wrap kpi-4">
   <div class="slabel">PERFORMANCE</div>
   <h2>핵심 <span class="grad-text">성능 지표</span></h2>
   <div class="kpi-grid" style="grid-template-columns:repeat(4,1fr);grid-template-rows:repeat(2,1fr);">
@@ -973,27 +975,27 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
       <thead>
         <tr>
           <th></th>
-          <th style="color:var(--col-muted)">경쟁사 A</th>
-          <th style="color:var(--col-muted)">경쟁사 B</th>
-          <th style="color:var(--col-muted)">경쟁사 C</th>
-          <th style="background:rgba(131,43,251,0.15);color:var(--pt-purple-soft);">Cochl</th>
+          <th class="muted-td">경쟁사 A</th>
+          <th class="muted-td">경쟁사 B</th>
+          <th class="muted-td">경쟁사 C</th>
+          <th style="background:color-mix(in srgb,var(--c-primary) 15%,transparent);color:var(--pt-purple-soft);">Cochl</th>
         </tr>
       </thead>
       <tbody>
         <tr>
           <td>드론 탐지</td>
           <td class="cross">✗</td><td class="check">✓</td><td class="cross">✗</td>
-          <td style="background:rgba(131,43,251,0.08);" class="check">✓</td>
+          <td style="background:color-mix(in srgb,var(--c-primary) 8%,transparent);" class="check">✓</td>
         </tr>
         <tr>
           <td>Edge 운용</td>
           <td class="cross">✗</td><td class="cross">✗</td><td class="check">✓</td>
-          <td style="background:rgba(131,43,251,0.08);" class="check">✓</td>
+          <td style="background:color-mix(in srgb,var(--c-primary) 8%,transparent);" class="check">✓</td>
         </tr>
         <tr>
           <td>설치 시간</td>
-          <td style="color:var(--col-muted)">수일</td><td style="color:var(--col-muted)">수주</td><td style="color:var(--col-muted)">수일</td>
-          <td style="background:rgba(131,43,251,0.08);color:var(--c-success);">3분</td>
+          <td class="muted-td">수일</td><td class="muted-td">수주</td><td class="muted-td">수일</td>
+          <td style="background:color-mix(in srgb,var(--c-primary) 8%,transparent);color:var(--c-success);">3분</td>
         </tr>
       </tbody>
     </table>
@@ -1023,7 +1025,7 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
     </div>
     <div class="card">
       <div class="card-top"></div>
-      <div class="tech-col-head" style="color:var(--c-ai);">검증 이력</div>
+      <div class="tech-col-head" style="color:var(--c-primary);">검증 이력</div>
       <ul class="tech-list">
         <li>▸ 실험실 SNR ≥25dB: Top-1 ≥95%</li>
         <li>▸ Open-Set AUROC &gt;0.90</li>
@@ -1079,7 +1081,7 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
     </div>
   </div>
   <div class="card" style="margin-top:20px;display:flex;justify-content:space-between;align-items:center;padding:12px 20px;">
-    <div style="font-size:13px;color:var(--col-muted);">Phase 1 → Phase 4 순차 진행</div>
+    <div style="font-size:13px;color:var(--pt-muted);">Phase 1 → Phase 4 순차 진행</div>
     <div style="font-size:15px;font-weight:700;background:var(--grad-main);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">총 ~12주</div>
   </div>
 </section>
@@ -1156,7 +1158,7 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
       <span class="pip-step">현장 검증</span>→
       <span class="pip-step pip-final">양산 배포</span>
     </div>
-    <div style="font-size:12px;color:rgba(255,255,255,0.5);margin-top:24px;">contact@cochl.ai · cochl.ai</div>
+    <div class="cta-contact">contact@cochl.ai · www.cochl.ai · San Francisco, CA, USA</div>
   </div>
 </section>
 ```
@@ -1165,10 +1167,10 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
 
 ### TEMPLATE 14 — quote-break
 ```html
-<section id="slide-N" class="quote-break-slide">
+<section id="slide-N" class="slide navy quote-break-slide">
   <div class="qdeco">"</div>
   <div class="qtext">방산 실전에서의 false negative는 보안 위협이다.</div>
-  <div style="font-size:15px;color:var(--col-muted);margin-bottom:16px;">— 현장 운용 요구사항, 2025</div>
+  <div class="qattr">— 현장 운용 요구사항, 2025</div>
   <div class="accent-bar" style="width:60px;margin:0 auto;"></div>
 </section>
 ```
@@ -1177,7 +1179,7 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
 
 ### TEMPLATE 15 — stat-spotlight
 ```html
-<section id="slide-N" class="stat-spotlight-slide">
+<section id="slide-N" class="slide navy stat-spotlight-slide">
   <div class="stat-eyebrow">DETECTION ACCURACY · LAB CONDITION</div>
   <div class="stat-value">≥95%</div>
   <div class="stat-label">Top-1 정확도 달성</div>
@@ -1203,11 +1205,15 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
 
 ### TEMPLATE 17 — section-break
 ```html
-<section id="slide-N" class="section-break-slide">
-  <div class="sb-num">02</div>
-  <div class="sb-title"><span class="grad-text">해법</span>: 앙상블 AI</div>
-  <div class="accent-bar" style="width:60px;margin:12px auto;"></div>
-  <div class="sb-sub">4개 모델이 투표하는 방식으로 불확실성을 제거한다</div>
+<section id="slide-N" class="slide dark section-break-slide">
+  <div class="cover-bg" style="background-image:url('data:image/png;base64,{{BG_B64}}');"></div>
+  <div class="sb-inner">
+    <div class="sb-num">02</div>
+    <div class="sb-title"><span class="grad-text">해법</span>: 앙상블 AI</div>
+    <div class="accent-bar" style="width:60px;margin:12px auto;"></div>
+    <div class="sb-sub">4개 모델이 투표하는 방식으로 불확실성을 제거한다</div>
+  </div>
+  <img class="footer-logo" src="data:image/png;base64,{{LOGO_B64}}" alt="Cochl">
 </section>
 ```
 
@@ -1456,26 +1462,26 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
 ```html
 <section id="slide-N" class="sidebar-image-slide">
   <div class="si-left">
-    <div class="si-left-content">
+    <div class="si-left-content card">
       <div style="font-size:48px;opacity:.2;">🖥</div>
-      <div style="font-size:11px;color:var(--col-muted);letter-spacing:.1em;text-transform:uppercase;text-align:center;">GPU 인프라</div>
+      <div style="font-size:11px;color:var(--pt-muted);letter-spacing:.1em;text-transform:uppercase;text-align:center;">GPU 인프라</div>
       <div style="margin-top:16px;display:flex;flex-direction:column;gap:10px;width:100%;">
-        <div style="background:rgba(75,104,255,.12);border:1px solid rgba(75,104,255,.25);border-radius:8px;padding:10px 14px;text-align:center;">
+        <div style="background:color-mix(in srgb,var(--pt-indigo) 12%,transparent);border:1px solid color-mix(in srgb,var(--pt-indigo) 25%,transparent);border-radius:8px;padding:10px 14px;text-align:center;">
           <div style="font-size:18px;font-weight:700;color:var(--col-text-light);">A100 × 4</div>
-          <div style="font-size:10px;color:var(--col-muted);">학습 클러스터</div>
+          <div style="font-size:10px;color:var(--pt-muted);">학습 클러스터</div>
         </div>
-        <div style="background:rgba(75,104,255,.12);border:1px solid rgba(75,104,255,.25);border-radius:8px;padding:10px 14px;text-align:center;">
+        <div style="background:color-mix(in srgb,var(--pt-indigo) 12%,transparent);border:1px solid color-mix(in srgb,var(--pt-indigo) 25%,transparent);border-radius:8px;padding:10px 14px;text-align:center;">
           <div style="font-size:18px;font-weight:700;color:var(--col-text-light);">Jetson Orin</div>
-          <div style="font-size:10px;color:var(--col-muted);">추론 엣지</div>
+          <div style="font-size:10px;color:var(--pt-muted);">추론 엣지</div>
         </div>
       </div>
     </div>
   </div>
   <div class="si-right">
     <div class="slabel">INFRASTRUCTURE</div>
-    <h2 style="font-size:24px;font-weight:700;color:var(--col-text-light);margin-bottom:8px;">GPU 인프라와 <span class="grad-text">작업 분배</span></h2>
+    <h2>GPU 인프라와 <span class="grad-text">작업 분배</span></h2>
     <div class="si-subtitle" style="color:var(--c-analytics);font-size:13px;margin-bottom:14px;">클라우드 학습 + 엣지 추론 하이브리드 구조</div>
-    <div class="si-body" style="font-size:12px;color:var(--col-muted);line-height:1.6;">상세 설명. 최대 4문장. 학습-추론 분리 전략과 비용 최적화 방법을 설명합니다.</div>
+    <div class="si-body body">상세 설명. 최대 4문장. 학습-추론 분리 전략과 비용 최적화 방법을 설명합니다.</div>
   </div>
 </section>
 ```
@@ -1542,11 +1548,11 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
 <section id="slide-N" class="image-right-list-slide">
   <div class="irl-left">
     <div class="slabel">TECHNOLOGY</div>
-    <h2 style="font-size:24px;font-weight:700;color:var(--col-text-light);margin-bottom:8px;">기술 스택과 <span class="grad-text">파이프라인</span></h2>
+    <h2>기술 스택과 <span class="grad-text">파이프라인</span></h2>
     <div style="font-size:13px;color:var(--c-analytics);margin-bottom:10px;">엣지-클라우드 하이브리드 추론 구조</div>
-    <div style="font-size:12px;color:var(--col-muted);margin-bottom:16px;">설명 텍스트. 최대 2문장. 아키텍처 선택의 이유를 간결하게.</div>
+    <div class="body" style="margin-bottom:16px;">설명 텍스트. 최대 2문장. 아키텍처 선택의 이유를 간결하게.</div>
     <ul class="irl-items">
-      <li class="irl-item"><span class="irl-dot" style="background:var(--c-ai);"></span>AST + CRNN 앙상블</li>
+      <li class="irl-item"><span class="irl-dot" style="background:var(--c-primary);"></span>AST + CRNN 앙상블</li>
       <li class="irl-item"><span class="irl-dot" style="background:var(--c-analytics);"></span>TensorRT 최적화</li>
       <li class="irl-item"><span class="irl-dot" style="background:var(--c-success);"></span>NVIDIA Jetson Orin</li>
       <li class="irl-item"><span class="irl-dot" style="background:var(--pt-muted);"></span>실시간 스트리밍 파이프라인</li>
@@ -1555,13 +1561,13 @@ with zipfile.ZipFile('assets/Cochl_PT_template.pptx') as z:
   <div class="irl-right">
     <div class="irl-image" style="background:var(--pt-navy-card);border-radius:16px;padding:20px;display:flex;flex-direction:column;gap:10px;">
       <!-- inline diagram: replace with base64 image or keep as HTML diagram -->
-      <div style="background:rgba(107,78,255,.18);border:1px solid rgba(107,78,255,.4);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--pt-violet-soft);font-weight:700;">RF 안테나 입력</div>
-      <div style="text-align:center;color:var(--col-muted);font-size:16px;">↓</div>
-      <div style="background:rgba(47,128,237,.15);border:1px solid rgba(47,128,237,.35);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--pt-blue-soft);font-weight:700;">신호 전처리 · 스펙트로그램</div>
-      <div style="text-align:center;color:var(--col-muted);font-size:16px;">↓</div>
-      <div style="background:rgba(107,78,255,.18);border:1px solid rgba(107,78,255,.4);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--pt-violet-soft);font-weight:700;">AST + CRNN 앙상블</div>
-      <div style="text-align:center;color:var(--col-muted);font-size:16px;">↓</div>
-      <div style="background:rgba(16,185,129,.15);border:1px solid rgba(16,185,129,.35);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--c-success);font-weight:700;">탐지 결과 출력</div>
+      <div style="background:color-mix(in srgb,var(--pt-violet) 18%,transparent);border:1px solid color-mix(in srgb,var(--pt-violet) 40%,transparent);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--pt-violet-soft);font-weight:700;">RF 안테나 입력</div>
+      <div style="text-align:center;color:var(--pt-muted);font-size:16px;">↓</div>
+      <div style="background:color-mix(in srgb,var(--c-analytics) 15%,transparent);border:1px solid color-mix(in srgb,var(--c-analytics) 35%,transparent);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--pt-blue-soft);font-weight:700;">신호 전처리 · 스펙트로그램</div>
+      <div style="text-align:center;color:var(--pt-muted);font-size:16px;">↓</div>
+      <div style="background:color-mix(in srgb,var(--pt-violet) 18%,transparent);border:1px solid color-mix(in srgb,var(--pt-violet) 40%,transparent);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--pt-violet-soft);font-weight:700;">AST + CRNN 앙상블</div>
+      <div style="text-align:center;color:var(--pt-muted);font-size:16px;">↓</div>
+      <div style="background:color-mix(in srgb,var(--c-success) 15%,transparent);border:1px solid color-mix(in srgb,var(--c-success) 35%,transparent);border-radius:8px;padding:10px 16px;font-size:12px;color:var(--c-success);font-weight:700;">탐지 결과 출력</div>
     </div>
   </div>
 </section>
@@ -1603,16 +1609,19 @@ When new content is dropped in, follow this decision tree:
    - Title/list left + framed image right? → image-right-list
 
 2. MAP heading hierarchy:
-   Content H1   → deck h2 (section title, 32px)
-   Content H2   → deck h4 (card heading, 17px semibold)
-   Body text    → deck .body (18px muted, max 2 sentences per block)
+   Content H1   → deck h2 (section title, 27pt = 48px on the 1280×720 canvas, one line)
+   Content H2   → deck h4 (card heading, 19px semibold)
+   Body text    → deck .body (9pt = 16px; --col-text-dark on the white slide,
+                  --pt-muted inside --pt-navy-card cards; max 2 sentences per block)
    Bold callout → .quote-block or .callout banner
    Data point   → kpi-card value
 
 3. SHORTEN text:
    - Body per card: max 2 sentences (≤ 30 words)
    - KPI label: max 6 words
-   - H2 title: max 8 words (use grad-text on the key phrase)
+   - H2 title: one line at 27pt inside the 7.81in title box → max 6 words AND ≤ 36 characters
+     (Korean ≤ 20 characters). Shorten the wording — never shrink the size or wrap to 2 lines.
+     (use grad-text on the key phrase)
    - Timeline description: max 2 sentences
    - Bullet item: max 1 line (≤ 12 words)
 
@@ -1685,20 +1694,24 @@ Run this check before outputting any generated or updated slide:
 ### Visual Consistency
 - [ ] Content slides use `--col-light-bg` (white) as the slide background; cover, section-break and CTA use the dark master background picture (Part 1 background system)
 - [ ] Dark cards/panels use `--pt-navy-card`, not black or custom colors
+- [ ] Text color follows the surface it sits on: on the white slide `--col-text-dark` (body) / `--pt-title-ink` (titles); **inside a `--pt-navy-card` card `--col-text-light` (headings, values, labels) and `--pt-muted` (body)** — never `--col-text-dark` on navy
+- [ ] Every `--` custom property used is defined in the theme `:root` (no `--col-muted`, `--c-ai` or other undefined names); no literal `rgba()`/hex outside `:root` — tints use `color-mix(in srgb, var(--token) N%, transparent)`
 - [ ] No hardcoded colors outside of the design token set
 - [ ] `--grad-main` used only in approved positions (not card BG, not headings)
 - [ ] Headings/numbers use `--font-heading`, body uses `--font-body`; in HTML, headings fall back to `--font-web`
-- [ ] h2 is 32px semibold — never larger on content slides
-- [ ] Body text is 18px — never smaller than 14px (caption only)
+- [ ] h2 is 27pt (48px on the 1280×720 canvas), regular weight, `--pt-title-ink`, on one line inside the 7.81in title box (max 6 words / 36 characters)
+- [ ] Body text is 9pt (16px); captions and table footnotes never smaller than 7pt (12px)
+- [ ] KPI values: 36pt (64px) in grids of ≤ 3 columns, 24pt (43px) in 4-column grids, ≤ 6 characters, no wrapping
 
 ### Layout Integrity
 - [ ] Cover and CTA slides use the PPTX gradient background image (base64)
-- [ ] White Cochl logo appears at bottom-left of cover, `height: 20px`, `opacity: 0.70`
+- [ ] White Cochl logo appears at bottom-left of cover at (1.72in, 4.36in), 0.23in tall (29px on the canvas), `opacity: 0.70`
+- [ ] Footer chrome: every light content slide carries the colour logo `.footer-logo-color` bottom-left (`../../assets/cochl-logo-color.png`, 20px tall, source ratio kept) with the page number `.pnum` to its right in `--col-text-sub`; section-break and CTA carry the white logo bottom-left at 0.70 (deck-engine → Deck QA)
 - [ ] Bottom page-nav (`‹ X / N ›`) is present and functional
 - [ ] No top navigation bar exists
 - [ ] Section-head margin is `64px` below h2 on every content slide
 - [ ] Card gap is `24px` in all grids
-- [ ] Max content width is `1280px`
+- [ ] Content stays inside the 1.46in left / 0.73in right margins (7.81in = 1000px wide)
 
 ### Content Rules
 - [ ] Each slide communicates exactly ONE core message
@@ -1740,7 +1753,7 @@ Drop new content in this JSON structure. The agent will map it automatically.
   "slides": [
     {
       "intent": "cover | problem | market | solution | architecture | capabilities | performance | scenarios | competitive | technology | roadmap | budget | cta | quote-break | stat-spotlight | full-image | section-break | agenda | mission-statement | split-left-image | split-right-image | text-image-bottom | icon-columns | numerical-value | photo-mosaic | team-grid",
-      "title": "string (max 8 words)",
+      "title": "string (max 6 words, ≤ 36 characters)",
       "subtitle": "string (optional, 1 sentence)",
       "tagline": "string (optional, italic, max 120 chars)",
       "key_phrase": "string (the part of the title to highlight with grad-text)",
@@ -1802,10 +1815,16 @@ STEP 4 — Shorten content
   Remove filler words; keep strategic, executive tone.
 
 STEP 5 — Build slide HTML
-  Use exact class names from the source deck.
+  Stylesheet: paste the theme :root block, then the full contents of
+  pt-base.css (this folder) into <style>. Do not edit its rules.
+  pt-base.css styles templates 01–17. For templates 18–30, add only that
+  layout's rules after it, from the Part 2C geometry, tokens only.
+  Use the class names from the Part 2D template you matched.
   Copy the HTML structure of the matched layout.
   Only replace text content and data values.
-  Preserve all CSS — never modify the stylesheet.
+  Wrap each slide in <div class="frame"><section class="slide …">; light
+  slides end with <img class="footer-logo-color" src="data:image/png;base64,{{LOGO_COLOR_B64}}" alt="Cochl">
+  <div class="pnum">N</div>.
 
 STEP 6 — QA
   Run every check in Part 5.
@@ -1838,17 +1857,25 @@ STEP 7 — Output (always produce BOTH formats)
     - Fonts: headings/numbers var(--font-heading), body var(--font-body) (PPTX keeps the template fonts)
     - Headings: follow the Part 1 type scale — h2-slide 27pt var(--pt-title-ink) on light slides;
       h1-cover 39pt bold var(--col-text-light) on dark slides
-    - Body: 9pt, regular, var(--col-text-dark) on light slides (var(--col-text-light) on dark slides)
-    - KPI values: 40pt, bold, use gradient simulation (apply var(--pt-violet) for first half, var(--c-analytics) for second)
-    - Cards: add rectangle shapes with fill var(--pt-navy-card), corner radius 12pt, no outline
+    - Body: 9pt, regular — var(--col-text-dark) on the white slide surface; var(--col-text-light)
+      on dark slides; inside navy cards var(--pt-muted) (headings/values in cards var(--col-text-light))
+    - h2 must fit one line of the 7.81in title box at 27pt (max 6 words / 36 characters) — shorten, never shrink
+    - KPI values: bold, 36pt in grids of ≤ 3 columns, 24pt in 4-column grids (≤ 6 characters);
+      gradient simulation: var(--pt-violet) for first half, var(--c-analytics) for second
+    - Cards: add rectangle shapes with fill var(--pt-navy-card), corner radius 12pt, no outline;
+      any text box placed on a card uses the light card text colors above
+    - Light content slides: colour logo `../../assets/cochl-logo-color.png` at (var(--page-num-x), 5.12in), 0.16in tall
+      (keep the 512:116 ratio, about 0.71in wide); page number text box at (1.11in, var(--page-num-y)), 9pt var(--col-text-sub)
     - Accent lines: thin rectangle 3pt height, gradient fill var(--pt-violet) → var(--c-analytics)
     - Cochl logo: insert ppt/media/image2.png (white logo) from assets/Cochl_PT_template.pptx,
       bottom-left of cover at (1.72", 4.36"), size 1.01" × 0.23"
-    - Never rasterize text — all text elements must remain text boxes
+    - Never rasterize text — all text elements must remain text boxes. This replaces the
+      plex raster recipe in ../../deck-engine.md → HTML → PPTX; never use that recipe here.
     - Save as: {deck_name}.pptx
 
-  Both files saved to the same directory as the source deck.
-  Confirm both file paths in the output message.
+  Both files saved to the same directory as the source deck, then the
+  Claude Code architecture page ({deck_name}_claude-code-architecture.html)
+  per ../../deck-engine.md → Output flow. Confirm all three paths.
 ```
 
 ---
@@ -1858,10 +1885,11 @@ STEP 7 — Output (always produce BOTH formats)
 ```
 references/decks/pt-template/
 ├── pt-template.md                    ← this file (layouts, templates, rules)
+├── pt-base.css                       ← base stylesheet for templates 01–17 (tokens only)
 └── assets/
     └── Cochl_PT_template.pptx        ← official template; cover background (ppt/media/image12.png) + white logo (ppt/media/image2.png)
 ```
-Design tokens (Part 1) live in `../../../../cochl-design/core/themes/pt-template.md`. Write generated decks to the user's working/output directory, never into the skill folder. This template always saves both HTML and PPTX (skip the format question in `../../deck-engine.md` §Output flow).
+Design tokens (Part 1) live in `../../../../cochl-design/core/themes/pt-template.md`. Write generated decks to the user's working/output directory, never into the skill folder. Like every deck, this template always saves the HTML, the PPTX and the architecture page (`../../deck-engine.md` → Output flow).
 
 **Export naming convention:**  
 Given source deck `{name}.html`, agent always produces:  
@@ -1906,6 +1934,6 @@ Team / advisors?             → team-grid (square photos + name labels)
 Flow rule:              Insert a break slide after every 3–4 consecutive HIGH slides.
 Accent rule:            ONE grad-text span per h2. Nowhere else on content slides.
 Density rule:           ONE core message per slide. Split if needed.
-Text rule:              Max 2 sentences per card body. Max 8 words per h2.
+Text rule:              Max 2 sentences per card body. h2: max 6 words / 36 characters, one line.
 Break slide count:      Does not cap at 13 — total slides increase when breaks are added.
 ```

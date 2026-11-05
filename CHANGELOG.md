@@ -10,6 +10,27 @@ under a version heading.
 
 ## Unreleased
 
+Fixes from the plugin pilot (tests T4–T7 and T11, Nov 5). Every skill now follows the core rules:
+white logo bottom-left at 0.70 on deck covers and footers, brand-core company facts, tokens only.
+
+- cochl-presentation: the PT template is chosen by the look the user asks for, not by the topic
+  (router too). The B2B sales proposal spec uses canonical tokens, puts the cover logo bottom-left,
+  adds a `comparison-table` layout and drops stale step references. One PPTX file name. deck-engine
+  gives the PPTX method per theme: pt-template is 10×5.625 in with editable text, never rasterized.
+  New `decks/pt-template/pt-base.css` (templates 01–17); navy cards use light text; h2 and KPI size
+  rules agree; undefined tokens and literal `rgba()` removed. White PT slides carry the colour logo
+  bottom-left with the page number to its right (`assets/cochl-logo-color.png`). The Claude Code
+  architecture page caps each stage at 5 rows (+N more), so it fits 1920×1080, and names the right
+  PPTX method.
+- proposal-doc: `@page` A4 print CSS, so Cmd+P gives 6 pages; brand-core contact in the footer;
+  shadow and logo use tokens; one placeholder rule (`.var` vs `[NEEDS INPUT]`); role, voice,
+  payments, timeline end and sign-off are variables, not a solo-designer default; Korean documents
+  set `lang="ko"`; logo path, example file and timeline fixed.
+- design-review: the audit script matches SKILL.md (required vs optional slides, allowed variants,
+  path argument, literal-colour check) and is part of QA; all colours are tokens; nav dots readable
+  on light and dark slides; logo bottom-left; USAGE.md matches; rules for choosing Proposal vs
+  Direction and for missing team inputs; output goes to the current folder, not ~/Desktop.
+
 ## 2.1.4 — 2026-11-05
 
 - Old command names work again when typed on their own: `/pitch-deck-skill`, `/dr-template`,
