@@ -9,16 +9,17 @@
         { "component": "ComplexButton", "role": "complex-button", "relationship": "variant", "variant": "type=ComplexButton" }
       ],
         "propMap": [
-          { "figma": "category=Primary, type=Basic", "code": "<Button color=\"primary\">", "confidence": "verified", "evidence": "fill #4B68FF (3251:7349) = button.backgroundColor.primary.light #4B68FF" },
-          { "figma": "type=Red", "code": "<Button color=\"danger\">", "confidence": "verified", "evidence": "fill #E02E2E (3251:7373) = button.backgroundColor.danger.light #E02E2E" },
-          { "figma": "category=Primary, type=md", "code": "<Button color=\"primary\">", "confidence": "verified", "evidence": "same fill as Basic; 50px height has no size prop (style only)" },
-          { "figma": "category=Secondary, type=sm|md|lg", "code": "<Button color=\"secondary\">", "confidence": "verified", "evidence": "outlined gray (3253:7385) = button.border/color.secondary; value drift: Figma #727273 vs code #8C8C8C; sm/md/lg have no size prop" },
-          { "figma": "type=Link", "code": "<HyperlinkButton text={Text} rightArrow={rightIcon}>", "confidence": "verified", "evidence": "HyperlinkButtonProps { text, rightArrow, onClick }; no disabled prop" },
-          { "figma": "type=ComplexButton", "code": "<ComplexButton title subtitle>", "confidence": "pending", "evidence": "in @cochlearai/ui 1.0.6 (beta build); props not compared yet" },
-          { "figma": "state=Disabled", "code": "disabled", "confidence": "verified", "evidence": "ButtonProps.disabled" },
-          { "figma": "state=Hovered", "code": "(CSS :hover, no prop)", "confidence": "verified", "evidence": "theme button.backgroundColor.hover.*" },
-          { "figma": "leftIcon=true / rightIcon=true", "code": "leftIcon={<Icon/>} / rightIcon={<Icon/>}", "confidence": "verified", "evidence": "ButtonProps.leftIcon/rightIcon: ReactNode" },
-          { "figma": "theme=Light|Dark", "code": "(ThemeProvider, no prop)", "confidence": "verified", "evidence": "ThemeColors light/dark" }
+          { "figma": { "category": "Primary", "type": "Basic" }, "code": { "component": "Button", "props": { "color": "primary" } }, "confidence": "verified", "evidence": "fill #4B68FF (3251:7349) = button.backgroundColor.primary.light #4B68FF" },
+          { "figma": { "type": "Red" }, "code": { "component": "Button", "props": { "color": "danger" } }, "confidence": "verified", "evidence": "fill #E02E2E (3251:7373) = button.backgroundColor.danger.light #E02E2E" },
+          { "figma": { "category": "Primary", "type": "md" }, "code": { "component": "Button", "props": { "color": "primary" } }, "confidence": "verified", "evidence": "same fill as Basic; 50px height has no size prop (style only)" },
+          { "figma": { "category": "Secondary", "type": ["sm", "md", "lg"] }, "code": { "component": "Button", "props": { "color": "secondary" } }, "confidence": "verified", "evidence": "outlined gray (3253:7385) = button.border/color.secondary; value drift: Figma #727273 vs code #8C8C8C; sm/md/lg have no size prop" },
+          { "figma": { "type": "Link" }, "code": { "component": "HyperlinkButton", "props": { "text": "{Text}", "rightArrow": "{rightIcon}" } }, "confidence": "verified", "evidence": "HyperlinkButtonProps { text, rightArrow, onClick }; no disabled prop" },
+          { "figma": { "type": "ComplexButton" }, "code": { "component": "ComplexButton", "props": { "title": "{Title}", "subtitle": "{Subtitle}" } }, "confidence": "pending", "evidence": "in @cochlearai/ui 1.0.6 (beta build); props not compared yet" },
+          { "figma": { "state": "Disabled" }, "code": { "props": { "disabled": true } }, "confidence": "verified", "evidence": "ButtonProps.disabled" },
+          { "figma": { "state": "Hovered" }, "code": { "css": ":hover" }, "confidence": "verified", "evidence": "theme button.backgroundColor.hover.*" },
+          { "figma": { "leftIcon": true }, "code": { "props": { "leftIcon": "<Icon/>" } }, "confidence": "verified", "evidence": "ButtonProps.leftIcon/rightIcon: ReactNode" },
+          { "figma": { "rightIcon": true }, "code": { "props": { "rightIcon": "<Icon/>" } }, "confidence": "verified", "evidence": "ButtonProps.leftIcon/rightIcon: ReactNode" },
+          { "figma": { "theme": ["Light", "Dark"] }, "code": { "none": "ThemeProvider; theme is not a prop" }, "confidence": "verified", "evidence": "ThemeColors light/dark" }
         ],
         "reason": "Primary target Button drives the value comparisons. type=Link and type=ComplexButton are separate code components (verified 2026-10-08 against cochl-dashboard packages/cochl-ui/stories/actions/Button.stories.tsx). Kept ONE_TO_ONE so Button's drift status stays visible; extra targets are informational until the engine supports per-variant routing (D4)." },
       "code": {

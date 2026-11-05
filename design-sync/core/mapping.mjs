@@ -12,6 +12,56 @@ export const MAPPING_TYPE = Object.freeze({
   ONE_TO_ONE: "ONE_TO_ONE", ONE_TO_MANY: "ONE_TO_MANY", UNMATCHED: "UNMATCHED", AMBIGUOUS: "AMBIGUOUS",
 });
 
+// Allowed `confidence` values on a variant-level propMap entry (D4).
+export const PROPMAP_CONFIDENCE = Object.freeze(new Set(["verified", "probable", "pending"]));
+
+// Keys allowed in a propMap entry's `code` object (D4).
+export const PROPMAP_CODE_KEYS = Object.freeze(new Set(["component", "with", "props", "css", "none"]));
+
+const isPlainObject = (v) => v !== null && typeof v === "object" && !Array.isArray(v);
+const nonEmptyStr = (v) => typeof v === "string" && v.trim() !== "";
+
+/**
+ * Shape check for one D4 propMap entry. Returns a list of problems (empty = valid).
+ *
+ *   figma: { <axis or property>: value }   value = string | boolean | string[] (alternatives).
+ *          Keys starting with "$" are not Figma axes: "$component" (a component inside the set),
+ *          "$node" (node id), "$text" (a TEXT property name).
+ *   code:  { component?, with?: string[], props?: {...}, css?, none? } — at least one of
+ *          component / props / css / none. `{Text}` in a prop value = a Figma text property;
+ *          `css` = a state with no prop (":hover"); `none` = no code counterpart, and why.
+ */
+export function propMapEntryProblems(e) {
+  const out = [];
+  if (!isPlainObject(e)) return ["is not an object"];
+  const f = e.figma;
+  if (!isPlainObject(f) || Object.keys(f).length === 0) out.push(`"figma" must be a non-empty object (axis → value)`);
+  else for (const [k, v] of Object.entries(f)) {
+    const okVal = typeof v === "boolean" || nonEmptyStr(v) || (Array.isArray(v) && v.length > 0 && v.every(nonEmptyStr));
+    if (!k.trim() || !okVal) out.push(`"figma.${k}" must be a string, boolean or non-empty string array`);
+  }
+  const c = e.code;
+  if (!isPlainObject(c)) out.push(`"code" must be an object ({ component, props } | { css } | { none })`);
+  else {
+    for (const k of Object.keys(c)) if (!PROPMAP_CODE_KEYS.has(k)) out.push(`"code.${k}" is not a known key (${[...PROPMAP_CODE_KEYS].join(", ")})`);
+    if (!["component", "props", "css", "none"].some((k) => k in c)) out.push(`"code" needs one of component, props, css, none`);
+    for (const k of ["component", "css", "none"]) if (k in c && !nonEmptyStr(c[k])) out.push(`"code.${k}" must be a non-empty string`);
+    if ("with" in c && !(Array.isArray(c.with) && c.with.length > 0 && c.with.every(nonEmptyStr))) out.push(`"code.with" must be a non-empty string array`);
+    if ("props" in c && (!isPlainObject(c.props) || Object.keys(c.props).length === 0)) out.push(`"code.props" must be a non-empty object`);
+  }
+  if (!nonEmptyStr(e.evidence)) out.push(`is missing a non-empty "evidence"`);
+  if (!PROPMAP_CONFIDENCE.has(e.confidence)) out.push(`has invalid confidence "${e.confidence ?? ""}" (expected ${[...PROPMAP_CONFIDENCE].join(" | ")})`);
+  return out;
+}
+
+/** One-line label for a propMap entry in messages: `type=Red → Button`. */
+export function propMapLabel(e) {
+  const f = isPlainObject(e?.figma) ? Object.entries(e.figma).map(([k, v]) => `${k}=${Array.isArray(v) ? v.join("|") : v}`).join(", ") : String(e?.figma);
+  const c = e?.code ?? {};
+  const code = c.component ?? (c.props ? Object.keys(c.props).join(", ") : c.css ?? (c.none ? "(none)" : "?"));
+  return `${f} → ${code}`;
+}
+
 /**
  * Resolve one component's mapping. Names are NOT trusted: a declared ONE_TO_ONE
  * whose figma role != code target role is downgraded to AMBIGUOUS.
@@ -102,6 +152,25 @@ export function validateMappings(mapping, pkgDir) {
         break;
       }
     }
+
+    // Variant-level propMap (D4): validate it when present; otherwise flag
+    // multi-target components that still lack one (per-variant routing needs it).
+    const propMap = cfg.mapping?.propMap;
+    if (propMap !== undefined) {
+      if (!Array.isArray(propMap)) {
+        add(name, "propmap-malformed", "error", "`mapping.propMap` must be an array.");
+      } else {
+        propMap.forEach((e, idx) => {
+          const at = `propMap[${idx}]`;
+          const problems = propMapEntryProblems(e);
+          for (const p of problems) add(name, "propmap-malformed", "error", `${at} ${p}.`);
+          if (!problems.length && e.confidence !== "verified")
+            add(name, "propmap-pending", "info", `${at} (${propMapLabel(e)}) is ${e.confidence}, not verified yet.`);
+        });
+      }
+    } else if (res.targets.length > 1) {
+      add(name, "propmap-missing", "warning", `${res.targets.length} variant targets but no \`mapping.propMap\` (per-variant routing — D4 — needs one).`);
+    }
   }
 
   for (const [code, figmas] of oneToOneTargetUsage) {
@@ -110,7 +179,7 @@ export function validateMappings(mapping, pkgDir) {
 
   const byKind = {};
   for (const i of issues) byKind[i.kind] = (byKind[i.kind] || 0) + 1;
-  const blockingKinds = new Set(["unresolved", "ambiguous", "same-name-collision", "invalid-ref", "duplicate"]);
+  const blockingKinds = new Set(["unresolved", "ambiguous", "same-name-collision", "invalid-ref", "duplicate", "propmap-malformed"]);
   const hasBlocking = issues.some((i) => blockingKinds.has(i.kind) && i.severity === "error");
 
   return { issues, byKind, hasBlocking };
