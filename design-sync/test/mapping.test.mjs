@@ -59,19 +59,42 @@ const ok = (n) => { passed++; console.log(`  ✓ ${n}`); };
   // malformed: missing evidence + invalid confidence → blocking error
   {
     const { byKind, hasBlocking } = validateMappings(
-      withPropMap([{ figma: "type=A", code: "<X a>", confidence: "maybe" }]), null);
+      withPropMap([{ figma: { type: "A" }, code: { component: "Foo", props: { a: true } }, confidence: "maybe" }]), null);
     assert.ok(byKind["propmap-malformed"] >= 1, "malformed propMap flagged");
     assert.equal(hasBlocking, true, "malformed propMap blocks");
   }
 
-  // valid with a pending entry → info, not blocking
+  // the D4 shape is objects: string figma/code, an empty figma, an unknown code key or a code
+  // with nothing to render are each malformed
+  {
+    const ev = { confidence: "verified", evidence: "e" };
+    for (const bad of [
+      { figma: "type=A", code: { component: "Foo" }, ...ev },
+      { figma: { type: "A" }, code: "<Foo a>", ...ev },
+      { figma: {}, code: { component: "Foo" }, ...ev },
+      { figma: { type: 3 }, code: { component: "Foo" }, ...ev },
+      { figma: { type: "A" }, code: { component: "Foo", variant: "x" }, ...ev },
+      { figma: { type: "A" }, code: { with: ["Bar"] }, ...ev },
+      { figma: { type: "A" }, code: { component: "Foo", props: {} }, ...ev },
+    ]) {
+      const { byKind } = validateMappings(withPropMap([bad]), null);
+      assert.equal(byKind["propmap-malformed"], 1, `malformed: ${JSON.stringify(bad)}`);
+    }
+  }
+
+  // valid D4 rows (component+props, with, css, none, "$" keys, alternatives) and a
+  // pending / probable entry → info, not blocking
   {
     const { byKind, hasBlocking } = validateMappings(withPropMap([
-      { figma: "type=A", code: "<X a>", confidence: "verified", evidence: "e" },
-      { figma: "type=B", code: "<X b>", confidence: "pending", evidence: "e" },
+      { figma: { type: "Red" }, code: { component: "Foo", props: { color: "danger" } }, confidence: "verified", evidence: "e" },
+      { figma: { type: ["sm", "md"], leftIcon: true }, code: { component: "Foo", with: ["Bar"] }, confidence: "verified", evidence: "e" },
+      { figma: { state: "Hovered" }, code: { css: ":hover" }, confidence: "verified", evidence: "e" },
+      { figma: { $component: "Foo_Body", $node: "1:2" }, code: { none: "no prop" }, confidence: "verified", evidence: "e" },
+      { figma: { $text: "Text" }, code: { props: { message: "{Text}" } }, confidence: "probable", evidence: "e" },
+      { figma: { type: "B" }, code: { component: "Bar" }, confidence: "pending", evidence: "e" },
     ]), null);
     assert.equal(byKind["propmap-malformed"], undefined, "valid propMap not flagged");
-    assert.ok(byKind["propmap-pending"] >= 1, "pending entry surfaced");
+    assert.equal(byKind["propmap-pending"], 2, "pending and probable entries surfaced");
     assert.equal(hasBlocking, false, "valid propMap does not block");
   }
 
