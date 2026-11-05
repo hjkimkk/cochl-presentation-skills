@@ -16,7 +16,9 @@ A reusable Claude Code skill library for creating Cochl presentations, design re
 | [design-system](./skills/design-system/) | `/design-system` | Install and apply the Cochl design system (`@cochlearai/ui`) in React projects |
 | [design-sync](./skills/design-sync/) | `/design-sync` | Sync design tokens and check design/code drift (thin skill over the `design-sync/` engine) |
 
-Commands are the skill folder names.
+Commands are the skill folder names. The old names `/pitch-deck-skill`, `/dr-template`,
+`/design-review-template` and `/proposal-doc-template` are thin skills too
+(`skills/<old-name>/`): each hands off to the current skill.
 
 ## Install (plugin, v2)
 
