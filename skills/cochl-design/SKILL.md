@@ -25,7 +25,7 @@ You do not build anything here. Pick the skill, load its SKILL.md, and follow it
 3. **`/cochl-design` with no request** → show the six rows as a menu, one line each, and wait.
 4. The user may ask for the other theme in words; there is no third theme.
 5. Every skill can still be called directly (`/cochl-presentation`, `/pitch-deck`, `/design-review`, `/proposal-doc`, `/design-system`, `/design-sync`).
-6. **Old command names** → treat as the current skill, no question asked:
+6. **Old command names** → treat as the current skill, no question asked. Each also exists as its own thin skill (`../pitch-deck-skill/` etc.), so typing the old name alone works too:
 
 | Old name | Load |
 |---|---|

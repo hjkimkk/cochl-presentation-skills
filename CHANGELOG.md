@@ -10,6 +10,10 @@ under a version heading.
 
 ## Unreleased
 
+- Old command names work again when typed on their own: `/pitch-deck-skill`, `/dr-template`,
+  `/design-review-template` and `/proposal-doc-template` are thin skills that hand off to
+  `/pitch-deck`, `/design-review` and `/proposal-doc`. Before, only `/cochl-design` knew them, and
+  the old name alone did nothing. Found in the pilot (T10).
 - Install script (`scripts/migrate-to-plugin.sh`): also moves the old copies named
   `cochl-pitch-deck`, `cochl-brochure` and `install-cochl-design-system` out of `~/.claude/skills`.
   A copy with no `name:` line counts when its first heading starts with `# Cochl`. Found in the
