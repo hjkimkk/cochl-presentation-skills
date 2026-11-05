@@ -121,7 +121,7 @@
     "component": "Button",
     "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
     "figmaNodeId": "3251:7349",
-    "capturedAt": "2026-10-15T13:50:06.000Z",
+    "capturedAt": "2026-11-04T21:37:01.516Z",
     "captureMethod": "figma-mcp get_metadata + get_variable_defs + get_design_context",
     "sourceRevision": null,
     "captureStatus": "captured",
@@ -129,6 +129,22 @@
       "at": "2026-10-15T13:50:06.000Z",
       "via": "figma-mcp use_figma (Plugin API)",
       "result": "values re-checked; variant.kinds gained ComplexButton (Figma type axis)"
+    },
+    "fingerprint": {
+      "background": "#4B68FF",
+      "cornerRadius": "4px",
+      "paddingLeft": "14px",
+      "paddingTop": "11px",
+      "font": "IBM Plex Sans 500 14px",
+      "textColor": "#FFFFFF",
+      "axes": [
+        "category",
+        "leftIcon",
+        "rightIcon",
+        "state",
+        "theme",
+        "type"
+      ]
     }
   }
 }

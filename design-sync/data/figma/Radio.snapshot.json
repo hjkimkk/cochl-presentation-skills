@@ -43,7 +43,7 @@
     "component": "Radio",
     "figmaFileId": "aUrjRMAnE8ND8o6lAI0VcM",
     "figmaNodeId": "3116:3041",
-    "capturedAt": "2026-10-15T13:50:06.000Z",
+    "capturedAt": "2026-11-04T21:37:03.387Z",
     "captureMethod": "figma-mcp get_metadata + get_design_context",
     "sourceRevision": null,
     "captureStatus": "captured",
@@ -51,6 +51,15 @@
       "at": "2026-10-15T13:50:06.000Z",
       "via": "figma-mcp use_figma (Plugin API)",
       "result": "values re-checked against current nodes; unchanged"
+    },
+    "fingerprint": {
+      "background": "#4B68FF",
+      "axes": [
+        "state",
+        "theme",
+        "type",
+        "withLabel"
+      ]
     }
   }
 }

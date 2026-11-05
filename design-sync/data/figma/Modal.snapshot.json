@@ -43,9 +43,9 @@
     "sourceRevision": null,
     "captureStatus": "architectural-note",
     "lastVerified": {
-      "at": "2026-10-15T13:50:06.000Z",
+      "at": "2026-11-05T00:00:00.000Z",
       "via": "figma-mcp use_figma (Plugin API)",
-      "result": "values re-checked against current nodes; unchanged"
+      "result": "structure re-checked against current nodes; unchanged"
     }
   }
 }
