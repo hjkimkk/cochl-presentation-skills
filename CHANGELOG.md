@@ -10,6 +10,8 @@ under a version heading.
 
 ## Unreleased
 
+## 2.1.4 — 2026-11-05
+
 - Old command names work again when typed on their own: `/pitch-deck-skill`, `/dr-template`,
   `/design-review-template` and `/proposal-doc-template` are thin skills that hand off to
   `/pitch-deck`, `/design-review` and `/proposal-doc`. Before, only `/cochl-design` knew them, and
