@@ -10,6 +10,11 @@ under a version heading.
 
 ## Unreleased
 
+- Install script (`scripts/migrate-to-plugin.sh`): also moves the old copies named
+  `cochl-pitch-deck`, `cochl-brochure` and `install-cochl-design-system` out of `~/.claude/skills`.
+  A copy with no `name:` line counts when its first heading starts with `# Cochl`. Found in the
+  pilot (T1): a v1 install kept `install-cochl-design-system` next to the plugin.
+
 ## 2.1.3 — 2026-11-02
 
 - cochl-presentation: every build now delivers three files — PPTX, HTML and a **Claude Code
