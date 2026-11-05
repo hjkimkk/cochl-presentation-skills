@@ -14,7 +14,7 @@
           { "figma": { "category": "Primary", "type": "md" }, "code": { "component": "Button", "props": { "color": "primary" } }, "confidence": "verified", "evidence": "same fill as Basic; 50px height has no size prop (style only)" },
           { "figma": { "category": "Secondary", "type": ["sm", "md", "lg"] }, "code": { "component": "Button", "props": { "color": "secondary" } }, "confidence": "verified", "evidence": "outlined gray (3253:7385) = button.border/color.secondary; value drift: Figma #727273 vs code #8C8C8C; sm/md/lg have no size prop" },
           { "figma": { "type": "Link" }, "code": { "component": "HyperlinkButton", "props": { "text": "{Text}", "rightArrow": "{rightIcon}" } }, "confidence": "verified", "evidence": "HyperlinkButtonProps { text, rightArrow, onClick }; no disabled prop" },
-          { "figma": { "type": "ComplexButton" }, "code": { "component": "ComplexButton", "props": { "title": "{Title}", "subtitle": "{Subtitle}" } }, "confidence": "pending", "evidence": "in @cochlearai/ui 1.0.6 (beta build); props not compared yet" },
+          { "figma": { "type": "ComplexButton" }, "code": { "component": "ComplexButton", "props": { "title": "{Title}", "subtitle": "{Subtitle}", "leftIcon": "{leftIcon}", "rightIcon": "{rightIcon}" } }, "confidence": "verified", "evidence": "ComplexButtonProps { title, subtitle, disabled, leftIcon, rightIcon (default ExternalIcon, null hides) } at cochl-dashboard fc26898 (2026-10-08, before the 1.0.6 publish) = Figma TEXT Title/Subtitle, leftIcon/rightIcon, state=Disabled (form.md §1)" },
           { "figma": { "state": "Disabled" }, "code": { "props": { "disabled": true } }, "confidence": "verified", "evidence": "ButtonProps.disabled" },
           { "figma": { "state": "Hovered" }, "code": { "css": ":hover" }, "confidence": "verified", "evidence": "theme button.backgroundColor.hover.*" },
           { "figma": { "leftIcon": true }, "code": { "props": { "leftIcon": "<Icon/>" } }, "confidence": "verified", "evidence": "ButtonProps.leftIcon/rightIcon: ReactNode" },
@@ -62,6 +62,13 @@
             "props": "state=Success → severity=\"info\"; state=Error → severity=\"error\"; Text → message",
             "note": "Figma 'Alert' → code 'Toast'. Name differs but role (status message with severity + optional action) matches → ONE_TO_ONE." },
           { "component": "Toast", "role": "status-message", "relationship": "variant", "variant": "type=Link", "props": "Hyperlink → buttonText (+ onClick)" }
+        ],
+        "propMap": [
+          { "figma": { "type": "Basic" }, "code": { "component": "Toast" }, "confidence": "verified", "evidence": "alert.md §1: Figma Alert = code Toast, same role (beta @ 55a4cd4)" },
+          { "figma": { "state": "Success" }, "code": { "props": { "severity": "info" } }, "confidence": "verified", "evidence": "alert.md §1: Figma Success is blue = info; code severity=\"success\" is green #00C853" },
+          { "figma": { "state": "Error" }, "code": { "props": { "severity": "error" } }, "confidence": "verified", "evidence": "alert.md §1" },
+          { "figma": { "$text": "Text" }, "code": { "props": { "message": "{Text}" } }, "confidence": "verified", "evidence": "ToastProps.message (alert.md, code)" },
+          { "figma": { "type": "Link", "$text": "Hyperlink" }, "code": { "props": { "buttonText": "{Hyperlink}", "onClick": "() => …" } }, "confidence": "verified", "evidence": "alert.md §1: underlined action = buttonText/onClick" }
         ],
         "reason": "Both Figma types are Toast; type=Link is Toast with buttonText/onClick. Alert_Icons (3132:5485) Success/Error are ToastCheckIcon/ToastErrorIcon, internal to Toast. Banner and Notification share the Storybook group Feedback/Alert but are not Alert: Banner has no Figma component (D2 backlog) and Notification is the GNB bell (Menu/Navigation family). Decided 2026-10-13 from docs/design-sync/mismatch/feedback-overlay.md §1."
       },
@@ -203,6 +210,19 @@
           { "component": "Dropdown", "role": "popover-container", "relationship": "part", "variant": "type=Time Picker" },
           { "component": "DropdownItem", "role": "select-option", "relationship": "part", "variant": "type=Time Picker" }
         ],
+        "propMap": [
+          { "figma": { "type": ["Email Selection", "Multi Select Dropdown"] }, "code": { "component": "MultiSelectDropdown" }, "confidence": "verified", "evidence": "form.md §6 (emailSelect, renamed 2026-10-08); Multi Select Dropdown is a copy of Email Selection" },
+          { "figma": { "type": ["Small Dropdown", "List Dropdown"] }, "code": { "component": "ListDropdown", "with": ["DropdownButton"] }, "confidence": "verified", "evidence": "form.md §6 (sm, renamed 2026-10-08); trigger styles are story-only" },
+          { "figma": { "type": "Time Picker" }, "code": { "component": "Dropdown", "with": ["DropdownButton", "DropdownItem"] }, "confidence": "verified", "evidence": "form.md §6 (timePicker); DateBadge/TimePickerMenuItem are story-only" },
+          { "figma": { "state": "Default" }, "code": { "props": { "value": [] } }, "confidence": "verified", "evidence": "form.md §6" },
+          { "figma": { "state": "Filled" }, "code": { "props": { "value": "[...]", "clearAll": "() => …" } }, "confidence": "verified", "evidence": "form.md §6" },
+          { "figma": { "state": "Active" }, "code": { "props": { "menuIsOpen": true, "isOpen": true } }, "confidence": "verified", "evidence": "form.md §6" },
+          { "figma": { "state": "Focus" }, "code": { "none": "no prop; story-only border override" }, "confidence": "verified", "evidence": "form.md §6" },
+          { "figma": { "state": "disabled" }, "code": { "component": "MultiSelectDropdown", "props": { "disable": true } }, "confidence": "verified", "evidence": "form.md §6: Small Dropdown / Time Picker disabled is story-only" },
+          { "figma": { "$text": "Label" }, "code": { "props": { "placeholder": "{Label}" } }, "confidence": "verified", "evidence": "form.md §6" },
+          { "figma": { "$text": "Chip Text" }, "code": { "none": "multiValue label (rendered from the selected option)" }, "confidence": "verified", "evidence": "form.md §6" },
+          { "figma": { "$text": "Email Text" }, "code": { "none": "option label (rendered from the options)" }, "confidence": "verified", "evidence": "form.md §6" }
+        ],
         "reason": "Figma Dropdown is a select-field family (type=Small Dropdown|Time Picker|Email Selection|List Dropdown|Multi Select Dropdown — names match the five Storybook Form/Dropdown stories exactly; renamed 2026-10-08 from sm|timePicker|emailSelect, and List Dropdown / Multi Select Dropdown added the same day as copies of Small Dropdown / Email Selection); Storybook Form/Dropdown has the same three stories. Decided 2026-10-07 (YJ: option a), verified against cochl-dashboard packages/cochl-ui/stories/form/Dropdown.stories.tsx. Code `Dropdown` alone is only the popover part. sm/timePicker trigger styles live in the story file, not the library (see mismatch audit)."
       },
       "code": { "package": "@cochlearai/ui", "component": "MultiSelectDropdown", "extract": {} },
@@ -220,6 +240,13 @@
           { "component": "TableRow", "role": "table-row", "relationship": "part" },
           { "component": "TableCell", "role": "table-cell", "relationship": "part" }
         ],
+        "propMap": [
+          { "figma": { "$component": "Table", "$node": "2068:308" }, "code": { "component": "Table" }, "confidence": "verified", "evidence": "table.md: composed 1280x340 example; Table is an unstyled semantic wrapper" },
+          { "figma": { "$component": "Table_Header", "$node": "2068:319" }, "code": { "component": "TableHead", "with": ["TableRow", "TableCell"] }, "confidence": "verified", "evidence": "table.md: TableCell renders th | td" },
+          { "figma": { "$component": "Table_Body", "$node": "2071:158" }, "code": { "component": "TableBody", "with": ["TableRow", "TableCell"] }, "confidence": "verified", "evidence": "table.md" },
+          { "figma": { "$component": "Table_Body", "type": ["Basic", "Secondary", "Button", "Chip"] }, "code": { "none": "no prop; the consumer styles the cell" }, "confidence": "verified", "evidence": "table.md §2: no cell types in code" },
+          { "figma": { "$component": "Table_Body", "isLastItem": ["true", "false"] }, "code": { "none": "no prop" }, "confidence": "verified", "evidence": "table.md §2: no isLastItem handling" }
+        ],
         "reason": "Figma 'Table' composes into 5 code components. Per-target property comparisons not yet captured."
       },
       "code": { "package": "@cochlearai/ui", "component": "Table", "extract": {} },
@@ -233,6 +260,13 @@
         "targets": [
           { "component": "ProgressIndicator", "role": "spinner", "relationship": "variant", "note": "size large/medium spinner" },
           { "component": "CircleProgress", "role": "circular-percent", "relationship": "variant", "note": "percent ring" }
+        ],
+        "propMap": [
+          { "figma": { "type": "SoundWave", "state": "Default" }, "code": { "component": "ProgressIndicator", "props": { "size": "large" } }, "confidence": "verified", "evidence": "progress.md §1-2: 5 bars 5x54, gap 7" },
+          { "figma": { "type": "SoundWave", "state": "Medium" }, "code": { "component": "ProgressIndicator", "props": { "size": "medium" } }, "confidence": "verified", "evidence": "progress.md §1-2: 3x28, gap 4" },
+          { "figma": { "type": "Round" }, "code": { "component": "CircleProgress", "props": { "percent": "{percent}" } }, "confidence": "verified", "evidence": "progress.md §1-2" },
+          { "figma": { "type": "Basic" }, "code": { "component": "UsageBar", "props": { "renderItem": "segments" } }, "confidence": "pending", "evidence": "progress.md §1; UsageBar is not a target yet: D2 (2026-10-30) makes it Progress type=Usage in Figma, then add the target" },
+          { "figma": { "type": "Small" }, "code": { "none": "no component; closest is <UsageBar height={2} borderRadius={0}>" }, "confidence": "verified", "evidence": "progress.md §1, §3" }
         ],
         "reason": "Figma 'Progress' maps to two code components by variant (linear/spinner vs circular). Needs a variant→component router; per-target comparisons not yet captured."
       },
@@ -287,6 +321,15 @@
         { "component": "Popover", "role": "popover-container", "relationship": "container", "props": "type=Default → content={list}; type=RightButton|LeftButton → align=\"end\"|\"start\" around a trigger Button" },
         { "component": "DropdownItem", "role": "popover-item", "relationship": "part", "props": "PopoverItem state=Default → <DropdownItem>; state=Selected → no prop (story override)" }
       ],
+        "propMap": [
+          { "figma": { "$component": "PopoverList", "type": "Default" }, "code": { "component": "Popover", "props": { "content": "{list}" } }, "confidence": "verified", "evidence": "popover.md §1: list container is story-only PopoverListContainer" },
+          { "figma": { "$component": "PopoverList", "type": "Divider" }, "code": { "component": "MenuDivider" }, "confidence": "verified", "evidence": "popover.md §1" },
+          { "figma": { "$component": "PopoverList", "type": "RightButton" }, "code": { "component": "Popover", "props": { "align": "end", "padding": 6 }, "with": ["Button"] }, "confidence": "verified", "evidence": "popover.md §1" },
+          { "figma": { "$component": "PopoverList", "type": "LeftButton" }, "code": { "component": "Popover", "props": { "align": "start", "padding": 6 }, "with": ["Button"] }, "confidence": "verified", "evidence": "popover.md §1" },
+          { "figma": { "$component": "PopoverItem", "state": "Default" }, "code": { "component": "DropdownItem" }, "confidence": "verified", "evidence": "popover.md §1" },
+          { "figma": { "$component": "PopoverItem", "state": "Selected" }, "code": { "none": "no prop; story-styled copy" }, "confidence": "verified", "evidence": "popover.md §1: only :hover grey[20]" },
+          { "figma": { "theme": ["Light", "Dark"] }, "code": { "none": "theme tokens; theme is not a prop" }, "confidence": "verified", "evidence": "popover.md §1" }
+        ],
         "reason": "Figma PopoverList (theme, type Default|Divider|RightButton|LeftButton) + PopoverItem (3752:407) compose Popover + DropdownItem; list container, divider and selected item exist only in the story. From docs/design-sync/mismatch/form.md (Popover)." },
       "code": { "package": "@cochlearai/ui", "component": "Popover", "extract": {} },
       "comparisons": []
@@ -318,6 +361,18 @@
         { "component": "Modal", "role": "modal-container", "relationship": "container", "props": "ModalOverlay (1869:1060) → dim (default true)" },
         { "component": "ConfirmModal", "role": "modal-dialog", "relationship": "variant", "variant": "type=Modal with heading", "props": "Title → title; Subtitles → subTitle; Button → onAbort/onConfirm" }
       ],
+        "propMap": [
+          { "figma": { "$component": "ModalOverlay", "$node": "1869:1060" }, "code": { "component": "Modal", "props": { "dim": true } }, "confidence": "verified", "evidence": "feedback-overlay.md §6" },
+          { "figma": { "type": "Modal with heading" }, "code": { "component": "ConfirmModal", "props": { "title": "{Title}", "subTitle": "{Subtitles}", "onAbort": "() => …", "onConfirm": "() => …" } }, "confidence": "verified", "evidence": "feedback-overlay.md §6 (story ModalWithHeading)" },
+          { "figma": { "type": "Modal with subtitles and cta" }, "code": { "none": "no library component; story-local, app ProjectCreateModal" }, "confidence": "verified", "evidence": "feedback-overlay.md §6; D2 backlog" },
+          { "figma": { "$text": "Title" }, "code": { "props": { "title": "{Title}" } }, "confidence": "verified", "evidence": "feedback-overlay.md §6" },
+          { "figma": { "$text": ["Subtitles", "Subtitles2"] }, "code": { "props": { "subTitle": "{Subtitles}" } }, "confidence": "verified", "evidence": "feedback-overlay.md §6" },
+          { "figma": { "CloseToggle": true }, "code": { "props": { "onClose": "() => …" } }, "confidence": "verified", "evidence": "feedback-overlay.md §6" },
+          { "figma": { "Button": true }, "code": { "props": { "onAbort": "() => …", "onConfirm": "() => …" } }, "confidence": "verified", "evidence": "feedback-overlay.md §6" },
+          { "figma": { "state": ["Default", "Enabled"] }, "code": { "none": "no prop" }, "confidence": "verified", "evidence": "feedback-overlay.md §6" },
+          { "figma": { "theme": ["Light", "Dark"] }, "code": { "none": "global theme; theme is not a prop" }, "confidence": "verified", "evidence": "feedback-overlay.md §6" },
+          { "figma": { "$component": "Modal/Small" }, "code": { "component": "Modal", "props": { "size": "small" } }, "confidence": "pending", "evidence": "feedback-overlay.md §6: width unverified" }
+        ],
         "reason": "Figma ModalContent + ModalOverlay map to Modal and ConfirmModal. type='Modal with subtitles and cta' has no library component (story-local; app ProjectCreateModal) → D2 backlog. From docs/design-sync/mismatch/feedback-overlay.md §6." },
       "code": { "package": "@cochlearai/ui", "component": "Modal", "extract": {} },
       "comparisons": []
@@ -332,6 +387,11 @@
         { "component": "CalendarBottomButtons", "role": "actions", "relationship": "part" },
         { "component": "DayPickerRangeControllerInputs", "role": "inputs", "relationship": "part" }
       ],
+        "propMap": [
+          { "figma": { "style": "day of month" }, "code": { "component": "Calendar" }, "confidence": "verified", "evidence": "date-picker.md §1; exports verified in the Yarn cache 2026-10-13" },
+          { "figma": { "style": "custom" }, "code": { "component": "Calendar", "props": { "renderInputComponents": "DayPickerRangeControllerInputs", "renderButtonComonents": "CalendarBottomButtons" } }, "confidence": "verified", "evidence": "date-picker.md §1: two months, inputs and Cancel/Confirm in the bottom bar" },
+          { "figma": { "style": ["month of year", "year over year"] }, "code": { "component": "MonthYearPicker" }, "confidence": "verified", "evidence": "date-picker.md; mapping targets" }
+        ],
         "reason": "The production date picker is @cochlearai/calendar@1.0.1 (packages/cochl-calendar), not @cochlearai/ui; the cochl-ui 'Data Display/Date picker' story is a static mock. Exports verified in the Yarn cache 2026-10-13. From docs/design-sync/mismatch/date-picker.md." },
       "code": { "package": "@cochlearai/calendar", "component": "Calendar", "extract": {} },
       "comparisons": [],
@@ -364,6 +424,13 @@
         { "component": "Tab", "role": "tab-list", "relationship": "container" },
         { "component": "TabItem", "module": "Tab", "role": "tab", "relationship": "part", "props": "state=Default → <TabItem>; state=Active → selected; state=Focus → none (no focus style in code)" }
       ],
+        "propMap": [
+          { "figma": { "type": "Basic" }, "code": { "component": "Tab", "with": ["TabItem"] }, "confidence": "verified", "evidence": "navigation-icons.md §1" },
+          { "figma": { "state": "Default" }, "code": { "component": "TabItem" }, "confidence": "verified", "evidence": "navigation-icons.md §1" },
+          { "figma": { "state": "Active" }, "code": { "component": "TabItem", "props": { "selected": true } }, "confidence": "verified", "evidence": "navigation-icons.md §1" },
+          { "figma": { "state": "Focus" }, "code": { "none": "no prop; TabItem is not keyboard focusable" }, "confidence": "verified", "evidence": "navigation-icons.md §1" },
+          { "figma": { "theme": ["Light", "Dark"] }, "code": { "none": "ThemeProvider; theme is not a prop" }, "confidence": "verified", "evidence": "navigation-icons.md §1" }
+        ],
         "reason": "Figma Tabs (theme Light|Dark, type Basic, state Default|Focus|Active, text prop Text) composes into Tab + TabItem. Storybook Disclosure/Tabs (disclosure-tabs--states). From docs/design-sync/mismatch/navigation-icons.md §1." },
       "code": { "package": "@cochlearai/ui", "component": "Tab", "extract": {} },
       "comparisons": [],
@@ -383,6 +450,16 @@
         { "component": "UserMenu", "module": "Menu", "role": "user-menu", "relationship": "variant", "variant": "type=UserMenu" },
         { "component": "NotificationMenuItem", "module": "Menu", "role": "menu-item", "relationship": "part", "props": "MenuItem notifOn=true → read=false (unread dot); state=LastItem → showDivider={false}" }
       ],
+        "propMap": [
+          { "figma": { "type": "Basic" }, "code": { "component": "Menu", "with": ["MenuItem"] }, "confidence": "verified", "evidence": "feedback-overlay.md §4" },
+          { "figma": { "type": "Notification", "state": "Default" }, "code": { "component": "NotificationMenu", "props": { "notifications": "[...]" } }, "confidence": "verified", "evidence": "feedback-overlay.md §4" },
+          { "figma": { "type": "Notification", "state": "Empty" }, "code": { "component": "NotificationMenu", "props": { "notifications": [] } }, "confidence": "verified", "evidence": "feedback-overlay.md §4" },
+          { "figma": { "type": "UserMenu" }, "code": { "component": "UserMenu" }, "confidence": "verified", "evidence": "feedback-overlay.md §4" },
+          { "figma": { "$component": "MenuItem", "notifOn": "true" }, "code": { "component": "NotificationMenuItem", "props": { "notification.read": false } }, "confidence": "verified", "evidence": "feedback-overlay.md §4" },
+          { "figma": { "$component": "MenuItem", "notifOn": "false" }, "code": { "component": "NotificationMenuItem", "props": { "notification.read": true } }, "confidence": "verified", "evidence": "feedback-overlay.md §4" },
+          { "figma": { "$component": "MenuItem", "state": "LastItem" }, "code": { "component": "NotificationMenuItem", "props": { "showDivider": false } }, "confidence": "verified", "evidence": "feedback-overlay.md §4" },
+          { "figma": { "$component": "MenuItem", "$text": "Text" }, "code": { "props": { "children": "{Text}" } }, "confidence": "verified", "evidence": "feedback-overlay.md §4" }
+        ],
         "reason": "Figma Menu (theme, type Notification|UserMenu|Basic, state Default|Empty, notifOn) + MenuItem (1821:1070) map to Menu, NotificationMenu, UserMenu and NotificationMenuItem. Storybook Overlay/Menu. From docs/design-sync/mismatch/feedback-overlay.md (Menu section)." },
       "code": { "package": "@cochlearai/ui", "component": "Menu", "extract": {} },
       "comparisons": [],
@@ -402,6 +479,15 @@
         { "component": "FNB", "role": "footer-nav", "relationship": "variant", "variant": "type=Footer" },
         { "component": "ProjectNavi", "role": "project-nav", "relationship": "variant", "variant": "type=ProjectNav", "props": "PageButton (6533:2777) → ProjectNaviItem" }
       ],
+        "propMap": [
+          { "figma": { "type": "GNB" }, "code": { "component": "GNB" }, "confidence": "verified", "evidence": "navigation.md §1" },
+          { "figma": { "$component": "NavButton", "$node": "6535:417" }, "code": { "component": "GNBLink" }, "confidence": "verified", "evidence": "navigation.md §1" },
+          { "figma": { "type": "LNB" }, "code": { "component": "LNB", "with": ["LNBTab", "LNBTabItem"] }, "confidence": "verified", "evidence": "navigation.md §2; Figma LNB tabs are plain frames" },
+          { "figma": { "type": "Footer" }, "code": { "component": "FNB" }, "confidence": "verified", "evidence": "navigation.md" },
+          { "figma": { "type": "ProjectNav" }, "code": { "component": "ProjectNavi" }, "confidence": "verified", "evidence": "navigation.md" },
+          { "figma": { "$component": "PageButton", "$node": "6533:2777" }, "code": { "component": "ProjectNaviItem" }, "confidence": "verified", "evidence": "navigation.md" },
+          { "figma": { "size": ["xl", "lg", "md", "sm", "xs", "mobile"] }, "code": { "none": "no prop; fixed to media.size.lg" }, "confidence": "verified", "evidence": "navigation.md §1: no sm/xs/mobile layout in code" }
+        ],
         "reason": "Figma Navigation (48 variants: theme × type × size xl..mobile) maps by type. Code is fixed to media.size.lg; no responsive sizes. Storybook Disclosure/Navigation. From docs/design-sync/mismatch/navigation.md." },
       "code": { "package": "@cochlearai/ui", "component": "GNB", "extract": {} },
       "comparisons": [],

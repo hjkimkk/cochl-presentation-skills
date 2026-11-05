@@ -17,6 +17,12 @@ under a version heading.
   (`propmap-malformed`); a `probable` or `pending` row is reported as info; a component with more
   than one code target and no `propMap` is a warning (`propmap-missing`). Button's rows moved from
   text to objects.
+- design-sync: the 10 multi-target mapping entries (Alert, Dropdown, Table, Progress, Popover,
+  Modal, DatePicker, Tabs, Menu, Navigation) now carry a `propMap` in the object format, built from
+  the mismatch audits in `docs/design-sync/mismatch/`, so `mapping validate` reports no `propmap-missing`. Two rows stay
+  `pending`: Progress `type=Basic` → `UsageBar` (waits for the D2 Figma change to `type=Usage`) and
+  Modal `size="small"` (width unverified). Button's `type=ComplexButton` row is `verified`: its props
+  in `@cochlearai/ui` 1.0.6 (`title`, `subtitle`, `disabled`, `leftIcon`, `rightIcon`) match Figma.
 
 ## 2.1.3 — 2026-11-02
 
