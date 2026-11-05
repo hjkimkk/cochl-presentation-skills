@@ -10,6 +10,8 @@ under a version heading.
 
 ## Unreleased
 
+## 2.1.5 — 2026-11-05
+
 Fixes from the plugin pilot (tests T4–T7 and T11, Nov 5). Every skill now follows the core rules:
 white logo bottom-left at 0.70 on deck covers and footers, brand-core company facts, tokens only.
 
