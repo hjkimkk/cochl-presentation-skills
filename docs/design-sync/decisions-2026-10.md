@@ -84,6 +84,11 @@ different ways, and the engine reads none of them:
 - `confidence`: `verified` | `probable` | `pending` (not published yet).
 - Keep `targets[]` for the component list and `ONE_TO_MANY`; drop the free-text `variant` / `props` once rows exist.
 
+**As built (#58):** the format above, plus `code.with` (other components rendered together, e.g.
+`Tab` with `TabItem`), `code.none` (no code counterpart, and why) and `figma` keys starting with `$`
+that are not Figma axes: `$component` (a component inside the set), `$node` (node id), `$text` (a
+TEXT property). A `figma` value can be an array of alternatives. `evidence` is required.
+
 **Engine work (small, optional):** `mapping validate` warns when a `propMap` axis/value isn't in the
 component's Figma snapshot (`variant.axes`) or `code.component` isn't exported. That catches the
 renames we fixed by hand in October (e.g. `smIcon` → `SmallwithIcon`).

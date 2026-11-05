@@ -84,7 +84,7 @@ When the user gives a Figma node, a Figma URL or a Figma component name, don't g
 1. Open `../../design-sync/config/mapping.json` (inside the plugin), or `design-sync/config/mapping.json` in the cochl-presentation-skills repo.
 2. Find the entry whose `figma.nodeId` or `relatedNodeIds` matches the node (URL `node-id=3251-7381` → `3251:7381`), else match `figma.name`. Look in `components` first, then `pending`.
 3. Use, in this order:
-   - `mapping.propMap`: exact Figma variant → JSX rows (e.g. `type=Red` → `<Button color="danger">`, `type=Link` → `<HyperlinkButton>`). Rows marked `pending` are not published yet.
+   - `mapping.propMap`: exact Figma variant → code rows. `figma` is axis → value (`{ "type": "Red" }`; an array lists alternatives; `$component`, `$node`, `$text` name a part of the set, a node or a text property). `code` is `{ component, with, props }` (`{ "component": "Button", "props": { "color": "danger" } }` → `<Button color="danger">`; `"{Text}"` = the Figma text property), `{ css }` for a state with no prop, or `{ none }` when nothing in code matches. Rows marked `pending` or `probable` are not verified yet.
    - `mapping.targets[].variant` and `.props`: which code component and props a Figma variant becomes.
    - `mapping.iconMap` for Icons: Figma icon set → code icon; `probable`/`ambiguous` rows need a visual check.
 4. An entry in `pending` means the component is not in the published `@cochlearai/ui` yet (or lives in another package, see `code.package`). Tell the user; don't import it from `@cochlearai/ui`.

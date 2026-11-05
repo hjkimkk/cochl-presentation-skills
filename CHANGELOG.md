@@ -10,10 +10,13 @@ under a version heading.
 
 ## Unreleased
 
-- design-sync: `mapping validate` checks the variant-level `mapping.propMap` (D4, decided Oct 29):
-  an entry without `figma`, `code` or `evidence`, or with a `confidence` other than `verified` |
-  `pending`, is a blocking error (`propmap-malformed`); a `pending` entry is reported as info; a
-  component with more than one code target and no `propMap` is a warning (`propmap-missing`).
+- design-sync: `mapping.propMap` uses the D4 object format, and `mapping validate` checks it (D4,
+  decided Oct 29): `figma` is axis → value (`{ "type": "Red" }`), `code` is
+  `{ component, with, props }`, `{ css }` or `{ none }`, plus `evidence` and a `confidence` of
+  `verified` | `probable` | `pending`. A row that breaks this is a blocking error
+  (`propmap-malformed`); a `probable` or `pending` row is reported as info; a component with more
+  than one code target and no `propMap` is a warning (`propmap-missing`). Button's rows moved from
+  text to objects.
 
 ## 2.1.3 — 2026-11-02
 
